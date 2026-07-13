@@ -69,12 +69,18 @@ object OtpTokenFactory {
 
         val secret = uri.getQueryParameter("secret") ?: throw IllegalArgumentException("Secret is null")
         val image = uri.getQueryParameter("image")
+        // App-specific backup fields (not part of standard otpauth, but required for round-trip)
+        val alias = uri.getQueryParameter("alias")?.takeIf { it.isNotBlank() }
+        val iconKey = uri.getQueryParameter("icon")?.takeIf { it.isNotBlank() }
+            ?: uri.getQueryParameter("iconKey")?.takeIf { it.isNotBlank() }
 
         return OtpToken (
             id = 0,
             ordinal = -System.currentTimeMillis(), // One way to make the token to the top of the list
             issuer = issuer,
             label = label,
+            alias = alias,
+            iconKey = iconKey,
             imagePath = image,
             tokenType = type,
             algorithm = algo,
@@ -105,6 +111,16 @@ object OtpTokenFactory {
                 builder.appendQueryParameter("counter", (token.counter + 1).toString())
             }
             OtpTokenType.TOTP -> builder.authority("totp")
+        }
+
+        token.alias?.takeIf { it.isNotBlank() }?.let {
+            builder.appendQueryParameter("alias", it)
+        }
+        token.iconKey?.takeIf { it.isNotBlank() }?.let {
+            builder.appendQueryParameter("icon", it)
+        }
+        token.imagePath?.takeIf { it.isNotBlank() }?.let {
+            builder.appendQueryParameter("image", it)
         }
 
         return builder.build()

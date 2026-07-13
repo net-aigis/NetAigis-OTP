@@ -37,6 +37,7 @@ import de.wittmer.app.otp.R
 import de.wittmer.app.otp.data.OtpTokenDatabase
 import de.wittmer.app.otp.data.OtpTokenFactory
 import de.wittmer.app.otp.databinding.ShareQrcodeBinding
+import de.wittmer.app.otp.util.displayName
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -68,7 +69,7 @@ class ShareQrCodeActivity : AppCompatActivity() {
 
             // Get token values.
             val token = otpTokenDatabase.otpTokenDao().get(tokenId).first() ?: return@launch
-            title = token.issuer
+            title = token.displayName()
 
             // Get references to widgets.
             val qrcodeWriter = QRCodeWriter();

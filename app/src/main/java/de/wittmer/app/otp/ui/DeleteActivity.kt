@@ -14,6 +14,7 @@ import kotlinx.coroutines.launch
 import de.wittmer.app.otp.R
 import de.wittmer.app.otp.data.OtpTokenDatabase
 import de.wittmer.app.otp.databinding.DeleteBinding
+import de.wittmer.app.otp.util.displayName
 import de.wittmer.app.otp.util.setTokenImage
 import javax.inject.Inject
 
@@ -65,7 +66,7 @@ class DeleteActivity : AppCompatActivity() {
                     return@collect
                 }
 
-                (findViewById<View>(R.id.issuer) as TextView).text = token.issuer
+                (findViewById<View>(R.id.issuer) as TextView).text = token.displayName()
                 (findViewById<View>(R.id.label) as TextView).text = token.label
                 binding.imageView.setTokenImage(token)
             }

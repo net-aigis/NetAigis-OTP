@@ -87,6 +87,8 @@ class ImportExportRoundTripTest {
         listOf(
             token.issuer.orEmpty(),
             token.label,
+            token.alias.orEmpty(),
+            token.iconKey.orEmpty(),
             // Base32 padding differs between URI import and JSON encode/decode; ignore '='
             token.secret.trimEnd('='),
             token.tokenType.name,

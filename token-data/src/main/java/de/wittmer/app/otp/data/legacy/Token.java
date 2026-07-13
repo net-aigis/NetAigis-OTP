@@ -56,6 +56,8 @@ public class Token {
     private String labelAlt;
     private String image;
     private String imageAlt;
+    private String alias;
+    private String iconKey;
     private TokenType type;
     private String algo;
     private byte[] secret;
@@ -145,6 +147,11 @@ public class Token {
         }
 
         image = uri.getQueryParameter("image");
+        alias = uri.getQueryParameter("alias");
+        iconKey = uri.getQueryParameter("icon");
+        if (iconKey == null || iconKey.isEmpty()) {
+            iconKey = uri.getQueryParameter("iconKey");
+        }
 
         if (internal) {
             setIssuer(uri.getQueryParameter("issueralt"));
@@ -306,6 +313,13 @@ public class Token {
             break;
         }
 
+        if (alias != null && !alias.isEmpty()) {
+            builder.appendQueryParameter("alias", alias);
+        }
+        if (iconKey != null && !iconKey.isEmpty()) {
+            builder.appendQueryParameter("icon", iconKey);
+        }
+
         return builder.build();
     }
 
@@ -353,6 +367,22 @@ public class Token {
         this.category = category;
     }
 
+    public String getAlias() {
+        return alias;
+    }
+
+    public void setAlias(String alias) {
+        this.alias = alias;
+    }
+
+    public String getIconKey() {
+        return iconKey;
+    }
+
+    public void setIconKey(String iconKey) {
+        this.iconKey = iconKey;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -368,6 +398,8 @@ public class Token {
                 Objects.equals(labelAlt, token.labelAlt) &&
                 Objects.equals(image, token.image) &&
                 Objects.equals(imageAlt, token.imageAlt) &&
+                Objects.equals(alias, token.alias) &&
+                Objects.equals(iconKey, token.iconKey) &&
                 type == token.type &&
                 Objects.equals(algo, token.algo) &&
                 Arrays.equals(secret, token.secret) &&
@@ -376,7 +408,7 @@ public class Token {
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(issuerInt, issuerExt, issuerAlt, label, labelAlt, image, imageAlt, type, algo, digits, counter, period, category);
+        int result = Objects.hash(issuerInt, issuerExt, issuerAlt, label, labelAlt, image, imageAlt, alias, iconKey, type, algo, digits, counter, period, category);
         result = 31 * result + Arrays.hashCode(secret);
         return result;
     }

@@ -8,6 +8,7 @@ import de.wittmer.app.otp.R
 import de.wittmer.app.otp.data.OtpToken
 import de.wittmer.app.otp.token_images.TokenImage
 import de.wittmer.app.otp.token_images.matchToken
+import de.wittmer.app.otp.token_images.matchTokenImage
 
 fun ImageView.setTokenImage(token: OtpToken) {
     when {
@@ -17,24 +18,39 @@ fun ImageView.setTokenImage(token: OtpToken) {
                 .placeholder(R.drawable.logo)
                 .into(this)
         }
-        !token.issuer.isNullOrBlank() -> {
-            matchIssuerWithTokenThumbnail(token)?.let {
-                setImageResource(it)
-            } ?: run {
-                val tokenText = token.issuer?.substring(0, 1) ?: ""
-                val color = ColorGenerator.MATERIAL.getColor(tokenText)
-                val tokenTextDrawable = TextDrawable.builder().buildRoundRect(tokenText, color, 10)
-                setImageDrawable(tokenTextDrawable)
-            }
+        !token.iconKey.isNullOrBlank() -> {
+            matchTokenImage(token.iconKey)?.let {
+                setImageResource(it.resource)
+            } ?: setFallbackTextImage(token)
         }
         else -> {
-            setImageResource(R.drawable.logo)
+            matchThumbnail(token)?.let { setImageResource(it) }
+                ?: setFallbackTextImage(token)
         }
     }
 }
 
-private fun matchIssuerWithTokenThumbnail(token: OtpToken): Int? {
-    return TokenImage.values().firstOrNull {
-        it.matchToken(token.issuer, token.label)
-    }?.resource
+private fun ImageView.setFallbackTextImage(token: OtpToken) {
+    val tokenText = token.displayName().substring(0, 1)
+    val color = ColorGenerator.MATERIAL.getColor(tokenText)
+    val tokenTextDrawable = TextDrawable.builder().buildRoundRect(tokenText, color, 10)
+    setImageDrawable(tokenTextDrawable)
+}
+
+/**
+ * Resolve a built-in thumbnail. Alias wins over issuer so users can keep a
+ * technical issuer (e.g. Ourcloud) while showing another brand icon via alias
+ * (e.g. Nextcloud).
+ */
+private fun matchThumbnail(token: OtpToken): Int? {
+    val keys = listOfNotNull(
+        token.alias?.takeIf { it.isNotBlank() },
+        token.issuer?.takeIf { it.isNotBlank() },
+    )
+    for (key in keys) {
+        TokenImage.values().firstOrNull {
+            it.matchToken(key, token.label)
+        }?.resource?.let { return it }
+    }
+    return null
 }

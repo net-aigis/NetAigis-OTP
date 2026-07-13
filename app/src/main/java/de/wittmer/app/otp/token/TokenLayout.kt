@@ -16,6 +16,7 @@ import de.wittmer.app.otp.R
 import de.wittmer.app.otp.data.OtpToken
 import de.wittmer.app.otp.data.OtpTokenType
 import de.wittmer.app.otp.data.legacy.TokenCode
+import de.wittmer.app.otp.util.displayName
 import de.wittmer.app.otp.util.setTokenImage
 
 class TokenLayout : MaterialCardView, View.OnClickListener, Runnable {
@@ -83,9 +84,9 @@ class TokenLayout : MaterialCardView, View.OnClickListener, Runnable {
         // Show the image.
         mImage.setTokenImage(token)
 
-        // Set the labels.
+        // Set the labels. Alias is for icon matching only; displayName is issuer (or label).
         mLabel.text = token.label
-        mIssuer.text = token.issuer
+        mIssuer.text = token.displayName()
         mCode.text = mPlaceholder
         if (mIssuer.text.isEmpty()) {
             mIssuer.text = token.label
