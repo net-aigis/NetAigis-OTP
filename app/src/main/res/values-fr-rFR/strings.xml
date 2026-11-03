@@ -19,10 +19,10 @@
     <string name="digits">Chiffres</string>
     <string name="save">Enregistrer</string>
     <string name="code_copied">Code copié dans le presse-papier.</string>
-    <string name="about_freeotp">À propos de FreeOTP+</string>
-    <string name="about_version">FreeOTP+ Version %1$s (%2$d)</string>
+    <string name="about_freeotp">À propos de NetAigis OTP</string>
+    <string name="about_version">NetAigis OTP Version %1$s (%2$d)</string>
     <string name="about_copyright">© 2013 – Red Hat, Inc., et al.\n© 2016 – Liberty</string>
-    <string name="about_license">FreeOTP+ est sous licence %1$s.</string>
+    <string name="about_license">NetAigis OTP est sous licence %1$s.</string>
     <string name="about_website">Pour plus d’informations, voir notre %s.</string>
     <string name="about_feedback">Vos remarques sont les bienvenues :&lt;br/&gt;• %1$s&lt;br/&gt;• %2$s</string>
     <string name="about_icons">Certaines icônes utilisées par cette application sont reproduites à partir de travaux créés et partagés par le projet à code source ouvert Android et utilisées selon les termes décrits dans la licence d’attribution Creative Commons 2.5.</string>
@@ -55,7 +55,7 @@
     <string name="authentication_error">Erreur d’authentification :</string>
     <string name="authentication_failed">Échec de l’authentification</string>
     <string name="authentication_dialog_title">Authentification nécessaire</string>
-    <string name="authentication_dialog_subtitle">Veuillez utiliser la biométrie ou un NIP pour vous authentifier sur FreeOTP+</string>
+    <string name="authentication_dialog_subtitle">Veuillez utiliser la biométrie ou un NIP pour vous authentifier sur NetAigis OTP</string>
     <string name="unable_to_authenticate">Authentification impossible. Avez-vous activé le verrouillage de l’écran par NIP / biométrie ?</string>
     <string name="remove_user_token_image">Retirer l\'image du jeton utilisateur</string>
     <string name="fail_to_add_image">Échec de l\'ajout d\'image</string>

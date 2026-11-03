@@ -20,10 +20,10 @@
     <string name="save">Simpan</string>
     <string name="code_copied">Kode telah disalin ke papan klip.</string>
 
-    <string name="about_freeotp">Tentang FreeOTP+</string>
-    <string name="about_version">Versi FreeOTP+ %1$s (%2$d)</string>
+    <string name="about_freeotp">Tentang NetAigis OTP</string>
+    <string name="about_version">Versi NetAigis OTP %1$s (%2$d)</string>
     <string name="about_copyright">© 2013 - Red Hat, Inc., dan lainnya.\n© 2016 - Liberty</string>
-    <string name="about_license">FreeOTP+ dilisensikan di bawah %1$s.</string>
+    <string name="about_license">NetAigis OTP dilisensikan di bawah %1$s.</string>
     <string name="about_website">Untuk informasi lebih lanjut, kunjungi %s kami.</string>
     <string name="about_feedback">Kami menyambut umpan balik Anda:&lt;br/&gt;• %1$s&lt;br/&gt;• %2$s</string>
     <string name="about_icons">Beberapa ikon yang digunakan oleh aplikasi ini diambil dari karya yang dibuat dan dibagikan oleh Proyek Sumber Terbuka Android dan digunakan sesuai dengan syarat yang dijelaskan dalam Lisensi Creative Commons 2.5 Attribution.</string>
@@ -59,7 +59,7 @@
     <string name="authentication_error">Kesalahan autentikasi:</string>
     <string name="authentication_failed">Autentikasi gagal</string>
     <string name="authentication_dialog_title">Autentikasi diperlukan</string>
-    <string name="authentication_dialog_subtitle">Harap gunakan biometrik atau PIN untuk mengautentikasi FreeOTP+</string>
+    <string name="authentication_dialog_subtitle">Harap gunakan biometrik atau PIN untuk mengautentikasi NetAigis OTP</string>
     <string name="unable_to_authenticate">Tidak dapat mengautentikasi. Apakah Anda mengaktifkan kunci layar dengan PIN / biometrik?</string>
 
     <string name="five" translatable="false">5</string>

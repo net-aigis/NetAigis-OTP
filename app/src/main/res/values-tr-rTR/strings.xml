@@ -19,10 +19,10 @@
     <string name="digits">Rakamlar</string>
     <string name="save">Kaydet</string>
     <string name="code_copied">Kod panoya kopyalandı.</string>
-    <string name="about_freeotp">FreeOTP+ Hakkında</string>
-    <string name="about_version">FreeOTP+ Sürümü %1$s (%2$d)</string>
+    <string name="about_freeotp">NetAigis OTP Hakkında</string>
+    <string name="about_version">NetAigis OTP Sürümü %1$s (%2$d)</string>
     <string name="about_copyright">© 2013 - Red Hat, Inc., et al.\n© 2016 - Liberty</string>
-    <string name="about_license">FreeOTP+, %1$s altında lisanslanmıştır.</string>
+    <string name="about_license">NetAigis OTP, %1$s altında lisanslanmıştır.</string>
     <string name="about_website">Daha fazla bilgi için %s sayfamıza bakın.</string>
     <string name="about_feedback">Geri bildiriminizi memnuniyetle karşılıyoruz:&lt;br/&gt;• %1$s&lt;br/&gt;• %2$s</string>
     <string name="about_icons">Bu uygulama tarafından kullanılan bazı simgeler, Android Open Source Project tarafından oluşturulan ve paylaşılan çalışmalardan çoğaltılır ve Creative Commons 2.5 Attribution License altında açıklanan şartlara göre kullanılır.</string>
@@ -55,7 +55,7 @@
     <string name="authentication_error">Kimlik doğrulama hatası:</string>
     <string name="authentication_failed">Kimlik doğrulama başarısız oldu</string>
     <string name="authentication_dialog_title">Kimlik doğrulaması gerekli</string>
-    <string name="authentication_dialog_subtitle">FreeOTP+\'ı doğrulamak için lütfen biyometrik veya PIN kullanın</string>
+    <string name="authentication_dialog_subtitle">NetAigis OTP\'ı doğrulamak için lütfen biyometrik veya PIN kullanın</string>
     <string name="unable_to_authenticate">Kimlik doğrulanamadı. PIN / biyometrik etkinken ekran kilidini etkinleştirdiniz mi?</string>
     <string name="remove_user_token_image">Kullanıcı token resmini kaldır</string>
     <string name="fail_to_add_image">Resim eklenemedi</string>

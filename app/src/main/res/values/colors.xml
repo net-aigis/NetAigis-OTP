@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">#16AFF9</color>
-    <color name="primary_dark">#128EC9</color>
-    <color name="secondary">#16AFF9</color>
+    <color name="primary">#111D24</color>
+    <color name="primary_dark">#0D171D</color>
+    <color name="secondary">#CDFB65</color>
+    <color name="paper">#F7F9FA</color>
+    <color name="muted">#52616A</color>
+    <color name="line">#DCE3E6</color>
+    <color name="focus">#418801</color>
     <color name="token_background">@android:color/white</color>
-    <color name="overflow_menu">#303030</color>
+    <color name="overflow_menu">#111D24</color>
 </resources>
-
