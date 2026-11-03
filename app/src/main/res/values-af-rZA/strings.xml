@@ -19,9 +19,11 @@
     <string name="digits">Syfers</string>
     <string name="save">Stoor</string>
     <string name="code_copied">Kode na geheue gestoor</string>
-    <string name="about_freeotp">Oor NetAigis OTP</string>
+    <string name="about_otp">Oor NetAigis OTP</string>
     <string name="about_version">NetAigis OTP Weergawe %1$s (%2$d)</string>
-    <string name="about_copyright">© 2013 - Red Hat, Inc., et al.\n© 2016 - Liberty</string>
+    <string name="about_copyright">© 2013 - Red Hat, Inc., et al.
+© 2016 - Liberty
+© 2026 - &lt;a href=&quot;https://net-aigis.de/&quot;&gt;NetAigis&lt;/a&gt;</string>
     <string name="about_license">NetAigis OTP is gelisensieerd onder %1$s.</string>
     <string name="about_website">Vir meer inligting, sien ons %s.</string>
     <string name="about_feedback">Ons verwelkom jou terugvoer:&lt;br/&gt;• %1$s&lt;br/&gt;• %2$s</string>

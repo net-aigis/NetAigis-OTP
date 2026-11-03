@@ -19,9 +19,11 @@
     <string name="digits">Rakamlar</string>
     <string name="save">Kaydet</string>
     <string name="code_copied">Kod panoya kopyalandı.</string>
-    <string name="about_freeotp">NetAigis OTP Hakkında</string>
+    <string name="about_otp">NetAigis OTP Hakkında</string>
     <string name="about_version">NetAigis OTP Sürümü %1$s (%2$d)</string>
-    <string name="about_copyright">© 2013 - Red Hat, Inc., et al.\n© 2016 - Liberty</string>
+    <string name="about_copyright">© 2013 - Red Hat, Inc., et al.
+© 2016 - Liberty
+© 2026 - &lt;a href=&quot;https://net-aigis.de/&quot;&gt;NetAigis&lt;/a&gt;</string>
     <string name="about_license">NetAigis OTP, %1$s altında lisanslanmıştır.</string>
     <string name="about_website">Daha fazla bilgi için %s sayfamıza bakın.</string>
     <string name="about_feedback">Geri bildiriminizi memnuniyetle karşılıyoruz:&lt;br/&gt;• %1$s&lt;br/&gt;• %2$s</string>

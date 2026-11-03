@@ -19,9 +19,11 @@
     <string name="digits">Dígitos</string>
     <string name="save">Salvar</string>
     <string name="code_copied">Código copiado p/ área de transferência.</string>
-    <string name="about_freeotp">Sobre o NetAigis OTP</string>
+    <string name="about_otp">Sobre o NetAigis OTP</string>
     <string name="about_version">NetAigis OTP versão %1$s (%2$d)</string>
-    <string name="about_copyright">© 2013 - Red Hat, Inc., et al.\n© 2016 - Liberty</string>
+    <string name="about_copyright">© 2013 - Red Hat, Inc., et al.
+© 2016 - Liberty
+© 2026 - &lt;a href=&quot;https://net-aigis.de/&quot;&gt;NetAigis&lt;/a&gt;</string>
     <string name="about_license">O NetAigis OTP é licenciado sob a licensa %1$s.</string>
     <string name="about_website">Para mais informações, confira %s.</string>
     <string name="about_feedback">Apreciamos a sua opinião:&lt;br/&gt;• %1$s&lt;br/&gt;• %2$s</string>

@@ -84,7 +84,7 @@
     <item
         android:id="@+id/action_about"
         android:icon="@drawable/info_24px"
-        android:title="@string/about_freeotp" />
+        android:title="@string/about_otp" />
     <item
         android:id="@+id/quit_and_lock"
         android:icon="@drawable/power_settings_new_24px"

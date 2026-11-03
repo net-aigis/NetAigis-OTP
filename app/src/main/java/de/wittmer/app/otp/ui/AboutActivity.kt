@@ -68,11 +68,21 @@ class AboutActivity : AppCompatActivity() {
                 info.versionName, PackageInfoCompat.getLongVersionCode(info))
         aboutVersion.text = version
 
+        binding.aboutCopyright.movementMethod = LinkMovementMethod.getInstance()
+        binding.aboutCopyright.text = HtmlCompat.fromHtml(
+            getString(R.string.about_copyright),
+            HtmlCompat.FROM_HTML_MODE_COMPACT
+        )
+
         val apache2 = res.getString(R.string.link_apache2)
         val license = res.getString(R.string.about_license, apache2)
 
         binding.aboutLicense.movementMethod = LinkMovementMethod.getInstance()
         binding.aboutLicense.text = HtmlCompat.fromHtml(license, HtmlCompat.FROM_HTML_MODE_COMPACT)
+
+        val website = res.getString(R.string.about_website, res.getString(R.string.link_website))
+        binding.aboutWebsite.movementMethod = LinkMovementMethod.getInstance()
+        binding.aboutWebsite.text = HtmlCompat.fromHtml(website, HtmlCompat.FROM_HTML_MODE_COMPACT)
 
         binding.aboutTokenImage.movementMethod = LinkMovementMethod.getInstance()
         binding.aboutTokenImage.text = HtmlCompat.fromHtml(getString(R.string.about_token_image),
