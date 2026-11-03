@@ -46,10 +46,14 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import de.wittmer.app.otp.R
+import de.wittmer.app.otp.data.EncryptionType
+import de.wittmer.app.otp.data.OtpToken
 import de.wittmer.app.otp.data.OtpTokenDatabase
+import de.wittmer.app.otp.data.OtpTokenType
 import de.wittmer.app.otp.databinding.EditBinding
 import de.wittmer.app.otp.util.ImageUtil
 import de.wittmer.app.otp.util.Settings
+import de.wittmer.app.otp.util.setTokenImage
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -84,13 +88,43 @@ class EditActivity : AppCompatActivity(), TextWatcher, View.OnClickListener {
         mImageDisplay = imageUri
         onTextChanged(null, 0, 0, 0)
 
-        Glide.with(this)
+        if (imageUri != null) {
+            Glide.with(this)
                 .load(imageUri)
                 .placeholder(R.drawable.logo)
                 .into(mImage)
+        } else {
+            // Same issuer thumbnail / letter fallback as the token list
+            mImage.setTokenImage(tokenForImageDisplay())
+        }
 
-        // Remove user image option is only enabled if there is image to display
+        // Remove user image option is only enabled if there is a custom image
         binding.removeUserTokenImage.isEnabled = mImageDisplay != null
+    }
+
+    private fun tokenForImageDisplay(): OtpToken {
+        val issuer = when {
+            ::mIssuer.isInitialized -> mIssuer.text.toString()
+            else -> mIssuerCurrent
+        }
+        val label = when {
+            ::mLabel.isInitialized -> mLabel.text.toString()
+            else -> mLabelCurrent.orEmpty()
+        }
+        return OtpToken(
+            id = tokenId,
+            ordinal = 0,
+            issuer = issuer,
+            label = label,
+            imagePath = null,
+            tokenType = OtpTokenType.TOTP,
+            algorithm = "SHA1",
+            secret = "",
+            digits = 6,
+            counter = 0,
+            period = 30,
+            encryptionType = EncryptionType.PLAIN_TEXT,
+        )
     }
 
     private fun imageIs(uri: Uri?): Boolean {
@@ -151,14 +185,12 @@ class EditActivity : AppCompatActivity(), TextWatcher, View.OnClickListener {
             binding.removeUserTokenImage.setOnClickListener(this@EditActivity)
             mImage.setOnClickListener(this@EditActivity)
 
-            // Setup initial state. When the image is null, the image removal button will be
-            // disabled and a placeholder image is displayed
-            showImage(mImageCurrent)
-
+            // Issuer/label first so issuer thumbnail matching works when no custom image exists
             mLabel.setText(mLabelCurrent)
             mIssuer.setText(mIssuerCurrent)
             mCategory.setText(mCategoryCurrent)
             mIssuer.setSelection(mIssuer.text.length)
+            showImage(mImageCurrent)
 
             // Token details
             val algorithmTextView = findViewById<TextView>(R.id.algorithm)
@@ -267,7 +299,10 @@ class EditActivity : AppCompatActivity(), TextWatcher, View.OnClickListener {
     }
 
     override fun afterTextChanged(s: Editable) {
-
+        // Keep issuer thumbnail in sync while editing, unless a custom image is set
+        if (mImageDisplay == null && ::mImage.isInitialized) {
+            mImage.setTokenImage(tokenForImageDisplay())
+        }
     }
 
     override fun onClick(v: View) {
@@ -283,9 +318,7 @@ class EditActivity : AppCompatActivity(), TextWatcher, View.OnClickListener {
                 mIssuer.setText(mIssuerDefault)
                 mCategory.setText(mCategoryDefault)
                 mIssuer.setSelection(mIssuer.text.length)
-                mImageDefault?.let {
-                    showImage(it)
-                }
+                showImage(mImageDefault)
             }
 
             R.id.save -> {
