@@ -1,1 +1,1 @@
-Enhanced fork of FreeOTP-Android providing a feature-rich 2FA authenticator
+TOTP සහ HOTP එක්වරක් භාවිත කරන මුරපද සමඟ ද්වි-සාධක සත්‍යාපනය (2FA)

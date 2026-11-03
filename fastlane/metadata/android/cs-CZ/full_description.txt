@@ -1,21 +1,19 @@
-FreeOTP Plus jako fork FreeOTP nabízí stejnou funkcionalitu, kterou poskytuje RedHat s následujícím vylepšením:
+NetAigis OTP přidává druhou vrstvu zabezpečení k vašim online účtům.
+Aplikace generuje jednorázová hesla (OTP) na zařízení, která používáte spolu s běžným heslem.
+Kódy fungují offline, včetně režimu Letadlo.
 
-* Export nastavení na Disk Google nebo jiné poskytovatele dokumentů
-* Import nastavení z Disku Google nebo jiných poskytovatelů dokumentů
-* Spousta zlepšení stability
-* Podpora oprávnění Android 6.0.
-* Vylepšené uživatelské rozhraní s Material Design a podporou tmavého motivu
-* Vyhledávací lišta pro hledání tokenu
-* Poskytnutí více podrobností o tokenu pro lepší interoperabilitu s jinými aplikacemi
-* Využití moderního hardware fotoaparátu k rychlejšímu skenování QR kódu
-* Možnost vyžadovat biometrické / PIN ověření pro spuštění aplikace
-* Heuristická offline ikona pro tokeny více než 250 webů.
-* Další nastavení pro přizpůsobení funkcí aplikace
+Tokeny přidáte naskenováním QR kódu nebo ručním zadáním konfigurace.
+NetAigis OTP implementuje otevřené standardy TOTP (RFC 6238) a HOTP (RFC 4226) a funguje s Google, GitHub, Nextcloud, Forgejo a mnoha dalšími službami.
 
-FreeOTP je aplikace pro dvoufaktorovou autentizaci (2FA) pro systémy využívající protokoly jednorázového hesla (OTP).
-Tokeny lze snadno přidat naskenováním QR kódu nebo ručním zadáním konfigurace tokenu.
+<b>Funkce:</b>
+<ul>
+<li>Skenování QR kódů (CameraX)</li>
+<li>Export a import tokenů (JSON / key URI) přes Storage Access Framework</li>
+<li>Material Design s tmavým motivem</li>
+<li>Vyhledávání tokenů</li>
+<li>Podrobnosti a úprava tokenů</li>
+<li>Volitelné biometrické / PIN uzamčení při spuštění</li>
+<li>Offline ikony vydavatelů pro mnoho známých služeb</li>
+</ul>
 
-FreeOTP implementuje otevřené standardy. To znamená, že není nutná žádná proprietární komponenta na straně serveru:
-použijte jakoukoli komponentu na straně serveru, která implementuje tyto standardy – například FreeIPA, která používá TOTP.
-Jakákoli implementace v souladu se standardy bude fungovat.
-V současné době poskytuje FreeOTP implementace HOTP (RFC 4226) a TOTP (RFC 6238).
+NetAigis OTP vychází z forku FreeOTP+ a spravuje jej <a href="https://net-aigis.de/">NetAigis</a>.

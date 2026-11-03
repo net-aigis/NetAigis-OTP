@@ -1,1 +1,1 @@
-Vylepšený fork aplikace FreeOTP-Android poskytující funkčně bohatý 2FA autentifikátor
+Dvoufaktorové ověřování (2FA) s jednorázovými hesly TOTP a HOTP

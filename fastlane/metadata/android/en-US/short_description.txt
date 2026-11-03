@@ -1,1 +1,1 @@
-Two-factor authenticator (2FA) with one-time password protocols (OTP)
+Two-factor authenticator (2FA) with TOTP and HOTP one-time passwords

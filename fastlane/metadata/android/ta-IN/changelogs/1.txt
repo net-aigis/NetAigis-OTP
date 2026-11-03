@@ -1,0 +1,2 @@
+NetAigis OTP முதல் வெளியீடு 0.1.0.
+மறுபிராண்டிங், புதிய application IDகள், free/pro வகைகள்.

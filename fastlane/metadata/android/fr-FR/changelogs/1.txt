@@ -1,0 +1,2 @@
+Première version de NetAigis OTP 0.1.0.
+Nouvelle marque, nouveaux application IDs, variantes free/pro.

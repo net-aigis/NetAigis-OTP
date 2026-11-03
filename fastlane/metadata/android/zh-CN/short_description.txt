@@ -1,1 +1,1 @@
-FreeOTP-Android的增强分叉，提供了一个功能丰富的 2FA 认证器
+支持 TOTP 与 HOTP 一次性密码的双因素认证（2FA）应用

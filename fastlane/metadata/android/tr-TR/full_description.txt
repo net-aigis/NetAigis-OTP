@@ -1,21 +1,19 @@
-FreeOTP Plus, RedHat tarafından sağlanan FreeOTP'nin aynı işlevselliğini aşağıdaki geliştirmeyle birlikte alternatifleştirdi:
+NetAigis OTP, çevrimiçi hesaplarınıza ikinci bir güvenlik katmanı ekler.
+Cihazınızda, normal parolanızla birlikte kullanacağınız tek kullanımlık parolalar (OTP) üretir.
+Kodlar çevrimdışı da çalışır; uçak modunda bile.
 
-* Ayarları Google Drive'a veya diğer belge sağlayıcılara aktarma
-* Ayarları Google Drive'dan veya diğer belge sağlayıcılardan içe aktarma
-* Bir sürü kararlılık iyileştirmeleri
-* Android 6.0 izinlerini destekleme.
-* Koyu tema desteği ile material design tasarımı geliştirilmiş kullanıcı arayüzü
-* Token aramak için arama çubuğu
-* Diğer uygulamalarla daha iyi birlikte çalışabilirlik için daha fazla token ayrıntısı sağlama
-* QR kodunu daha hızlı taramak için modern kamera donanımını kullanma
-* Uygulamayı başlatmak için Biyometrik / PIN kimlik doğrulaması gerektirme seçeneği
-* 250'den fazla web sitesinin tokenları için buluşsal tabanlı çevrimdışı simge.
-* Uygulama işlevselliğini özelleştirmek için daha fazla ayar
+Token’ları QR kod tarayarak veya yapılandırmayı elle girerek ekleyin.
+NetAigis OTP açık standartlar TOTP (RFC 6238) ve HOTP (RFC 4226) uygular; Google, GitHub, Nextcloud, Forgejo ve birçok başka hizmetle çalışır.
 
-FreeOTP, tek kullanımlık parola protokollerini (OTP) kullanan sistemler için iki faktörlü bir kimlik doğrulama (2FA) uygulamasıdır.
-Tokenlar, bir QR kodunu tarayarak veya token yapılandırmasını manuel olarak girerek kolayca eklenebilir.
+<b>Özellikler:</b>
+<ul>
+<li>CameraX ile QR kod tarama</li>
+<li>Storage Access Framework ile token dışa/içe aktarma (JSON / key URI)</li>
+<li>Koyu tema destekli Material Design</li>
+<li>Token arama</li>
+<li>Token ayrıntıları ve düzenleme</li>
+<li>İsteğe bağlı biyometrik / PIN kilidi</li>
+<li>Birçok bilinen hizmet için çevrimdışı issuer simgeleri</li>
+</ul>
 
-FreeOTP açık kaynak standartları kullanır. Bu, hiçbir özel sunucu tarafı bileşeninin gerekli olmadığı anlamına gelir:
-bu standartları uygulayan herhangi bir sunucu tarafı bileşeni kullanan - örneğin, TOTP kullanan FreeIPA.
-Standartlarla uyumlu herhangi bir uygulama çalışacaktır.
-Şu anda FreeOTP, HOTP (RFC 4226) ve TOTP (RFC 6238) uygulamalarını sağlar.
+NetAigis OTP, bir FreeOTP+ çatalına dayanır ve <a href="https://net-aigis.de/">NetAigis</a> tarafından sürdürülür.

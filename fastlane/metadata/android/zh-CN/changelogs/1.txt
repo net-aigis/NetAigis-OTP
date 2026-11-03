@@ -1,0 +1,2 @@
+NetAigis OTP 首个版本 0.1.0。
+品牌重塑、新的 application ID、free/pro 风味。

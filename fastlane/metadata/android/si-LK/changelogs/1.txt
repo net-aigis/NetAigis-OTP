@@ -1,0 +1,2 @@
+NetAigis OTP පළමු නිකුතුව 0.1.0.
+නව වෙළඳ නාමය, නව application ID, free/pro වර්ග.

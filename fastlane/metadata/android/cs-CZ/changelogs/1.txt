@@ -1,0 +1,2 @@
+První vydání NetAigis OTP 0.1.0.
+Rebranding, nová application ID, varianty free/pro.
