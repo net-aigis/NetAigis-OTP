@@ -13,9 +13,9 @@ Wichtig: Änderungen sollen klein, nachvollziehbar und fachlich konsistent sein.
 - App: **NetAigis OTP**
 - Englischer App-Name: **NetAigis OTP**
 - Herkunft: Fork/Übernahme von FreeOTP+
-- Standard-Package/Application-ID Free: `de.wittmer.app.otp`
+- Package/Application-ID Free: `de.wittmer.app.otp`
 - Package/Application-ID Pro: `de.wittmer.app.otp.pro`
-- Namespace (Ziel): `de.wittmer.app.otp`
+- Namespace: `de.wittmer.app.otp`
 - Repo: `NetAigis-OTP`
 - Beobachtete lokale Pfade:
   - `/srv/devel/myGIT/git.wittmer.software/WITTMER/otp-android`
@@ -37,7 +37,7 @@ Wichtig: Änderungen sollen klein, nachvollziehbar und fachlich konsistent sein.
   - CameraX (QR)
   - Biometric
 
-Hinweis: Application-ID und Namespace sind Zielwerte. Der Code kann vorübergehend noch FreeOTP+-IDs (`org.liberty.android.freeotpplus` / `org.fedorahosted.freeotp`) verwenden, bis die Umbenennung umgesetzt ist.
+Aktuelle Entwicklungsversion: `0.1.0` (versionCode `1`).
 
 ---
 
@@ -58,7 +58,7 @@ Hinweis: Application-ID und Namespace sind Zielwerte. Der Code kann vorübergehe
 
 - Keine hartcodierten sichtbaren Texte im Kotlin- oder XML-Layout-Code.
 - Alle UI-Texte, Labels, Buttontexte, Fehlermeldungen und Statusmeldungen müssen über Android String-Ressourcen laufen.
-- Aktueller Stand (FreeOTP+):
+- Aktueller Stand:
   - Default/`values/strings.xml` ist Englisch
   - Deutsch liegt in `values-de-rDE/strings.xml`
   - weitere Locales über Crowdin vorhanden
@@ -73,9 +73,44 @@ Hinweis: Application-ID und Namespace sind Zielwerte. Der Code kann vorübergehe
 
 - Versionsnummern ohne führendes v schreiben, z. B. `0.1.0`.
 - Version nur im Titel/Header nennen, nicht mehrfach in Abschnittsüberschriften.
-- Product Flavors `free` / `pro` werden eingeführt.
+- Product Flavors `free` / `pro` sind eingerichtet.
 - Welche Features Pro werden, ist noch offen und wird später definiert.
 - Bis zur Definition keine Feature-Sperren „auf Verdacht“ einbauen.
+- Application-ID-Wechsel erzeugt eine neue App-Installation; keine automatische Datenübernahme von FreeOTP+.
+
+---
+
+## Branding
+
+Quelle: [net-aigis.de](https://net-aigis.de/)
+
+### Farben
+
+| Name | Hex | Rolle |
+|---|---|---|
+| Ink | `#111d24` | Primary |
+| Ink dark | `#0d171d` | Primary dark |
+| Lime | `#cdfb65` | Secondary / Accent |
+| Paper | `#f7f9fa` | heller Hintergrund |
+| Muted | `#52616a` | Nebentext |
+| Line | `#dce3e6` | Trenner |
+| Focus | `#418801` | Accessibility-Fokus |
+
+Material DayNight bleibt; FreeOTP-Blau (`#16AFF9`) ist ersetzt.
+
+### Icon
+
+- Launcher: Banner-Schild (Vorlage `arts/branding-preview/icon-shield-square-v4.png` / `shield-wide-v4.png`)
+- Adaptive Icon: Hintergrund `#111d24`, Vordergrund Schild-Asset
+
+### App-Namen
+
+| Variante | Name |
+|---|---|
+| free / release | NetAigis OTP |
+| free / debug | NetAigis OTP Debug |
+| pro / release | NetAigis OTP Pro |
+| pro / debug | NetAigis OTP Pro Debug |
 
 ---
 
@@ -99,8 +134,6 @@ Hinweis: Application-ID und Namespace sind Zielwerte. Der Code kann vorübergehe
 
 ## Build und Test
 
-Ziel-Builds nach Einführung der Flavors:
-
 Standard-Build Free:
 
 ```bash
@@ -117,6 +150,12 @@ Free-Package:
 
 ```text
 de.wittmer.app.otp
+```
+
+Free-Debug-Package:
+
+```text
+de.wittmer.app.otp.debug
 ```
 
 Pro-Build:
@@ -149,18 +188,6 @@ Beide Release-Varianten:
 ./gradlew :app:assembleFreeRelease :app:assembleProRelease
 ```
 
-Übergang, solange noch keine Flavors existieren:
-
-```bash
-./gradlew :app:assembleDebug
-```
-
-Aktuelles Zwischen-Package (FreeOTP+):
-
-```text
-org.liberty.android.freeotpplus.debug
-```
-
 Release-Builds benötigen lokal eine nicht versionierte Datei:
 
 ```text
@@ -169,37 +196,37 @@ keystore.properties
 
 `keystore.properties` und private `.jks`-Keystores dürfen nicht ins Git.
 
-Manuelles Zurücksetzen der Appdaten (Ziel-Package Free):
+Manuelles Zurücksetzen der Appdaten (Free):
 
 ```bash
 adb shell pm clear de.wittmer.app.otp
 ```
 
-Komplette Neuinstallation (Ziel Free-Debug):
+Komplette Neuinstallation (Free-Debug):
 
 ```bash
-adb uninstall de.wittmer.app.otp || true
-adb install -r app/build/outputs/apk/free/debug/app-free-debug.apk
-adb shell monkey -p de.wittmer.app.otp 1
+./helper/rebuild_and_start.sh
 ```
 
-Build/Install/Start nur nach erfolgreichem Build. Beispiel:
+Mit Testtokens aus `testdata/sample-tokens.txt`:
 
 ```bash
-#!/usr/bin/bash
+./helper/rebuild_and_start.sh --seed
+```
 
-PACKAGE="de.wittmer.app.otp"
-APK="app/build/outputs/apk/free/debug/app-free-debug.apk"
+Pro-Debug:
 
-if ./gradlew :app:assembleFreeDebug; then
-  adb wait-for-device
-  adb uninstall "$PACKAGE" || true
-  adb install -r "$APK"
-  adb shell monkey -p "$PACKAGE" 1
-else
-  echo "Build fehlgeschlagen. Installation wird nicht ausgeführt."
-  exit 1
-fi
+```bash
+./helper/rebuild_and_start.sh --edition pro
+./helper/rebuild_and_start.sh --edition pro --seed
+```
+
+Release-Artefakte bauen/hochladen (Forgejo):
+
+```bash
+./helper/release.sh 0.1.0 --build
+FTOKEN_RELEASE=... ./helper/release.sh 0.1.0 --upload
+FTOKEN_RELEASE=... ./helper/release.sh 0.1.0 --build --upload
 ```
 
 ---
@@ -208,7 +235,7 @@ fi
 
 ### Gradle / Android
 
-- Die App verwendet Product Flavors für Editionen:
+- Product Flavors:
   - `free`
   - `pro`
 - Flavor-Dimension:
@@ -217,37 +244,37 @@ fi
 flavorDimensions += "edition"
 ```
 
-- `free` Application-ID:
-
-```text
-de.wittmer.app.otp
-```
-
-- `pro` Application-ID:
-
-```text
-de.wittmer.app.otp.pro
-```
-
+- `free` Application-ID: `de.wittmer.app.otp`
+- `pro` Application-ID: `de.wittmer.app.otp.pro`
 - Flavor-Source-Sets:
 
 ```text
 app/src/free/
 app/src/pro/
+app/src/freeDebug/
+app/src/proDebug/
 ```
 
-- Gemeinsame Codebasis bleibt in:
-
-```text
-app/src/main/
-```
-
-- Edition-/Feature-Schaltung zentral über eine `FeatureAccess`-Schnittstelle (noch einzurichten), analog zum Muster:
-  - gemeinsame API in `main`
-  - flavor-spezifische Implementierung in `free` / `pro`
+- Gemeinsame Codebasis: `app/src/main/`
+- Edition-/Feature-Schaltung über `FeatureAccess`:
+  - API: `app/src/main/.../feature/FeatureAccess.kt`
+  - Implementierung: `FeatureAccessImpl` in `free` / `pro`
+  - Hilt-Bindung: `FeatureModule`
 - Keine verstreuten Prüfungen auf `BuildConfig.FLAVOR` einbauen.
 - Pro-Feature-Liste: noch offen; hier ergänzen, sobald definiert.
-- `pro` darf zusätzliche Ressourcen überschreiben, z. B. den App-Namen.
+- `pro` darf Ressourcen überschreiben (App-Name ist bereits flavor-spezifisch).
+
+### Package-Mapping
+
+| Alt | Neu |
+|---|---|
+| `org.fedorahosted.freeotp` | `de.wittmer.app.otp` |
+| `org.fedorahosted.freeotp.data` | `de.wittmer.app.otp.data` |
+| `org.liberty.android.freeotp.token_images` | `de.wittmer.app.otp.token_images` |
+| `com.amulyakhare.textdrawable` | `de.wittmer.app.otp.textdrawable` |
+| Application-ID `org.liberty.android.freeotpplus` | `de.wittmer.app.otp` / `.pro` |
+
+`com.google.android.apps.authenticator.Base32String` bleibt unverändert (Vendor-Code).
 
 ### Room / SQLite
 
@@ -279,22 +306,26 @@ java -version
 
 ---
 
+## Helper-Skripte
+
+- `helper/rebuild_and_start.sh` — Debug bauen, installieren, starten (`--edition free|pro`, `--seed`, `--wipe-backup SERIAL`)
+- `helper/release.sh` — Free/Pro Debug+Release bauen und optional nach Forgejo (`otp-android`) hochladen
+- Seed nutzt `testdata/sample-tokens.txt` (otpauth-URIs)
+- Debug-Packages: `de.wittmer.app.otp.debug` / `de.wittmer.app.otp.pro.debug`
+
+---
+
 ## Spätere Themen / bewusst offen
 
 Noch nicht einbauen, solange nicht explizit angefordert:
 
-1. Konkrete Pro-Feature-Liste und Feature-Flags
-2. Application-ID- und Namespace-Umbenennung im Code
-3. Flavor-Source-Sets und `FeatureAccess`
-4. Branding (Name, Icon, Farben) auf NetAigis-OTP
-5. Helper-Scripts für Rebuild/Release, falls gewünscht
+1. Konkrete Pro-Feature-Liste und Feature-Flags an `FeatureAccess`
+2. Fastlane-Beschreibungen/Screenshots vollständig auf NetAigis umstellen
+3. Crowdin-Texte jenseits der Markennamen feinjustieren
 
 ---
 
 ## Nächster sinnvoller Block
 
-Noch nicht final entschieden. Naheliegende Optionen:
-
-1. Application-ID / Namespace auf `de.wittmer.app.otp` umstellen
-2. Product Flavors `free` / `pro` einrichten
-3. Pro-Features definieren und `FeatureAccess` anlegen
+1. Pro-Features definieren und in `FeatureAccess` abbilden
+2. Fastlane-Metadaten inhaltlich nachziehen
