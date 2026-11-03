@@ -1,0 +1,14 @@
+otpauth://totp/GitHub:demo.user@example.com?secret=JBSWY3DPEHPK3PXP&issuer=GitHub&algorithm=SHA1&digits=6&period=30
+otpauth://totp/Google:demo.user@gmail.com?secret=GEZDGNBVGY3TQOJQ&issuer=Google&algorithm=SHA1&digits=6&period=30
+otpauth://totp/Microsoft:demo.user@outlook.com?secret=MFRGGZDFMZTWQ2LK&issuer=Microsoft&algorithm=SHA256&digits=6&period=30
+otpauth://totp/Amazon:demo.shopper?secret=NBSWY3DPO5XXE3DE&issuer=Amazon&algorithm=SHA1&digits=6&period=30
+otpauth://totp/Dropbox:demo.user@dropbox.com?secret=ONSWG4TFOQ======&issuer=Dropbox&algorithm=SHA1&digits=6&period=30
+otpauth://totp/GitLab:demo.user@gitlab.com?secret=MFZG65LTOQ======&issuer=GitLab&algorithm=SHA1&digits=6&period=30
+otpauth://totp/Bitwarden:vault@example.com?secret=KRUGKIDROVUWG2ZAMJZG653OEBTG66BANJ2W24DTEBXXMZLSEB2GQZJA&issuer=Bitwarden&algorithm=SHA1&digits=6&period=30
+otpauth://totp/Proton:demo.user@proton.me?secret=KRSXG5BAMJZG653O&issuer=Proton&algorithm=SHA512&digits=8&period=30
+otpauth://totp/Example%20Long:period60@example.com?secret=MZXW6YTBOI======&issuer=Example&algorithm=SHA1&digits=7&period=60
+otpauth://hotp/HotpDemo:counter-account?secret=ORUGS4ZANF2CA===&issuer=HotpDemo&algorithm=SHA1&digits=6&counter=1
+otpauth://totp/Forgejo:demo.user@forgejo.example?secret=IZXW6ZJANFXGO===&issuer=Forgejo&algorithm=SHA1&digits=6&period=30
+otpauth://totp/Nextcloud:demo.user@nextcloud.example?secret=JBSWY3DPNZTGS3TFOI======&issuer=Nextcloud&algorithm=SHA1&digits=6&period=30
+otpauth://totp/OurCloud:demo.user@ourcloud.example?secret=KRSXG5DTN5XGO===&issuer=OurCloud&algorithm=SHA1&digits=6&period=30
+otpauth://totp/Group%20Office:demo.user@groupoffice.example?secret=I5XW6Z3PMVZXG===&issuer=Group%20Office&algorithm=SHA1&digits=6&period=30
