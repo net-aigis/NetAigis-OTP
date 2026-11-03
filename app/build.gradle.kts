@@ -1,8 +1,24 @@
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     kotlin("android")
     id("com.google.devtools.ksp")
     id("com.google.dagger.hilt.android")
+}
+
+val keystorePropertiesFile = rootProject.file("keystore.properties")
+val keystoreProperties = Properties()
+val requestedReleaseBuild = gradle.startParameter.taskNames.any {
+    it.contains("Release", ignoreCase = true)
+}
+
+if (keystorePropertiesFile.exists()) {
+    keystorePropertiesFile.inputStream().use { keystoreProperties.load(it) }
+} else if (requestedReleaseBuild) {
+    throw GradleException(
+        "keystore.properties fehlt. Fuer Release-Builds releaseStoreFile, releaseStorePassword, releaseKeyAlias und releaseKeyPassword lokal setzen."
+    )
 }
 
 android {
@@ -31,12 +47,26 @@ android {
         }
     }
 
+    signingConfigs {
+        if (keystorePropertiesFile.exists()) {
+            create("release") {
+                storeFile = file(keystoreProperties["releaseStoreFile"] as String)
+                storePassword = keystoreProperties["releaseStorePassword"] as String
+                keyAlias = keystoreProperties["releaseKeyAlias"] as String
+                keyPassword = keystoreProperties["releaseKeyPassword"] as String
+            }
+        }
+    }
+
     buildTypes {
         getByName("debug") {
             applicationIdSuffix = ".debug"
             isDebuggable = true
         }
         getByName("release") {
+            if (keystorePropertiesFile.exists()) {
+                signingConfig = signingConfigs.getByName("release")
+            }
         }
     }
 

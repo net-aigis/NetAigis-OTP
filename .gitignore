@@ -4,10 +4,13 @@
 *.dex
 *.DS_Store
 *.iml
+*.jks
+*.keystore
 *.o
 *.so
 .gradle/
 .idea
+/keystore.properties
 /release/
 app/release/
 build/
