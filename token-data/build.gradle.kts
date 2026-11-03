@@ -27,7 +27,7 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
-    namespace = "org.liberty.android.freeotp.token_data"
+    namespace = "de.wittmer.app.otp.data"
     lint {
         targetSdk = 35
     }

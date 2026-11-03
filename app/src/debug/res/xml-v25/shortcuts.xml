@@ -7,8 +7,7 @@
         android:shortcutLongLabel="@string/launch_with_screenshot_enabled">
         <intent
             android:action="android.intent.action.VIEW"
-            android:targetPackage="org.liberty.android.freeotpplus.debug"
-            android:targetClass="org.fedorahosted.freeotp.ui.MainActivity">
+            android:targetClass="de.wittmer.app.otp.ui.MainActivity">
             <extra android:name="screenshot_mode" android:value="true" />
         </intent>
     </shortcut>

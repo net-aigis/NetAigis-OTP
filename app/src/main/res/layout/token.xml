@@ -19,7 +19,7 @@
    - limitations under the License.
    -->
 
-<org.fedorahosted.freeotp.token.TokenLayout
+<de.wittmer.app.otp.token.TokenLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tool="http://schemas.android.com/tools"
@@ -55,7 +55,7 @@
             app:layout_constraintTop_toTopOf="@+id/image_bg"
             app:layout_constraintBottom_toBottomOf="@+id/image_bg"/>
 
-        <org.fedorahosted.freeotp.ui.ProgressCircle
+        <de.wittmer.app.otp.ui.ProgressCircle
             android:id="@+id/progressInner"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -67,7 +67,7 @@
             app:layout_constraintTop_toTopOf="@+id/image"
             app:layout_constraintBottom_toBottomOf="@+id/image" />
 
-        <org.fedorahosted.freeotp.ui.ProgressCircle
+        <de.wittmer.app.otp.ui.ProgressCircle
             android:id="@+id/progressOuter"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -127,4 +127,4 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</org.fedorahosted.freeotp.token.TokenLayout>
+</de.wittmer.app.otp.token.TokenLayout>

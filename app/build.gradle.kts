@@ -6,6 +6,8 @@ plugins {
 }
 
 android {
+    namespace = "de.wittmer.app.otp"
+    testNamespace = "de.wittmer.app.otp.uitest"
     compileSdk = rootProject.extra["compileSdkVersion"] as Int
     defaultConfig {
         testInstrumentationRunnerArguments += mapOf("clearPackageData" to "true")
@@ -13,7 +15,7 @@ android {
         versionName = rootProject.extra["versionName"] as String
         minSdk = rootProject.extra["minSdkVersion"] as Int
         targetSdk = rootProject.extra["targetSdkVersion"] as Int
-        applicationId = "org.liberty.android.freeotpplus"
+        applicationId = "de.wittmer.app.otp"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -49,8 +51,6 @@ android {
         execution = "ANDROIDX_TEST_ORCHESTRATOR"
         animationsDisabled = true
     }
-    namespace = "org.fedorahosted.freeotp"
-    testNamespace = "org.fedorahosted.freeotp.uitest"
 }
 
 dependencies {
