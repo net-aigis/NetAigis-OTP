@@ -9,26 +9,34 @@ android {
     namespace = "de.wittmer.app.otp"
     testNamespace = "de.wittmer.app.otp.uitest"
     compileSdk = rootProject.extra["compileSdkVersion"] as Int
+
     defaultConfig {
         testInstrumentationRunnerArguments += mapOf("clearPackageData" to "true")
         versionCode = rootProject.extra["versionCode"] as Int
         versionName = rootProject.extra["versionName"] as String
         minSdk = rootProject.extra["minSdkVersion"] as Int
         targetSdk = rootProject.extra["targetSdkVersion"] as Int
-        applicationId = "de.wittmer.app.otp"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    flavorDimensions += "edition"
+    productFlavors {
+        create("free") {
+            dimension = "edition"
+            applicationId = "de.wittmer.app.otp"
+        }
+        create("pro") {
+            dimension = "edition"
+            applicationId = "de.wittmer.app.otp.pro"
+        }
+    }
 
     buildTypes {
         getByName("debug") {
             applicationIdSuffix = ".debug"
             isDebuggable = true
-            resValue("string", "app_name", "FreeOTP+ Debug")
         }
         getByName("release") {
-            resValue("string", "app_name", "FreeOTP+")
         }
     }
 
