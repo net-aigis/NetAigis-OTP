@@ -119,17 +119,20 @@ if ./gradlew "${scGradleTask}" ; then
       scUri="$(printf '%s' "${scUri}" | tr -d '\r')"
       [ -z "${scUri}" ] && continue
       printf "Seed: %s\n" "${scUri%%\?*}"
+      # </dev/null: otherwise adb shell consumes the remaining seed file via stdin
+      # single-quote -d for device shell so '&' in otpauth query stays intact
       adb shell am start \
         -a android.intent.action.VIEW \
-        -d "${scUri}" \
-        -n "${scComponent}" >/dev/null || true
+        -d "'${scUri}'" \
+        -n "${scComponent}" \
+        </dev/null >/dev/null || true
       scCount=$((scCount + 1))
       sleep 0.6
     done < "${scSampleTokens}"
-    adb shell am start -n "${scComponent}" >/dev/null || true
+    adb shell am start -n "${scComponent}" </dev/null >/dev/null || true
     printf "Seed abgeschlossen: %s Tokens aus %s\n" "${scCount}" "${scSampleTokens}"
   else
-    adb shell monkey -p "${scPackage}" 1
+    adb shell monkey -p "${scPackage}" 1 </dev/null
   fi
 else
   printf "Der Build ist fehlgeschlagen. Un-/Install and Start useless\n"
