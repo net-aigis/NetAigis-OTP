@@ -208,6 +208,12 @@ Komplette Neuinstallation (Free-Debug):
 ./helper/rebuild_and_start.sh
 ```
 
+Bei mehreren Geräten/Emulatoren Zielserial angeben (oder `ANDROID_SERIAL` setzen):
+
+```bash
+./helper/rebuild_and_start.sh --edition free --device fad4c341
+```
+
 Mit Testtokens aus `testdata/sample-tokens.txt`:
 
 ```bash
@@ -261,7 +267,8 @@ app/src/proDebug/
   - Implementierung: `FeatureAccessImpl` in `free` / `pro`
   - Hilt-Bindung: `FeatureModule`
 - Keine verstreuten Prüfungen auf `BuildConfig.FLAVOR` einbauen.
-- Pro-Feature-Liste: noch offen; hier ergänzen, sobald definiert.
+- Pro-Feature-Liste:
+  - `screenshotModeEnabled` — Screenshot-/Mirror-Modus (Free: blasser Text, „Pro“ links neben deaktivierter Checkbox)
 - `pro` darf Ressourcen überschreiben (App-Name ist bereits flavor-spezifisch).
 
 ### Package-Mapping
@@ -308,7 +315,7 @@ java -version
 
 ## Helper-Skripte
 
-- `helper/rebuild_and_start.sh` — Debug bauen, installieren, starten (`--edition free|pro`, `--seed`, `--wipe-backup SERIAL`)
+- `helper/rebuild_and_start.sh` — Debug bauen, installieren, starten (`--edition free|pro`, `--device SERIAL`, `--seed`, `--wipe-backup SERIAL`)
 - `helper/release.sh` — Free/Pro Debug+Release bauen und optional nach Forgejo (`otp-android`) hochladen
 - Seed nutzt `testdata/sample-tokens.txt` (otpauth-URIs)
 - Debug-Packages: `de.wittmer.app.otp.debug` / `de.wittmer.app.otp.pro.debug`
@@ -319,7 +326,7 @@ java -version
 
 Noch nicht einbauen, solange nicht explizit angefordert:
 
-1. Konkrete Pro-Feature-Liste und Feature-Flags an `FeatureAccess`
+1. Weitere Pro-Features an `FeatureAccess` ergänzen (Screenshot-Modus ist umgesetzt)
 2. Fastlane-Beschreibungen/Screenshots vollständig auf NetAigis umstellen
 3. Crowdin-Texte jenseits der Markennamen feinjustieren
 
@@ -327,5 +334,5 @@ Noch nicht einbauen, solange nicht explizit angefordert:
 
 ## Nächster sinnvoller Block
 
-1. Pro-Features definieren und in `FeatureAccess` abbilden
+1. Weitere Pro-Features bei Bedarf an `FeatureAccess` hängen
 2. Fastlane-Metadaten inhaltlich nachziehen

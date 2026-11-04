@@ -64,6 +64,7 @@
     <string name="fail_to_add_image">Fehler beim hinzufügen des Bildes</string>
     <string name="launch_file_browser_failure">Der Dateibrowser konnte nicht gestartet werden. Wahrscheinlich ist es ein Problem des Betriebssystems.</string>
     <string name="share_qr_code">QR-Code teilen</string>
+    <string name="feature_pro">Pro</string>
     <string name="screenshot_mode">Screenshot-Modus</string>
     <string name="launch_with_screenshot_enabled">Starte mit aktiviertem Screenshot</string>
     <string name="token_details">Token-Details</string>

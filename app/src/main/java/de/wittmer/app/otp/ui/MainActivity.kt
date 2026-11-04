@@ -41,6 +41,10 @@ import android.content.ActivityNotFoundException
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.style.ForegroundColorSpan
+import android.text.style.TabStopSpan
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -75,6 +79,7 @@ import de.wittmer.app.otp.data.OtpTokenDatabase
 import de.wittmer.app.otp.data.OtpTokenFactory
 import de.wittmer.app.otp.databinding.MainBinding
 import de.wittmer.app.otp.data.legacy.ImportExportUtil
+import de.wittmer.app.otp.feature.FeatureAccess
 import de.wittmer.app.otp.util.Settings
 import java.text.DateFormat
 import java.text.SimpleDateFormat
@@ -86,6 +91,7 @@ import kotlin.math.max
 class MainActivity : AppCompatActivity() {
     @Inject lateinit var importFromUtil: ImportExportUtil
     @Inject lateinit var settings: Settings
+    @Inject lateinit var featureAccess: FeatureAccess
     @Inject lateinit var tokenMigrationUtil: MigrationUtil
     @Inject lateinit var otpTokenDatabase: OtpTokenDatabase
     @Inject lateinit var tokenListAdapter: TokenListAdapter
@@ -238,10 +244,20 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, ScanTokenActivity::class.java))
         }
 
-        // Don't permit screenshots since these might contain OTP codes unless explicitly
-        // launched with screenshot mode
+        // Pro shortcut can turn screenshot mode on; Free always stays secure.
+        if (featureAccess.screenshotModeEnabled &&
+            intent.extras?.getBoolean(SCREENSHOT_MODE_EXTRA) == true
+        ) {
+            settings.screenshotMode = true
+        }
+        applyScreenshotMode()
+    }
 
-        if (intent.extras?.getBoolean(SCREENSHOT_MODE_EXTRA) != true) {
+    private fun applyScreenshotMode() {
+        val allowScreenshots = featureAccess.screenshotModeEnabled && settings.screenshotMode
+        if (allowScreenshots) {
+            window.clearFlags(WindowManager.LayoutParams.FLAG_SECURE)
+        } else {
             window.setFlags(
                 WindowManager.LayoutParams.FLAG_SECURE,
                 WindowManager.LayoutParams.FLAG_SECURE
@@ -346,6 +362,17 @@ class MainActivity : AppCompatActivity() {
                 settings.copyToClipboard = !settings.copyToClipboard
                 item.isChecked = settings.copyToClipboard
                 refreshOptionMenu()
+            }
+
+            R.id.screenshot_mode -> {
+                if (!featureAccess.screenshotModeEnabled) {
+                    return true
+                }
+                settings.screenshotMode = !settings.screenshotMode
+                item.isChecked = settings.screenshotMode
+                applyScreenshotMode()
+                refreshOptionMenu()
+                return true
             }
 
             R.id.require_authentication -> {
@@ -503,7 +530,46 @@ class MainActivity : AppCompatActivity() {
 
     private fun refreshOptionMenu() {
         this.menu?.findItem(R.id.copy_to_clipboard)?.isChecked = settings.copyToClipboard
+        this.menu?.findItem(R.id.screenshot_mode)?.let { item ->
+            val proFeature = featureAccess.screenshotModeEnabled
+            // Free: enabled=false pales the checkbox; title uses an explicit pale span.
+            item.isCheckable = true
+            item.isEnabled = proFeature
+            item.isChecked = proFeature && settings.screenshotMode
+            item.title = if (proFeature) {
+                getString(R.string.screenshot_mode)
+            } else {
+                item.isChecked = false
+                screenshotModeProLockedTitle()
+            }
+        }
         this.menu?.findItem(R.id.require_authentication)?.isChecked = settings.requireAuthentication
+    }
+
+    /**
+     * Pale label left; "Pro" via a moderate tab stop toward the checkbox.
+     * Explicit pale color so the title stays washed out while enabled=false fades the checkbox.
+     */
+    private fun screenshotModeProLockedTitle(): CharSequence {
+        val label = getString(R.string.screenshot_mode)
+        val pro = getString(R.string.feature_pro)
+        val text = SpannableString("$label\t$pro")
+        val pale = ContextCompat.getColor(this, R.color.menu_pro_locked)
+        // ~200dp from the start — rightish, but inside typical title-column width.
+        val tabPx = (200 * resources.displayMetrics.density).toInt()
+        text.setSpan(
+            TabStopSpan.Standard(tabPx),
+            0,
+            text.length,
+            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        text.setSpan(
+            ForegroundColorSpan(pale),
+            0,
+            text.length,
+            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        return text
     }
 
     private fun selectCategoryFilter(category: String?, updateTabs: Boolean = true) {

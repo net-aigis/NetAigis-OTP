@@ -16,4 +16,6 @@
     <color name="overflow_menu">#111D24</color>
     <color name="on_banner">#F7F9FA</color>
     <color name="on_banner_muted">#B8C4CC</color>
+    <!-- Free-locked Pro menu title (used with enabled=false so checkbox matches). -->
+    <color name="menu_pro_locked">#80F7F9FA</color>
 </resources>

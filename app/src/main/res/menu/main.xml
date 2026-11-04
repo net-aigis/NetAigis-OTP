@@ -74,6 +74,10 @@
         android:title="@string/copy_to_clipboard"
         android:checkable="true"/>
     <item
+        android:id="@+id/screenshot_mode"
+        android:title="@string/screenshot_mode"
+        android:checkable="true"/>
+    <item
         android:id="@+id/require_authentication"
         android:title="@string/require_authentication"
         android:checkable="true"/>

@@ -1,15 +1,3 @@
-<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
-    <shortcut
-        android:shortcutId="screenshotMode"
-        android:enabled="true"
-        android:icon="@drawable/logo"
-        android:shortcutShortLabel="@string/screenshot_mode"
-        android:shortcutLongLabel="@string/launch_with_screenshot_enabled">
-        <intent
-            android:action="android.intent.action.MAIN"
-            android:targetPackage="de.wittmer.app.otp.debug"
-            android:targetClass="de.wittmer.app.otp.ui.MainActivity">
-            <extra android:name="screenshot_mode" android:value="true" />
-        </intent>
-    </shortcut>
-</shortcuts>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Free has no screenshot-mode launcher shortcut (Pro feature). -->
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android" />
