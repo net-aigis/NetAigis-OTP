@@ -81,6 +81,7 @@ import de.wittmer.app.otp.databinding.MainBinding
 import de.wittmer.app.otp.data.legacy.ImportExportUtil
 import de.wittmer.app.otp.feature.FeatureAccess
 import de.wittmer.app.otp.util.Settings
+import de.wittmer.app.otp.util.applyFixedScaleBackground
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -123,6 +124,8 @@ class MainActivity : AppCompatActivity() {
 
         binding = MainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.appBackground.applyFixedScaleBackground(R.drawable.logo_watermark_wide)
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.tokenList) { view, windowInsets ->
             val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())

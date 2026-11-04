@@ -24,15 +24,19 @@
 	android:background="@android:color/transparent"
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto">
-	<!-- Full-bleed NetAigis shield scene; centerCrop scales the surroundings to any screen. -->
+	<!--
+		Fixed-scale backdrop (FixedScaleBackground): screen is a window over
+		logo_watermark_wide. Scale locked to portrait design width 1080.
+	-->
 	<ImageView
 		android:id="@+id/app_background"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
+		android:background="@color/paper"
 		android:contentDescription="@null"
 		android:importantForAccessibility="no"
-		android:scaleType="fitXY"
-		android:src="@drawable/logo_watermark" />
+		android:scaleType="matrix"
+		android:src="@drawable/logo_watermark_wide" />
 	<com.google.android.material.appbar.AppBarLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
