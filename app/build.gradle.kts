@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     kotlin("android")
@@ -5,28 +7,73 @@ plugins {
     id("com.google.dagger.hilt.android")
 }
 
+// APK basename: free → otp-free-{debug|release}.apk; pro (default) → otp-{debug|release}.apk
+base {
+    archivesName.set("otp")
+}
+
+val keystorePropertiesFile = rootProject.file("keystore.properties")
+val keystoreProperties = Properties()
+val requestedReleaseBuild = gradle.startParameter.taskNames.any {
+    it.contains("Release", ignoreCase = true)
+}
+
+if (keystorePropertiesFile.exists()) {
+    keystorePropertiesFile.inputStream().use { keystoreProperties.load(it) }
+} else if (requestedReleaseBuild) {
+    throw GradleException(
+        "keystore.properties fehlt. Fuer Release-Builds releaseStoreFile, releaseStorePassword, releaseKeyAlias und releaseKeyPassword lokal setzen."
+    )
+}
+
 android {
+    namespace = "de.wittmer.app.otp"
+    testNamespace = "de.wittmer.app.otp.uitest"
     compileSdk = rootProject.extra["compileSdkVersion"] as Int
+
     defaultConfig {
         testInstrumentationRunnerArguments += mapOf("clearPackageData" to "true")
         versionCode = rootProject.extra["versionCode"] as Int
         versionName = rootProject.extra["versionName"] as String
         minSdk = rootProject.extra["minSdkVersion"] as Int
         targetSdk = rootProject.extra["targetSdkVersion"] as Int
-        applicationId = "org.liberty.android.freeotpplus"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    flavorDimensions += "edition"
+    productFlavors {
+        create("free") {
+            dimension = "edition"
+            applicationId = "de.wittmer.app.otp.free"
+        }
+        create("pro") {
+            dimension = "edition"
+            applicationId = "de.wittmer.app.otp"
+            // Default when tasks omit the flavor (e.g. assembleDebug).
+            isDefault = true
+        }
+    }
+
+    signingConfigs {
+        if (keystorePropertiesFile.exists()) {
+            create("release") {
+                storeFile = file(keystoreProperties["releaseStoreFile"] as String)
+                storePassword = keystoreProperties["releaseStorePassword"] as String
+                keyAlias = keystoreProperties["releaseKeyAlias"] as String
+                keyPassword = keystoreProperties["releaseKeyPassword"] as String
+            }
+        }
+    }
 
     buildTypes {
         getByName("debug") {
             applicationIdSuffix = ".debug"
             isDebuggable = true
-            resValue("string", "app_name", "FreeOTP+ Debug")
         }
         getByName("release") {
-            resValue("string", "app_name", "FreeOTP+")
+            if (keystorePropertiesFile.exists()) {
+                signingConfig = signingConfigs.getByName("release")
+            }
         }
     }
 
@@ -49,8 +96,17 @@ android {
         execution = "ANDROIDX_TEST_ORCHESTRATOR"
         animationsDisabled = true
     }
-    namespace = "org.fedorahosted.freeotp"
-    testNamespace = "org.fedorahosted.freeotp.uitest"
+
+    applicationVariants.configureEach {
+        val apkName = if (flavorName == "pro") {
+            "otp-${buildType.name}.apk"
+        } else {
+            "otp-${flavorName}-${buildType.name}.apk"
+        }
+        outputs.configureEach {
+            (this as com.android.build.gradle.api.ApkVariantOutput).outputFileName = apkName
+        }
+    }
 }
 
 dependencies {

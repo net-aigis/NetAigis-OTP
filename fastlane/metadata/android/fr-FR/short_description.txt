@@ -1,1 +1,1 @@
-Fork amélioré de FreeOTP-Android fournissant un authentificateur A2F riche en fonctionnalités
+Authentification à deux facteurs (2FA) avec mots de passe à usage unique TOTP et HOTP

@@ -12,6 +12,8 @@
     <string name="counter">计数器</string>
     <string name="issuer">发布人</string>
     <string name="account">帐户</string>
+    <string name="alias">别名</string>
+    <string name="icon">图标</string>
     <string name="id">ID</string>
     <string name="secret">密钥</string>
     <string name="type">类型</string>
@@ -19,10 +21,12 @@
     <string name="digits">数字</string>
     <string name="save">保存</string>
     <string name="code_copied">代码已复制到剪贴板。</string>
-    <string name="about_freeotp">关于 FreeOTP+</string>
-    <string name="about_version">FreeOTP+ 版本 %1$s (%2$d)</string>
-    <string name="about_copyright">© 2013 - Red Hat, Inc., et al.\n© 2016 - Liberty</string>
-    <string name="about_license">FreeOTP+ 在 %1$s 下授权。</string>
+    <string name="about_otp">关于 NetAigis OTP</string>
+    <string name="about_version">NetAigis OTP 版本 %1$s (%2$d)</string>
+    <string name="about_copyright">© 2013 - Red Hat, Inc., et al.
+© 2016 - Liberty
+© 2026 - &lt;a href=&quot;https://net-aigis.de/&quot;&gt;NetAigis&lt;/a&gt;</string>
+    <string name="about_license">NetAigis OTP 在 %1$s 下授权。</string>
     <string name="about_website">欲了解更多信息，请参阅我们的 %s。</string>
     <string name="about_feedback">我们欢迎你的反馈：&lt;br/&gt;• %1$s&lt;br/&gt;• %2$s</string>
     <string name="about_icons">本应用程序使用的一些图标是从 Android 开源项目创建和共享的作品中进行再生产的，并根据知识共享2.5属性许可条款进行使用。</string>
@@ -46,7 +50,6 @@
     <string name="import_key_uri_format">导入密钥 URI 格式</string>
     <string name="export_json_format">导出 JSON 格式</string>
     <string name="export_key_uri_format">导出密钥 URI 格式</string>
-    <string name="use_dark_theme">使用深色主题</string>
     <string name="add_token_success">已成功添加令牌</string>
     <string name="copy_to_clipboard">复制到剪贴板</string>
     <string name="require_authentication">需要身份验证</string>
@@ -55,7 +58,7 @@
     <string name="authentication_error">身份验证错误：</string>
     <string name="authentication_failed">身份验证失败</string>
     <string name="authentication_dialog_title">需要身份验证</string>
-    <string name="authentication_dialog_subtitle">请使用生物识别或 PIN 验证 FreeOTP+</string>
+    <string name="authentication_dialog_subtitle">请使用生物识别或 PIN 验证 NetAigis OTP</string>
     <string name="unable_to_authenticate">无法验证。你是否启用了PIN 码/生物识别功能的屏幕锁定?</string>
     <string name="remove_user_token_image">删除用户令牌图像</string>
     <string name="fail_to_add_image">添加图像失败</string>
@@ -65,4 +68,6 @@
     <string name="launch_with_screenshot_enabled">启动时允许屏幕截图</string>
     <string name="token_details">令牌详细信息</string>
     <string name="share_to_other_apps">分享到其他应用</string>
+    <string name="category_tab_all">全部</string>
+    <string name="category_tab_none">无</string>
 </resources>

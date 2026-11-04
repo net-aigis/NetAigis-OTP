@@ -1,21 +1,19 @@
-FreeOTP Plus es va bifurcar de FreeOTP de RedHat amb la mateixa funcionalitat i les millores següents:
+NetAigis OTP afegeix una segona capa de seguretat als vostres comptes en línia.
+Genera contrasenyes d’un sol ús (OTP) al dispositiu per usar-les amb la contrasenya habitual.
+Els codis funcionen fora de línia, també en mode avió.
 
-* Exporta la configuració a Google Drive o a altres proveïdors de documents
-* Importa la configuració de Google Drive o d'altres proveïdors de documents
-* Moltes millores d'estabilitat
-* Admet els permisos d'Android 6.0.
-* Interfície d'usuari millorada amb "material design" i suport de temes foscos
-* Barra de cerca d'entrades OTP
-* Proporcioneu més detalls del OTP per a una millor interoperabilitat amb altres aplicacions
-* Utilitza maquinari de càmera modern per escanejar el codi QR més ràpidament
-* Opció per requerir l'autenticació biomètrica / PIN per iniciar l'aplicació
-* Mètodes heurístics fora de línia per icones dels OTPs de més de 250 llocs web.
-* Més configuracions per personalitzar la funcionalitat de l'aplicació
+Afegiu testimonis escanejant un codi QR o introduint la configuració manualment.
+NetAigis OTP implementa els estàndards oberts TOTP (RFC 6238) i HOTP (RFC 4226) i funciona amb Google, GitHub, Nextcloud, Forgejo i molts altres serveis.
 
-FreeOTP és una aplicació d'autenticació de dos factors (2FA) per a sistemes que utilitzen protocols de contrasenya única (OTP).
-Entrades OTP es poden afegir fàcilment escanejant un codi QR o introduint manualment la seva configuració.
+<b>Funcions:</b>
+<ul>
+<li>Escaneig de codis QR amb CameraX</li>
+<li>Exportació i importació de testimonis (JSON / key URI) via Storage Access Framework</li>
+<li>Material Design amb tema fosc</li>
+<li>Cerca de testimonis</li>
+<li>Detalls i edició de testimonis</li>
+<li>Bloqueig biomètric / PIN opcional a l’obertura</li>
+<li>Icones d’emissor fora de línia per a molts serveis coneguts</li>
+</ul>
 
-FreeOTP implementa estàndards oberts. Això vol dir que no cal cap component propietari del costat del servidor:
-utilitza qualsevol component del servidor que implementi aquests estàndards, per exemple FreeIPA, que utilitza TOTP.
-Qualsevol implementació que compleixi els estàndards funcionarà.
-Actualment, FreeOTP ofereix implementacions de HOTP (RFC 4226) i TOTP (RFC 6238).
+NetAigis OTP es basa en una bifurcació de FreeOTP+ i el manté <a href="https://net-aigis.de/">NetAigis</a>.

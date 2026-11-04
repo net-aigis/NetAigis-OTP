@@ -1,1 +1,1 @@
-FreeOTP-Android-en adarkatze hobetua, ezaugarriz betetako 2FA autentifikazio aplikazioa
+Bi faktoreko autentifikazioa (2FA) TOTP eta HOTP behin erabiltzeko pasahitzekin

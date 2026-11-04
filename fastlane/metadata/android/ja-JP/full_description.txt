@@ -1,21 +1,19 @@
-FreeOTP Plus は、RedHat が提供する同様な機能を持った FreeOTP を以下のように拡張しました。
+NetAigis OTP はオンラインアカウントに二要素のセキュリティ層を追加します。
+通常のパスワードと併用するワンタイムパスワード（OTP）を端末上で生成します。
+コードはオフラインでも利用でき、機内モードでも動作します。
 
-* 設定を Google ドライブやその他のドキュメントプロバイダにエクスポート
-* Google ドライブまたはその他のドキュメントプロバイダから設定をインポート
-* 安定性の向上
-* Support Android 6.0 permissions.
-* ダークテーマに対応したマテリアルデザインでUIを強化
-* Search bar to search token
-* Provide more token details for better interoperatibility with other apps
-* Utilize modern camera hardware to scan QR code faster
-* Option to require Biometric / PIN authentication to launch the app
-* Heuristic based offline icon for tokens of 250+ websites.
-* More settings to customize the app functionality
+QR コードのスキャンまたは手動入力でトークンを追加できます。
+NetAigis OTP は公開標準の TOTP（RFC 6238）と HOTP（RFC 4226）を実装し、Google、GitHub、Nextcloud、Forgejo など多くのサービスで利用できます。
 
-FreeOTP is a two-factor authentication (2FA) application for systems utilizing one-time password protocols (OTP).
-Tokens can be added easily by scanning a QR-code or by manually entering in the token configuration.
+<b>機能:</b>
+<ul>
+<li>CameraX による QR コードスキャン</li>
+<li>Storage Access Framework によるトークンのエクスポート／インポート（JSON / key URI）</li>
+<li>ダークテーマ対応の Material Design</li>
+<li>トークン検索</li>
+<li>トークン詳細と編集</li>
+<li>起動時の任意の生体認証／PIN ロック</li>
+<li>多くの有名サービス向けオフライン発行者アイコン</li>
+</ul>
 
-FreeOTP implements open standards. This means that no proprietary server-side component is necessary:
-use any server-side component that implements these standards — for example FreeIPA, which uses TOTP.
-Any standards-compliant implementation will work.
-Currently, FreeOTP provides implementations of HOTP (RFC 4226) and TOTP (RFC 6238).
+NetAigis OTP は FreeOTP+ のフォークを基盤とし、<a href="https://net-aigis.de/">NetAigis</a> が保守しています。

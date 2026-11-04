@@ -1,21 +1,19 @@
-FreeOTP Plus forked the same functionality of FreeOTP provided by RedHat with the following enhancement:
+NetAigis OTP voeg ’n tweede sekuriteitslaag by vir jou aanlynrekeninge.
+Dit genereer eenmalige wagwoorde (OTP) op jou toestel om saam met jou gewone wagwoord te gebruik.
+Kodes werk vanlyn, insluitend in vliegtuigmodus.
 
-* Export settings to Google Drive or other document providers
-* Import settings from Google Drive or other document providers
-* Lots of stability improvement
-* Support Android 6.0 permissions.
-* Enhanced UI with material design with dark theme support
-* Search bar to search token
-* Provide more token details for better interoperatibility with other apps
-* Utilize modern camera hardware to scan QR code faster
-* Option to require Biometric / PIN authentication to launch the app
-* Heuristic based offline icon for tokens of 250+ websites.
-* More settings to customize the app functionality
+Voeg tekens by deur ’n QR-kode te skandeer of die opstelling handmatig in te voer.
+NetAigis OTP implementeer die oop standaarde TOTP (RFC 6238) en HOTP (RFC 4226) en werk met Google, GitHub, Nextcloud, Forgejo en baie ander dienste.
 
-FreeOTP is a two-factor authentication (2FA) application for systems utilizing one-time password protocols (OTP).
-Tokens can be added easily by scanning a QR-code or by manually entering in the token configuration.
+<b>Kenmerke:</b>
+<ul>
+<li>Skandeer QR-kodes met CameraX</li>
+<li>Voer tekens uit en in (JSON / key URI) via Storage Access Framework</li>
+<li>Material Design met donker tema</li>
+<li>Soek tekens</li>
+<li>Tekendetails en redigering</li>
+<li>Opsionele biometriese / PIN-slot by opening</li>
+<li>Vanlyn-uitreikerikone vir baie bekende dienste</li>
+</ul>
 
-FreeOTP implements open standards. This means that no proprietary server-side component is necessary:
-use any server-side component that implements these standards — for example FreeIPA, which uses TOTP.
-Any standards-compliant implementation will work.
-Currently, FreeOTP provides implementations of HOTP (RFC 4226) and TOTP (RFC 6238).
+NetAigis OTP is gebaseer op ’n FreeOTP+-vurk en word deur <a href="https://net-aigis.de/">NetAigis</a> onderhou.

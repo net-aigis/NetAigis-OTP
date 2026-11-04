@@ -1,1 +1,1 @@
-Förbättrad förgrening av FreeOTP-Android som ger en funktionsrik 2FA-autentisering
+Tvåfaktorsautentisering (2FA) med engångslösenord via TOTP och HOTP

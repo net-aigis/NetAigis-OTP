@@ -12,6 +12,8 @@
     <string name="counter">Counter</string>
     <string name="issuer">Issuer</string>
     <string name="account">Account</string>
+    <string name="alias">Alias</string>
+    <string name="icon">Icon</string>
     <string name="id">ID</string>
     <string name="secret">Secret</string>
     <string name="type">Type</string>
@@ -20,14 +22,17 @@
     <string name="save">Save</string>
     <string name="code_copied">Code copied to clipboard.</string>
 
-    <string name="about_freeotp">About FreeOTP+</string>
-    <string name="about_version">FreeOTP+ Version %1$s (%2$d)</string>
-    <string name="about_copyright">© 2013 - Red Hat, Inc., et al.\n© 2016 - Liberty</string>
-    <string name="about_license">FreeOTP+ is licensed under %1$s.</string>
+    <string name="about_otp">About NetAigis OTP</string>
+    <string name="about_version">NetAigis OTP Version %1$s (%2$d)</string>
+    <string name="about_copyright">© 2013 - Red Hat, Inc., et al.
+© 2016 - Liberty
+© 2026 - &lt;a href=&quot;https://net-aigis.de/&quot;&gt;NetAigis&lt;/a&gt;</string>
+    <string name="about_license">NetAigis OTP is licensed under %1$s.</string>
     <string name="about_website">For more information, see our %s.</string>
     <string name="about_feedback">We welcome your feedback:&lt;br/&gt;• %1$s&lt;br/&gt;• %2$s</string>
     <string name="about_icons">Some icons used by this application are reproduced from work created and shared by the Android Open Source Project and used according to terms described in the Creative Commons 2.5 Attribution License.</string>
     <string name="link_apache2" translatable="false">&lt;a href=&quot;http://www.apache.org/licenses/LICENSE-2.0.html&quot;&gt;Apache 2.0&lt;/a&gt;</string>
+    <string name="link_website" translatable="false">&lt;a href=&quot;https://net-aigis.de/&quot;&gt;net-aigis.de&lt;/a&gt;</string>
     <string name="about_token_image">The token thumbnails token_image_*.xml in token-images library are from andOTP under &lt;a href=&quot;https://github.com/andOTP/andOTP/blob/master/LICENSE.txt&quot;&gt;MIT License&lt;/a&gt;. Copyright © 2017-2020 Jakob Nixdorf. &lt;andotp@shadowice.org&gt; Copyright © 2015 Bruno Bierbaumer</string>
 
     <string name="error_camera_open">Error while opening camera!</string>
@@ -50,7 +55,6 @@
     <string name="import_key_uri_format">Import key URI format</string>
     <string name="export_json_format">Export JSON format</string>
     <string name="export_key_uri_format">Export key URI format</string>
-    <string name="use_dark_theme">Use dark theme</string>
     <string name="add_token_success">The token was successfully added</string>
     <string name="copy_to_clipboard">Copy to clipboard</string>
     <string name="require_authentication">Require authentication</string>
@@ -59,7 +63,7 @@
     <string name="authentication_error">Authentication error:</string>
     <string name="authentication_failed">Authentication failed</string>
     <string name="authentication_dialog_title">Authentication required</string>
-    <string name="authentication_dialog_subtitle">Please use biometric or PIN to authenticate FreeOTP+</string>
+    <string name="authentication_dialog_subtitle">Please use biometric or PIN to authenticate NetAigis OTP</string>
     <string name="unable_to_authenticate">Unable to authenticate. Do you have screen lock enabled with PIN / biometric enabled?</string>
 
     <string name="five" translatable="false">5</string>
@@ -72,6 +76,7 @@
     <string name="fail_to_add_image">Fail to add image</string>
     <string name="launch_file_browser_failure">Unable to launch system\'s file browser. It is likely an OS issue.</string>
     <string name="share_qr_code">Share QR Code</string>
+    <string name="feature_pro">Pro</string>
     <string name="screenshot_mode">Screenshot mode</string>
     <string name="launch_with_screenshot_enabled">Launch with screenshot enabled</string>
     <string name="token_details">Token details</string>
@@ -80,4 +85,6 @@
     <string name="category">Category</string>
     <string name="all_categories">All categories</string>
     <string name="uncategorized">Uncategorized</string>
+    <string name="category_tab_all">All</string>
+    <string name="category_tab_none">None</string>
 </resources>

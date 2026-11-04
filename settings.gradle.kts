@@ -27,7 +27,7 @@ dependencyResolutionManagement {
             version("lifecycleKtx", "2.10.0")
             version("cameraX", "1.6.0")
             version("biometric", "1.1.0")
-            version("ksp", "2.3.7")
+            version("ksp", "2.3.6")
 
             version("zxing", "3.5.4") // Version 3.4.0 contains a crashing bug before api level 24
             version("gson", "2.14.0")

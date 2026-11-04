@@ -10,6 +10,7 @@
         android:gravity="start|center"
         android:singleLine="true"
         android:text="@string/issuer_hint"
+        android:textColor="@color/primary"
         android:textSize="20sp"
         android:textStyle="bold" />
 
@@ -21,8 +22,9 @@
         android:gravity="start|center"
         android:singleLine="true"
         android:text="@string/label_hint"
-        android:textSize="12sp"
-        android:textStyle="normal" />
+        android:textColor="@color/primary"
+        android:textSize="13sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/category"
@@ -31,6 +33,7 @@
         android:ellipsize="end"
         android:gravity="start|center"
         android:singleLine="true"
+        android:textColor="@color/primary"
         android:textSize="10sp"
         android:textStyle="normal" />
 </merge>

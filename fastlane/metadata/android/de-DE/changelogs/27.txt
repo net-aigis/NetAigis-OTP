@@ -1,0 +1,2 @@
+Erstes NetAigis-OTP-Release 4.0.0.
+Rebranding, neue Application-IDs, Flavors free/pro.

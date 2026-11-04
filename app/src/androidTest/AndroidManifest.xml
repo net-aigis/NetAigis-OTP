@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:versionCode="1"
     android:versionName="1.0">
-    <instrumentation android:targetPackage="org.fedorahosted.freeotp"
+    <instrumentation android:targetPackage="de.wittmer.app.otp"
         android:name="androidx.test.runner.AndroidJUnitRunner"/>
-    <application tools:replace="label" android:label="FreeOtpTest" />
+    <application tools:replace="label" android:label="NetAigisOtpTest" />
 </manifest>

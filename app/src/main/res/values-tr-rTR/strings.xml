@@ -12,6 +12,8 @@
     <string name="counter">Sayaç</string>
     <string name="issuer">Yayınlayan</string>
     <string name="account">Hesap</string>
+    <string name="alias">Takma ad</string>
+    <string name="icon">Simge</string>
     <string name="id">Kimlik</string>
     <string name="secret">Gizli Anahtar</string>
     <string name="type">Tip</string>
@@ -19,10 +21,12 @@
     <string name="digits">Rakamlar</string>
     <string name="save">Kaydet</string>
     <string name="code_copied">Kod panoya kopyalandı.</string>
-    <string name="about_freeotp">FreeOTP+ Hakkında</string>
-    <string name="about_version">FreeOTP+ Sürümü %1$s (%2$d)</string>
-    <string name="about_copyright">© 2013 - Red Hat, Inc., et al.\n© 2016 - Liberty</string>
-    <string name="about_license">FreeOTP+, %1$s altında lisanslanmıştır.</string>
+    <string name="about_otp">NetAigis OTP Hakkında</string>
+    <string name="about_version">NetAigis OTP Sürümü %1$s (%2$d)</string>
+    <string name="about_copyright">© 2013 - Red Hat, Inc., et al.
+© 2016 - Liberty
+© 2026 - &lt;a href=&quot;https://net-aigis.de/&quot;&gt;NetAigis&lt;/a&gt;</string>
+    <string name="about_license">NetAigis OTP, %1$s altında lisanslanmıştır.</string>
     <string name="about_website">Daha fazla bilgi için %s sayfamıza bakın.</string>
     <string name="about_feedback">Geri bildiriminizi memnuniyetle karşılıyoruz:&lt;br/&gt;• %1$s&lt;br/&gt;• %2$s</string>
     <string name="about_icons">Bu uygulama tarafından kullanılan bazı simgeler, Android Open Source Project tarafından oluşturulan ve paylaşılan çalışmalardan çoğaltılır ve Creative Commons 2.5 Attribution License altında açıklanan şartlara göre kullanılır.</string>
@@ -46,7 +50,6 @@
     <string name="import_key_uri_format">Anahtar URI formatını içe aktar</string>
     <string name="export_json_format">JSON formatını dışa aktar</string>
     <string name="export_key_uri_format">Anahtar URI formatını dışa aktar</string>
-    <string name="use_dark_theme">Koyu tema kullan</string>
     <string name="add_token_success">Token başarıyla eklendi</string>
     <string name="copy_to_clipboard">Panoya kopyala</string>
     <string name="require_authentication">Kimlik doğrulama iste</string>
@@ -55,7 +58,7 @@
     <string name="authentication_error">Kimlik doğrulama hatası:</string>
     <string name="authentication_failed">Kimlik doğrulama başarısız oldu</string>
     <string name="authentication_dialog_title">Kimlik doğrulaması gerekli</string>
-    <string name="authentication_dialog_subtitle">FreeOTP+\'ı doğrulamak için lütfen biyometrik veya PIN kullanın</string>
+    <string name="authentication_dialog_subtitle">NetAigis OTP\'ı doğrulamak için lütfen biyometrik veya PIN kullanın</string>
     <string name="unable_to_authenticate">Kimlik doğrulanamadı. PIN / biyometrik etkinken ekran kilidini etkinleştirdiniz mi?</string>
     <string name="remove_user_token_image">Kullanıcı token resmini kaldır</string>
     <string name="fail_to_add_image">Resim eklenemedi</string>
@@ -65,4 +68,6 @@
     <string name="launch_with_screenshot_enabled">Ekran görüntüsü aktifken başlat</string>
     <string name="token_details">Token ayrıntıları</string>
     <string name="share_to_other_apps">Diğer uygulamalarla paylaş</string>
+    <string name="category_tab_all">Tümü</string>
+    <string name="category_tab_none">Yok</string>
 </resources>

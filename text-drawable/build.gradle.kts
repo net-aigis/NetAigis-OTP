@@ -25,7 +25,7 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
-    namespace = "com.amulyakhare.textdrawable"
+    namespace = "de.wittmer.app.otp.textdrawable"
     lint {
         targetSdk = 35
     }

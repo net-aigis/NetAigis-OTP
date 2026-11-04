@@ -12,6 +12,8 @@
     <string name="counter">計數器</string>
     <string name="issuer">發行者</string>
     <string name="account">帳號</string>
+    <string name="alias">別名</string>
+    <string name="icon">圖示</string>
     <string name="id">ID</string>
     <string name="secret">金鑰</string>
     <string name="type">類型</string>
@@ -19,10 +21,12 @@
     <string name="digits">位數</string>
     <string name="save">儲存</string>
     <string name="code_copied">驗證碼已複製到剪貼簿。</string>
-    <string name="about_freeotp">關於 FreeOTP+</string>
-    <string name="about_version">FreeOTP+ 版本 %1$s (%2$d)</string>
-    <string name="about_copyright">© 2013 - Red Hat, Inc., et al.\n© 2016 - Liberty</string>
-    <string name="about_license">FreeOTP+ 是以 %1$s 授權。</string>
+    <string name="about_otp">關於 NetAigis OTP</string>
+    <string name="about_version">NetAigis OTP 版本 %1$s (%2$d)</string>
+    <string name="about_copyright">© 2013 - Red Hat, Inc., et al.
+© 2016 - Liberty
+© 2026 - &lt;a href=&quot;https://net-aigis.de/&quot;&gt;NetAigis&lt;/a&gt;</string>
+    <string name="about_license">NetAigis OTP 是以 %1$s 授權。</string>
     <string name="about_website">更多資訊，請見我們的 %s。</string>
     <string name="about_feedback">我們歡迎您的回饋：&lt;br/&gt;• %1$s&lt;br/&gt;• %2$s</string>
     <string name="about_icons">此應用程式使用的部份圖示是從 Android 開放原始碼專案製作並分享的，並根據創用 CC 2.5 署名中描述的授權條款使用。</string>
@@ -46,7 +50,6 @@
     <string name="import_key_uri_format">匯入金鑰 URI 格式</string>
     <string name="export_json_format">匯出 JSON 格式</string>
     <string name="export_key_uri_format">匯出金鑰 URI 格式</string>
-    <string name="use_dark_theme">使用深色主題</string>
     <string name="add_token_success">成功新增權杖</string>
     <string name="copy_to_clipboard">複製到剪貼簿</string>
     <string name="require_authentication">需要驗證</string>
@@ -55,7 +58,7 @@
     <string name="authentication_error">驗證錯誤：</string>
     <string name="authentication_failed">驗證失敗</string>
     <string name="authentication_dialog_title">需要驗證</string>
-    <string name="authentication_dialog_subtitle">請使用生物辨識或 PIN 碼以驗證 FreeOTP+</string>
+    <string name="authentication_dialog_subtitle">請使用生物辨識或 PIN 碼以驗證 NetAigis OTP</string>
     <string name="unable_to_authenticate">無法驗證。您是否啟用了 PIN 碼/生物辨識的螢幕鎖定？</string>
     <string name="remove_user_token_image">移除使用者權杖圖片</string>
     <string name="fail_to_add_image">新增圖片失敗</string>
@@ -65,4 +68,6 @@
     <string name="launch_with_screenshot_enabled">啟用螢幕截圖啟動</string>
     <string name="token_details">權杖詳細資訊</string>
     <string name="share_to_other_apps">分享給其他應用程式</string>
+    <string name="category_tab_all">全部</string>
+    <string name="category_tab_none">無</string>
 </resources>

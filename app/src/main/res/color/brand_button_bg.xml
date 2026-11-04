@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Same lime as Cancel in all states; Material would otherwise wash disabled out. -->
+    <item android:color="@color/secondary" />
+</selector>

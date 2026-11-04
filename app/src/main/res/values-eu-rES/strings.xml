@@ -12,6 +12,8 @@
     <string name="counter">Kontagailua</string>
     <string name="issuer">Igorlea</string>
     <string name="account">Kontua</string>
+    <string name="alias">Aliasa</string>
+    <string name="icon">Ikonoa</string>
     <string name="id">ID</string>
     <string name="secret">Sekretua</string>
     <string name="type">Mota</string>
@@ -19,10 +21,12 @@
     <string name="digits">Digituak</string>
     <string name="save">Gorde</string>
     <string name="code_copied">Kodea arbelera kopiatu da.</string>
-    <string name="about_freeotp">FreeOTP+ buruz</string>
-    <string name="about_version">FreeOTP+ %1$s (%2$d) bertsioa</string>
-    <string name="about_copyright">© 2013 - Red Hat, Inc., et al.\n© 2016 - Liberty</string>
-    <string name="about_license">FreeOTP+ %1$s lizentzia dauka.</string>
+    <string name="about_otp">NetAigis OTP buruz</string>
+    <string name="about_version">NetAigis OTP %1$s (%2$d) bertsioa</string>
+    <string name="about_copyright">© 2013 - Red Hat, Inc., et al.
+© 2016 - Liberty
+© 2026 - &lt;a href=&quot;https://net-aigis.de/&quot;&gt;NetAigis&lt;/a&gt;</string>
+    <string name="about_license">NetAigis OTP %1$s lizentzia dauka.</string>
     <string name="about_website">Informazio gehiagorako, ikusi %s.</string>
     <string name="about_feedback">Zure iritzia hartzeko irrikian gaude:&lt;br/&gt;•%1$s&lt;br/&gt;•%2$s</string>
     <string name="about_icons">Erabilitako ikono batzuk Android Open Source Projectetik sortutako eta partekatutako erreprodukzioak dira eta Creative Commons 2.5 Attribution Licensen terminoen arabera erabiltzen dira.</string>
@@ -46,7 +50,6 @@
     <string name="import_key_uri_format">Inportatu gako URI formatua</string>
     <string name="export_json_format">Esportatu JSON formatua</string>
     <string name="export_key_uri_format">Esportatu gako URI formatua</string>
-    <string name="use_dark_theme">Erabili gai iluna</string>
     <string name="add_token_success">Tokena ondo gehitu da</string>
     <string name="copy_to_clipboard">Kopiatu arbelean</string>
     <string name="require_authentication">Autentifikazioa eskatu</string>
@@ -55,7 +58,7 @@
     <string name="authentication_error">Autentifikazio errorea:</string>
     <string name="authentication_failed">Autentifikazioak huts egin du</string>
     <string name="authentication_dialog_title">Autentifikazioa beharrezkoa</string>
-    <string name="authentication_dialog_subtitle">Mesedez erabili biometrika edo PINa FreeOTP+ autentifikatzeko</string>
+    <string name="authentication_dialog_subtitle">Mesedez erabili biometrika edo PINa NetAigis OTP autentifikatzeko</string>
     <string name="unable_to_authenticate">Ezin da autentifikatu. Pantaila blokeoa PIN / biometrikarekin duzu gaituta?</string>
     <string name="remove_user_token_image">Kendu erabiltzaile tokenaren irudia</string>
     <string name="fail_to_add_image">Ezin izan da irudia gehitu</string>
@@ -65,4 +68,6 @@
     <string name="launch_with_screenshot_enabled">Abiarazi pantaila-argazkiak gaituz</string>
     <string name="token_details">Token xehetasunak</string>
     <string name="share_to_other_apps">Partekatu beste aplikazioekin</string>
+    <string name="category_tab_all">Denak</string>
+    <string name="category_tab_none">Bat ere ez</string>
 </resources>

@@ -1,21 +1,19 @@
-FreeOTP Plus forked the same functionality of FreeOTP provided by RedHat with the following enhancement:
+NetAigis OTP ඔබගේ මාර්ගගත ගිණුම් සඳහා දෙවන ආරක්ෂක ස්ථරයක් එක් කරයි.
+සාමාන්‍ය මුරපදය සමඟ භාවිතා කිරීමට උපාංගයේ එක්වරක් භාවිත මුරපද (OTP) ජනනය කරයි.
+කේත ගුවන් යානා මාදිලිය ඇතුළුව නොබැඳිවද ක්‍රියා කරයි.
 
-* Export settings to Google Drive or other document providers
-* Import settings from Google Drive or other document providers
-* Lots of stability improvement
-* Support Android 6.0 permissions.
-* Enhanced UI with material design with dark theme support
-* Search bar to search token
-* Provide more token details for better interoperatibility with other apps
-* Utilize modern camera hardware to scan QR code faster
-* Option to require Biometric / PIN authentication to launch the app
-* Heuristic based offline icon for tokens of 250+ websites.
-* More settings to customize the app functionality
+QR කේතයක් ස්කෑන් කිරීමෙන් හෝ වින්‍යාසය අතින් ඇතුළත් කිරීමෙන් ටෝකන එක් කරන්න.
+NetAigis OTP විවෘත ප්‍රමිති TOTP (RFC 6238) සහ HOTP (RFC 4226) ක්‍රියාත්මක කරන අතර Google, GitHub, Nextcloud, Forgejo සහ තවත් බොහෝ සේවා සමඟ ක්‍රියා කරයි.
 
-FreeOTP is a two-factor authentication (2FA) application for systems utilizing one-time password protocols (OTP).
-Tokens can be added easily by scanning a QR-code or by manually entering in the token configuration.
+<b>විශේෂාංග:</b>
+<ul>
+<li>CameraX සමඟ QR කේත ස්කෑන් කිරීම</li>
+<li>Storage Access Framework හරහා ටෝකන අපනයන/ආනයනය (JSON / key URI)</li>
+<li>අඳුරු තේමාව සහිත Material Design</li>
+<li>ටෝකන සෙවීම</li>
+<li>ටෝකන විස්තර සහ සංස්කරණය</li>
+<li>විකල්ප ජෛවමිතික / PIN අගුලු දැමීම</li>
+<li>බොහෝ ප්‍රසිද්ධ සේවා සඳහා නොබැඳි නිකුත්කරු අයිකන</li>
+</ul>
 
-FreeOTP implements open standards. This means that no proprietary server-side component is necessary:
-use any server-side component that implements these standards — for example FreeIPA, which uses TOTP.
-Any standards-compliant implementation will work.
-Currently, FreeOTP provides implementations of HOTP (RFC 4226) and TOTP (RFC 6238).
+NetAigis OTP FreeOTP+ fork එකක් මත පදනම් වන අතර <a href="https://net-aigis.de/">NetAigis</a> විසින් නඩත්තු කෙරේ.

@@ -12,6 +12,8 @@
     <string name="counter">أداة العد </string>
     <string name="issuer">وحدة اصدار </string>
     <string name="account">الحساب </string>
+    <string name="alias">الاسم المستعار</string>
+    <string name="icon">الأيقونة</string>
     <string name="id">الكود </string>
     <string name="secret">السر </string>
     <string name="type">النوع </string>
@@ -19,10 +21,12 @@
     <string name="digits">أرقام </string>
     <string name="save">حفظ </string>
     <string name="code_copied">الكود الذي تم نسخه في المسودة. </string>
-    <string name="about_freeotp">نبذة عن FreeOTP + </string>
-    <string name="about_version">FreeOTP + نسخة %1$s (%2$d) </string>
-    <string name="about_copyright">© 2013-Red Hat, Inc., et al. \n© 2016-Liberty </string>
-    <string name="about_license">تم ترخيص FreeOTP + تحت %1$s. </string>
+    <string name="about_otp">نبذة عن NetAigis OTP </string>
+    <string name="about_version">NetAigis OTP نسخة %1$s (%2$d) </string>
+    <string name="about_copyright">© 2013 - Red Hat, Inc., et al.
+© 2016 - Liberty
+© 2026 - &lt;a href=&quot;https://net-aigis.de/&quot;&gt;NetAigis&lt;/a&gt;</string>
+    <string name="about_license">تم ترخيص NetAigis OTP تحت %1$s. </string>
     <string name="about_website">للحصول على مزيد من المعلومات ، ارجع الى %s. </string>
     <string name="about_feedback">نحن نرحب بتعليقاتك :&lt;br/&gt;%1$s&lt;br/&gt;%2$s </string>
     <string name="about_icons">بعض الشارات التي يتم استخدامها بواسطة هذا التطبيق يتم نسخها من العمل الذي تم تكوينه ومشاركته بواسطة مشروع مصدر Andrid Open Source والذي يتم استخدامه وفقا للمصطلحات التي تم وصفها في ترخيص Attributative Commons 2.5 Attribution License. </string>
@@ -46,7 +50,6 @@
     <string name="import_key_uri_format">استيراد نسق URI للمفتاح</string>
     <string name="export_json_format">تصدير بتنسيق JSON</string>
     <string name="export_key_uri_format">تصدير بتنسيق URI للمفتاح </string>
-    <string name="use_dark_theme">إستخدام المظهر الغامق</string>
     <string name="add_token_success">تم اضافة الرمز المميز بنجاح </string>
     <string name="copy_to_clipboard">انسخ إلى الحافظة</string>
     <string name="require_authentication">يتطلب المصادقة</string>
@@ -55,7 +58,7 @@
     <string name="authentication_error">خطأ في التوثيق : </string>
     <string name="authentication_failed">فشلت المصادقة</string>
     <string name="authentication_dialog_title">مطلوب المصادقة</string>
-    <string name="authentication_dialog_subtitle">يرجى استخدام المقاييس الحيوية أو رقم التعريف الشخصي لمصادقة FreeOTP+</string>
+    <string name="authentication_dialog_subtitle">يرجى استخدام المقاييس الحيوية أو رقم التعريف الشخصي لمصادقة NetAigis OTP</string>
     <string name="unable_to_authenticate">غير قادر على مصادقة. هل تم تمكين قفل الشاشة مع تمكين رقم التعريف الشخصي / المقاييس الحيوية؟</string>
     <string name="remove_user_token_image">إزالة صورة رمز المستخدم</string>
     <string name="fail_to_add_image">فشل في إضافة الصورة</string>
@@ -65,4 +68,6 @@
     <string name="launch_with_screenshot_enabled">إطلاق مع تمكين لقطة الشاشة</string>
     <string name="token_details">تفاصيل الرمز</string>
     <string name="share_to_other_apps">Share to other apps</string>
+    <string name="category_tab_all">الكل</string>
+    <string name="category_tab_none">لا شيء</string>
 </resources>

@@ -1,21 +1,19 @@
-FreeOTP Plus a repris les mêmes fonctionnalités que FreeOTP, fournies par RedHat, avec les améliorations suivantes :
+NetAigis OTP ajoute une seconde couche de sécurité à vos comptes en ligne.
+L’application génère des mots de passe à usage unique (OTP) sur votre appareil, à utiliser avec votre mot de passe habituel.
+Les codes fonctionnent hors ligne, y compris en mode avion.
 
-* Exporter les paramètres vers Google Drive ou d'autres fournisseurs de documents
-* Importer les paramètres de Google Drive ou d'autres fournisseurs de documents
-* Beaucoup d'améliorations pour la stabilité
-* Prise en charge des autorisations Android 6.0.
-* Amélioration de l'interface utilisateur avec le design material avec la prise en charge du thème sombre
-* Barre de recherche pour le jeton de recherche
-* Fournissez plus de détails sur les jetons pour une meilleure interopérabilité avec d'autres applications
-* Utilise les appareils photo modernes pour scanner les codes QR plus rapidement
-* Possibilité d'exiger une authentification biométrique / NIP pour lancer l'application
-* Icône hors ligne heuristique pour les jetons de plus de 250 sites web.
-* Plus de paramètres pour personnaliser la fonctionnalité de l'application
+Ajoutez des jetons en scannant un QR code ou en saisissant la configuration manuellement.
+NetAigis OTP met en œuvre les standards ouverts TOTP (RFC 6238) et HOTP (RFC 4226) et fonctionne notamment avec Google, GitHub, Nextcloud et Forgejo.
 
-FreeOTP est une application d'authentification à deux facteurs (A2F) pour les systèmes utilisant des protocoles à mot de passe unique.
-Les jetons peuvent être ajoutés facilement en scannant un code QR ou en entrant manuellement dans la configuration du jeton.
+<b>Fonctionnalités :</b>
+<ul>
+<li>Scan de QR codes avec CameraX</li>
+<li>Export et import de jetons (JSON / key URI) via le Storage Access Framework</li>
+<li>Material Design avec thème sombre</li>
+<li>Recherche de jetons</li>
+<li>Détails et édition des jetons</li>
+<li>Verrouillage biométrique / PIN optionnel au démarrage</li>
+<li>Icônes d’émetteur hors ligne pour de nombreux services connus</li>
+</ul>
 
-FreeOTP implémente les standards ouverts. Ceci signifie qu'aucun composant propriétaire du serveur n'est nécessaire :
-utilise n'importe quel composant côté serveur qui implémente ces standards — par exemple FreeIPA, qui utilise TOTP.
-Toute mise en œuvre conforme aux normes fonctionnera.
-Actuellement, FreeOTP fournit des implémentations de HOTP (RFC 4226) et de TOTP (RFC 6238).
+NetAigis OTP est basé sur un fork de FreeOTP+ et maintenu par <a href="https://net-aigis.de/">NetAigis</a>.

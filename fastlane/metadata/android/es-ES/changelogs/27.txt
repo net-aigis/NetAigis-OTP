@@ -1,0 +1,2 @@
+Primera versión de NetAigis OTP 4.0.0.
+Nueva marca, nuevos application IDs y variantes free/pro.

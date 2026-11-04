@@ -1,21 +1,19 @@
-FreeOTP Plus è un fork dell'app FreeOTP di RedHat, con le stesse funzionalità e con in più i seguenti miglioramenti:
+NetAigis OTP aggiunge un secondo livello di sicurezza ai tuoi account online.
+Genera password monouso (OTP) sul dispositivo da usare insieme alla password normale.
+I codici funzionano offline, anche in modalità aereo.
 
-* Esportazione delle impostazioni in Google Drive o in altri servizi di gestione dei documenti
-* Importazione delle impostazioni da Google Drive o da altri servizi di gestione dei documenti
-* Molti miglioramenti della stabilità
-* Supporto ai permessi di Android 6.0.
-* UI migliorata con il supporto al material design e alla modalità scura
-* Barra di ricerca per la ricerca dei token
-* Maggiori dettagli sui token per una migliore interoperabilità con altre app
-* Utilizzo delle moderne funzionalità hardware delle fotocamere per scansionare i codici QR più velocemente
-* Opzione per imporre l'autenticazione biometrica o un PIN all'avvio dell'app
-* Icone basate su euristica offline per token di più di 250 siti web.
-* Ulteriori impostazioni per personalizzare le funzionalità dell'app
+Aggiungi token scansionando un codice QR o inserendo la configurazione manualmente.
+NetAigis OTP implementa gli standard aperti TOTP (RFC 6238) e HOTP (RFC 4226) e funziona con Google, GitHub, Nextcloud, Forgejo e molti altri servizi.
 
-FreeOTP è un'applicazione di autenticazione a due fattori (2FA) per sistemi che utilizzano protocolli di password monouso (OTP).
-I token possono essere aggiunti semplicemente scansionando un codice QR oppure inserendo manualmente nella configurazione del token.
+<b>Funzionalità:</b>
+<ul>
+<li>Scansione QR con CameraX</li>
+<li>Esportazione e importazione token (JSON / key URI) tramite Storage Access Framework</li>
+<li>Material Design con tema scuro</li>
+<li>Ricerca token</li>
+<li>Dettagli e modifica dei token</li>
+<li>Blocco biometrico / PIN opzionale all’avvio</li>
+<li>Icone issuer offline per molti servizi noti</li>
+</ul>
 
-FreeOTP implementa standard aperti. Questo significa che, lato server, non è necessario alcun componente proprietario:
-lato server è possibile utilizzare un qualsiasi componente che implementi questi standard — come ad esempio FreeIPA, che utilizza TOTP.
-È in grado di interoperare con qualsiasi implementazione conforme agli standard.
-Al momento FreeOTP è conforme agli standard HOTP (RFC 4226) e TOTP (RFC 6238).
+NetAigis OTP si basa su un fork di FreeOTP+ ed è mantenuto da <a href="https://net-aigis.de/">NetAigis</a>.

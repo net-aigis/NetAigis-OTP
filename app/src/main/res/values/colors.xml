@@ -1,9 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">#16AFF9</color>
-    <color name="primary_dark">#128EC9</color>
-    <color name="secondary">#16AFF9</color>
-    <color name="token_background">@android:color/white</color>
-    <color name="overflow_menu">#303030</color>
+    <color name="primary">#111D24</color>
+    <color name="primary_dark">#0D171D</color>
+    <color name="secondary">#CDFB65</color>
+    <!-- Banner-inspired base (window falls back to wallpaper drawable) -->
+    <color name="paper">#0E1A22</color>
+    <color name="surface">#1C2A33</color>
+    <!-- Dark ink for text on frosted token cards -->
+    <color name="muted">#52616A</color>
+    <color name="line">#334049</color>
+    <color name="focus">#CDFB65</color>
+    <color name="token_background">@android:color/transparent</color>
+    <!-- Frosted glass — more transparent so the shield scene reads through -->
+    <color name="token_card_background">#B3F7F9FA</color>
+    <color name="overflow_menu">#111D24</color>
+    <color name="on_banner">#F7F9FA</color>
+    <color name="on_banner_muted">#B8C4CC</color>
+    <!-- Free-locked Pro menu title (used with enabled=false so checkbox matches). -->
+    <color name="menu_pro_locked">#80F7F9FA</color>
 </resources>
-

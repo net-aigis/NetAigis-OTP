@@ -1,0 +1,2 @@
+NetAigis OTP ilk sürüm 4.0.0.
+Yeniden markalama, yeni application ID’ler, free/pro çeşitleri.

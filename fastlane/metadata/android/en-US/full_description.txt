@@ -1,23 +1,19 @@
-FreeOTP+ adds a second layer of security for your online accounts.
-This works by generating one-time passwords (OTP) on your mobile devices which can be used in conjunction with your normal password to make your login nearly impossible to hack.
-These passwords can be generated even when your phone is in airplane mode.
-Tokens can be added easily by scanning a QR-code or by manually entering the token configuration.
-This is called two-factor authentication (2FA).
+NetAigis OTP adds a second layer of security for your online accounts.
+It generates one-time passwords (OTP) on your device that you use together with your normal password.
+Codes work offline, including in airplane mode.
 
-FreeOTP works with many of the great online services you already use, including Google, Facebook, Evernote, GitHub and many more!
-FreeOTP also may work for your private corporate security if they implement the standardized <a href="https://en.wikipedia.org/wiki/Time-based_one-time_password">TOTP</a> or <a href="https://en.wikipedia.org/wiki/HMAC-based_one-time_password_algorithm">HOTP</a> protocols.
-This includes great enterprise solutions like <a href="https://www.freeipa.org/">FreeIPA</a>.
+Add tokens by scanning a QR code or by entering the configuration manually.
+NetAigis OTP implements open standards TOTP (RFC 6238) and HOTP (RFC 4226), so it works with Google, GitHub, Nextcloud, Forgejo and many other services.
 
 <b>Features:</b>
 <ul>
-<li>Scan QR code.</li>
-<li>Export and import settings to Google Drive or other document providers.</li>
-<li>Material design with dark theme support.</li>
-<li>Search bar to search token.</li>
-<li>See token details.</li>
-<li>Option to require Biometric / PIN authentication to launch the app.</li>
-<li>Heuristic based offline icon for tokens of 250+ websites.</li>
-<li>Many settings to customize the app functionality.</li>
+<li>Scan QR codes with CameraX</li>
+<li>Export and import tokens (JSON / key URI) via the Storage Access Framework</li>
+<li>Material design with dark theme support</li>
+<li>Search tokens</li>
+<li>Token details and editing</li>
+<li>Optional biometric / PIN lock to open the app</li>
+<li>Offline issuer icons for many well-known services</li>
 </ul>
 
-The FreeOTP Plus is fork of the FreeOTP.
+NetAigis OTP is based on a FreeOTP+ fork and maintained by <a href="https://net-aigis.de/">NetAigis</a>.

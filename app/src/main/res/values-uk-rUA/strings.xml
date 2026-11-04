@@ -12,6 +12,8 @@
     <string name="counter">Лічильник</string>
     <string name="issuer">Видавець</string>
     <string name="account">Обліковий запис</string>
+    <string name="alias">Псевдонім</string>
+    <string name="icon">Значок</string>
     <string name="id">ІД</string>
     <string name="secret">Секрет</string>
     <string name="type">Тип</string>
@@ -19,10 +21,12 @@
     <string name="digits">Цифр</string>
     <string name="save">Зберегти</string>
     <string name="code_copied">Код скопійовано до буфера обміну.</string>
-    <string name="about_freeotp">Про FreeOTP+</string>
-    <string name="about_version">Версія FreeOTP+ %1$s (%2$d)</string>
-    <string name="about_copyright">© 2013 - Red Hat, Inc., et al.\n© 2016 - Liberty</string>
-    <string name="about_license">FreeOTP+ під ліцензією %1$s.</string>
+    <string name="about_otp">Про NetAigis OTP</string>
+    <string name="about_version">Версія NetAigis OTP %1$s (%2$d)</string>
+    <string name="about_copyright">© 2013 - Red Hat, Inc., et al.
+© 2016 - Liberty
+© 2026 - &lt;a href=&quot;https://net-aigis.de/&quot;&gt;NetAigis&lt;/a&gt;</string>
+    <string name="about_license">NetAigis OTP під ліцензією %1$s.</string>
     <string name="about_website">Докладніше дивіться на %s.</string>
     <string name="about_feedback">Ми раді отримати від Вас зворотній зв’язок:&lt;br/&gt;•%1$s&lt;br/&gt;• %2$s</string>
     <string name="about_icons">Деякі значки, що використовуються цією програмою відтворені з роботи, яку створив Android Open Source Project і використовується на умовах, описаних у ліцензії Creative Commons 2.5 Attribution.</string>
@@ -46,7 +50,6 @@
     <string name="import_key_uri_format">Імпортувати формат URI ключа</string>
     <string name="export_json_format">Експортувати у формат JSON</string>
     <string name="export_key_uri_format">Експортувати формат URI ключа</string>
-    <string name="use_dark_theme">Використовувати темну тему</string>
     <string name="add_token_success">Ключ успішно додано</string>
     <string name="copy_to_clipboard">Копіювати в буфер обміну</string>
     <string name="require_authentication">Вимагає автентифікації</string>
@@ -55,7 +58,7 @@
     <string name="authentication_error">Помилка автентифікації:</string>
     <string name="authentication_failed">Невдала автентифікація</string>
     <string name="authentication_dialog_title">Потрібна автентифікація</string>
-    <string name="authentication_dialog_subtitle">Будь ласка, використовуйте PIN або біометрику, щоб автентифікувати FreeOTP+</string>
+    <string name="authentication_dialog_subtitle">Будь ласка, використовуйте PIN або біометрику, щоб автентифікувати NetAigis OTP</string>
     <string name="unable_to_authenticate">Не можливо автентифікуватися. У Вас ввімкнено блокування екрана з PIN або біометрикою?</string>
     <string name="remove_user_token_image">Вилучити користувацьке зображення ключа</string>
     <string name="fail_to_add_image">Не вдалося додати зображення</string>
@@ -65,4 +68,6 @@
     <string name="launch_with_screenshot_enabled">Запустити з дозволеним знімком екрана</string>
     <string name="token_details">Деталі ключа</string>
     <string name="share_to_other_apps">Share to other apps</string>
+    <string name="category_tab_all">Усі</string>
+    <string name="category_tab_none">Немає</string>
 </resources>

@@ -1,1 +1,1 @@
-FreeOTP+
+NetAigis OTP

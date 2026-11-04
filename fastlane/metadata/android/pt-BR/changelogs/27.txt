@@ -1,0 +1,2 @@
+Primeiro lançamento do NetAigis OTP 4.0.0.
+Nova marca, novos application IDs e variantes free/pro.

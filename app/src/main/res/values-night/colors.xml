@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="token_background">#7F7F7F</color>
-    <color name="primary_dark">#222222</color>
-    <color name="overflow_menu">#A0A0A0</color>
+    <color name="token_background">@android:color/transparent</color>
+    <color name="token_card_background">#B3F7F9FA</color>
+    <color name="primary_dark">#0A1218</color>
+    <color name="overflow_menu">#111D24</color>
+    <color name="paper">#0E1A22</color>
+    <color name="surface">#1C2A33</color>
+    <color name="on_banner">#F7F9FA</color>
+    <color name="on_banner_muted">#B8C4CC</color>
 </resources>
-

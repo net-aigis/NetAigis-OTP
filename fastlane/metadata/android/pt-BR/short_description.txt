@@ -1,1 +1,1 @@
-Este é um aplicativo de autenticação em dois fatores (2FA) baseado no FreeOTP-Android, e contém recursos adicionais.
+Autenticação em dois fatores (2FA) com senhas de uso único TOTP e HOTP

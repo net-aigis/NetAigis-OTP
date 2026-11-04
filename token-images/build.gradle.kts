@@ -25,7 +25,7 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
-    namespace = "org.liberty.android.freeotp.token_images"
+    namespace = "de.wittmer.app.otp.token_images"
     lint {
         targetSdk = 35
     }
