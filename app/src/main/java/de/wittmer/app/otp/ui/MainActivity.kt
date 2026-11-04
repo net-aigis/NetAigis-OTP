@@ -71,6 +71,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import de.wittmer.app.otp.R
@@ -191,16 +192,16 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 launch {
-                    viewModel.getAllCategories().collect {
-                        categories = it
-                        updateCategoryTabs()
-                        invalidateOptionsMenu()
-                    }
-                }
-
-                launch {
-                    viewModel.hasUncategorizedTokens().collect {
-                        hasUncategorizedTokens = it
+                    // Combined so tabs never rebuild with half-loaded category state
+                    // (that was resetting the filter on rotation).
+                    combine(
+                        viewModel.getAllCategories(),
+                        viewModel.hasUncategorizedTokens()
+                    ) { cats, hasUncategorized ->
+                        cats to hasUncategorized
+                    }.collect { (cats, hasUncategorized) ->
+                        categories = cats
+                        hasUncategorizedTokens = hasUncategorized
                         updateCategoryTabs()
                         invalidateOptionsMenu()
                     }
@@ -585,13 +586,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateCategoryTabs() {
+        // ViewModel survives rotation; Activity field does not — sync before rebuilding tabs.
+        selectedCategoryFilter = viewModel.getCategoryFilter()
         normalizeCategoryFilter()
 
         updatingCategoryTabs = true
         binding.categoryTabs.removeAllTabs()
         if (categories.isEmpty() && !hasUncategorizedTokens) {
             binding.categoryTabs.visibility = View.GONE
-            updatingCategoryTabs = false
+            // Defer clear so late TabLayout selection callbacks cannot reset the filter.
+            binding.categoryTabs.post { updatingCategoryTabs = false }
             return
         }
 
@@ -606,7 +610,12 @@ class MainActivity : AppCompatActivity() {
             addCategoryTab(category, category)
         }
         selectCategoryTab(selectedCategoryFilter)
-        updatingCategoryTabs = false
+        // Re-apply after TabLayout finishes any pending layout/selection work.
+        binding.categoryTabs.post {
+            selectedCategoryFilter = viewModel.getCategoryFilter()
+            selectCategoryTab(selectedCategoryFilter)
+            updatingCategoryTabs = false
+        }
     }
 
     private fun normalizeCategoryFilter() {

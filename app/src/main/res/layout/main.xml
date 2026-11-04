@@ -64,6 +64,7 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:background="@android:color/transparent"
+			android:saveEnabled="false"
 			app:tabGravity="start"
 			app:tabMode="scrollable"
 			app:tabTextColor="@color/on_banner_muted"

@@ -1,5 +1,6 @@
 package de.wittmer.app.otp.ui
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,11 +18,12 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(
     private val tokenMigrationUtil: MigrationUtil,
     private val otpTokenDatabase: OtpTokenDatabase,
-    private val settings: Settings
+    private val settings: Settings,
+    private val savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
 
     private val tokenSearchQuery = MutableStateFlow("")
-    private val categoryFilter = MutableStateFlow<String?>(null)
+    private val categoryFilter = MutableStateFlow(savedStateHandle.get<String?>(KEY_CATEGORY_FILTER))
     private val authState = MutableStateFlow(
         if (settings.requireAuthentication) {
             AuthState.UNAUTHENTICATED
@@ -46,7 +48,10 @@ class MainViewModel @Inject constructor(
 
     fun setCategoryFilter(category: String?) {
         categoryFilter.value = category
+        savedStateHandle[KEY_CATEGORY_FILTER] = category
     }
+
+    fun getCategoryFilter(): String? = categoryFilter.value
 
     fun setAuthState(auth: AuthState) {
         authState.value = auth
@@ -106,7 +111,8 @@ class MainViewModel @Inject constructor(
     }
 
     companion object {
-        private const val TIMEOUT_DELAY_MS: Long = 120 * 1000L;
+        private const val TIMEOUT_DELAY_MS: Long = 120 * 1000L
+        private const val KEY_CATEGORY_FILTER = "category_filter"
         const val CATEGORY_UNCATEGORIZED = "uncategorized_special_value"
     }
 
