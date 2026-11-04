@@ -1,3 +1,3 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Screenshot-mode shortcut is Pro-only (see app/src/pro and proDebug). -->
+<!-- Flavor source sets (free/pro and freeDebug/proDebug) provide the shortcut. -->
 <shortcuts xmlns:android="http://schemas.android.com/apk/res/android" />

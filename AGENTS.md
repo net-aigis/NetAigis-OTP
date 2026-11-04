@@ -13,8 +13,8 @@ Wichtig: Änderungen sollen klein, nachvollziehbar und fachlich konsistent sein.
 - App: **NetAigis OTP**
 - Englischer App-Name: **NetAigis OTP**
 - Herkunft: Fork/Übernahme von FreeOTP+
-- Package/Application-ID Free: `de.wittmer.app.otp`
-- Package/Application-ID Pro: `de.wittmer.app.otp.pro`
+- Package/Application-ID Free: `de.wittmer.app.otp.free`
+- Package/Application-ID Pro: `de.wittmer.app.otp` (Default-Flavor)
 - Namespace: `de.wittmer.app.otp`
 - Repo: `NetAigis-OTP`
 - Beobachtete lokale Pfade:
@@ -98,6 +98,12 @@ Quelle: [net-aigis.de](https://net-aigis.de/)
 
 Material DayNight bleibt; FreeOTP-Blau (`#16AFF9`) ist ersetzt.
 
+### Hintergrund-Assets
+
+- `app/src/main/res/drawable-nodpi/logo_watermark.jpg` — **niemals löschen** (Portrait-Referenz)
+- `app/src/main/res/drawable-nodpi/logo_watermark_wide.png` — breite Kulisse für feste Skalierung / Drehen
+- Laufzeit/UI nutzen derzeit `_wide`; das JPG bleibt trotzdem im Repo
+
 ### Icon
 
 - Launcher: Banner-Schild (Vorlage `arts/branding-preview/icon-shield-square-v4.png` / `shield-wide-v4.png`)
@@ -107,10 +113,10 @@ Material DayNight bleibt; FreeOTP-Blau (`#16AFF9`) ist ersetzt.
 
 | Variante | Name |
 |---|---|
-| free / release | NetAigis OTP |
-| free / debug | NetAigis OTP Debug |
-| pro / release | NetAigis OTP Pro |
-| pro / debug | NetAigis OTP Pro Debug |
+| free / release | NetAigis OTP Free |
+| free / debug | NetAigis OTP Free Debug |
+| pro / release | NetAigis OTP |
+| pro / debug | NetAigis OTP Debug |
 
 ---
 
@@ -149,16 +155,16 @@ app/build/outputs/apk/free/debug/otp-free-debug.apk
 Free-Package:
 
 ```text
-de.wittmer.app.otp
+de.wittmer.app.otp.free
 ```
 
 Free-Debug-Package:
 
 ```text
-de.wittmer.app.otp.debug
+de.wittmer.app.otp.free.debug
 ```
 
-Pro-Build:
+Pro-Build (Default):
 
 ```bash
 ./gradlew :app:assembleProDebug
@@ -167,13 +173,19 @@ Pro-Build:
 Pro-Debug-APK:
 
 ```text
-app/build/outputs/apk/pro/debug/otp-pro-debug.apk
+app/build/outputs/apk/pro/debug/otp-debug.apk
 ```
 
 Pro-Package:
 
 ```text
-de.wittmer.app.otp.pro
+de.wittmer.app.otp
+```
+
+Pro-Debug-Package:
+
+```text
+de.wittmer.app.otp.debug
 ```
 
 Beide Debug-Varianten:
@@ -196,13 +208,13 @@ keystore.properties
 
 `keystore.properties` und private `.jks`-Keystores dürfen nicht ins Git.
 
-Manuelles Zurücksetzen der Appdaten (Free):
+Manuelles Zurücksetzen der Appdaten (Pro):
 
 ```bash
 adb shell pm clear de.wittmer.app.otp
 ```
 
-Komplette Neuinstallation (Free-Debug):
+Komplette Neuinstallation (Pro-Debug, Default):
 
 ```bash
 ./helper/rebuild_and_start.sh
@@ -211,7 +223,7 @@ Komplette Neuinstallation (Free-Debug):
 Bei mehreren Geräten/Emulatoren Zielserial angeben (oder `ANDROID_SERIAL` setzen):
 
 ```bash
-./helper/rebuild_and_start.sh --edition free --device fad4c341
+./helper/rebuild_and_start.sh --edition pro --device fad4c341
 ```
 
 Mit Testtokens aus `testdata/sample-tokens.txt`:
@@ -220,11 +232,11 @@ Mit Testtokens aus `testdata/sample-tokens.txt`:
 ./helper/rebuild_and_start.sh --seed
 ```
 
-Pro-Debug:
+Free-Debug:
 
 ```bash
-./helper/rebuild_and_start.sh --edition pro
-./helper/rebuild_and_start.sh --edition pro --seed
+./helper/rebuild_and_start.sh --edition free
+./helper/rebuild_and_start.sh --edition free --seed
 ```
 
 Release-Artefakte bauen/hochladen (Forgejo):
@@ -250,8 +262,8 @@ FTOKEN_RELEASE=... ./helper/release.sh 0.1.0 --build --upload
 flavorDimensions += "edition"
 ```
 
-- `free` Application-ID: `de.wittmer.app.otp`
-- `pro` Application-ID: `de.wittmer.app.otp.pro`
+- `free` Application-ID: `de.wittmer.app.otp.free`
+- `pro` Application-ID: `de.wittmer.app.otp` (`isDefault = true`)
 - Flavor-Source-Sets:
 
 ```text
@@ -267,9 +279,9 @@ app/src/proDebug/
   - Implementierung: `FeatureAccessImpl` in `free` / `pro`
   - Hilt-Bindung: `FeatureModule`
 - Keine verstreuten Prüfungen auf `BuildConfig.FLAVOR` einbauen.
-- Pro-Feature-Liste:
-  - `screenshotModeEnabled` — Screenshot-/Mirror-Modus (Free: blasser Text, „Pro“ links neben deaktivierter Checkbox)
-- `pro` darf Ressourcen überschreiben (App-Name ist bereits flavor-spezifisch).
+- Feature-Stand: Free und Pro derzeit gleicher Funktionsumfang (`screenshotModeEnabled = true` in beiden).
+- `FeatureAccess` bleibt die zentrale Schaltung für spätere Unterschiede.
+- App-Namen flavor-/build-spezifisch (siehe Branding-Tabelle: Free trägt „Free“, Pro ist der Default-Name ohne Suffix).
 
 ### Package-Mapping
 
@@ -279,7 +291,7 @@ app/src/proDebug/
 | `org.fedorahosted.freeotp.data` | `de.wittmer.app.otp.data` |
 | `org.liberty.android.freeotp.token_images` | `de.wittmer.app.otp.token_images` |
 | `com.amulyakhare.textdrawable` | `de.wittmer.app.otp.textdrawable` |
-| Application-ID `org.liberty.android.freeotpplus` | `de.wittmer.app.otp` / `.pro` |
+| Application-ID `org.liberty.android.freeotpplus` | `de.wittmer.app.otp` (Pro) / `de.wittmer.app.otp.free` |
 
 `com.google.android.apps.authenticator.Base32String` bleibt unverändert (Vendor-Code).
 
@@ -318,7 +330,7 @@ java -version
 - `helper/rebuild_and_start.sh` — Debug bauen, installieren, starten (`--edition free|pro`, `--device SERIAL`, `--seed`, `--wipe-backup SERIAL`)
 - `helper/release.sh` — Free/Pro Debug+Release bauen und optional nach Forgejo (`otp-android`) hochladen
 - Seed nutzt `testdata/sample-tokens.txt` (otpauth-URIs)
-- Debug-Packages: `de.wittmer.app.otp.debug` / `de.wittmer.app.otp.pro.debug`
+- Debug-Packages: `de.wittmer.app.otp.debug` (Pro) / `de.wittmer.app.otp.free.debug` (Free)
 
 ---
 
@@ -326,7 +338,7 @@ java -version
 
 Noch nicht einbauen, solange nicht explizit angefordert:
 
-1. Weitere Pro-Features an `FeatureAccess` ergänzen (Screenshot-Modus ist umgesetzt)
+1. Spätere Free/Pro-Unterschiede an `FeatureAccess` ergänzen (aktuell gleich)
 2. Fastlane-Beschreibungen/Screenshots vollständig auf NetAigis umstellen
 3. Crowdin-Texte jenseits der Markennamen feinjustieren
 

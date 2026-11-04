@@ -67,6 +67,7 @@
 			android:saveEnabled="false"
 			app:tabGravity="start"
 			app:tabMode="scrollable"
+			app:tabTextAppearance="@style/TextAppearance.CategoryTab"
 			app:tabTextColor="@color/on_banner_muted"
 			app:tabSelectedTextColor="@color/secondary"
 			app:tabIndicatorColor="@color/secondary" />

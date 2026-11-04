@@ -5,5 +5,6 @@ import javax.inject.Singleton
 
 @Singleton
 class FeatureAccessImpl @Inject constructor() : FeatureAccess {
-    override val screenshotModeEnabled = false
+    // Same feature set as Pro for now.
+    override val screenshotModeEnabled = true
 }

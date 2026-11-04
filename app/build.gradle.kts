@@ -7,7 +7,7 @@ plugins {
     id("com.google.dagger.hilt.android")
 }
 
-// APK basename: otp-{free|pro}-{debug|release}.apk (module dir stays :app)
+// APK basename: free → otp-free-{debug|release}.apk; pro (default) → otp-{debug|release}.apk
 base {
     archivesName.set("otp")
 }
@@ -44,11 +44,13 @@ android {
     productFlavors {
         create("free") {
             dimension = "edition"
-            applicationId = "de.wittmer.app.otp"
+            applicationId = "de.wittmer.app.otp.free"
         }
         create("pro") {
             dimension = "edition"
-            applicationId = "de.wittmer.app.otp.pro"
+            applicationId = "de.wittmer.app.otp"
+            // Default when tasks omit the flavor (e.g. assembleDebug).
+            isDefault = true
         }
     }
 
@@ -93,6 +95,17 @@ android {
     testOptions {
         execution = "ANDROIDX_TEST_ORCHESTRATOR"
         animationsDisabled = true
+    }
+
+    applicationVariants.configureEach {
+        val apkName = if (flavorName == "pro") {
+            "otp-${buildType.name}.apk"
+        } else {
+            "otp-${flavorName}-${buildType.name}.apk"
+        }
+        outputs.configureEach {
+            (this as com.android.build.gradle.api.ApkVariantOutput).outputFileName = apkName
+        }
     }
 }
 

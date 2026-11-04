@@ -26,7 +26,11 @@ interface OtpTokenDao {
     @Query("select ordinal from otp_tokens order by ordinal desc limit 1")
     fun getLastOrdinal(): Long?
 
-    @Query("select distinct category from otp_tokens where category is not null and category != ''")
+    @Query(
+        "select distinct category from otp_tokens " +
+            "where category is not null and category != '' " +
+            "order by category collate nocase"
+    )
     fun getAllCategories(): Flow<List<String>>
 
     @Query("select exists(select 1 from otp_tokens where category is null or category = '')")
