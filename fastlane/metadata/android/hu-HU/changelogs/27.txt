@@ -1,2 +1,2 @@
-Első NetAigis OTP kiadás 0.1.0.
+Első NetAigis OTP kiadás 4.0.0.
 Új márka, új application ID-k, free/pro változatok.

@@ -1,2 +1,2 @@
-Eerste NetAigis OTP-vrystelling 0.1.0.
+Eerste NetAigis OTP-vrystelling 4.0.0.
 Herhandelsmerk, nuwe application IDs, free/pro-geure.

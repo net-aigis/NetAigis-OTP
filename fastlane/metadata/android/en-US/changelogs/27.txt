@@ -1,2 +1,2 @@
-Initial NetAigis OTP release 0.1.0.
+Initial NetAigis OTP release 4.0.0.
 Rebrand, new application IDs, free/pro flavors.

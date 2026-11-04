@@ -1,2 +1,2 @@
-Första NetAigis OTP-utgåvan 0.1.0.
+Första NetAigis OTP-utgåvan 4.0.0.
 Omprofilering, nya application ID, free/pro-varianter.

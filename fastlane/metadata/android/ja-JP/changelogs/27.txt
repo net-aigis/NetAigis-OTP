@@ -1,2 +1,2 @@
-NetAigis OTP 初回リリース 0.1.0。
+NetAigis OTP 初回リリース 4.0.0。
 リブランディング、新しい application ID、free/pro フレーバー。

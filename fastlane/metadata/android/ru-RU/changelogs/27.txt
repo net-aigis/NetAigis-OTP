@@ -1,2 +1,2 @@
-Первый выпуск NetAigis OTP 0.1.0.
+Первый выпуск NetAigis OTP 4.0.0.
 Ребрендинг, новые application ID, варианты free/pro.
