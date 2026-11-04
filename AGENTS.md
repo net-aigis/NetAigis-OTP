@@ -143,7 +143,7 @@ Standard-Build Free:
 Free-Debug-APK:
 
 ```text
-app/build/outputs/apk/free/debug/app-free-debug.apk
+app/build/outputs/apk/free/debug/otp-free-debug.apk
 ```
 
 Free-Package:
@@ -167,7 +167,7 @@ Pro-Build:
 Pro-Debug-APK:
 
 ```text
-app/build/outputs/apk/pro/debug/app-pro-debug.apk
+app/build/outputs/apk/pro/debug/otp-pro-debug.apk
 ```
 
 Pro-Package:

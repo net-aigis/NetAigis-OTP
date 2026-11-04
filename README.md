@@ -17,8 +17,8 @@ Android OTP authenticator based on a FreeOTP+ fork, rebranded for NetAigis.
 APKs:
 
 ```text
-app/build/outputs/apk/free/debug/app-free-debug.apk
-app/build/outputs/apk/pro/debug/app-pro-debug.apk
+app/build/outputs/apk/free/debug/otp-free-debug.apk
+app/build/outputs/apk/pro/debug/otp-pro-debug.apk
 ```
 
 ## Requirements

@@ -7,6 +7,11 @@ plugins {
     id("com.google.dagger.hilt.android")
 }
 
+// APK basename: otp-{free|pro}-{debug|release}.apk (module dir stays :app)
+base {
+    archivesName.set("otp")
+}
+
 val keystorePropertiesFile = rootProject.file("keystore.properties")
 val keystoreProperties = Properties()
 val requestedReleaseBuild = gradle.startParameter.taskNames.any {

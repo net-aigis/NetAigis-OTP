@@ -24,7 +24,7 @@
 scEdition='free'
 scPackage='de.wittmer.app.otp.debug'
 scActivity='de.wittmer.app.otp.ui.MainActivity'
-scApp='app/build/outputs/apk/free/debug/app-free-debug.apk'
+scApp='app/build/outputs/apk/free/debug/otp-free-debug.apk'
 scSeed='false'
 scWipeBackup='false'
 scWipeBackupDevice=''
@@ -70,12 +70,12 @@ done
 case "${scEdition}" in
   free)
     scPackage='de.wittmer.app.otp.debug'
-    scApp='app/build/outputs/apk/free/debug/app-free-debug.apk'
+    scApp='app/build/outputs/apk/free/debug/otp-free-debug.apk'
     scGradleTask=':app:assembleFreeDebug'
     ;;
   pro)
     scPackage='de.wittmer.app.otp.pro.debug'
-    scApp='app/build/outputs/apk/pro/debug/app-pro-debug.apk'
+    scApp='app/build/outputs/apk/pro/debug/otp-pro-debug.apk'
     scGradleTask=':app:assembleProDebug'
     ;;
   *)
