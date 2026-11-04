@@ -29,9 +29,11 @@ scSeed='false'
 scWipeBackup='false'
 scWipeBackupDevice=''
 scSampleTokens='testdata/sample-tokens.txt'
+# Prefer explicit --device; otherwise keep an already exported ANDROID_SERIAL.
+scDevice="${ANDROID_SERIAL:-}"
 
 usage() {
-  printf "Verwendung: %s [--edition free|pro] [--seed] [--wipe-backup SERIAL]\n" "$0"
+  printf "Verwendung: %s [--edition free|pro] [--device SERIAL] [--seed] [--wipe-backup SERIAL]\n" "$0"
 }
 
 while [ "$#" -gt 0 ]; do
@@ -44,6 +46,15 @@ while [ "$#" -gt 0 ]; do
         exit 2
       fi
       scEdition="$1"
+      ;;
+    --device)
+      shift
+      if [ "$#" -eq 0 ]; then
+        printf "Fehlender Wert für --device\n"
+        usage
+        exit 2
+      fi
+      scDevice="$1"
       ;;
     --seed)
       scSeed='true'
@@ -88,11 +99,26 @@ esac
 ### clear cache on installed package
 # adb shell pm clear "${scPackage}"
 
+scDeviceCount="$(adb devices | awk 'NR > 1 && $2 == "device" { n++ } END { print n + 0 }')"
+if [ -n "${scDevice}" ]; then
+  export ANDROID_SERIAL="${scDevice}"
+  printf "Zielgerät: %s\n" "${ANDROID_SERIAL}"
+elif [ "${scDeviceCount}" -gt 1 ]; then
+  printf "Mehrere Geräte verbunden. Bitte --device SERIAL angeben oder ANDROID_SERIAL setzen.\n"
+  adb devices
+  usage
+  exit 2
+elif [ "${scDeviceCount}" -eq 0 ]; then
+  printf "Kein Gerät im Zustand \"device\" gefunden.\n"
+  adb devices
+  exit 2
+fi
+
 if ./gradlew "${scGradleTask}" ; then
   adb wait-for-device
   if [ "${scWipeBackup}" = "true" ]; then
-    scDevice="$(adb get-serialno | tr -d '\r')"
-    if [ "${scDevice}" = "${scWipeBackupDevice}" ]; then
+    scConnectedDevice="$(adb get-serialno | tr -d '\r')"
+    if [ "${scConnectedDevice}" = "${scWipeBackupDevice}" ]; then
       scTransport="$(adb shell bmgr list transports | sed -n 's/^  \* //p' | tr -d '\r')"
       if [ -n "${scTransport}" ]; then
         printf "Wipe Android backup for %s using transport %s\n" "${scPackage}" "${scTransport}"
@@ -101,7 +127,7 @@ if ./gradlew "${scGradleTask}" ; then
         printf "Kein aktiver Android Backup-Transport gefunden. Backup-Wipe übersprungen.\n"
       fi
     else
-      printf "Backup-Wipe übersprungen. Verbundenes Device: %s, erlaubt: %s\n" "${scDevice}" "${scWipeBackupDevice}"
+      printf "Backup-Wipe übersprungen. Verbundenes Device: %s, erlaubt: %s\n" "${scConnectedDevice}" "${scWipeBackupDevice}"
     fi
   fi
   adb uninstall "${scPackage}" || true
