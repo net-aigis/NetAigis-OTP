@@ -82,7 +82,10 @@ class AddActivity : AppCompatActivity(), View.OnClickListener, CompoundButton.On
 
         val buttonLayout = findViewById<View>(R.id.button_layout)
         ViewCompat.setOnApplyWindowInsetsListener(buttonLayout) { view, windowInsets ->
-            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
+            // Keep Cancel/Add above the nav bar and the IME keyboard.
+            val insets = windowInsets.getInsets(
+                WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.ime()
+            )
             view.setPadding(
                 view.paddingLeft,
                 view.paddingTop,

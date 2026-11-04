@@ -1,15 +1,32 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="AppTheme" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/primary</item>
+    <!-- Banner background is dark — app UI follows Material Dark. -->
+    <style name="AppTheme" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="colorPrimary">@color/secondary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
-        <item name="colorPrimaryVariant">@color/primary_dark</item>
+        <item name="colorPrimaryVariant">@color/primary</item>
         <item name="colorSecondary">@color/secondary</item>
+        <item name="colorSurface">@color/surface</item>
+        <item name="colorOnSurface">@color/on_banner</item>
+        <item name="colorOnPrimary">@color/primary</item>
+        <item name="android:colorBackground">@color/paper</item>
+        <item name="android:windowBackground">@drawable/app_background</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@color/paper</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:textColorPrimary">@color/on_banner</item>
+        <item name="android:textColorSecondary">@color/on_banner_muted</item>
+        <item name="editTextColor">@color/on_banner</item>
+        <item name="android:editTextColor">@color/on_banner</item>
+        <!-- Keep brand buttons fully opaque when disabled (Save/Restore). -->
+        <item name="android:disabledAlpha">1.0</item>
     </style>
 
-    <style name="DialogTheme" parent="Theme.Material3.DayNight.Dialog">
-        <item name="colorPrimary">@color/primary</item>
+    <style name="DialogTheme" parent="Theme.Material3.Dark.Dialog">
+        <item name="colorPrimary">@color/secondary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="colorSecondary">@color/secondary</item>
+        <item name="colorSurface">@color/surface</item>
+        <item name="colorOnSurface">@color/on_banner</item>
     </style>
 
     <style name="Divider">
@@ -35,5 +52,11 @@
         <item name="android:layout_marginEnd">8dp</item>
         <item name="android:layout_weight">1</item>
         <item name="android:singleLine">true</item>
+        <item name="android:background">@drawable/brand_button_bg</item>
+        <item name="android:textColor">@color/primary</item>
+        <item name="android:stateListAnimator">@null</item>
+        <item name="backgroundTint">@null</item>
     </style>
 </resources>
+
+

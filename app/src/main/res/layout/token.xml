@@ -25,8 +25,14 @@
     xmlns:tool="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/space_2"
+    android:layout_marginEnd="@dimen/space_2"
     android:layout_marginBottom="@dimen/space_1"
-    android:background="?android:selectableItemBackground">
+    app:cardBackgroundColor="@color/token_card_background"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="0dp"
+    app:strokeWidth="0dp"
+    app:rippleColor="?attr/colorControlHighlight">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -106,6 +112,7 @@
                 android:gravity="end|center_vertical"
                 android:paddingStart="8dp"
                 android:paddingEnd="64dp"
+                android:textColor="@color/primary"
                 android:textSize="32sp"
                 android:textStyle="bold"
                 android:typeface="monospace"
@@ -120,8 +127,8 @@
             android:layout_height="0dp"
             android:layout_marginEnd="@dimen/space_2"
             android:src="@drawable/menu"
-            app:tint="@color/overflow_menu"
-            android:tintMode="add"
+            app:tint="@color/primary"
+            android:tintMode="src_in"
             android:scaleType="centerInside"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="@+id/token_content"

@@ -28,6 +28,7 @@
                 android:gravity="center_vertical|right"
                 android:paddingRight="8dp"
                 android:text="@string/issuer"
+                android:textColor="@color/primary"
                 android:textStyle="bold"/>
 
             <EditText
@@ -38,7 +39,8 @@
             android:layout_marginTop="4dp"
             android:hint="Example.com"
             android:inputType="textNoSuggestions"
-            android:textAppearance="?android:attr/textAppearanceSmallInverse" />
+            android:textColor="@color/primary"
+            android:textColorHint="@color/muted" />
         </TableRow>
 
         <TableRow
@@ -51,6 +53,7 @@
                 android:gravity="center_vertical|right"
                 android:paddingRight="8dp"
                 android:text="@string/account"
+                android:textColor="@color/primary"
                 android:textStyle="bold" />
 
             <EditText
@@ -62,7 +65,8 @@
                 android:layout_toRightOf="@id/image"
                 android:hint="joe@example.com"
                 android:inputType="textNoSuggestions"
-                android:textAppearance="?android:attr/textAppearanceSmallInverse" />
+                android:textColor="@color/primary"
+            android:textColorHint="@color/muted" />
         </TableRow>
 
         <TableRow
@@ -75,6 +79,7 @@
                 android:gravity="center_vertical|right"
                 android:paddingRight="8dp"
                 android:text="@string/alias"
+                android:textColor="@color/primary"
                 android:textStyle="bold" />
 
             <EditText
@@ -84,7 +89,8 @@
                 android:layout_marginBottom="4dp"
                 android:hint="@string/alias"
                 android:inputType="textNoSuggestions"
-                android:textAppearance="?android:attr/textAppearanceSmallInverse" />
+                android:textColor="@color/primary"
+            android:textColorHint="@color/muted" />
         </TableRow>
 
         <TableRow
@@ -97,6 +103,7 @@
                 android:gravity="center_vertical|right"
                 android:paddingRight="8dp"
                 android:text="@string/category"
+                android:textColor="@color/primary"
                 android:textStyle="bold" />
 
             <AutoCompleteTextView
@@ -107,7 +114,8 @@
                 android:hint="@string/category"
                 android:inputType="textNoSuggestions"
                 android:completionThreshold="1"
-                android:textAppearance="?android:attr/textAppearanceSmallInverse" />
+                android:textColor="@color/primary"
+            android:textColorHint="@color/muted" />
         </TableRow>
 
         <TableRow
@@ -120,6 +128,7 @@
                 android:gravity="center_vertical|right"
                 android:paddingRight="8dp"
                 android:text="@string/icon"
+                android:textColor="@color/primary"
                 android:textStyle="bold" />
 
             <AutoCompleteTextView
@@ -130,7 +139,8 @@
                 android:hint="@string/icon"
                 android:inputType="textNoSuggestions"
                 android:completionThreshold="1"
-                android:textAppearance="?android:attr/textAppearanceSmallInverse" />
+                android:textColor="@color/primary"
+            android:textColorHint="@color/muted" />
         </TableRow>
     </TableLayout>
 </RelativeLayout>

@@ -50,7 +50,6 @@
     <string name="import_key_uri_format">استيراد نسق URI للمفتاح</string>
     <string name="export_json_format">تصدير بتنسيق JSON</string>
     <string name="export_key_uri_format">تصدير بتنسيق URI للمفتاح </string>
-    <string name="use_dark_theme">إستخدام المظهر الغامق</string>
     <string name="add_token_success">تم اضافة الرمز المميز بنجاح </string>
     <string name="copy_to_clipboard">انسخ إلى الحافظة</string>
     <string name="require_authentication">يتطلب المصادقة</string>

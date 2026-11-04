@@ -50,7 +50,6 @@
     <string name="import_key_uri_format">Importer le format de clé URI</string>
     <string name="export_json_format">Exporter le format JSON</string>
     <string name="export_key_uri_format">Exporter le format de clé URI</string>
-    <string name="use_dark_theme">Utiliser le thème sombre</string>
     <string name="add_token_success">Le jeton a été ajouté avec succès</string>
     <string name="copy_to_clipboard">Copier dans le presse-papier</string>
     <string name="require_authentication">Authentification nécessaire</string>

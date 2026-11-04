@@ -159,7 +159,10 @@ class EditActivity : AppCompatActivity(), TextWatcher, View.OnClickListener {
 
         val buttonLayout = binding.root.findViewById<View>(R.id.button_layout)
         ViewCompat.setOnApplyWindowInsetsListener(buttonLayout) { view, windowInsets ->
-            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
+            // Keep Cancel/Save above the nav bar and the IME keyboard.
+            val insets = windowInsets.getInsets(
+                WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.ime()
+            )
             view.setPadding(
                 view.paddingLeft,
                 view.paddingTop,
@@ -196,6 +199,10 @@ class EditActivity : AppCompatActivity(), TextWatcher, View.OnClickListener {
             mImage = findViewById<View>(R.id.image) as ImageButton
             mRestore = findViewById<View>(R.id.restore) as Button
             mSave = findViewById<View>(R.id.save) as Button
+            applyBrandButtonStyle(findViewById(R.id.cancel))
+            applyBrandButtonStyle(mSave)
+            applyBrandButtonStyle(mRestore)
+            applyBrandButtonStyle(binding.removeUserTokenImage)
             setSupportActionBar(findViewById(R.id.toolbar))
 
             // Setup text changed listeners.
@@ -327,8 +334,22 @@ class EditActivity : AppCompatActivity(), TextWatcher, View.OnClickListener {
         val alias = mAlias.text.toString()
         val category = mCategory.text.toString()
         val iconKey = mIconKey.text.toString()
-        mSave.isEnabled = label != mLabelCurrent || issuer != mIssuerCurrent || alias != mAliasCurrent || category != mCategoryCurrent || iconKey != mIconKeyCurrent || !imageIs(mImageCurrent)
-        mRestore.isEnabled = label != mLabelDefault || issuer != mIssuerDefault || alias != mAliasDefault || category != mCategoryDefault || iconKey != mIconKeyDefault || !imageIs(mImageDefault)
+        // Keep buttons enabled visually (same lime as Cancel); gate actions via clickable.
+        val saveAllowed = label != mLabelCurrent || issuer != mIssuerCurrent || alias != mAliasCurrent || category != mCategoryCurrent || iconKey != mIconKeyCurrent || !imageIs(mImageCurrent)
+        val restoreAllowed = label != mLabelDefault || issuer != mIssuerDefault || alias != mAliasDefault || category != mCategoryDefault || iconKey != mIconKeyDefault || !imageIs(mImageDefault)
+        mSave.isEnabled = true
+        mRestore.isEnabled = true
+        mSave.isClickable = saveAllowed
+        mRestore.isClickable = restoreAllowed
+        applyBrandButtonStyle(mSave)
+        applyBrandButtonStyle(mRestore)
+    }
+
+    private fun applyBrandButtonStyle(button: Button) {
+        button.background = ContextCompat.getDrawable(this, R.drawable.brand_button_bg)
+        button.backgroundTintList = null
+        button.setTextColor(ContextCompat.getColor(this, R.color.primary))
+        button.alpha = 1f
     }
 
     override fun afterTextChanged(s: Editable) {

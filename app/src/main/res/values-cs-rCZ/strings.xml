@@ -50,7 +50,6 @@
     <string name="import_key_uri_format">Importovat formát key URI</string>
     <string name="export_json_format">Exportovat formát JSON</string>
     <string name="export_key_uri_format">Exportovat formát key URI</string>
-    <string name="use_dark_theme">Použít tmavý motiv</string>
     <string name="add_token_success">Token byl úspěšně přidán</string>
     <string name="copy_to_clipboard">Zkopírovat do schránky</string>
     <string name="require_authentication">Vyžadovat ověření</string>

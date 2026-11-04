@@ -50,7 +50,6 @@
     <string name="import_key_uri_format">Importa formato chiave URI</string>
     <string name="export_json_format">Esporta formato JSON</string>
     <string name="export_key_uri_format">Esporta formato chiave URI</string>
-    <string name="use_dark_theme">Usa il tema scuro</string>
     <string name="add_token_success">Il token è stato aggiunto con successo</string>
     <string name="copy_to_clipboard">Copia negli appunti</string>
     <string name="require_authentication">Richiede autenticazione</string>

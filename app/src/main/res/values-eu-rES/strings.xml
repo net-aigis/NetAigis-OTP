@@ -50,7 +50,6 @@
     <string name="import_key_uri_format">Inportatu gako URI formatua</string>
     <string name="export_json_format">Esportatu JSON formatua</string>
     <string name="export_key_uri_format">Esportatu gako URI formatua</string>
-    <string name="use_dark_theme">Erabili gai iluna</string>
     <string name="add_token_success">Tokena ondo gehitu da</string>
     <string name="copy_to_clipboard">Kopiatu arbelean</string>
     <string name="require_authentication">Autentifikazioa eskatu</string>

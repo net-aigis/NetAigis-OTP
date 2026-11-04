@@ -50,7 +50,6 @@
     <string name="import_key_uri_format">key URIのインポート</string>
     <string name="export_json_format">JSONファイルのエクスポート</string>
     <string name="export_key_uri_format">key URIのエクスポート</string>
-    <string name="use_dark_theme">ダークテーマの使用</string>
     <string name="add_token_success">トークンの追加に成功しました。</string>
     <string name="copy_to_clipboard">クリップボードにコピーする</string>
     <string name="require_authentication">認証を要求する</string>

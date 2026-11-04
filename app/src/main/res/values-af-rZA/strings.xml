@@ -50,7 +50,6 @@
     <string name="import_key_uri_format">Voer sleutel URI formaat in</string>
     <string name="export_json_format">Voer JSON formaat uit</string>
     <string name="export_key_uri_format">Voer sleutel uri formaat uit</string>
-    <string name="use_dark_theme">Gebruik donker tema</string>
     <string name="add_token_success">Die kenteken was suksesvol begevoeg.</string>
     <string name="copy_to_clipboard">Stoor na geheue</string>
     <string name="require_authentication">Require authentication</string>

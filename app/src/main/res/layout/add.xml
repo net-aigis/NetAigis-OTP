@@ -19,18 +19,23 @@
    - limitations under the License.
    -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/root_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/token_card_background"
     android:orientation="vertical">
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
         android:fitsSystemWindows="true">
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize" />
+            android:layout_height="?attr/actionBarSize"
+            android:background="@android:color/transparent"
+            app:titleTextColor="@color/primary" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <LinearLayout
@@ -67,6 +72,7 @@
                         android:gravity="center_vertical|right"
                         android:paddingRight="8dp"
                         android:text="@string/secret"
+                        android:textColor="@color/primary"
                         android:textStyle="bold" />
 
                     <EditText
@@ -77,7 +83,9 @@
                         android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ234567="
                         android:hint="(Base32)"
                         android:inputType="textVisiblePassword|textCapCharacters|textNoSuggestions"
-                        android:textAppearance="?android:attr/textAppearanceSmall" />
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textColor="@color/primary"
+                        android:textColorHint="@color/muted" />
                 </TableRow>
 
                 <TableRow
@@ -90,6 +98,7 @@
                         android:gravity="center_vertical|right"
                         android:paddingRight="8dp"
                         android:text="@string/type"
+                        android:textColor="@color/primary"
                         android:textStyle="bold" />
 
                     <RadioGroup
@@ -104,14 +113,16 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:checked="true"
-                            android:text="TOTP" />
+                            android:text="TOTP"
+                            android:textColor="@color/primary" />
 
                         <RadioButton
                             android:id="@+id/hotp"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:text="HOTP" />
+                            android:text="HOTP"
+                            android:textColor="@color/primary" />
                     </RadioGroup>
                 </TableRow>
 
@@ -125,6 +136,7 @@
                         android:gravity="center_vertical|right"
                         android:paddingRight="8dp"
                         android:text="@string/digits"
+                        android:textColor="@color/primary"
                         android:textStyle="bold" />
 
                     <RadioGroup
@@ -138,7 +150,8 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:checked="true"
-                            android:text="@string/five" />
+                            android:text="@string/five"
+                            android:textColor="@color/primary" />
 
                         <RadioButton
                             android:id="@+id/digits6"
@@ -146,21 +159,24 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:checked="true"
-                            android:text="@string/six" />
+                            android:text="@string/six"
+                            android:textColor="@color/primary" />
 
                         <RadioButton
                             android:id="@+id/digits7"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:text="@string/seven" />
+                            android:text="@string/seven"
+                            android:textColor="@color/primary" />
 
                         <RadioButton
                             android:id="@+id/digits8"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:text="@string/eight" />
+                            android:text="@string/eight"
+                            android:textColor="@color/primary" />
                     </RadioGroup>
                 </TableRow>
 
@@ -174,6 +190,7 @@
                         android:gravity="center_vertical|right"
                         android:paddingRight="8dp"
                         android:text="@string/algorithm"
+                        android:textColor="@color/primary"
                         android:textStyle="bold" />
 
                     <Spinner
@@ -181,7 +198,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:entries="@array/algorithms" />
+                        android:entries="@array/algorithms"
+                        android:popupBackground="@color/token_card_background" />
                 </TableRow>
 
                 <TableRow
@@ -194,6 +212,7 @@
                         android:gravity="center_vertical|right"
                         android:paddingRight="8dp"
                         android:text="@string/interval"
+                        android:textColor="@color/primary"
                         android:textStyle="bold" />
 
                     <EditText
@@ -202,7 +221,9 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:inputType="number"
-                        android:text="30" />
+                        android:text="30"
+                        android:textColor="@color/primary"
+                        android:textColorHint="@color/muted" />
                 </TableRow>
 
                 <TableRow
@@ -217,6 +238,7 @@
                         android:gravity="center_vertical|right"
                         android:paddingRight="8dp"
                         android:text="@string/counter"
+                        android:textColor="@color/primary"
                         android:textStyle="bold" />
 
                     <EditText
@@ -225,7 +247,9 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:inputType="numberDecimal"
-                        android:text="0" />
+                        android:text="0"
+                        android:textColor="@color/primary"
+                        android:textColorHint="@color/muted" />
                 </TableRow>
             </TableLayout>
         </ScrollView>

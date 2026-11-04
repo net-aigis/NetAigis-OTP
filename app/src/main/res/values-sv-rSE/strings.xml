@@ -50,7 +50,6 @@
     <string name="import_key_uri_format">Importera nyckel-URI-format</string>
     <string name="export_json_format">Exportera JSON-format</string>
     <string name="export_key_uri_format">Exportera nyckel-URI-format</string>
-    <string name="use_dark_theme">Använd mörkt tema</string>
     <string name="add_token_success">Token har lagts till</string>
     <string name="copy_to_clipboard">Kopiera till urklipp</string>
     <string name="require_authentication">Kräv autentisering</string>

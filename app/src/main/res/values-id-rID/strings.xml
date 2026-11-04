@@ -54,7 +54,6 @@
     <string name="import_key_uri_format">Format file URI key untuk impor</string>
     <string name="export_json_format">Format file JSON untuk ekspor</string>
     <string name="export_key_uri_format">Format file URI key untuk ekspor</string>
-    <string name="use_dark_theme">Gunakan tema gelap</string>
     <string name="add_token_success">Token berhasil ditambahkan</string>
     <string name="copy_to_clipboard">Salin ke papan klip</string>
     <string name="require_authentication">Memerlukan autentikasi</string>

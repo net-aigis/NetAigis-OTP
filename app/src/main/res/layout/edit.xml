@@ -19,18 +19,23 @@
    - limitations under the License.
    -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/root_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/token_card_background"
     android:orientation="vertical">
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
         android:fitsSystemWindows="true">
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize" />
+            android:layout_height="?attr/actionBarSize"
+            android:background="@android:color/transparent"
+            app:titleTextColor="@color/primary" />
     </com.google.android.material.appbar.AppBarLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -46,6 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
+            android:textColor="@color/primary"
             android:textSize="16sp"
             android:textStyle="bold"
             android:text="@string/token_details"/>
@@ -53,6 +59,7 @@
             android:id="@+id/algorithm_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/primary"
             android:textStyle="bold"
             android:text="@string/algorithm"/>
         <TextView
@@ -60,6 +67,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
+            android:textColor="@color/primary"
             android:textIsSelectable="true"
             android:focusable="true"
             android:focusableInTouchMode="true" />
@@ -67,6 +75,7 @@
             android:id="@+id/digits_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/primary"
             android:textStyle="bold"
             android:text="@string/digits"/>
         <TextView
@@ -74,6 +83,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
+            android:textColor="@color/primary"
             android:textIsSelectable="true"
             android:focusable="true"
             android:focusableInTouchMode="true" />
@@ -81,6 +91,7 @@
             android:id="@+id/secret_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/primary"
             android:textStyle="bold"
             android:text="@string/secret"/>
         <TextView
@@ -88,6 +99,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
+            android:textColor="@color/primary"
             android:textIsSelectable="true"
             android:focusable="true"
             android:focusableInTouchMode="true" />
@@ -95,6 +107,7 @@
             android:id="@+id/interval_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/primary"
             android:textStyle="bold"
             android:text="@string/interval"/>
         <TextView
@@ -102,6 +115,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
+            android:textColor="@color/primary"
             android:textIsSelectable="true"
             android:focusable="true"
             android:focusableInTouchMode="true" />
@@ -109,13 +123,18 @@
             android:id="@+id/remove_user_token_image"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:text="@string/remove_user_token_image" />
+            android:layout_marginTop="8dp"
+            android:background="@drawable/brand_button_bg"
+            android:text="@string/remove_user_token_image"
+            android:textColor="@color/primary" />
         <Button
             android:id="@+id/restore"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:enabled="false"
-            android:text="@string/restore_defaults" />
+            android:layout_marginTop="8dp"
+            android:background="@drawable/brand_button_bg"
+            android:text="@string/restore_defaults"
+            android:textColor="@color/primary" />
     </LinearLayout>
 
     <View style="@style/Divider" />
@@ -131,7 +150,6 @@
         <Button
             android:id="@+id/save"
             style="@style/DialogButton"
-            android:enabled="false"
             android:text="@string/save" />
     </LinearLayout>
 </LinearLayout>

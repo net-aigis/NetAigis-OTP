@@ -21,34 +21,55 @@
 	android:id="@+id/root_view"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
+	android:background="@android:color/transparent"
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto">
+	<!-- Full-bleed NetAigis shield scene; centerCrop scales the surroundings to any screen. -->
+	<ImageView
+		android:id="@+id/app_background"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:contentDescription="@null"
+		android:importantForAccessibility="no"
+		android:scaleType="fitXY"
+		android:src="@drawable/logo_watermark" />
 	<com.google.android.material.appbar.AppBarLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:fitsSystemWindows="true">
+		android:background="@android:color/transparent"
+		android:fitsSystemWindows="true"
+		app:elevation="0dp">
 		<com.google.android.material.appbar.MaterialToolbar
 			android:id="@+id/toolbar"
 			android:layout_width="match_parent"
-			android:layout_height="?attr/actionBarSize">
+			android:layout_height="?attr/actionBarSize"
+			android:background="@android:color/transparent"
+			app:titleTextColor="@color/on_banner"
+			app:subtitleTextColor="@color/on_banner_muted">
 			<androidx.appcompat.widget.SearchView
 				android:id="@+id/search_view"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="end"
 				android:layout_marginEnd="@dimen/space_2"
-				android:iconifiedByDefault="true"/>
+				android:iconifiedByDefault="true"
+				app:theme="@style/ThemeOverlay.Material3.Dark"/>
 		</com.google.android.material.appbar.MaterialToolbar>
 		<com.google.android.material.tabs.TabLayout
 			android:id="@+id/category_tabs"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
+			android:background="@android:color/transparent"
 			app:tabGravity="start"
-			app:tabMode="scrollable" />
+			app:tabMode="scrollable"
+			app:tabTextColor="@color/on_banner_muted"
+			app:tabSelectedTextColor="@color/secondary"
+			app:tabIndicatorColor="@color/secondary" />
 	</com.google.android.material.appbar.AppBarLayout>
 	<androidx.core.widget.NestedScrollView
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
+		android:background="@android:color/transparent"
 		app:layout_behavior="@string/appbar_scrolling_view_behavior">
 		<TextView
 			android:id="@+id/empty_view"
@@ -57,22 +78,44 @@
 			android:padding="8dp"
 			android:gravity="center"
 			android:visibility="gone"
-			android:text="@string/no_keys" />
+			android:text="@string/no_keys"
+			android:textColor="@color/on_banner" />
 	</androidx.core.widget.NestedScrollView>
 	<androidx.recyclerview.widget.RecyclerView
 		android:id="@+id/token_list"
 		android:visibility="gone"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
+		android:background="@android:color/transparent"
 		android:clipToPadding="false"
 		android:paddingBottom="@dimen/token_list_bottom_padding"
 		app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
-	<com.google.android.material.floatingactionbutton.FloatingActionButton
-		android:id="@+id/add_token_fab"
+	<LinearLayout
+		android:id="@+id/fab_bar"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_gravity="bottom|end"
-		android:layout_margin="24dp"
-		android:contentDescription="@string/add_token"
-		app:srcCompat="@drawable/camera"/>
+		android:layout_margin="@dimen/space_3"
+		android:gravity="center_vertical"
+		android:orientation="horizontal">
+		<com.google.android.material.floatingactionbutton.FloatingActionButton
+			android:id="@+id/add_token_fab"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginEnd="@dimen/space_2"
+			android:contentDescription="@string/add_token"
+			app:backgroundTint="@color/secondary"
+			app:borderWidth="0dp"
+			app:srcCompat="@drawable/ic_add"
+			app:tint="@color/primary" />
+		<com.google.android.material.floatingactionbutton.FloatingActionButton
+			android:id="@+id/scan_token_fab"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:contentDescription="@string/scan_qr_code"
+			app:backgroundTint="@color/secondary"
+			app:borderWidth="0dp"
+			app:srcCompat="@drawable/camera"
+			app:tint="@color/primary" />
+	</LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

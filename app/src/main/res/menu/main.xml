@@ -70,10 +70,6 @@
         </menu>
     </item>
     <item
-        android:id="@+id/use_dark_theme"
-        android:title="@string/use_dark_theme"
-        android:checkable="true"/>
-    <item
         android:id="@+id/copy_to_clipboard"
         android:title="@string/copy_to_clipboard"
         android:checkable="true"/>

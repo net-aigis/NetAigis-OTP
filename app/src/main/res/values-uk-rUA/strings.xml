@@ -50,7 +50,6 @@
     <string name="import_key_uri_format">Імпортувати формат URI ключа</string>
     <string name="export_json_format">Експортувати у формат JSON</string>
     <string name="export_key_uri_format">Експортувати формат URI ключа</string>
-    <string name="use_dark_theme">Використовувати темну тему</string>
     <string name="add_token_success">Ключ успішно додано</string>
     <string name="copy_to_clipboard">Копіювати в буфер обміну</string>
     <string name="require_authentication">Вимагає автентифікації</string>

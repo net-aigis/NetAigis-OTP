@@ -51,7 +51,6 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
@@ -130,7 +129,7 @@ class MainActivity : AppCompatActivity() {
             windowInsets
         }
 
-        ViewCompat.setOnApplyWindowInsetsListener(binding.addTokenFab) { view, windowInsets ->
+        ViewCompat.setOnApplyWindowInsetsListener(binding.fabBar) { view, windowInsets ->
             val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
             val marginParams = view.layoutParams as android.view.ViewGroup.MarginLayoutParams
             marginParams.bottomMargin = resources.getDimensionPixelSize(R.dimen.space_3) + insets.bottom
@@ -201,6 +200,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         setSupportActionBar(binding.toolbar)
+        binding.toolbar.setTitleTextColor(getColor(R.color.on_banner))
+        binding.toolbar.overflowIcon?.setTint(getColor(R.color.on_banner))
 
         binding.searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener, androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -231,6 +232,9 @@ class MainActivity : AppCompatActivity() {
         })
 
         binding.addTokenFab.setOnClickListener {
+            startActivity(Intent(this, AddActivity::class.java))
+        }
+        binding.scanTokenFab.setOnClickListener {
             startActivity(Intent(this, ScanTokenActivity::class.java))
         }
 
@@ -265,6 +269,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.main, menu)
         this.menu = menu
+        val iconTint = getColor(R.color.on_banner)
+        for (i in 0 until menu.size()) {
+            menu.getItem(i).icon?.setTint(iconTint)
+        }
         refreshOptionMenu()
         return true
     }
@@ -331,17 +339,6 @@ class MainActivity : AppCompatActivity() {
 
             R.id.action_export_key_uri -> {
                 createFile("text/plain", "netaigis-otp-backup","txt", WRITE_KEY_URI_REQUEST_CODE)
-                return true
-            }
-
-            R.id.use_dark_theme -> {
-                settings.darkMode = !settings.darkMode
-                if (settings.darkMode) {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                } else {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-                }
-                recreate()
                 return true
             }
 
@@ -505,7 +502,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun refreshOptionMenu() {
-        this.menu?.findItem(R.id.use_dark_theme)?.isChecked = settings.darkMode
         this.menu?.findItem(R.id.copy_to_clipboard)?.isChecked = settings.copyToClipboard
         this.menu?.findItem(R.id.require_authentication)?.isChecked = settings.requireAuthentication
     }

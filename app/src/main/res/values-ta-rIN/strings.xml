@@ -50,7 +50,6 @@
     <string name="import_key_uri_format">Import key URI format</string>
     <string name="export_json_format">JSON வடிவத்தை ஏற்றுமதி செய்</string>
     <string name="export_key_uri_format">Export key URI format</string>
-    <string name="use_dark_theme">கருமையான தோற்றத்தை பயன்படுத்து</string>
     <string name="add_token_success">The token was successfully added</string>
     <string name="copy_to_clipboard">கிளிப்போர்டுக்கு நகலெடு</string>
     <string name="require_authentication">Require authentication</string>

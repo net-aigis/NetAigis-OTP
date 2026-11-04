@@ -29,7 +29,6 @@ import android.graphics.RectF
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.View
-import androidx.appcompat.app.AppCompatDelegate
 
 import de.wittmer.app.otp.R
 
@@ -91,10 +90,8 @@ class ProgressCircle : View {
 
         val percent = mProgress * 100 / max
         if (percent > 25 || mProgress == 0) {
-            if (AppCompatDelegate.getDefaultNightMode() != AppCompatDelegate.MODE_NIGHT_NO && AppCompatDelegate.getDefaultNightMode() != AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY)
-                mPaint!!.setARGB(0x99, 0x2B, 0xAD, 0x00)
-            else
-                mPaint!!.setARGB(0x99, 0x33, 0x33, 0x33)
+            // Brand UI is always dark; use the high-contrast progress color.
+            mPaint!!.setARGB(0x99, 0x2B, 0xAD, 0x00)
         } else
             mPaint!!.setARGB(0x99, 0xff, 0xe0 * percent / 25, 0x00)
 

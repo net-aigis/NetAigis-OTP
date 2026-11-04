@@ -50,7 +50,6 @@
     <string name="import_key_uri_format">יבוא פורמט מפתח URI</string>
     <string name="export_json_format">יצוא פורמט JSON</string>
     <string name="export_key_uri_format">יצוא פורמט מפתח URI</string>
-    <string name="use_dark_theme">להשתמש בערכת עיצוב כהה</string>
     <string name="add_token_success">האסימון נוסף בהצלחה</string>
     <string name="copy_to_clipboard">העתקה ללוח</string>
     <string name="require_authentication">מחייב אימות</string>

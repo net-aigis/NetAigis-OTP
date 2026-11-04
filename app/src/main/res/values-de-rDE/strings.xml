@@ -50,7 +50,6 @@
     <string name="import_key_uri_format">Import Schlüssel-Url-Format</string>
     <string name="export_json_format">JSON-Format exportieren</string>
     <string name="export_key_uri_format">Export Schlüssel-Url-Format</string>
-    <string name="use_dark_theme">Dunkles Design verwenden</string>
     <string name="add_token_success">Der Token wurde erfolgreich hinzugefügt</string>
     <string name="copy_to_clipboard">In die Zwischenablage kopieren</string>
     <string name="require_authentication">Authentifizierung erforderlich</string>

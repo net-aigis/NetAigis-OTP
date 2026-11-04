@@ -50,7 +50,6 @@
     <string name="import_key_uri_format">Импортировать из формата URI</string>
     <string name="export_json_format">Экспорт в формат JSON</string>
     <string name="export_key_uri_format">Экспорт в формат URI</string>
-    <string name="use_dark_theme">Использовать темную тему</string>
     <string name="add_token_success">Токен был успешно добавлен</string>
     <string name="copy_to_clipboard">Копировать в буфер обмена</string>
     <string name="require_authentication">Требовать авторизацию</string>
