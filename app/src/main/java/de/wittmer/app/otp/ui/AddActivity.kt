@@ -34,6 +34,7 @@ import android.widget.RadioButton
 import android.widget.Spinner
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.CompoundButtonCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
@@ -107,8 +108,22 @@ class AddActivity : AppCompatActivity(), View.OnClickListener, CompoundButton.On
         mCounter = findViewById(R.id.counter)
         mAlgorithm = findViewById(R.id.algorithm)
         mHOTP = findViewById(R.id.hotp)
+        clearRadioButtonTint(
+            mHOTP,
+            findViewById(R.id.totp),
+            findViewById(R.id.digits5),
+            findViewById(R.id.digits6),
+            findViewById(R.id.digits7),
+            findViewById(R.id.digits8)
+        )
 
-        // Select the default algorithm
+        val algorithmAdapter = ArrayAdapter.createFromResource(
+            this,
+            R.array.algorithms,
+            R.layout.spinner_item_form
+        )
+        algorithmAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item_form)
+        mAlgorithm.adapter = algorithmAdapter
         mAlgorithm.setSelection(SHA1_OFFSET)
 
         // Setup the Counter toggle
@@ -231,6 +246,11 @@ class AddActivity : AppCompatActivity(), View.OnClickListener, CompoundButton.On
 
             }
         }
+    }
+
+    private fun clearRadioButtonTint(vararg buttons: CompoundButton) {
+        // Material/AppCompat otherwise recolors the whole button (ring + dot) when checked.
+        buttons.forEach { CompoundButtonCompat.setButtonTintList(it, null) }
     }
 
     private fun setupIconKeyAdapter() {

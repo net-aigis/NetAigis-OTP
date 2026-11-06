@@ -42,6 +42,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
@@ -92,6 +93,8 @@ class EditActivity : AppCompatActivity(), TextWatcher, View.OnClickListener {
     private var mImageDisplay: Uri? = null
 
     private var tokenId: Long = 0L
+    private var issuerEditConfirmed = false
+    private var issuerWarningShowing = false
 
     private fun showImage(imageUri: Uri?) {
         mImageDisplay = imageUri
@@ -226,6 +229,11 @@ class EditActivity : AppCompatActivity(), TextWatcher, View.OnClickListener {
             mCategory.setText(mCategoryCurrent)
             mIconKey.setText(mIconKeyCurrent)
             mIssuer.setSelection(mIssuer.text.length)
+            mIssuer.setOnFocusChangeListener { _, hasFocus ->
+                if (hasFocus && !issuerEditConfirmed) {
+                    showIssuerEditWarning()
+                }
+            }
             showImage(mImageCurrent)
 
             // Token details
@@ -343,6 +351,30 @@ class EditActivity : AppCompatActivity(), TextWatcher, View.OnClickListener {
         mRestore.isClickable = restoreAllowed
         applyBrandButtonStyle(mSave)
         applyBrandButtonStyle(mRestore)
+    }
+
+    private fun showIssuerEditWarning() {
+        if (issuerWarningShowing) {
+            return
+        }
+        issuerWarningShowing = true
+        mIssuer.clearFocus()
+        MaterialAlertDialogBuilder(this)
+            .setMessage(R.string.issuer_edit_warning)
+            .setPositiveButton(R.string.ok_text) { _, _ ->
+                issuerEditConfirmed = true
+                mIssuer.requestFocus()
+                mIssuer.setSelection(mIssuer.text.length)
+            }
+            .setNegativeButton(R.string.cancel_text) { _, _ ->
+                issuerEditConfirmed = false
+                mAlias.requestFocus()
+                mAlias.setSelection(mAlias.text.length)
+            }
+            .setOnDismissListener {
+                issuerWarningShowing = false
+            }
+            .show()
     }
 
     private fun applyBrandButtonStyle(button: Button) {

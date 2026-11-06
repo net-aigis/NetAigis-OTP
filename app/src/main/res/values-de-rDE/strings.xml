@@ -11,6 +11,7 @@
     <string name="interval">Intervall</string>
     <string name="counter">Zähler</string>
     <string name="issuer">Aussteller</string>
+    <string name="issuer_edit_warning">Besser den Alias ändern. Der Aussteller kommt vom ausstellenden Dienst.</string>
     <string name="account">Konto</string>
     <string name="alias">Alias</string>
     <string name="icon">Symbol</string>

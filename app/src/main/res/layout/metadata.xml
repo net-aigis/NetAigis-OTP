@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
     <ImageButton
-        style="?android:borderlessButtonStyle"
         android:id="@+id/image"
-        android:layout_width="104dp"
-        android:layout_height="104dp"
+        style="?android:borderlessButtonStyle"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_marginBottom="@dimen/space_1"
+        android:contentDescription="@string/icon"
         android:padding="4dp"
         android:scaleType="centerInside"
         android:src="@drawable/logo" />
@@ -15,132 +19,89 @@
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="104dp"
-        >
+        android:shrinkColumns="0"
+        android:stretchColumns="1">
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="48dp">
+            android:layout_height="@dimen/form_row_height"
+            android:minHeight="@dimen/form_row_height">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical|right"
-                android:paddingRight="8dp"
-                android:text="@string/issuer"
-                android:textColor="@color/primary"
-                android:textStyle="bold"/>
+                style="@style/FormLabel"
+                android:text="@string/issuer" />
 
             <EditText
                 android:id="@+id/issuer"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-            android:layout_toRightOf="@id/image"
-            android:layout_marginTop="4dp"
-            android:hint="Example.com"
-            android:inputType="textNoSuggestions"
-            android:textColor="@color/primary"
-            android:textColorHint="@color/muted" />
+                style="@style/FormEditText"
+                android:hint="Example.com"
+                android:inputType="textNoSuggestions" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="48dp">
+            android:layout_height="@dimen/form_row_height"
+            android:minHeight="@dimen/form_row_height">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical|right"
-                android:paddingRight="8dp"
-                android:text="@string/account"
-                android:textColor="@color/primary"
-                android:textStyle="bold" />
+                style="@style/FormLabel"
+                android:text="@string/account" />
 
             <EditText
                 android:id="@+id/label"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_below="@id/issuer"
-                android:layout_marginBottom="4dp"
-                android:layout_toRightOf="@id/image"
+                style="@style/FormEditText"
                 android:hint="joe@example.com"
-                android:inputType="textNoSuggestions"
-                android:textColor="@color/primary"
-            android:textColorHint="@color/muted" />
+                android:inputType="textNoSuggestions" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="48dp">
+            android:layout_height="@dimen/form_row_height"
+            android:minHeight="@dimen/form_row_height">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical|right"
-                android:paddingRight="8dp"
-                android:text="@string/alias"
-                android:textColor="@color/primary"
-                android:textStyle="bold" />
+                style="@style/FormLabel"
+                android:text="@string/alias" />
 
             <EditText
                 android:id="@+id/alias"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginBottom="4dp"
+                style="@style/FormEditText"
                 android:hint="@string/alias"
-                android:inputType="textNoSuggestions"
-                android:textColor="@color/primary"
-            android:textColorHint="@color/muted" />
+                android:inputType="textNoSuggestions" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="48dp">
+            android:layout_height="@dimen/form_row_height"
+            android:minHeight="@dimen/form_row_height">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical|right"
-                android:paddingRight="8dp"
-                android:text="@string/category"
-                android:textColor="@color/primary"
-                android:textStyle="bold" />
+                style="@style/FormLabel"
+                android:text="@string/category" />
 
             <AutoCompleteTextView
                 android:id="@+id/category"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginBottom="4dp"
-                android:hint="@string/category"
-                android:inputType="textNoSuggestions"
+                style="@style/FormEditText"
                 android:completionThreshold="1"
-                android:textColor="@color/primary"
-            android:textColorHint="@color/muted" />
+                android:hint="@string/category"
+                android:inputType="textNoSuggestions" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="48dp">
+            android:layout_height="@dimen/form_row_height"
+            android:minHeight="@dimen/form_row_height">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical|right"
-                android:paddingRight="8dp"
-                android:text="@string/icon"
-                android:textColor="@color/primary"
-                android:textStyle="bold" />
+                style="@style/FormLabel"
+                android:text="@string/icon" />
 
             <AutoCompleteTextView
                 android:id="@+id/icon_key"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginBottom="4dp"
-                android:hint="@string/icon"
-                android:inputType="textNoSuggestions"
+                style="@style/FormEditText"
                 android:completionThreshold="1"
-                android:textColor="@color/primary"
-            android:textColorHint="@color/muted" />
+                android:hint="@string/icon"
+                android:inputType="textNoSuggestions" />
         </TableRow>
     </TableLayout>
-</RelativeLayout>
+</LinearLayout>

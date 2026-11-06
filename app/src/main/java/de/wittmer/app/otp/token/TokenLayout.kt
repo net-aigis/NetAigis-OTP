@@ -87,16 +87,17 @@ class TokenLayout : MaterialCardView, View.OnClickListener, Runnable {
         // Show the image.
         mImage.setTokenImage(token)
 
-        // Set the labels. Alias is for icon matching / search only — list shows issuer.
+        // Title: alias if set, otherwise issuer from the issuing service.
         val category = token.category?.trim()?.takeIf { it.isNotEmpty() }
         val accountLabel = if (category == null) {
             token.label
         } else {
             "${token.label} ($category)"
         }
-        val issuerLabel = token.issuer
+        val titleLabel = token.alias?.takeIf { it.isNotBlank() }
+            ?: token.issuer?.takeIf { it.isNotBlank() }
         mLabel.text = accountLabel
-        mIssuer.text = issuerLabel
+        mIssuer.text = titleLabel
         mCode.text = ""
         if (mIssuer.text.isEmpty()) {
             mIssuer.text = accountLabel

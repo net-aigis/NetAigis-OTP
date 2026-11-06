@@ -49,207 +49,149 @@
 
         <View
             style="@style/Divider"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp" />
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="4dp" />
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp">
+            android:layout_height="wrap_content">
 
             <TableLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:shrinkColumns="0"
+                android:stretchColumns="1">
 
                 <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="48dp">
+                    android:layout_height="@dimen/form_row_height"
+                    android:minHeight="@dimen/form_row_height">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:gravity="center_vertical|right"
-                        android:paddingRight="8dp"
-                        android:text="@string/secret"
-                        android:textColor="@color/primary"
-                        android:textStyle="bold" />
+                        style="@style/FormLabel"
+                        android:text="@string/secret" />
 
                     <EditText
                         android:id="@+id/secret"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
+                        style="@style/FormEditText"
                         android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ234567="
                         android:hint="(Base32)"
-                        android:inputType="textVisiblePassword|textCapCharacters|textNoSuggestions"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:textColor="@color/primary"
-                        android:textColorHint="@color/muted" />
+                        android:inputType="textVisiblePassword|textCapCharacters|textNoSuggestions" />
                 </TableRow>
 
                 <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="48dp">
+                    android:layout_height="@dimen/form_row_height"
+                    android:minHeight="@dimen/form_row_height">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:gravity="center_vertical|right"
-                        android:paddingRight="8dp"
-                        android:text="@string/type"
-                        android:textColor="@color/primary"
-                        android:textStyle="bold" />
+                        style="@style/FormLabel"
+                        android:text="@string/type" />
 
                     <RadioGroup
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:gravity="center_vertical"
                         android:orientation="horizontal">
 
-                        <RadioButton
+                        <androidx.appcompat.widget.AppCompatRadioButton
                             android:id="@+id/totp"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
+                            style="@style/FormRadioButton"
                             android:checked="true"
-                            android:text="TOTP"
-                            android:textColor="@color/primary" />
+                            android:text="TOTP" />
 
-                        <RadioButton
+                        <androidx.appcompat.widget.AppCompatRadioButton
                             android:id="@+id/hotp"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:text="HOTP"
-                            android:textColor="@color/primary" />
+                            style="@style/FormRadioButton"
+                            android:text="HOTP" />
                     </RadioGroup>
                 </TableRow>
 
                 <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="48dp">
+                    android:layout_height="@dimen/form_row_height"
+                    android:minHeight="@dimen/form_row_height">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:gravity="center_vertical|right"
-                        android:paddingRight="8dp"
-                        android:text="@string/digits"
-                        android:textColor="@color/primary"
-                        android:textStyle="bold" />
+                        style="@style/FormLabel"
+                        android:text="@string/digits" />
 
                     <RadioGroup
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:gravity="center_vertical"
                         android:orientation="horizontal">
-                        <RadioButton
+                        <androidx.appcompat.widget.AppCompatRadioButton
                             android:id="@+id/digits5"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:checked="true"
-                            android:text="@string/five"
-                            android:textColor="@color/primary" />
+                            style="@style/FormRadioButton"
+                            android:text="@string/five" />
 
-                        <RadioButton
+                        <androidx.appcompat.widget.AppCompatRadioButton
                             android:id="@+id/digits6"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
+                            style="@style/FormRadioButton"
                             android:checked="true"
-                            android:text="@string/six"
-                            android:textColor="@color/primary" />
+                            android:text="@string/six" />
 
-                        <RadioButton
+                        <androidx.appcompat.widget.AppCompatRadioButton
                             android:id="@+id/digits7"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:text="@string/seven"
-                            android:textColor="@color/primary" />
+                            style="@style/FormRadioButton"
+                            android:text="@string/seven" />
 
-                        <RadioButton
+                        <androidx.appcompat.widget.AppCompatRadioButton
                             android:id="@+id/digits8"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:text="@string/eight"
-                            android:textColor="@color/primary" />
+                            style="@style/FormRadioButton"
+                            android:text="@string/eight" />
                     </RadioGroup>
                 </TableRow>
 
                 <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="48dp">
+                    android:layout_height="@dimen/form_row_height"
+                    android:minHeight="@dimen/form_row_height">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:gravity="center_vertical|right"
-                        android:paddingRight="8dp"
-                        android:text="@string/algorithm"
-                        android:textColor="@color/primary"
-                        android:textStyle="bold" />
+                        style="@style/FormLabel"
+                        android:text="@string/algorithm" />
 
                     <Spinner
                         android:id="@+id/algorithm"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:entries="@array/algorithms"
-                        android:popupBackground="@color/token_card_background" />
+                        style="@style/FormSpinner" />
                 </TableRow>
 
                 <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="48dp">
+                    android:layout_height="@dimen/form_row_height"
+                    android:minHeight="@dimen/form_row_height">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:gravity="center_vertical|right"
-                        android:paddingRight="8dp"
-                        android:text="@string/interval"
-                        android:textColor="@color/primary"
-                        android:textStyle="bold" />
+                        style="@style/FormLabel"
+                        android:text="@string/interval" />
 
                     <EditText
                         android:id="@+id/interval"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
+                        style="@style/FormEditText"
                         android:inputType="number"
-                        android:text="30"
-                        android:textColor="@color/primary"
-                        android:textColorHint="@color/muted" />
+                        android:text="30" />
                 </TableRow>
 
                 <TableRow
                     android:id="@+id/counter_row"
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
+                    android:layout_height="@dimen/form_row_height"
+                    android:minHeight="@dimen/form_row_height"
                     android:visibility="gone">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:gravity="center_vertical|right"
-                        android:paddingRight="8dp"
-                        android:text="@string/counter"
-                        android:textColor="@color/primary"
-                        android:textStyle="bold" />
+                        style="@style/FormLabel"
+                        android:text="@string/counter" />
 
                     <EditText
                         android:id="@+id/counter"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
+                        style="@style/FormEditText"
                         android:inputType="numberDecimal"
-                        android:text="0"
-                        android:textColor="@color/primary"
-                        android:textColorHint="@color/muted" />
+                        android:text="0" />
                 </TableRow>
             </TableLayout>
         </ScrollView>
