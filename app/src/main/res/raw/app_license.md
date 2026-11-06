@@ -46,4 +46,4 @@ Features marked as pro features may only be used if the user has obtained the co
 
 Third-party open-source components and their licenses are listed under:
 
-About -> Open-source licenses
+About -> [Open-source licenses](netaigisotp://legal/open_source_licenses)

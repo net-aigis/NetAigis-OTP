@@ -46,4 +46,4 @@ Als Pro gekennzeichnete Funktionen dürfen nur genutzt werden, wenn der Benutzer
 
 Drittanbieter-Open-Source-Komponenten und ihre Lizenzen sind aufgeführt unter:
 
-Über -> Open-Source-Lizenzen
+Über -> [Open-Source-Lizenzen](netaigisotp://legal/open_source_licenses)

@@ -57,7 +57,7 @@ All app content, design elements, documentation, and source code are protected b
 
 This app may use open-source software components. The applicable licenses are listed in the app under:
 
-About -> License / Open-source licenses
+About -> [Open-source licenses](netaigisotp://legal/open_source_licenses)
 
 ## Governing Provider Information
 

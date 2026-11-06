@@ -57,7 +57,7 @@ Alle App-Inhalte, Designelemente, Dokumentation und der Quellcode sind urheberre
 
 Diese App kann Open-Source-Softwarekomponenten verwenden. Die geltenden Lizenzen sind in der App unter:
 
-Über -> Lizenz / Open-Source-Lizenzen
+Über -> [Open-Source-Lizenzen](netaigisotp://legal/open_source_licenses)
 
 aufgeführt.
 
