@@ -36,15 +36,8 @@
 
 package de.wittmer.app.otp.ui
 
-import android.app.Activity
-import android.content.ActivityNotFoundException
-import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
-import android.text.SpannableString
-import android.text.Spanned
-import android.text.style.ForegroundColorSpan
-import android.text.style.TabStopSpan
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -66,32 +59,24 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView.AdapterDataObserver
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import de.wittmer.app.otp.R
 import de.wittmer.app.otp.data.MigrationUtil
 import de.wittmer.app.otp.data.OtpTokenDatabase
 import de.wittmer.app.otp.data.OtpTokenFactory
 import de.wittmer.app.otp.databinding.MainBinding
-import de.wittmer.app.otp.data.legacy.ImportExportUtil
 import de.wittmer.app.otp.feature.FeatureAccess
 import de.wittmer.app.otp.util.Settings
 import de.wittmer.app.otp.util.applyFixedScaleBackground
-import java.text.DateFormat
-import java.text.SimpleDateFormat
-import java.util.*
 import javax.inject.Inject
 import kotlin.math.max
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-    @Inject lateinit var importFromUtil: ImportExportUtil
     @Inject lateinit var settings: Settings
     @Inject lateinit var featureAccess: FeatureAccess
     @Inject lateinit var tokenMigrationUtil: MigrationUtil
@@ -101,7 +86,6 @@ class MainActivity : AppCompatActivity() {
     private val viewModel: MainViewModel by viewModels()
     private lateinit var binding: MainBinding
     private var searchQuery = ""
-    private var menu: Menu? = null
     private var lastSessionEndTimestamp = 0L;
     private var categories: List<String> = emptyList()
     private var hasUncategorizedTokens = false
@@ -114,8 +98,6 @@ class MainActivity : AppCompatActivity() {
             binding.tokenList.scrollToPosition(positionStart)
         }
     }
-
-    private val dateFormatter : DateFormat = SimpleDateFormat("yyyyMMdd_HHmm")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -280,6 +262,11 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.onSessionStart()
     }
+
+    override fun onResume() {
+        super.onResume()
+        applyScreenshotMode()
+    }
     
     override fun onStop() {
         super.onStop()
@@ -288,12 +275,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.main, menu)
-        this.menu = menu
         val iconTint = getColor(R.color.on_banner)
         for (i in 0 until menu.size()) {
             menu.getItem(i).icon?.setTint(iconTint)
         }
-        refreshOptionMenu()
         return true
     }
 
@@ -322,13 +307,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.action_scan -> {
-                startActivity(Intent(this, ScanTokenActivity::class.java))
-                return true
-            }
-
-            R.id.action_add -> {
-                startActivity(Intent(this, AddActivity::class.java))
+            R.id.action_settings -> {
+                startActivity(Intent(this, SettingsActivity::class.java))
                 return true
             }
 
@@ -339,55 +319,6 @@ class MainActivity : AppCompatActivity() {
 
             R.id.action_filter_uncategorized -> {
                 selectCategoryFilter(MainViewModel.CATEGORY_UNCATEGORIZED)
-                return true
-            }
-
-            R.id.action_import_json -> {
-                performFileSearch(READ_JSON_REQUEST_CODE)
-                return true
-            }
-
-            R.id.action_import_key_uri -> {
-                performFileSearch(READ_KEY_URI_REQUEST_CODE)
-                return true
-            }
-
-            R.id.action_export_json -> {
-                createFile("application/json", "netaigis-otp-backup","json", WRITE_JSON_REQUEST_CODE)
-                return true
-            }
-
-            R.id.action_export_key_uri -> {
-                createFile("text/plain", "netaigis-otp-backup","txt", WRITE_KEY_URI_REQUEST_CODE)
-                return true
-            }
-
-            R.id.copy_to_clipboard -> {
-                settings.copyToClipboard = !settings.copyToClipboard
-                item.isChecked = settings.copyToClipboard
-                refreshOptionMenu()
-            }
-
-            R.id.screenshot_mode -> {
-                if (!featureAccess.screenshotModeEnabled) {
-                    return true
-                }
-                settings.screenshotMode = !settings.screenshotMode
-                item.isChecked = settings.screenshotMode
-                applyScreenshotMode()
-                refreshOptionMenu()
-                return true
-            }
-
-            R.id.require_authentication -> {
-                // Make sure we also verify authentication before turning on or off the settings
-
-                if (!settings.requireAuthentication) {
-                    verifyAuthentication(isEnabling = true)
-                } else {
-                    verifyAuthentication(isDisabling = true)
-                }
-
                 return true
             }
 
@@ -424,156 +355,6 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-    }
-
-    public override fun onActivityResult(requestCode: Int, resultCode: Int,
-                                         resultData: Intent?) {
-        super.onActivityResult(requestCode, resultCode, resultData)
-
-        if (resultCode != Activity.RESULT_OK) {
-            return
-        }
-
-        when (requestCode) {
-            WRITE_JSON_REQUEST_CODE -> {
-                lifecycleScope.launch {
-                    val uri = resultData?.data ?: return@launch
-                    importFromUtil.exportJsonFile(uri)
-                    Snackbar.make(binding.rootView, R.string.export_succeeded_text, Snackbar.LENGTH_SHORT)
-                            .show()
-                }
-            }
-
-            READ_JSON_REQUEST_CODE -> {
-                val uri = resultData?.data ?: return
-                MaterialAlertDialogBuilder(this)
-                        .setTitle(R.string.import_json_file)
-                        .setMessage(R.string.import_json_file_warning)
-                        .setIcon(R.drawable.alert)
-                        .setPositiveButton(R.string.ok_text) { _: DialogInterface, _: Int ->
-                            lifecycleScope.launch {
-                                try {
-                                    importFromUtil.importJsonFile(uri)
-                                    Snackbar.make(binding.rootView, R.string.import_succeeded_text, Snackbar.LENGTH_SHORT)
-                                            .show()
-                                } catch (e: Exception) {
-                                    Log.e(TAG, "Import JSON failed", e)
-                                    Snackbar.make(binding.root, R.string.import_json_failed_text, Snackbar.LENGTH_SHORT)
-                                            .show()
-                                }
-                            }
-
-                        }
-                        .setNegativeButton(R.string.cancel_text, null)
-                        .show()
-            }
-
-            WRITE_KEY_URI_REQUEST_CODE -> {
-                lifecycleScope.launch {
-                    val uri = resultData?.data ?: return@launch
-                    importFromUtil.exportKeyUriFile(uri)
-                    Snackbar.make(binding.rootView, R.string.export_succeeded_text, Snackbar.LENGTH_SHORT)
-                            .show()
-                }
-            }
-
-            READ_KEY_URI_REQUEST_CODE -> {
-                lifecycleScope.launch {
-                    val uri = resultData?.data ?: return@launch
-                    try {
-                        importFromUtil.importKeyUriFile(uri)
-                        Snackbar.make(binding.rootView, R.string.import_succeeded_text, Snackbar.LENGTH_SHORT)
-                                .show()
-                    } catch (e: Exception) {
-                        Log.e(TAG, "Import Key uri failed", e)
-                        Snackbar.make(binding.rootView, R.string.import_key_uri_failed_text, Snackbar.LENGTH_SHORT)
-                                .show()
-                    }
-                }
-            }
-        }
-
-    }
-
-    /**
-     * Fires an intent to spin up the "file chooser" UI and select an image.
-     */
-    private fun performFileSearch(requestCode: Int) {
-        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
-        intent.addCategory(Intent.CATEGORY_OPENABLE)
-        intent.type = "*/*"
-
-        try {
-            startActivityForResult(intent, requestCode)
-        } catch (e: ActivityNotFoundException) {
-            Log.e(TAG, "Cannot find activity", e)
-            Toast.makeText(applicationContext,
-                    getString(R.string.launch_file_browser_failure), Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private fun createFile(mimeType: String, fileName: String, fileExtension: String, requestCode: Int, appendTimestamp: Boolean = true) {
-        val intent = Intent(Intent.ACTION_CREATE_DOCUMENT)
-
-        // Filter to only show results that can be "opened", such as
-        // a file (as opposed to a list of contacts or timezones).
-        intent.addCategory(Intent.CATEGORY_OPENABLE)
-
-        // Create a file with the requested MIME type.
-        intent.type = mimeType
-        intent.putExtra(Intent.EXTRA_TITLE, "$fileName${if(appendTimestamp) "_${dateFormatter.format(Date())}" else ""}.$fileExtension")
-
-        try {
-            startActivityForResult(intent, requestCode)
-        } catch (e: ActivityNotFoundException) {
-            Log.e(TAG, "Cannot find activity", e)
-            Toast.makeText(applicationContext,
-                    getString(R.string.launch_file_browser_failure), Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private fun refreshOptionMenu() {
-        this.menu?.findItem(R.id.copy_to_clipboard)?.isChecked = settings.copyToClipboard
-        this.menu?.findItem(R.id.screenshot_mode)?.let { item ->
-            val proFeature = featureAccess.screenshotModeEnabled
-            // Free: enabled=false pales the checkbox; title uses an explicit pale span.
-            item.isCheckable = true
-            item.isEnabled = proFeature
-            item.isChecked = proFeature && settings.screenshotMode
-            item.title = if (proFeature) {
-                getString(R.string.screenshot_mode)
-            } else {
-                item.isChecked = false
-                screenshotModeProLockedTitle()
-            }
-        }
-        this.menu?.findItem(R.id.require_authentication)?.isChecked = settings.requireAuthentication
-    }
-
-    /**
-     * Pale label left; "Pro" via a moderate tab stop toward the checkbox.
-     * Explicit pale color so the title stays washed out while enabled=false fades the checkbox.
-     */
-    private fun screenshotModeProLockedTitle(): CharSequence {
-        val label = getString(R.string.screenshot_mode)
-        val pro = getString(R.string.feature_pro)
-        val text = SpannableString("$label\t$pro")
-        val pale = ContextCompat.getColor(this, R.color.menu_pro_locked)
-        // ~200dp from the start — rightish, but inside typical title-column width.
-        val tabPx = (200 * resources.displayMetrics.density).toInt()
-        text.setSpan(
-            TabStopSpan.Standard(tabPx),
-            0,
-            text.length,
-            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-        )
-        text.setSpan(
-            ForegroundColorSpan(pale),
-            0,
-            text.length,
-            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-        )
-        return text
     }
 
     private fun selectCategoryFilter(category: String?, updateTabs: Boolean = true) {
@@ -652,7 +433,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun verifyAuthentication(isEnabling: Boolean = false, isDisabling: Boolean = false) {
+    private fun verifyAuthentication() {
         val executor = ContextCompat.getMainExecutor(this)
         val biometricPrompt = BiometricPrompt(this, executor,
                 object : BiometricPrompt.AuthenticationCallback() {
@@ -666,7 +447,7 @@ class MainActivity : AppCompatActivity() {
                                 .show()
                         }
 
-                        if (!isEnabling && !isDisabling && errorCode != BiometricPrompt.ERROR_NO_DEVICE_CREDENTIAL) {
+                        if (errorCode != BiometricPrompt.ERROR_NO_DEVICE_CREDENTIAL) {
                             finish()
                         }
                     }
@@ -675,14 +456,6 @@ class MainActivity : AppCompatActivity() {
                             result: BiometricPrompt.AuthenticationResult) {
                         super.onAuthenticationSucceeded(result)
                         viewModel.setAuthState(MainViewModel.AuthState.AUTHENTICATED)
-
-                        if (isEnabling) {
-                            settings.requireAuthentication = true
-                            refreshOptionMenu()
-                        } else if (isDisabling) {
-                            settings.requireAuthentication = false
-                            refreshOptionMenu()
-                        }
                     }
 
                     override fun onAuthenticationFailed() {
@@ -707,10 +480,6 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         private val TAG = MainActivity::class.java.simpleName
-        const val READ_JSON_REQUEST_CODE = 42
-        const val WRITE_JSON_REQUEST_CODE = 43
-        const val READ_KEY_URI_REQUEST_CODE = 44
-        const val WRITE_KEY_URI_REQUEST_CODE = 45
         const val SCREENSHOT_MODE_EXTRA = "screenshot_mode"
         const val SHARE_FROM_PACKAGE_NAME_INTENT_EXTRA = "shareFromPackageName"
     }

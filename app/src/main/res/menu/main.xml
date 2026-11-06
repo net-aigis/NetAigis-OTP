@@ -22,15 +22,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_scan"
-        android:icon="@drawable/qrcode"
-        android:title="@string/scan_qr_code" />
-    <item
-        android:id="@+id/action_add"
-        android:icon="@drawable/ic_action_new_account"
-        android:title="@string/add_token" />
-
-    <item
         android:id="@+id/action_filter"
         android:icon="@drawable/filter_list_24px"
         android:title="@string/category"
@@ -46,45 +37,17 @@
     </item>
 
     <item
-        android:icon="@drawable/download_24px"
-        android:title="@string/import_text">
-        <menu>
-            <item
-                android:id="@+id/action_import_json"
-                android:title="@string/import_json_format" />
-            <item
-                android:id="@+id/action_import_key_uri"
-                android:title="@string/import_key_uri_format" />
-        </menu>
-    </item>
-    <item
-        android:icon="@drawable/upload_24px"
-        android:title="@string/export_text">
-        <menu>
-            <item
-                android:id="@+id/action_export_json"
-                android:title="@string/export_json_format" />
-            <item
-                android:id="@+id/action_export_key_uri"
-                android:title="@string/export_key_uri_format" />
-        </menu>
-    </item>
-    <item
-        android:id="@+id/copy_to_clipboard"
-        android:title="@string/copy_to_clipboard"
-        android:checkable="true"/>
-    <item
-        android:id="@+id/screenshot_mode"
-        android:title="@string/screenshot_mode"
-        android:checkable="true"/>
-    <item
-        android:id="@+id/require_authentication"
-        android:title="@string/require_authentication"
-        android:checkable="true"/>
+        android:id="@+id/action_settings"
+        android:icon="@drawable/settings_24px"
+        android:orderInCategory="100"
+        android:title="@string/action_settings"
+        app:showAsAction="never" />
     <item
         android:id="@+id/action_about"
         android:icon="@drawable/info_24px"
-        android:title="@string/about_otp" />
+        android:orderInCategory="110"
+        android:title="@string/action_about"
+        app:showAsAction="never" />
     <item
         android:id="@+id/quit_and_lock"
         android:icon="@drawable/power_settings_new_24px"
