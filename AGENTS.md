@@ -342,6 +342,11 @@ Noch nicht einbauen, solange nicht explizit angefordert:
 1. Spätere Free/Pro-Unterschiede an `FeatureAccess` ergänzen (aktuell gleich)
 2. Fastlane-Beschreibungen/Screenshots vollständig auf NetAigis umstellen
 3. Crowdin-Texte jenseits der Markennamen feinjustieren
+4. Gradle/AGP-Deprecations abbauen (aktuell AGP 9.4.1 / Gradle 9.8.2; nötig vor AGP 10):
+   1. Built-in Kotlin + neues AGP-DSL: `android.builtInKotlin=false` und `android.newDsl=false` entfernen; in allen Modulen `kotlin("android")` entfernen; Root-`kotlin-gradle-plugin` bereinigen
+   2. APK-Umbenennung in `app/build.gradle.kts` von `applicationVariants` auf `AndroidComponentsExtension` umstellen
+   3. Weitere deprecated Opt-outs in `gradle.properties` abbauen (`usesSdkInManifest.disallowed`, `defaultTargetSdkToCompileSdkIfUnset`, `enableAppCompileTimeRClass`, `r8.optimizedResourceShrinking`, `defaults.buildfeatures.resvalues`, `nonFinalResIds`; ggf. `uniquePackageNames`, `nonTransitiveRClass`, `r8.strictFullModeForKeepRules`)
+   4. Optional: `android.dependency.excludeLibraryComponentsFromConstraints=true`; `Configuration.setVisible` über Plugin-Updates; Configuration Cache nur bei Bedarf
 
 ---
 
