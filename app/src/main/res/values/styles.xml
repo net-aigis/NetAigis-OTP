@@ -65,14 +65,38 @@
     </style>
 
     <!-- Add/Edit token form: fixed label column + aligned values. -->
-    <style name="FormLabel">
+    <style name="FormLabelCell">
         <item name="android:layout_width">@dimen/form_label_width</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:gravity">center_vertical|end</item>
+        <item name="android:orientation">horizontal</item>
         <item name="android:paddingEnd">@dimen/form_key_value_gap</item>
+    </style>
+
+    <style name="FormLabel">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center_vertical|end</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">none</item>
         <item name="android:textColor">@color/primary</item>
         <item name="android:textSize">16sp</item>
         <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="FormHelpButton">
+        <item name="android:layout_width">@dimen/form_help_icon_size</item>
+        <item name="android:layout_height">@dimen/form_help_icon_size</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:layout_marginStart">4dp</item>
+        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
+        <item name="android:contentDescription">@string/field_help</item>
+        <item name="android:padding">0dp</item>
+        <item name="android:scaleType">fitCenter</item>
+        <item name="android:src">@drawable/ic_help_outline_24</item>
+        <item name="android:tint">@color/primary</item>
     </style>
 
     <style name="FormEditText" parent="Widget.AppCompat.EditText">
@@ -84,6 +108,7 @@
         <item name="android:minHeight">@dimen/form_row_height</item>
         <item name="android:paddingStart">0dp</item>
         <item name="android:paddingEnd">0dp</item>
+        <item name="android:popupBackground">@color/token_card_background</item>
         <item name="android:textColor">@color/muted</item>
         <item name="android:textColorHint">@color/muted</item>
         <item name="android:textCursorDrawable">@drawable/form_text_cursor</item>

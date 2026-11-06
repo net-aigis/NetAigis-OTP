@@ -1,107 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="center_horizontal"
-    android:orientation="vertical">
+    android:shrinkColumns="0"
+    android:stretchColumns="1">
 
-    <ImageButton
-        android:id="@+id/image"
-        style="?android:borderlessButtonStyle"
-        android:layout_width="96dp"
-        android:layout_height="96dp"
-        android:layout_marginBottom="@dimen/space_1"
-        android:contentDescription="@string/icon"
-        android:padding="4dp"
-        android:scaleType="centerInside"
-        android:src="@drawable/logo" />
-
-    <TableLayout
+    <TableRow
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:shrinkColumns="0"
-        android:stretchColumns="1">
+        android:layout_height="@dimen/form_row_height"
+        android:minHeight="@dimen/form_row_height">
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/form_row_height"
-            android:minHeight="@dimen/form_row_height">
-
+        <LinearLayout style="@style/FormLabelCell">
             <TextView
                 style="@style/FormLabel"
                 android:text="@string/issuer" />
 
-            <EditText
-                android:id="@+id/issuer"
-                style="@style/FormEditText"
-                android:hint="Example.com"
-                android:inputType="textNoSuggestions" />
-        </TableRow>
+            <ImageButton
+                android:id="@+id/help_issuer"
+                style="@style/FormHelpButton" />
+        </LinearLayout>
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/form_row_height"
-            android:minHeight="@dimen/form_row_height">
+        <EditText
+            android:id="@+id/issuer"
+            style="@style/FormEditText"
+            android:hint="Example.com"
+            android:inputType="textNoSuggestions" />
+    </TableRow>
 
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/form_row_height"
+        android:minHeight="@dimen/form_row_height">
+
+        <LinearLayout style="@style/FormLabelCell">
             <TextView
                 style="@style/FormLabel"
                 android:text="@string/account" />
 
-            <EditText
-                android:id="@+id/label"
-                style="@style/FormEditText"
-                android:hint="joe@example.com"
-                android:inputType="textNoSuggestions" />
-        </TableRow>
+            <ImageButton
+                android:id="@+id/help_account"
+                style="@style/FormHelpButton" />
+        </LinearLayout>
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/form_row_height"
-            android:minHeight="@dimen/form_row_height">
+        <EditText
+            android:id="@+id/label"
+            style="@style/FormEditText"
+            android:hint="joe@example.com"
+            android:inputType="textNoSuggestions" />
+    </TableRow>
 
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/form_row_height"
+        android:minHeight="@dimen/form_row_height">
+
+        <LinearLayout style="@style/FormLabelCell">
             <TextView
                 style="@style/FormLabel"
                 android:text="@string/alias" />
 
-            <EditText
-                android:id="@+id/alias"
-                style="@style/FormEditText"
-                android:hint="@string/alias"
-                android:inputType="textNoSuggestions" />
-        </TableRow>
+            <ImageButton
+                android:id="@+id/help_alias"
+                style="@style/FormHelpButton" />
+        </LinearLayout>
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/form_row_height"
-            android:minHeight="@dimen/form_row_height">
+        <EditText
+            android:id="@+id/alias"
+            style="@style/FormEditText"
+            android:hint="@string/alias"
+            android:inputType="textNoSuggestions" />
+    </TableRow>
 
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/form_row_height"
+        android:minHeight="@dimen/form_row_height">
+
+        <LinearLayout style="@style/FormLabelCell">
             <TextView
                 style="@style/FormLabel"
                 android:text="@string/category" />
 
-            <AutoCompleteTextView
-                android:id="@+id/category"
-                style="@style/FormEditText"
-                android:completionThreshold="1"
-                android:hint="@string/category"
-                android:inputType="textNoSuggestions" />
-        </TableRow>
+            <ImageButton
+                android:id="@+id/help_category"
+                style="@style/FormHelpButton" />
+        </LinearLayout>
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/form_row_height"
-            android:minHeight="@dimen/form_row_height">
+        <AutoCompleteTextView
+            android:id="@+id/category"
+            style="@style/FormEditText"
+            android:completionThreshold="1"
+            android:hint="@string/category"
+            android:inputType="textNoSuggestions" />
+    </TableRow>
 
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/form_row_height"
+        android:minHeight="@dimen/form_row_height">
+
+        <LinearLayout style="@style/FormLabelCell">
             <TextView
                 style="@style/FormLabel"
                 android:text="@string/icon" />
 
-            <AutoCompleteTextView
-                android:id="@+id/icon_key"
-                style="@style/FormEditText"
-                android:completionThreshold="1"
-                android:hint="@string/icon"
-                android:inputType="textNoSuggestions" />
-        </TableRow>
-    </TableLayout>
-</LinearLayout>
+            <ImageButton
+                android:id="@+id/help_icon"
+                style="@style/FormHelpButton" />
+        </LinearLayout>
+
+        <AutoCompleteTextView
+            android:id="@+id/icon_key"
+            style="@style/FormEditText"
+            android:completionThreshold="1"
+            android:hint="@string/icon"
+            android:inputType="textNoSuggestions" />
+    </TableRow>
+</TableLayout>

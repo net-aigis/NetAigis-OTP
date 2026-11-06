@@ -47,6 +47,7 @@ import de.wittmer.app.otp.data.OtpTokenDatabase
 import de.wittmer.app.otp.data.OtpTokenFactory
 import de.wittmer.app.otp.token_images.TokenImage
 import de.wittmer.app.otp.token_images.displayKey
+import de.wittmer.app.otp.util.FormFieldHelp
 import de.wittmer.app.otp.util.ImageUtil
 import de.wittmer.app.otp.util.blankToNull
 import java.io.UnsupportedEncodingException
@@ -97,6 +98,7 @@ class AddActivity : AppCompatActivity(), View.OnClickListener, CompoundButton.On
         }
 
         setSupportActionBar(findViewById(R.id.toolbar))
+        FormFieldHelp.bind(this)
         mImage = findViewById(R.id.image)
         mIssuer = findViewById(R.id.issuer)
         mLabel = findViewById(R.id.label)
@@ -150,8 +152,9 @@ class AddActivity : AppCompatActivity(), View.OnClickListener, CompoundButton.On
         lifecycleScope.launch {
             val categories = otpTokenDatabase.otpTokenDao().getAllCategories().first().toMutableList()
             categories.add(0, getString(R.string.uncategorized))
-            val adapter = ArrayAdapter(this@AddActivity, android.R.layout.simple_dropdown_item_1line, categories)
+            val adapter = ArrayAdapter(this@AddActivity, R.layout.spinner_dropdown_item_form, categories)
             mCategory.setAdapter(adapter)
+            mCategory.setDropDownBackgroundResource(R.color.token_card_background)
             mCategory.threshold = 0
             mCategory.setOnClickListener {
                 mCategory.showDropDown()
@@ -255,8 +258,9 @@ class AddActivity : AppCompatActivity(), View.OnClickListener, CompoundButton.On
 
     private fun setupIconKeyAdapter() {
         val iconKeys = TokenImage.values().map { it.displayKey() }
-        val adapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, iconKeys)
+        val adapter = ArrayAdapter(this, R.layout.spinner_dropdown_item_form, iconKeys)
         mIconKey.setAdapter(adapter)
+        mIconKey.setDropDownBackgroundResource(R.color.token_card_background)
         mIconKey.threshold = 0
         mIconKey.setOnClickListener {
             mIconKey.showDropDown()

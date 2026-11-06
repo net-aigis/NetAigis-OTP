@@ -38,123 +38,170 @@
             app:titleTextColor="@color/primary" />
     </com.google.android.material.appbar.AppBarLayout>
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_margin="16dp"
         android:layout_weight="1"
-        android:fillViewport="true">
+        android:orientation="vertical">
 
-        <LinearLayout
+        <ImageButton
+            android:id="@+id/image"
+            style="?android:borderlessButtonStyle"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/space_1"
+            android:contentDescription="@string/icon"
+            android:padding="4dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/logo" />
+
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:fillViewport="true"
+            android:scrollbars="vertical">
 
-            <include layout="@layout/metadata" />
-
-            <View
-                style="@style/Divider"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="4dp" />
-
-            <TextView
-                android:id="@+id/token_details"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:text="@string/token_details"
-                android:textColor="@color/primary"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:orientation="vertical">
 
-            <TableLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:shrinkColumns="0"
-                android:stretchColumns="1">
+                <include layout="@layout/metadata" />
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/form_row_height"
-                    android:minHeight="@dimen/form_row_height">
+                <View
+                    style="@style/Divider"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp" />
 
-                    <TextView
-                        android:id="@+id/algorithm_label"
-                        style="@style/FormLabel"
-                        android:text="@string/algorithm" />
-
-                    <TextView
-                        android:id="@+id/algorithm"
-                        style="@style/FormReadonlyValue" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/form_row_height"
-                    android:minHeight="@dimen/form_row_height">
-
-                    <TextView
-                        android:id="@+id/digits_label"
-                        style="@style/FormLabel"
-                        android:text="@string/digits" />
-
-                    <TextView
-                        android:id="@+id/digits"
-                        style="@style/FormReadonlyValue" />
-                </TableRow>
-
-                <TableRow
+                <TextView
+                    android:id="@+id/token_details"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:minHeight="@dimen/form_row_height">
+                    android:layout_marginBottom="4dp"
+                    android:text="@string/token_details"
+                    android:textColor="@color/primary"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/secret_label"
-                        style="@style/FormLabel"
-                        android:gravity="top|end"
-                        android:paddingTop="8dp"
-                        android:text="@string/secret" />
-
-                    <TextView
-                        android:id="@+id/secret"
-                        style="@style/FormReadonlyValue" />
-                </TableRow>
-
-                <TableRow
+                <TableLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/form_row_height"
-                    android:minHeight="@dimen/form_row_height">
+                    android:layout_height="wrap_content"
+                    android:shrinkColumns="0"
+                    android:stretchColumns="1">
 
-                    <TextView
-                        android:id="@+id/interval_label"
-                        style="@style/FormLabel"
-                        android:text="@string/interval" />
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/form_row_height"
+                        android:minHeight="@dimen/form_row_height">
 
-                    <TextView
-                        android:id="@+id/interval"
-                        style="@style/FormReadonlyValue" />
-                </TableRow>
-            </TableLayout>
+                        <LinearLayout style="@style/FormLabelCell">
+                            <TextView
+                                android:id="@+id/algorithm_label"
+                                style="@style/FormLabel"
+                                android:text="@string/algorithm" />
 
-            <Button
-                android:id="@+id/remove_user_token_image"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/brand_button_bg"
-                android:text="@string/remove_user_token_image"
-                android:textColor="@color/primary" />
+                            <ImageButton
+                                android:id="@+id/help_algorithm"
+                                style="@style/FormHelpButton" />
+                        </LinearLayout>
 
-            <Button
-                android:id="@+id/restore"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/brand_button_bg"
-                android:text="@string/restore_defaults"
-                android:textColor="@color/primary" />
-        </LinearLayout>
-    </ScrollView>
+                        <TextView
+                            android:id="@+id/algorithm"
+                            style="@style/FormReadonlyValue" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/form_row_height"
+                        android:minHeight="@dimen/form_row_height">
+
+                        <LinearLayout style="@style/FormLabelCell">
+                            <TextView
+                                android:id="@+id/digits_label"
+                                style="@style/FormLabel"
+                                android:text="@string/digits" />
+
+                            <ImageButton
+                                android:id="@+id/help_digits"
+                                style="@style/FormHelpButton" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/digits"
+                            style="@style/FormReadonlyValue" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="@dimen/form_row_height">
+
+                        <LinearLayout
+                            style="@style/FormLabelCell"
+                            android:gravity="top|end"
+                            android:paddingTop="8dp">
+                            <TextView
+                                android:id="@+id/secret_label"
+                                style="@style/FormLabel"
+                                android:gravity="top|end"
+                                android:text="@string/secret" />
+
+                            <ImageButton
+                                android:id="@+id/help_secret"
+                                style="@style/FormHelpButton"
+                                android:layout_marginTop="0dp" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/secret"
+                            style="@style/FormReadonlyValue" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/form_row_height"
+                        android:minHeight="@dimen/form_row_height">
+
+                        <LinearLayout style="@style/FormLabelCell">
+                            <TextView
+                                android:id="@+id/interval_label"
+                                style="@style/FormLabel"
+                                android:text="@string/interval" />
+
+                            <ImageButton
+                                android:id="@+id/help_interval"
+                                style="@style/FormHelpButton" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/interval"
+                            style="@style/FormReadonlyValue" />
+                    </TableRow>
+                </TableLayout>
+
+                <Button
+                    android:id="@+id/remove_user_token_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/brand_button_bg"
+                    android:text="@string/remove_user_token_image"
+                    android:textColor="@color/primary" />
+
+                <Button
+                    android:id="@+id/restore"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/brand_button_bg"
+                    android:text="@string/restore_defaults"
+                    android:textColor="@color/primary" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
 
     <View style="@style/Divider" />
 

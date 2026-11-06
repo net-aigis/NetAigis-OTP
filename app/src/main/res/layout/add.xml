@@ -45,155 +45,212 @@
         android:layout_weight="1"
         android:orientation="vertical">
 
-        <include layout="@layout/metadata" />
-
-        <View
-            style="@style/Divider"
-            android:layout_marginBottom="4dp"
-            android:layout_marginTop="4dp" />
+        <ImageButton
+            android:id="@+id/image"
+            style="?android:borderlessButtonStyle"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/space_1"
+            android:contentDescription="@string/icon"
+            android:padding="4dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/logo" />
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:fillViewport="true"
+            android:scrollbars="vertical">
 
-            <TableLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:shrinkColumns="0"
-                android:stretchColumns="1">
+                android:orientation="vertical">
 
-                <TableRow
+                <include layout="@layout/metadata" />
+
+                <View
+                    style="@style/Divider"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp" />
+
+                <TableLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/form_row_height"
-                    android:minHeight="@dimen/form_row_height">
+                    android:layout_height="wrap_content"
+                    android:shrinkColumns="0"
+                    android:stretchColumns="1">
 
-                    <TextView
-                        style="@style/FormLabel"
-                        android:text="@string/secret" />
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/form_row_height"
+                        android:minHeight="@dimen/form_row_height">
 
-                    <EditText
-                        android:id="@+id/secret"
-                        style="@style/FormEditText"
-                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ234567="
-                        android:hint="(Base32)"
-                        android:inputType="textVisiblePassword|textCapCharacters|textNoSuggestions" />
-                </TableRow>
+                        <LinearLayout style="@style/FormLabelCell">
+                            <TextView
+                                style="@style/FormLabel"
+                                android:text="@string/secret" />
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/form_row_height"
-                    android:minHeight="@dimen/form_row_height">
+                            <ImageButton
+                                android:id="@+id/help_secret"
+                                style="@style/FormHelpButton" />
+                        </LinearLayout>
 
-                    <TextView
-                        style="@style/FormLabel"
-                        android:text="@string/type" />
+                        <EditText
+                            android:id="@+id/secret"
+                            style="@style/FormEditText"
+                            android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ234567="
+                            android:hint="(Base32)"
+                            android:inputType="textVisiblePassword|textCapCharacters|textNoSuggestions" />
+                    </TableRow>
 
-                    <RadioGroup
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/form_row_height"
+                        android:minHeight="@dimen/form_row_height">
 
-                        <androidx.appcompat.widget.AppCompatRadioButton
-                            android:id="@+id/totp"
-                            style="@style/FormRadioButton"
-                            android:checked="true"
-                            android:text="TOTP" />
+                        <LinearLayout style="@style/FormLabelCell">
+                            <TextView
+                                style="@style/FormLabel"
+                                android:text="@string/type" />
 
-                        <androidx.appcompat.widget.AppCompatRadioButton
-                            android:id="@+id/hotp"
-                            style="@style/FormRadioButton"
-                            android:text="HOTP" />
-                    </RadioGroup>
-                </TableRow>
+                            <ImageButton
+                                android:id="@+id/help_type"
+                                style="@style/FormHelpButton" />
+                        </LinearLayout>
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/form_row_height"
-                    android:minHeight="@dimen/form_row_height">
+                        <RadioGroup
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
 
-                    <TextView
-                        style="@style/FormLabel"
-                        android:text="@string/digits" />
+                            <androidx.appcompat.widget.AppCompatRadioButton
+                                android:id="@+id/totp"
+                                style="@style/FormRadioButton"
+                                android:checked="true"
+                                android:text="TOTP" />
 
-                    <RadioGroup
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
-                        <androidx.appcompat.widget.AppCompatRadioButton
-                            android:id="@+id/digits5"
-                            style="@style/FormRadioButton"
-                            android:text="@string/five" />
+                            <androidx.appcompat.widget.AppCompatRadioButton
+                                android:id="@+id/hotp"
+                                style="@style/FormRadioButton"
+                                android:text="HOTP" />
+                        </RadioGroup>
+                    </TableRow>
 
-                        <androidx.appcompat.widget.AppCompatRadioButton
-                            android:id="@+id/digits6"
-                            style="@style/FormRadioButton"
-                            android:checked="true"
-                            android:text="@string/six" />
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/form_row_height"
+                        android:minHeight="@dimen/form_row_height">
 
-                        <androidx.appcompat.widget.AppCompatRadioButton
-                            android:id="@+id/digits7"
-                            style="@style/FormRadioButton"
-                            android:text="@string/seven" />
+                        <LinearLayout style="@style/FormLabelCell">
+                            <TextView
+                                style="@style/FormLabel"
+                                android:text="@string/digits" />
 
-                        <androidx.appcompat.widget.AppCompatRadioButton
-                            android:id="@+id/digits8"
-                            style="@style/FormRadioButton"
-                            android:text="@string/eight" />
-                    </RadioGroup>
-                </TableRow>
+                            <ImageButton
+                                android:id="@+id/help_digits"
+                                style="@style/FormHelpButton" />
+                        </LinearLayout>
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/form_row_height"
-                    android:minHeight="@dimen/form_row_height">
+                        <RadioGroup
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+                            <androidx.appcompat.widget.AppCompatRadioButton
+                                android:id="@+id/digits5"
+                                style="@style/FormRadioButton"
+                                android:text="@string/five" />
 
-                    <TextView
-                        style="@style/FormLabel"
-                        android:text="@string/algorithm" />
+                            <androidx.appcompat.widget.AppCompatRadioButton
+                                android:id="@+id/digits6"
+                                style="@style/FormRadioButton"
+                                android:checked="true"
+                                android:text="@string/six" />
 
-                    <Spinner
-                        android:id="@+id/algorithm"
-                        style="@style/FormSpinner" />
-                </TableRow>
+                            <androidx.appcompat.widget.AppCompatRadioButton
+                                android:id="@+id/digits7"
+                                style="@style/FormRadioButton"
+                                android:text="@string/seven" />
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/form_row_height"
-                    android:minHeight="@dimen/form_row_height">
+                            <androidx.appcompat.widget.AppCompatRadioButton
+                                android:id="@+id/digits8"
+                                style="@style/FormRadioButton"
+                                android:text="@string/eight" />
+                        </RadioGroup>
+                    </TableRow>
 
-                    <TextView
-                        style="@style/FormLabel"
-                        android:text="@string/interval" />
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/form_row_height"
+                        android:minHeight="@dimen/form_row_height">
 
-                    <EditText
-                        android:id="@+id/interval"
-                        style="@style/FormEditText"
-                        android:inputType="number"
-                        android:text="30" />
-                </TableRow>
+                        <LinearLayout style="@style/FormLabelCell">
+                            <TextView
+                                style="@style/FormLabel"
+                                android:text="@string/algorithm" />
 
-                <TableRow
-                    android:id="@+id/counter_row"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/form_row_height"
-                    android:minHeight="@dimen/form_row_height"
-                    android:visibility="gone">
+                            <ImageButton
+                                android:id="@+id/help_algorithm"
+                                style="@style/FormHelpButton" />
+                        </LinearLayout>
 
-                    <TextView
-                        style="@style/FormLabel"
-                        android:text="@string/counter" />
+                        <Spinner
+                            android:id="@+id/algorithm"
+                            style="@style/FormSpinner" />
+                    </TableRow>
 
-                    <EditText
-                        android:id="@+id/counter"
-                        style="@style/FormEditText"
-                        android:inputType="numberDecimal"
-                        android:text="0" />
-                </TableRow>
-            </TableLayout>
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/form_row_height"
+                        android:minHeight="@dimen/form_row_height">
+
+                        <LinearLayout style="@style/FormLabelCell">
+                            <TextView
+                                style="@style/FormLabel"
+                                android:text="@string/interval" />
+
+                            <ImageButton
+                                android:id="@+id/help_interval"
+                                style="@style/FormHelpButton" />
+                        </LinearLayout>
+
+                        <EditText
+                            android:id="@+id/interval"
+                            style="@style/FormEditText"
+                            android:inputType="number"
+                            android:text="30" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/counter_row"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/form_row_height"
+                        android:minHeight="@dimen/form_row_height"
+                        android:visibility="gone">
+
+                        <LinearLayout style="@style/FormLabelCell">
+                            <TextView
+                                style="@style/FormLabel"
+                                android:text="@string/counter" />
+
+                            <ImageButton
+                                android:id="@+id/help_counter"
+                                style="@style/FormHelpButton" />
+                        </LinearLayout>
+
+                        <EditText
+                            android:id="@+id/counter"
+                            style="@style/FormEditText"
+                            android:inputType="numberDecimal"
+                            android:text="0" />
+                    </TableRow>
+                </TableLayout>
+            </LinearLayout>
         </ScrollView>
     </LinearLayout>
 
