@@ -77,6 +77,7 @@ Aktuelle Entwicklungsversion: `4.0.0` (versionCode `27`; master/FreeOTP+ stand b
 - Welche Features Pro werden, ist noch offen und wird später definiert.
 - Bis zur Definition keine Feature-Sperren „auf Verdacht“ einbauen.
 - Application-ID-Wechsel erzeugt eine neue App-Installation; keine automatische Datenübernahme von FreeOTP+.
+- **Hauptmerkmal gegenüber FreeOTP+:** Token-**Aliase**. Issuer/Label bleiben die technischen Werte; der Alias steuert Icon-Matching (Vorrang vor Issuer) und ist in der Suche enthalten. Alias kann in der Key-URI als Query-Parameter `alias` mitgeführt werden. Die Tokenliste zeigt weiterhin den Issuer (nicht den Alias als Listentitel).
 
 ---
 
