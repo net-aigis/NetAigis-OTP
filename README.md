@@ -2,6 +2,11 @@
 
 Android OTP authenticator based on a FreeOTP+ fork, rebranded for NetAigis.
 
+## Support
+
+- [GitHub Sponsors](https://github.com/sponsors/net-aigis?metadata_project=NetAigis-OTP)
+- [PayPal](https://www.paypal.com/ncp/payment/FL4HN96RNY5YQ)
+
 ## Packages
 
 - Free: `de.wittmer.app.otp.free`
