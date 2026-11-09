@@ -244,13 +244,17 @@ Free-Debug:
 ./helper/rebuild_and_start.sh --edition free --seed
 ```
 
-Release-Artefakte bauen/hochladen (Forgejo):
+Release-Artefakte bauen/hochladen (Forgejo und/oder GitHub):
 
 ```bash
 ./helper/release.sh 4.0.3 --build
 FTOKEN_RELEASE=... ./helper/release.sh 4.0.3 --upload
-FTOKEN_RELEASE=... ./helper/release.sh 4.0.3 --build --upload
+./helper/release.sh 4.0.3 --upload-github
+FTOKEN_RELEASE=... ./helper/release.sh 4.0.3 --build --upload --upload-github
 ```
+
+Release-Beschreibung kommt aus `app/src/main/res/raw/changelog.md` (Abschnitt `## VERSION`).
+GitHub-Ziel: `GITHUB_REPO` (Default `net-aigis/NetAigis-OTP`), Auth über `gh auth` / `GH_TOKEN`.
 
 ---
 
@@ -333,7 +337,7 @@ java -version
 ## Helper-Skripte
 
 - `helper/rebuild_and_start.sh` — Debug bauen, installieren, starten (`--edition free|pro`, `--device SERIAL`, `--seed`, `--wipe-backup SERIAL`)
-- `helper/release.sh` — Free/Pro Debug+Release bauen und optional nach Forgejo (`otp-android`) hochladen
+- `helper/release.sh` — Free/Pro Debug+Release bauen; optional Upload nach Forgejo (`--upload`) und/oder GitHub (`--upload-github`); Notes aus `changelog.md`
 - Seed nutzt `testdata/sample-tokens.txt` (otpauth-URIs)
 - Debug-Packages: `de.wittmer.app.otp.debug` (Pro) / `de.wittmer.app.otp.free.debug` (Free)
 

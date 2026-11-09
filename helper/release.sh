@@ -5,15 +5,18 @@
 # Usage:
 #   ./helper/release.sh 4.0.3 --build
 #   FTOKEN_RELEASE=... ./helper/release.sh 4.0.3 --upload
-#   FTOKEN_RELEASE=... ./helper/release.sh 4.0.3 --build --upload
+#   ./helper/release.sh 4.0.3 --upload-github
+#   FTOKEN_RELEASE=... ./helper/release.sh 4.0.3 --build --upload --upload-github
 #   FTOKEN_RELEASE=... ./helper/release.sh 4.0.3 --upload --force-upload
+#
+# Release notes come from app/src/main/res/raw/changelog.md (section ## VERSION).
 #
 ##############################################################################
 
 set -euo pipefail
 
 usage() {
-  printf "Verwendung: %s VERSION [--build] [--upload] [--force-upload]\n" "$0"
+  printf "Verwendung: %s VERSION [--build] [--upload] [--upload-github] [--force-upload]\n" "$0"
 }
 
 if [ "$#" -lt 2 ]; then
@@ -25,6 +28,7 @@ scVersion="$1"
 shift
 scDoBuild='false'
 scDoUpload='false'
+scDoUploadGithub='false'
 scForceUpload='false'
 
 case "${scVersion}" in
@@ -43,8 +47,10 @@ while [ "$#" -gt 0 ]; do
     --upload)
       scDoUpload='true'
       ;;
+    --upload-github)
+      scDoUploadGithub='true'
+      ;;
     --force-upload)
-      scDoUpload='true'
       scForceUpload='true'
       ;;
     *)
@@ -56,7 +62,7 @@ while [ "$#" -gt 0 ]; do
   shift
 done
 
-if [ "${scDoBuild}" = "false" ] && [ "${scDoUpload}" = "false" ]; then
+if [ "${scDoBuild}" = "false" ] && [ "${scDoUpload}" = "false" ] && [ "${scDoUploadGithub}" = "false" ]; then
   printf "Keine Aktion angegeben.\n"
   usage
   exit 2
@@ -67,9 +73,16 @@ if [ "${scDoUpload}" = "true" ] && ! command -v jq >/dev/null 2>&1; then
   exit 2
 fi
 
+if [ "${scDoUploadGithub}" = "true" ] && ! command -v gh >/dev/null 2>&1; then
+  printf "gh wird fuer --upload-github benoetigt, ist aber nicht installiert.\n"
+  exit 2
+fi
+
 scApiBase="${FORGEJO_API_BASE:-https://git.wittmer.software/api/v1}"
 scOwner="${FORGEJO_OWNER:-WITTMER}"
 scRepo="${FORGEJO_REPO:-otp-android}"
+scGhRepo="${GITHUB_REPO:-net-aigis/NetAigis-OTP}"
+scChangelog="${CHANGELOG_FILE:-app/src/main/res/raw/changelog.md}"
 scOutDir="release/${scVersion}"
 scFreeApk="app/build/outputs/apk/free/debug/otp-free-debug.apk"
 scProApk="app/build/outputs/apk/pro/debug/otp-debug.apk"
@@ -80,6 +93,8 @@ scProOut="netaigis-otp-pro-debug-${scVersion}.apk"
 scFreeReleaseOut="netaigis-otp-free-${scVersion}.apk"
 scProReleaseOut="netaigis-otp-pro-${scVersion}.apk"
 scReleaseId=''
+scReleaseNotes=''
+scNotesFile=''
 
 scUploadFiles=(
   "${scOutDir}/${scFreeReleaseOut}"
@@ -109,6 +124,50 @@ required_file() {
 json_release_id() {
   jq -r '.id // empty' "$1"
 }
+
+extract_release_notes() {
+  local notes
+
+  if [ ! -f "${scChangelog}" ]; then
+    printf "Changelog fehlt: %s — verwende Fallback-Text.\n" "${scChangelog}" >&2
+    printf 'Release %s\n' "${scVersion}"
+    return
+  fi
+
+  notes="$(
+    awk -v ver="${scVersion}" '
+      /^## / {
+        if (printing) exit
+        if ($2 == ver) printing = 1
+      }
+      printing { print }
+    ' "${scChangelog}"
+  )"
+  notes="$(printf '%s\n' "${notes}" | sed -e :a -e '/^\n*$/{$d;N;ba' -e '}')"
+
+  if [ -z "${notes}" ]; then
+    printf "Kein Changelog-Abschnitt fuer %s in %s — verwende Fallback-Text.\n" "${scVersion}" "${scChangelog}" >&2
+    printf 'Release %s\n' "${scVersion}"
+    return
+  fi
+
+  printf '%s\n' "${notes}"
+}
+
+prepare_release_notes() {
+  scReleaseNotes="$(extract_release_notes)"
+  scNotesFile="$(mktemp)"
+  printf '%s\n' "${scReleaseNotes}" > "${scNotesFile}"
+  printf "Release notes aus %s:\n%s\n" "${scChangelog}" "${scReleaseNotes}"
+}
+
+cleanup_release_notes() {
+  if [ -n "${scNotesFile}" ]; then
+    rm -f "${scNotesFile}"
+  fi
+}
+
+trap cleanup_release_notes EXIT
 
 build_artifacts() {
   printf "Build Free/Pro Debug and Release APKs for release %s\n" "${scVersion}"
@@ -158,6 +217,16 @@ api_get_release_by_tag() {
 
 api_create_release() {
   local response_file="$1"
+  local payload
+
+  payload="$(
+    jq -n \
+      --arg tag "${scVersion}" \
+      --arg name "${scVersion}" \
+      --arg body "${scReleaseNotes}" \
+      '{tag_name:$tag,name:$name,body:$body,draft:false,prerelease:false}'
+  )"
+
   curl -sS \
     -X POST \
     -H "Authorization: token ${FTOKEN_RELEASE}" \
@@ -165,8 +234,30 @@ api_create_release() {
     -H "Content-Type: application/json" \
     -o "${response_file}" \
     -w '%{http_code}' \
-    -d "{\"tag_name\":\"${scVersion}\",\"name\":\"${scVersion}\",\"body\":\"Release ${scVersion}\",\"draft\":false,\"prerelease\":false}" \
+    -d "${payload}" \
     "${scApiBase}/repos/${scOwner}/${scRepo}/releases"
+}
+
+api_edit_release() {
+  local release_id="$1"
+  local response_file="$2"
+  local payload
+
+  payload="$(
+    jq -n \
+      --arg body "${scReleaseNotes}" \
+      '{body:$body}'
+  )"
+
+  curl -sS \
+    -X PATCH \
+    -H "Authorization: token ${FTOKEN_RELEASE}" \
+    -H "Accept: application/json" \
+    -H "Content-Type: application/json" \
+    -o "${response_file}" \
+    -w '%{http_code}' \
+    -d "${payload}" \
+    "${scApiBase}/repos/${scOwner}/${scRepo}/releases/${release_id}"
 }
 
 api_list_release_assets() {
@@ -335,6 +426,15 @@ upload_artifacts() {
     200)
       scReleaseId="$(json_release_id "${response}")"
       printf "Release %s existiert bereits. ID: %s\n" "${scVersion}" "${scReleaseId}"
+      http_code="$(api_edit_release "${scReleaseId}" "${response}")"
+      if [ "${http_code}" != "200" ]; then
+        printf "Release-Beschreibung konnte nicht aktualisiert werden (%s):\n" "${http_code}"
+        cat "${response}"
+        printf "\n"
+        rm -f "${response}"
+        exit 1
+      fi
+      printf "Release-Beschreibung aktualisiert.\n"
       ;;
     404)
       printf "Release %s existiert nicht. Lege Release an.\n" "${scVersion}"
@@ -405,10 +505,70 @@ upload_artifacts() {
   printf "Release upload complete: %s/repos/%s/%s/releases/tag/%s\n" "${scApiBase%/api/v1}" "${scOwner}" "${scRepo}" "${scVersion}"
 }
 
+github_asset_exists() {
+  local asset_name="$1"
+  local names
+
+  names="$(gh release view "${scVersion}" --repo "${scGhRepo}" --json assets -q '.assets[].name' 2>/dev/null || true)"
+  printf '%s\n' "${names}" | grep -Fxq "${asset_name}"
+}
+
+upload_github_artifacts() {
+  local file
+  local asset_name
+  local upload_args=()
+
+  for file in "${scUploadFiles[@]}"; do
+    required_file "${file}"
+  done
+
+  if gh release view "${scVersion}" --repo "${scGhRepo}" >/dev/null 2>&1; then
+    printf "GitHub-Release %s existiert bereits.\n" "${scVersion}"
+    gh release edit "${scVersion}" --repo "${scGhRepo}" --notes-file "${scNotesFile}"
+    printf "GitHub Release-Beschreibung aktualisiert.\n"
+
+    for file in "${scUploadFiles[@]}"; do
+      asset_name="$(basename "${file}")"
+      if github_asset_exists "${asset_name}"; then
+        if [ "${scForceUpload}" = "false" ]; then
+          printf "Already uploaded (GitHub): %s\n" "${file}"
+          continue
+        fi
+        gh release upload "${scVersion}" "${file}" --repo "${scGhRepo}" --clobber
+        printf "Re-uploaded (GitHub): %s\n" "${file}"
+      else
+        gh release upload "${scVersion}" "${file}" --repo "${scGhRepo}"
+        printf "Uploaded (GitHub): %s\n" "${file}"
+      fi
+    done
+  else
+    printf "GitHub-Release %s existiert nicht. Lege Release an.\n" "${scVersion}"
+    for file in "${scUploadFiles[@]}"; do
+      upload_args+=("${file}")
+    done
+    gh release create "${scVersion}" \
+      --repo "${scGhRepo}" \
+      --title "${scVersion}" \
+      --notes-file "${scNotesFile}" \
+      "${upload_args[@]}"
+    printf "GitHub-Release angelegt und Assets hochgeladen.\n"
+  fi
+
+  printf "GitHub release upload complete: https://github.com/%s/releases/tag/%s\n" "${scGhRepo}" "${scVersion}"
+}
+
+if [ "${scDoUpload}" = "true" ] || [ "${scDoUploadGithub}" = "true" ]; then
+  prepare_release_notes
+fi
+
 if [ "${scDoBuild}" = "true" ]; then
   build_artifacts
 fi
 
 if [ "${scDoUpload}" = "true" ]; then
   upload_artifacts
+fi
+
+if [ "${scDoUploadGithub}" = "true" ]; then
+  upload_github_artifacts
 fi
