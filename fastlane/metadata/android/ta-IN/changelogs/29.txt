@@ -1,0 +1,2 @@
+NetAigis OTP 4.0.2.
+பழைய About மொழிபெயர்ப்புகளை நீக்கி release build சரிசெய்யப்பட்டது.

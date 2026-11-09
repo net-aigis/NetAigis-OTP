@@ -1,0 +1,2 @@
+NetAigis OTP 4.0.2.
+Correção do build de release removendo traduções About obsoletas.

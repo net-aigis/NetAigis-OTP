@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.0.2 (29)
+
+- Fix release build: remove obsolete About translations from Crowdin locales
+
 ## 4.0.1 (28)
 
 - Settings and About with legal documents, licenses and in-app changelog

@@ -1,0 +1,2 @@
+NetAigis OTP‏ 4.0.2.
+תיקון build ל-release על ידי הסרת תרגומי About ישנים.

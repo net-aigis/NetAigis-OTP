@@ -21,17 +21,12 @@
     <string name="digits">أرقام </string>
     <string name="save">حفظ </string>
     <string name="code_copied">الكود الذي تم نسخه في المسودة. </string>
-    <string name="about_otp">نبذة عن NetAigis OTP </string>
-    <string name="about_version">NetAigis OTP نسخة %1$s (%2$d) </string>
-    <string name="about_copyright">© 2013 - Red Hat, Inc., et al.
+
+<string name="about_copyright">© 2013 - Red Hat, Inc., et al.
 © 2016 - Liberty
 © 2026 - &lt;a href=&quot;https://net-aigis.de/&quot;&gt;NetAigis&lt;/a&gt;</string>
-    <string name="about_license">تم ترخيص NetAigis OTP تحت %1$s. </string>
-    <string name="about_website">للحصول على مزيد من المعلومات ، ارجع الى %s. </string>
-    <string name="about_feedback">نحن نرحب بتعليقاتك :&lt;br/&gt;%1$s&lt;br/&gt;%2$s </string>
-    <string name="about_icons">بعض الشارات التي يتم استخدامها بواسطة هذا التطبيق يتم نسخها من العمل الذي تم تكوينه ومشاركته بواسطة مشروع مصدر Andrid Open Source والذي يتم استخدامه وفقا للمصطلحات التي تم وصفها في ترخيص Attributative Commons 2.5 Attribution License. </string>
-    <string name="about_token_image">token thumbnails tokenn_image_ * .xml في مكتبة token-images هي من andOTP أسفل &lt;a href=\"https://github.com/andOTP/andOTP/blob/master/LICENSE.txt\"&gt;ترخيص MIT&lt;/a&gt;. حقوق النشر © 2017-2020 Jakob Nixdorf.  &lt;andotp @shalowice.org&gt; حقوق النشر © 2015 برونو Bierbaumer </string>
-    <string name="error_camera_open">حدث خطأ أثناء فتح الكاميرا ! </string>
+
+<string name="error_camera_open">حدث خطأ أثناء فتح الكاميرا ! </string>
     <string name="delete_summary">هذه هي فرصتك الأخيرة : إذا قمت بحذف هذا الرمز ، فإنه سيختفي للأبد.  لن يتم الغاء اتاحتها على وحدة الخدمة. </string>
     <string name="delete_question">حذف هذا الرمز المميز؟</string>
     <string name="import_text">استيراد</string>

@@ -1,5 +1,9 @@
 # Änderungsprotokoll
 
+## 4.0.2 (29)
+
+- Release-Build behoben: veraltete About-Übersetzungen aus Crowdin-Locales entfernt
+
 ## 4.0.1 (28)
 
 - Einstellungen und Über mit Rechtstexten, Lizenzen und In-App-Änderungsprotokoll
