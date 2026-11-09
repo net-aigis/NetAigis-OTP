@@ -1,0 +1,2 @@
+NetAigis OTP 4.0.3.
+Egoera-barrako ikonoen kontrastea zuzenduta About, Ezarpenak eta lege-pantailatan.

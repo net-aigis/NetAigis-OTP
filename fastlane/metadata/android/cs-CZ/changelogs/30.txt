@@ -1,0 +1,2 @@
+NetAigis OTP 4.0.3.
+Oprava kontrastu ikon stavového řádku na About, Nastavení a právních obrazovkách.

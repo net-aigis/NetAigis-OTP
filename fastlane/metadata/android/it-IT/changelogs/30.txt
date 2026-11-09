@@ -1,0 +1,2 @@
+NetAigis OTP 4.0.3.
+Corretto il contrasto delle icone della status bar in About, Impostazioni e schermate legali.

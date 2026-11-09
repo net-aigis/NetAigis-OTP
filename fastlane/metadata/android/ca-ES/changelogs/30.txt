@@ -1,0 +1,2 @@
+NetAigis OTP 4.0.3.
+Correcció del contrast de les icones de la barra d’estat a About, Ajustos i texts legals.

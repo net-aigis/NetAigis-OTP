@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.0.3 (30)
+
+- Fix status bar icon contrast on About, Settings and legal screens
+
 ## 4.0.2 (29)
 
 - Fix release build: remove obsolete About translations from Crowdin locales

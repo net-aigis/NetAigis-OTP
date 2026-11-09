@@ -1,5 +1,9 @@
 # Änderungsprotokoll
 
+## 4.0.3 (30)
+
+- Kontrast der Statusbar-Icons in About, Einstellungen und Rechtstexten korrigiert
+
 ## 4.0.2 (29)
 
 - Release-Build behoben: veraltete About-Übersetzungen aus Crowdin-Locales entfernt
