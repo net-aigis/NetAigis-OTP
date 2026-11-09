@@ -1,0 +1,2 @@
+NetAigis OTP 4.0.1。
+設定/About の法務文書、フィールドヘルプ、Alias/Icon の動作をより明確に。

@@ -3,10 +3,10 @@
 # Build and/or upload NetAigis OTP release artifacts.
 #
 # Usage:
-#   ./helper/release.sh 4.0.0 --build
-#   FTOKEN_RELEASE=... ./helper/release.sh 4.0.0 --upload
-#   FTOKEN_RELEASE=... ./helper/release.sh 4.0.0 --build --upload
-#   FTOKEN_RELEASE=... ./helper/release.sh 4.0.0 --upload --force-upload
+#   ./helper/release.sh 4.0.1 --build
+#   FTOKEN_RELEASE=... ./helper/release.sh 4.0.1 --upload
+#   FTOKEN_RELEASE=... ./helper/release.sh 4.0.1 --build --upload
+#   FTOKEN_RELEASE=... ./helper/release.sh 4.0.1 --upload --force-upload
 #
 ##############################################################################
 

@@ -121,7 +121,7 @@
                                 android:layout_height="wrap_content"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Caption"
                                 android:textColor="@color/on_banner_muted"
-                                tools:text="4.0.0 (27)" />
+                                tools:text="4.0.1 (28)" />
                         </LinearLayout>
                     </LinearLayout>
 

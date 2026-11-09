@@ -1,0 +1,2 @@
+NetAigis OTP 4.0.1.
+Jogi dokumentumok a Beállítások/Névjegy részen, mezősúgó, egyértelműbb Alias/Icon viselkedés.

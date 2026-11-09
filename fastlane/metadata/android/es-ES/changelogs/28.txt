@@ -1,0 +1,2 @@
+NetAigis OTP 4.0.1.
+Documentos legales en Ajustes/Acerca de, ayuda de campos y comportamiento Alias/Icon más claro.
