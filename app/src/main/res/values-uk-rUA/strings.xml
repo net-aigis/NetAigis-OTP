@@ -21,17 +21,12 @@
     <string name="digits">Цифр</string>
     <string name="save">Зберегти</string>
     <string name="code_copied">Код скопійовано до буфера обміну.</string>
-    <string name="about_otp">Про NetAigis OTP</string>
-    <string name="about_version">Версія NetAigis OTP %1$s (%2$d)</string>
-    <string name="about_copyright">© 2013 - Red Hat, Inc., et al.
+
+<string name="about_copyright">© 2013 - Red Hat, Inc., et al.
 © 2016 - Liberty
 © 2026 - &lt;a href=&quot;https://net-aigis.de/&quot;&gt;NetAigis&lt;/a&gt;</string>
-    <string name="about_license">NetAigis OTP під ліцензією %1$s.</string>
-    <string name="about_website">Докладніше дивіться на %s.</string>
-    <string name="about_feedback">Ми раді отримати від Вас зворотній зв’язок:&lt;br/&gt;•%1$s&lt;br/&gt;• %2$s</string>
-    <string name="about_icons">Деякі значки, що використовуються цією програмою відтворені з роботи, яку створив Android Open Source Project і використовується на умовах, описаних у ліцензії Creative Commons 2.5 Attribution.</string>
-    <string name="about_token_image">Ескізи ключів token_image_*.xml у бібліотеці token-images взяті з andOTP під &lt;a href=&quot;https://github.com/andOTP/andOTP/blob/master/LICENSE.txt&quot;&gt;ліцензією MIT&lt;/a&gt;. Авторські права © 2017-2020 Jakob Nixdorf. &lt;andotp@shadowice.org&gt; Авторські права © 2015 Bruno Bierbaumer</string>
-    <string name="error_camera_open">Помилка під час відкривання камери!</string>
+
+<string name="error_camera_open">Помилка під час відкривання камери!</string>
     <string name="delete_summary">Це Ваш останній шанс: якщо видалити цей ключ, він зникне назавжди. Він не буде відключений на сервері.</string>
     <string name="delete_question">Видалити ключ?</string>
     <string name="import_text">Імпортувати</string>
