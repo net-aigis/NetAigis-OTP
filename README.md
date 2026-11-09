@@ -30,7 +30,7 @@ app/build/outputs/apk/pro/debug/otp-debug.apk
 
 ## Requirements
 
-* Android 6.0+ (minSdk 23)
+* Android 10+ (minSdk 29)
 
 ## Screenshots
 
@@ -44,7 +44,7 @@ app/build/outputs/apk/pro/debug/otp-debug.apk
 
 ## Build Dependencies
 
-* Android SDK (minSDK 23)
+* Android SDK (minSDK 29)
 * Android Studio
 
 ## Token list: Alias and icons
