@@ -45,213 +45,212 @@
         android:layout_weight="1"
         android:orientation="vertical">
 
-        <include layout="@layout/metadata" />
-
-        <View
-            style="@style/Divider"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp" />
+        <ImageButton
+            android:id="@+id/image"
+            style="?android:borderlessButtonStyle"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/space_1"
+            android:contentDescription="@string/icon"
+            android:padding="4dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/logo" />
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp">
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:fillViewport="true"
+            android:scrollbars="vertical">
 
-            <TableLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-                <TableRow
+                <include layout="@layout/metadata" />
+
+                <View
+                    style="@style/Divider"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp" />
+
+                <TableLayout
                     android:layout_width="match_parent"
-                    android:layout_height="48dp">
+                    android:layout_height="wrap_content"
+                    android:shrinkColumns="0"
+                    android:stretchColumns="1">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:gravity="center_vertical|right"
-                        android:paddingRight="8dp"
-                        android:text="@string/secret"
-                        android:textColor="@color/primary"
-                        android:textStyle="bold" />
-
-                    <EditText
-                        android:id="@+id/secret"
+                    <TableRow
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ234567="
-                        android:hint="(Base32)"
-                        android:inputType="textVisiblePassword|textCapCharacters|textNoSuggestions"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:textColor="@color/primary"
-                        android:textColorHint="@color/muted" />
-                </TableRow>
+                        android:layout_height="@dimen/form_row_height"
+                        android:minHeight="@dimen/form_row_height">
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp">
+                        <LinearLayout style="@style/FormLabelCell">
+                            <TextView
+                                style="@style/FormLabel"
+                                android:text="@string/secret" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:gravity="center_vertical|right"
-                        android:paddingRight="8dp"
-                        android:text="@string/type"
-                        android:textColor="@color/primary"
-                        android:textStyle="bold" />
+                            <ImageButton
+                                android:id="@+id/help_secret"
+                                style="@style/FormHelpButton" />
+                        </LinearLayout>
 
-                    <RadioGroup
+                        <EditText
+                            android:id="@+id/secret"
+                            style="@style/FormEditText"
+                            android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ234567="
+                            android:hint="(Base32)"
+                            android:inputType="textVisiblePassword|textCapCharacters|textNoSuggestions" />
+                    </TableRow>
+
+                    <TableRow
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="horizontal">
+                        android:layout_height="@dimen/form_row_height"
+                        android:minHeight="@dimen/form_row_height">
 
-                        <RadioButton
-                            android:id="@+id/totp"
-                            android:layout_width="match_parent"
+                        <LinearLayout style="@style/FormLabelCell">
+                            <TextView
+                                style="@style/FormLabel"
+                                android:text="@string/type" />
+
+                            <ImageButton
+                                android:id="@+id/help_type"
+                                style="@style/FormHelpButton" />
+                        </LinearLayout>
+
+                        <RadioGroup
+                            android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:checked="true"
-                            android:text="TOTP"
-                            android:textColor="@color/primary" />
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
 
-                        <RadioButton
-                            android:id="@+id/hotp"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:text="HOTP"
-                            android:textColor="@color/primary" />
-                    </RadioGroup>
-                </TableRow>
+                            <androidx.appcompat.widget.AppCompatRadioButton
+                                android:id="@+id/totp"
+                                style="@style/FormRadioButton"
+                                android:checked="true"
+                                android:text="TOTP" />
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp">
+                            <androidx.appcompat.widget.AppCompatRadioButton
+                                android:id="@+id/hotp"
+                                style="@style/FormRadioButton"
+                                android:text="HOTP" />
+                        </RadioGroup>
+                    </TableRow>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:gravity="center_vertical|right"
-                        android:paddingRight="8dp"
-                        android:text="@string/digits"
-                        android:textColor="@color/primary"
-                        android:textStyle="bold" />
-
-                    <RadioGroup
+                    <TableRow
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="horizontal">
-                        <RadioButton
-                            android:id="@+id/digits5"
-                            android:layout_width="match_parent"
+                        android:layout_height="@dimen/form_row_height"
+                        android:minHeight="@dimen/form_row_height">
+
+                        <LinearLayout style="@style/FormLabelCell">
+                            <TextView
+                                style="@style/FormLabel"
+                                android:text="@string/digits" />
+
+                            <ImageButton
+                                android:id="@+id/help_digits"
+                                style="@style/FormHelpButton" />
+                        </LinearLayout>
+
+                        <RadioGroup
+                            android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:checked="true"
-                            android:text="@string/five"
-                            android:textColor="@color/primary" />
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+                            <androidx.appcompat.widget.AppCompatRadioButton
+                                android:id="@+id/digits5"
+                                style="@style/FormRadioButton"
+                                android:text="@string/five" />
 
-                        <RadioButton
-                            android:id="@+id/digits6"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:checked="true"
-                            android:text="@string/six"
-                            android:textColor="@color/primary" />
+                            <androidx.appcompat.widget.AppCompatRadioButton
+                                android:id="@+id/digits6"
+                                style="@style/FormRadioButton"
+                                android:checked="true"
+                                android:text="@string/six" />
 
-                        <RadioButton
-                            android:id="@+id/digits7"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:text="@string/seven"
-                            android:textColor="@color/primary" />
+                            <androidx.appcompat.widget.AppCompatRadioButton
+                                android:id="@+id/digits7"
+                                style="@style/FormRadioButton"
+                                android:text="@string/seven" />
 
-                        <RadioButton
-                            android:id="@+id/digits8"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:text="@string/eight"
-                            android:textColor="@color/primary" />
-                    </RadioGroup>
-                </TableRow>
+                            <androidx.appcompat.widget.AppCompatRadioButton
+                                android:id="@+id/digits8"
+                                style="@style/FormRadioButton"
+                                android:text="@string/eight" />
+                        </RadioGroup>
+                    </TableRow>
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:gravity="center_vertical|right"
-                        android:paddingRight="8dp"
-                        android:text="@string/algorithm"
-                        android:textColor="@color/primary"
-                        android:textStyle="bold" />
-
-                    <Spinner
-                        android:id="@+id/algorithm"
+                    <TableRow
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:entries="@array/algorithms"
-                        android:popupBackground="@color/token_card_background" />
-                </TableRow>
+                        android:layout_height="@dimen/form_row_height"
+                        android:minHeight="@dimen/form_row_height">
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp">
+                        <LinearLayout style="@style/FormLabelCell">
+                            <TextView
+                                style="@style/FormLabel"
+                                android:text="@string/algorithm" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:gravity="center_vertical|right"
-                        android:paddingRight="8dp"
-                        android:text="@string/interval"
-                        android:textColor="@color/primary"
-                        android:textStyle="bold" />
+                            <ImageButton
+                                android:id="@+id/help_algorithm"
+                                style="@style/FormHelpButton" />
+                        </LinearLayout>
 
-                    <EditText
-                        android:id="@+id/interval"
+                        <Spinner
+                            android:id="@+id/algorithm"
+                            style="@style/FormSpinner" />
+                    </TableRow>
+
+                    <TableRow
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:inputType="number"
-                        android:text="30"
-                        android:textColor="@color/primary"
-                        android:textColorHint="@color/muted" />
-                </TableRow>
+                        android:layout_height="@dimen/form_row_height"
+                        android:minHeight="@dimen/form_row_height">
 
-                <TableRow
-                    android:id="@+id/counter_row"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:visibility="gone">
+                        <LinearLayout style="@style/FormLabelCell">
+                            <TextView
+                                style="@style/FormLabel"
+                                android:text="@string/interval" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:gravity="center_vertical|right"
-                        android:paddingRight="8dp"
-                        android:text="@string/counter"
-                        android:textColor="@color/primary"
-                        android:textStyle="bold" />
+                            <ImageButton
+                                android:id="@+id/help_interval"
+                                style="@style/FormHelpButton" />
+                        </LinearLayout>
 
-                    <EditText
-                        android:id="@+id/counter"
+                        <EditText
+                            android:id="@+id/interval"
+                            style="@style/FormEditText"
+                            android:inputType="number"
+                            android:text="30" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/counter_row"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:inputType="numberDecimal"
-                        android:text="0"
-                        android:textColor="@color/primary"
-                        android:textColorHint="@color/muted" />
-                </TableRow>
-            </TableLayout>
+                        android:layout_height="@dimen/form_row_height"
+                        android:minHeight="@dimen/form_row_height"
+                        android:visibility="gone">
+
+                        <LinearLayout style="@style/FormLabelCell">
+                            <TextView
+                                style="@style/FormLabel"
+                                android:text="@string/counter" />
+
+                            <ImageButton
+                                android:id="@+id/help_counter"
+                                style="@style/FormHelpButton" />
+                        </LinearLayout>
+
+                        <EditText
+                            android:id="@+id/counter"
+                            style="@style/FormEditText"
+                            android:inputType="numberDecimal"
+                            android:text="0" />
+                    </TableRow>
+                </TableLayout>
+            </LinearLayout>
         </ScrollView>
     </LinearLayout>
 

@@ -37,7 +37,7 @@ Wichtig: Änderungen sollen klein, nachvollziehbar und fachlich konsistent sein.
   - CameraX (QR)
   - Biometric
 
-Aktuelle Entwicklungsversion: `4.0.0` (versionCode `27`; master/FreeOTP+ stand bei `3.4` / `26`).
+Aktuelle Entwicklungsversion: `4.0.1` (versionCode `28`; master/FreeOTP+ stand bei `3.4` / `26`).
 
 ---
 
@@ -71,13 +71,17 @@ Aktuelle Entwicklungsversion: `4.0.0` (versionCode `27`; master/FreeOTP+ stand b
 
 ## Projektentscheidungen
 
-- Versionsnummern ohne führendes v schreiben, z. B. `4.0.0`.
+- Versionsnummern ohne führendes v schreiben, z. B. `4.0.1`.
 - Version nur im Titel/Header nennen, nicht mehrfach in Abschnittsüberschriften.
 - Product Flavors `free` / `pro` sind eingerichtet.
 - Welche Features Pro werden, ist noch offen und wird später definiert.
 - Bis zur Definition keine Feature-Sperren „auf Verdacht“ einbauen.
 - Application-ID-Wechsel erzeugt eine neue App-Installation; keine automatische Datenübernahme von FreeOTP+.
-- **Hauptmerkmal gegenüber FreeOTP+:** Token-**Aliase**. Issuer/Label bleiben die technischen Werte; der Alias steuert Icon-Matching (Vorrang vor Issuer) und ist in der Suche enthalten. Alias kann in der Key-URI als Query-Parameter `alias` mitgeführt werden. Die Tokenliste zeigt weiterhin den Issuer (nicht den Alias als Listentitel).
+- **Hauptmerkmal gegenüber FreeOTP+:** Token-**Aliase** und optionales **Icon**.
+  - **Alias**: optionaler Anzeigename in der Tokenliste (statt Issuer). Ändert nichts an der OTP-Berechnung. Ist in der Suche enthalten. Kann in der Key-URI als Query-Parameter `alias` mitgeführt werden.
+  - **Icon**: optionaler Name eines eingebauten Symbols (`iconKey`); wird genutzt, wenn kein eigenes Token-Bild gesetzt ist. Kann in der Key-URI als `icon` / `iconKey` mitgeführt werden.
+  - **Thumbnail-Auflösung** (ohne eigenes Bild): **Icon** → **Alias** → **Issuer** (erster Treffer gewinnt).
+  - Issuer/Label bleiben die technischen Werte vom ausstellenden Dienst; für eigene Bezeichnungen Alias bzw. Icon nutzen.
 
 ---
 
@@ -243,9 +247,9 @@ Free-Debug:
 Release-Artefakte bauen/hochladen (Forgejo):
 
 ```bash
-./helper/release.sh 4.0.0 --build
-FTOKEN_RELEASE=... ./helper/release.sh 4.0.0 --upload
-FTOKEN_RELEASE=... ./helper/release.sh 4.0.0 --build --upload
+./helper/release.sh 4.0.1 --build
+FTOKEN_RELEASE=... ./helper/release.sh 4.0.1 --upload
+FTOKEN_RELEASE=... ./helper/release.sh 4.0.1 --build --upload
 ```
 
 ---
@@ -342,6 +346,11 @@ Noch nicht einbauen, solange nicht explizit angefordert:
 1. Spätere Free/Pro-Unterschiede an `FeatureAccess` ergänzen (aktuell gleich)
 2. Fastlane-Beschreibungen/Screenshots vollständig auf NetAigis umstellen
 3. Crowdin-Texte jenseits der Markennamen feinjustieren
+4. Gradle/AGP-Deprecations abbauen (aktuell AGP 9.4.1 / Gradle 9.8.2; nötig vor AGP 10):
+   1. Built-in Kotlin + neues AGP-DSL: `android.builtInKotlin=false` und `android.newDsl=false` entfernen; in allen Modulen `kotlin("android")` entfernen; Root-`kotlin-gradle-plugin` bereinigen
+   2. APK-Umbenennung in `app/build.gradle.kts` von `applicationVariants` auf `AndroidComponentsExtension` umstellen
+   3. Weitere deprecated Opt-outs in `gradle.properties` abbauen (`usesSdkInManifest.disallowed`, `defaultTargetSdkToCompileSdkIfUnset`, `enableAppCompileTimeRClass`, `r8.optimizedResourceShrinking`, `defaults.buildfeatures.resvalues`, `nonFinalResIds`; ggf. `uniquePackageNames`, `nonTransitiveRClass`, `r8.strictFullModeForKeepRules`)
+   4. Optional: `android.dependency.excludeLibraryComponentsFromConstraints=true`; `Configuration.setVisible` über Plugin-Updates; Configuration Cache nur bei Bedarf
 
 ---
 

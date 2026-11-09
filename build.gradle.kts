@@ -8,7 +8,7 @@ buildscript {
     dependencies {
         classpath("com.android.tools.build:gradle:9.4.1")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:2.2.10")
-        classpath(libs.hiltPlugin)
+        classpath(libs.hilt.plugin)
     }
 }
 plugins {
@@ -22,5 +22,5 @@ plugins {
 extra["compileSdkVersion"] = 36
 extra["targetSdkVersion"] = 36
 extra["minSdkVersion"] = 23
-extra["versionCode"] = 27
-extra["versionName"] = "4.0.0"
+extra["versionCode"] = 28
+extra["versionName"] = "4.0.1"

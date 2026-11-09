@@ -20,11 +20,18 @@
 
 package de.wittmer.app.otp.ui
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Intent
+import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
-import android.widget.TextView
+import android.widget.Toast
+import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.content.pm.PackageInfoCompat
 import androidx.core.text.HtmlCompat
 import androidx.core.view.ViewCompat
@@ -39,53 +46,114 @@ class AboutActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+        val paper = ContextCompat.getColor(this, R.color.paper)
+        enableEdgeToEdge(
+            statusBarStyle = SystemBarStyle.light(Color.TRANSPARENT, Color.TRANSPARENT),
+            navigationBarStyle = SystemBarStyle.light(paper, paper)
+        )
         binding = AboutBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, windowInsets ->
-            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
-            view.setPadding(
-                view.paddingLeft,
-                view.paddingTop,
-                view.paddingRight,
-                insets.bottom
-            )
+        ViewCompat.setOnApplyWindowInsetsListener(binding.rootView) { _, windowInsets ->
+            val bars = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
+            binding.appBar.setPadding(0, bars.top, 0, 0)
+            val pad = resources.getDimensionPixelSize(R.dimen.space_1)
+            binding.scrollContent.setPadding(pad, pad, pad, pad + bars.bottom)
             windowInsets
         }
-    }
 
-    public override fun onStart() {
-        super.onStart()
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        binding.toolbar.setNavigationOnClickListener { finish() }
 
-        setSupportActionBar(findViewById(R.id.toolbar))
-        val res = resources
-        val aboutVersion: TextView = findViewById(R.id.about_version)
+        val info = packageManager.getPackageInfo(packageName, 0)
+        val versionText = getString(
+            R.string.about_version_value,
+            info.versionName,
+            PackageInfoCompat.getLongVersionCode(info)
+        )
+        binding.appVersion.text = versionText
 
-        val pm = packageManager
-        val info = pm.getPackageInfo(packageName, 0)
-        val version = res.getString(R.string.about_version,
-                info.versionName, PackageInfoCompat.getLongVersionCode(info))
-        aboutVersion.text = version
+        binding.btnAppVersion.setOnClickListener {
+            val clipboard = getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
+            clipboard.setPrimaryClip(ClipData.newPlainText("version", versionText))
+            Toast.makeText(this, R.string.about_version_copied, Toast.LENGTH_SHORT).show()
+        }
+
+        binding.btnChangelog.setOnClickListener {
+            startActivity(
+                LegalDocumentActivity.intent(
+                    this,
+                    R.string.screen_changelog,
+                    R.raw.changelog
+                )
+            )
+        }
+        binding.btnGithub.setOnClickListener { openUrl(GITHUB) }
+        binding.btnEmail.setOnClickListener { openMail(getString(R.string.provider_email)) }
+        binding.btnContactWebsite.setOnClickListener { openUrl(WEBSITE) }
+        binding.btnRate.setOnClickListener { openUrl(SUPPORT) }
+        binding.btnDonate.setOnClickListener { openUrl(SUPPORT) }
+
+        binding.btnLicense.setOnClickListener {
+            startActivity(
+                LegalDocumentActivity.intent(
+                    this,
+                    R.string.screen_app_license,
+                    R.raw.app_license
+                )
+            )
+        }
+        binding.btnOpenSourceLicenses.setOnClickListener {
+            startActivity(
+                LegalDocumentActivity.intent(
+                    this,
+                    R.string.screen_open_source_licenses,
+                    R.raw.open_source_licenses
+                )
+            )
+        }
+        binding.btnImprint.setOnClickListener {
+            startActivity(
+                LegalDocumentActivity.intent(
+                    this,
+                    R.string.screen_imprint,
+                    R.raw.legal_notice
+                )
+            )
+        }
+        binding.btnPrivacy.setOnClickListener {
+            startActivity(
+                LegalDocumentActivity.intent(
+                    this,
+                    R.string.screen_privacy,
+                    R.raw.privacy_policy
+                )
+            )
+        }
 
         binding.aboutCopyright.movementMethod = LinkMovementMethod.getInstance()
         binding.aboutCopyright.text = HtmlCompat.fromHtml(
             getString(R.string.about_copyright),
             HtmlCompat.FROM_HTML_MODE_COMPACT
         )
+    }
 
-        val apache2 = res.getString(R.string.link_apache2)
-        val license = res.getString(R.string.about_license, apache2)
+    private fun openUrl(url: String) {
+        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
+    }
 
-        binding.aboutLicense.movementMethod = LinkMovementMethod.getInstance()
-        binding.aboutLicense.text = HtmlCompat.fromHtml(license, HtmlCompat.FROM_HTML_MODE_COMPACT)
+    private fun openMail(email: String) {
+        startActivity(
+            Intent(Intent.ACTION_SENDTO).apply {
+                data = Uri.parse("mailto:$email")
+            }
+        )
+    }
 
-        val website = res.getString(R.string.about_website, res.getString(R.string.link_website))
-        binding.aboutWebsite.movementMethod = LinkMovementMethod.getInstance()
-        binding.aboutWebsite.text = HtmlCompat.fromHtml(website, HtmlCompat.FROM_HTML_MODE_COMPACT)
-
-        binding.aboutTokenImage.movementMethod = LinkMovementMethod.getInstance()
-        binding.aboutTokenImage.text = HtmlCompat.fromHtml(getString(R.string.about_token_image),
-                HtmlCompat.FROM_HTML_MODE_COMPACT)
+    companion object {
+        private const val WEBSITE = "https://net-aigis.de/"
+        private const val GITHUB = "https://github.com/net-aigis/NetAigis-OTP"
+        private const val SUPPORT = "https://net-aigis.de/otp.html"
     }
 }

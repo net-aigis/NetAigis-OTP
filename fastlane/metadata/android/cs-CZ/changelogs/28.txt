@@ -1,0 +1,2 @@
+NetAigis OTP 4.0.1.
+Právní dokumenty v Nastavení/O aplikaci, nápověda polí, jasnější chování Alias/Icon.

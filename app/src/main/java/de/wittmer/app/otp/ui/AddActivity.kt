@@ -34,6 +34,7 @@ import android.widget.RadioButton
 import android.widget.Spinner
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.CompoundButtonCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
@@ -46,6 +47,7 @@ import de.wittmer.app.otp.data.OtpTokenDatabase
 import de.wittmer.app.otp.data.OtpTokenFactory
 import de.wittmer.app.otp.token_images.TokenImage
 import de.wittmer.app.otp.token_images.displayKey
+import de.wittmer.app.otp.util.FormFieldHelp
 import de.wittmer.app.otp.util.ImageUtil
 import de.wittmer.app.otp.util.blankToNull
 import java.io.UnsupportedEncodingException
@@ -96,6 +98,7 @@ class AddActivity : AppCompatActivity(), View.OnClickListener, CompoundButton.On
         }
 
         setSupportActionBar(findViewById(R.id.toolbar))
+        FormFieldHelp.bind(this)
         mImage = findViewById(R.id.image)
         mIssuer = findViewById(R.id.issuer)
         mLabel = findViewById(R.id.label)
@@ -107,8 +110,22 @@ class AddActivity : AppCompatActivity(), View.OnClickListener, CompoundButton.On
         mCounter = findViewById(R.id.counter)
         mAlgorithm = findViewById(R.id.algorithm)
         mHOTP = findViewById(R.id.hotp)
+        clearRadioButtonTint(
+            mHOTP,
+            findViewById(R.id.totp),
+            findViewById(R.id.digits5),
+            findViewById(R.id.digits6),
+            findViewById(R.id.digits7),
+            findViewById(R.id.digits8)
+        )
 
-        // Select the default algorithm
+        val algorithmAdapter = ArrayAdapter.createFromResource(
+            this,
+            R.array.algorithms,
+            R.layout.spinner_item_form
+        )
+        algorithmAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item_form)
+        mAlgorithm.adapter = algorithmAdapter
         mAlgorithm.setSelection(SHA1_OFFSET)
 
         // Setup the Counter toggle
@@ -135,8 +152,9 @@ class AddActivity : AppCompatActivity(), View.OnClickListener, CompoundButton.On
         lifecycleScope.launch {
             val categories = otpTokenDatabase.otpTokenDao().getAllCategories().first().toMutableList()
             categories.add(0, getString(R.string.uncategorized))
-            val adapter = ArrayAdapter(this@AddActivity, android.R.layout.simple_dropdown_item_1line, categories)
+            val adapter = ArrayAdapter(this@AddActivity, R.layout.spinner_dropdown_item_form, categories)
             mCategory.setAdapter(adapter)
+            mCategory.setDropDownBackgroundResource(R.color.token_card_background)
             mCategory.threshold = 0
             mCategory.setOnClickListener {
                 mCategory.showDropDown()
@@ -233,10 +251,16 @@ class AddActivity : AppCompatActivity(), View.OnClickListener, CompoundButton.On
         }
     }
 
+    private fun clearRadioButtonTint(vararg buttons: CompoundButton) {
+        // Material/AppCompat otherwise recolors the whole button (ring + dot) when checked.
+        buttons.forEach { CompoundButtonCompat.setButtonTintList(it, null) }
+    }
+
     private fun setupIconKeyAdapter() {
         val iconKeys = TokenImage.values().map { it.displayKey() }
-        val adapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, iconKeys)
+        val adapter = ArrayAdapter(this, R.layout.spinner_dropdown_item_form, iconKeys)
         mIconKey.setAdapter(adapter)
+        mIconKey.setDropDownBackgroundResource(R.color.token_card_background)
         mIconKey.threshold = 0
         mIconKey.setOnClickListener {
             mIconKey.showDropDown()

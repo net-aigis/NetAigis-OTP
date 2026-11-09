@@ -37,20 +37,20 @@ android {
 }
 
 dependencies {
-    implementation(libs.coreKtx)
-    implementation(libs.appCompat)
+    implementation(libs.core.ktx)
+    implementation(libs.app.compat)
 
-    api(libs.roomRuntime)
+    api(libs.room.runtime)
     // To use Kotlin annotation processing tool (kapt)
-    kapt(libs.roomCompiler)
+    kapt(libs.room.compiler)
     // optional - Kotlin Extensions and Coroutines support for Room
-    implementation(libs.roomKtx)
+    implementation(libs.room.ktx)
 
-    implementation(libs.hiltAndroid)
-    kapt(libs.hiltAndroidCompiler)
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
 
-    implementation(libs.bundles.kotlinxCoroutines)
+    implementation(libs.bundles.kotlinx.coroutines)
     implementation(libs.gson)
 
-    androidTestImplementation(libs.bundles.androidxTest)
+    androidTestImplementation(libs.bundles.androidx.test)
 }

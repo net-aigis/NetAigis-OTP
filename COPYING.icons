@@ -3,6 +3,13 @@ the Android Action Bar Icon Pack which is work created and shared by the
 Android Open Source Project and used according to terms described in the
 Creative Commons 2.5 Attribution License.
 
+About-screen outline icons (`ic_outline_*_24.xml`, including favorite) are
+Material Design Icons / Material Symbols by Google, licensed under the
+Apache License, Version 2.0.
+
+ * https://github.com/google/material-design-icons
+ * http://www.apache.org/licenses/LICENSE-2.0
+
  * http://creativecommons.org/licenses/by/2.5/legalcode
  * https://developer.android.com/license.html
 

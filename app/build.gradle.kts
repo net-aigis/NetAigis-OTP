@@ -110,30 +110,30 @@ android {
 }
 
 dependencies {
-    coreLibraryDesugaring(libs.desugarJdkLibs)
+    coreLibraryDesugaring(libs.desugar.jdk.libs)
     implementation(project(":token-images"))
     implementation(project(":text-drawable"))
     implementation(project(":token-data"))
-    implementation(libs.appCompat)
+    implementation(libs.app.compat)
     implementation(libs.material)
     implementation(libs.zxing)
     implementation(libs.gson)
     implementation(libs.glide)
-    implementation(libs.coreKtx)
-    implementation(libs.activityKtx)
-    implementation(libs.bundles.kotlinxCoroutines)
+    implementation(libs.core.ktx)
+    implementation(libs.activity.ktx)
+    implementation(libs.bundles.kotlinx.coroutines)
 
-    implementation(libs.bundles.cameraX)
+    implementation(libs.bundles.camerax)
     implementation(libs.biometric)
     implementation(libs.guava)
 
-    implementation(libs.hiltAndroid)
-    ksp(libs.hiltAndroidCompiler)
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.android.compiler)
 
-    androidTestImplementation(libs.bundles.androidxTest)
-    androidTestUtil(libs.androidxTestOrchestrator)
+    androidTestImplementation(libs.bundles.androidx.test)
+    androidTestUtil(libs.androidx.test.orchestrator)
 
-    androidTestImplementation(libs.bundles.androidxJunit)
-    androidTestImplementation(libs.androidxTruth)
+    androidTestImplementation(libs.bundles.androidx.junit)
+    androidTestImplementation(libs.androidx.truth)
     androidTestImplementation(libs.bundles.espresso)
 }
