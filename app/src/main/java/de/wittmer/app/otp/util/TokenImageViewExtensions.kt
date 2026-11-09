@@ -38,9 +38,9 @@ private fun ImageView.setFallbackTextImage(token: OtpToken) {
 }
 
 /**
- * Resolve a built-in thumbnail. Alias wins over issuer so users can keep a
- * technical issuer (e.g. Ourcloud) while showing another brand icon via alias
- * (e.g. Nextcloud).
+ * Resolve a built-in thumbnail when Icon is unset. Alias wins over issuer so
+ * users can keep a technical issuer (e.g. Ourcloud) while showing another
+ * brand icon via alias (e.g. Nextcloud). Full priority: Icon → Alias → Issuer.
  */
 private fun matchThumbnail(token: OtpToken): Int? {
     val keys = listOfNotNull(

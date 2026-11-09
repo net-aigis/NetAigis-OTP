@@ -15,9 +15,9 @@
     <string name="field_help">Help</string>
     <string name="field_help_issuer">Name of the service that issued this token (for example GitHub). Prefer the value from the service; use Alias for your own label.</string>
     <string name="field_help_account">Account name linked to this token, often an email address or username.</string>
-    <string name="field_help_alias">Optional display name shown in the list instead of the issuer. Useful when several tokens share the same issuer.</string>
+    <string name="field_help_alias">Optional display name shown in the list instead of the issuer. Also used for automatic icon matching when no Icon is set (before Issuer). Useful when several tokens share the same issuer.</string>
     <string name="field_help_category">Optional group for organizing tokens in the list (for example Work or Personal).</string>
-    <string name="field_help_icon">Optional built-in icon name used when no custom image is set.</string>
+    <string name="field_help_icon">Optional built-in icon name. Has priority over Alias and Issuer for the token thumbnail when no custom image is set.</string>
     <string name="field_help_secret">Shared secret in Base32 encoding. The service and this app both use it to generate matching one-time codes. Keep it private.</string>
     <string name="field_help_type">TOTP creates a new code every few seconds (most common). HOTP creates a new code each time a counter advances.</string>
     <string name="field_help_digits">How many digits the one-time code has. Most services use 6; some use 7 or 8. Must match the service.</string>

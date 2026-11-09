@@ -92,8 +92,8 @@ class AboutActivity : AppCompatActivity() {
         binding.btnGithub.setOnClickListener { openUrl(GITHUB) }
         binding.btnEmail.setOnClickListener { openMail(getString(R.string.provider_email)) }
         binding.btnContactWebsite.setOnClickListener { openUrl(WEBSITE) }
-        binding.btnRate.setOnClickListener { openUrl(PLAY_STORE) }
-        binding.btnDonate.setOnClickListener { openUrl(DONATE) }
+        binding.btnRate.setOnClickListener { openUrl(SUPPORT) }
+        binding.btnDonate.setOnClickListener { openUrl(SUPPORT) }
 
         binding.btnLicense.setOnClickListener {
             startActivity(
@@ -154,8 +154,6 @@ class AboutActivity : AppCompatActivity() {
     companion object {
         private const val WEBSITE = "https://net-aigis.de/"
         private const val GITHUB = "https://github.com/net-aigis/NetAigis-OTP"
-        private const val PLAY_STORE =
-            "https://play.google.com/store/apps/details?id=de.wittmer.app.otp"
-        private const val DONATE = "https://net-aigis.de/"
+        private const val SUPPORT = "https://net-aigis.de/otp.html"
     }
 }

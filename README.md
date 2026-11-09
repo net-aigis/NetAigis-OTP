@@ -42,6 +42,14 @@ app/build/outputs/apk/pro/debug/otp-debug.apk
 * Android SDK (minSDK 23)
 * Android Studio
 
+## Token list: Alias and icons
+
+- **Alias**: Optional display name in the token list (shown instead of the issuer). Does not affect OTP calculation.
+- **Icon**: Optional built-in icon name. Used when no custom token image is set.
+- **Automatic thumbnail resolution** (no custom image): **Icon** → **Alias** → **Issuer**. First match wins.
+
+Example: keep issuer `Ourcloud`, set alias `Nextcloud` for the list title and Nextcloud icon; or set **Icon** explicitly when alias/issuer matching is not enough.
+
 ## Import Notes
 
 ### When importing from JSON.

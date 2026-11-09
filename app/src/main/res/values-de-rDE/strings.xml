@@ -15,9 +15,9 @@
     <string name="field_help">Hilfe</string>
     <string name="field_help_issuer">Name des Dienstes, der diesen Token ausgestellt hat (zum Beispiel GitHub). Am besten den Wert vom Dienst belassen; für eigene Bezeichnungen den Alias nutzen.</string>
     <string name="field_help_account">Kontoname zu diesem Token, oft eine E-Mail-Adresse oder ein Benutzername.</string>
-    <string name="field_help_alias">Optionaler Anzeigename in der Liste statt des Ausstellers. Sinnvoll, wenn mehrere Token denselben Aussteller haben.</string>
+    <string name="field_help_alias">Optionaler Anzeigename in der Liste statt des Ausstellers. Wird auch für die automatische Symbolsuche genutzt, wenn kein Icon gesetzt ist (vor dem Aussteller). Sinnvoll, wenn mehrere Token denselben Aussteller haben.</string>
     <string name="field_help_category">Optionale Gruppe zum Ordnen der Token in der Liste (zum Beispiel Arbeit oder Privat).</string>
-    <string name="field_help_icon">Optionaler Name eines eingebauten Symbols, wenn kein eigenes Bild gesetzt ist.</string>
+    <string name="field_help_icon">Optionaler Name eines eingebauten Symbols. Hat Vorrang vor Alias und Aussteller für das Token-Symbol, wenn kein eigenes Bild gesetzt ist.</string>
     <string name="field_help_secret">Gemeinsames Geheimnis in Base32-Kodierung. Dienst und App erzeugen damit dieselben Einmalcodes. Geheim halten.</string>
     <string name="field_help_type">TOTP erzeugt alle paar Sekunden einen neuen Code (am häufigsten). HOTP erzeugt einen neuen Code, wenn der Zähler erhöht wird.</string>
     <string name="field_help_digits">Anzahl der Ziffern im Einmalcode. Die meisten Dienste nutzen 6, manche 7 oder 8. Muss zum Dienst passen.</string>
