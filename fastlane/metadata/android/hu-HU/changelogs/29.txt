@@ -1,0 +1,2 @@
+NetAigis OTP 4.0.2.
+Release build javítva: elavult About fordítások eltávolítva.

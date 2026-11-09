@@ -1,0 +1,2 @@
+NetAigis OTP 4.0.2。
+移除过时的 About 翻译以修复 release 构建。

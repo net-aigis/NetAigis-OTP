@@ -1,0 +1,2 @@
+NetAigis OTP 4.0.2.
+Correcció de la compilació de llançament eliminant traduccions About obsoletes.

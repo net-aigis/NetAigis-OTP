@@ -1,0 +1,2 @@
+NetAigis OTP 4.0.2.
+Eski About çevirileri kaldırılarak release derlemesi düzeltildi.
