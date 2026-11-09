@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 #
-# Build and/or upload NetAigis OTP release artifacts.
+# Build and/or upload NetAigis OTP release artifacts (Pro only for now).
 #
 # Usage:
 #   ./helper/release.sh 4.0.3 --build
@@ -10,6 +10,7 @@
 #   FTOKEN_RELEASE=... ./helper/release.sh 4.0.3 --upload --force-upload
 #
 # Release notes come from app/src/main/res/raw/changelog.md (section ## VERSION).
+# Free edition builds/uploads are paused; Pro is the default release target.
 #
 ##############################################################################
 
@@ -84,21 +85,15 @@ scRepo="${FORGEJO_REPO:-otp-android}"
 scGhRepo="${GITHUB_REPO:-net-aigis/NetAigis-OTP}"
 scChangelog="${CHANGELOG_FILE:-app/src/main/res/raw/changelog.md}"
 scOutDir="release/${scVersion}"
-scFreeApk="app/build/outputs/apk/free/debug/otp-free-debug.apk"
 scProApk="app/build/outputs/apk/pro/debug/otp-debug.apk"
-scFreeReleaseApk="app/build/outputs/apk/free/release/otp-free-release.apk"
 scProReleaseApk="app/build/outputs/apk/pro/release/otp-release.apk"
-scFreeOut="netaigis-otp-free-debug-${scVersion}.apk"
 scProOut="netaigis-otp-pro-debug-${scVersion}.apk"
-scFreeReleaseOut="netaigis-otp-free-${scVersion}.apk"
 scProReleaseOut="netaigis-otp-pro-${scVersion}.apk"
 scReleaseId=''
 scReleaseNotes=''
 scNotesFile=''
 
 scUploadFiles=(
-  "${scOutDir}/${scFreeReleaseOut}"
-  "${scOutDir}/${scFreeReleaseOut}.sha256"
   "${scOutDir}/${scProReleaseOut}"
   "${scOutDir}/${scProReleaseOut}.sha256"
 )
@@ -170,25 +165,19 @@ cleanup_release_notes() {
 trap cleanup_release_notes EXIT
 
 build_artifacts() {
-  printf "Build Free/Pro Debug and Release APKs for release %s\n" "${scVersion}"
-  ./gradlew :app:assembleFreeDebug :app:assembleProDebug :app:assembleFreeRelease :app:assembleProRelease
+  printf "Build Pro Debug and Release APKs for release %s\n" "${scVersion}"
+  ./gradlew :app:assembleProDebug :app:assembleProRelease
 
-  required_source_apk "${scFreeApk}" "Free"
   required_source_apk "${scProApk}" "Pro"
-  required_source_apk "${scFreeReleaseApk}" "Free release"
   required_source_apk "${scProReleaseApk}" "Pro release"
 
   mkdir -p "${scOutDir}"
-  cp "${scFreeApk}" "${scOutDir}/${scFreeOut}"
   cp "${scProApk}" "${scOutDir}/${scProOut}"
-  cp "${scFreeReleaseApk}" "${scOutDir}/${scFreeReleaseOut}"
   cp "${scProReleaseApk}" "${scOutDir}/${scProReleaseOut}"
 
   (
     cd "${scOutDir}"
-    sha256sum "${scFreeOut}" > "${scFreeOut}.sha256"
     sha256sum "${scProOut}" > "${scProOut}.sha256"
-    sha256sum "${scFreeReleaseOut}" > "${scFreeReleaseOut}.sha256"
     sha256sum "${scProReleaseOut}" > "${scProReleaseOut}.sha256"
   )
 
