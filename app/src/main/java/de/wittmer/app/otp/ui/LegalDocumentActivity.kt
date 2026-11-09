@@ -29,7 +29,7 @@ class LegalDocumentActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val paper = ContextCompat.getColor(this, R.color.paper)
         enableEdgeToEdge(
-            statusBarStyle = SystemBarStyle.light(Color.TRANSPARENT, Color.TRANSPARENT),
+            statusBarStyle = SystemBarStyle.dark(Color.TRANSPARENT),
             navigationBarStyle = SystemBarStyle.light(paper, paper)
         )
         binding = ActivityLegalDocumentBinding.inflate(layoutInflater)
