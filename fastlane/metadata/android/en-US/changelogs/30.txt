@@ -1,0 +1,2 @@
+NetAigis OTP 4.0.3.
+Fix status bar icon contrast on About, Settings and legal screens.

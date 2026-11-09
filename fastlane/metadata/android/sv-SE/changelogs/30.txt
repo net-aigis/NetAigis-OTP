@@ -1,0 +1,2 @@
+NetAigis OTP 4.0.3.
+Kontrast för statusfältsikoner korrigerad på About, Inställningar och juridiska skärmar.

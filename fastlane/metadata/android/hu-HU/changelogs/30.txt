@@ -1,0 +1,2 @@
+NetAigis OTP 4.0.3.
+Állapotsor-ikonok kontrasztjának javítása az About, Beállítások és jogi képernyőkön.
