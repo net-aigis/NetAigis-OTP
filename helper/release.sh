@@ -85,10 +85,11 @@ scRepo="${FORGEJO_REPO:-otp-android}"
 scGhRepo="${GITHUB_REPO:-net-aigis/NetAigis-OTP}"
 scChangelog="${CHANGELOG_FILE:-app/src/main/res/raw/changelog.md}"
 scOutDir="release/${scVersion}"
+# Pro is default: no "pro" in artifact names. Free (when enabled) uses "-free-".
 scProApk="app/build/outputs/apk/pro/debug/otp-debug.apk"
 scProReleaseApk="app/build/outputs/apk/pro/release/otp-release.apk"
-scProOut="netaigis-otp-pro-debug-${scVersion}.apk"
-scProReleaseOut="netaigis-otp-pro-${scVersion}.apk"
+scProOut="netaigis-otp-debug-${scVersion}.apk"
+scProReleaseOut="netaigis-otp-${scVersion}.apk"
 scReleaseId=''
 scReleaseNotes=''
 scNotesFile=''

@@ -254,6 +254,7 @@ FTOKEN_RELEASE=... ./helper/release.sh 4.0.3 --build --upload --upload-github
 ```
 
 `release.sh` baut/uploadet derzeit nur Pro (Debug+Release). Free ist pausiert.
+Artefaktnamen: Pro (Default) ohne Suffix — `netaigis-otp-${VERSION}.apk` / `netaigis-otp-debug-${VERSION}.apk`; Free ggf. mit `-free-`.
 Release-Beschreibung kommt aus `app/src/main/res/raw/changelog.md` (Abschnitt `## VERSION`).
 GitHub-Ziel: `GITHUB_REPO` (Default `net-aigis/NetAigis-OTP`), Auth über `gh auth` / `GH_TOKEN`.
 
