@@ -145,6 +145,7 @@ Material DayNight bleibt; FreeOTP-Blau (`#16AFF9`) ist ersetzt.
   - kleine Schritte
   - erst aktuellen Block abschließen
   - dann committen
+- **Git-Commits:** keine `Co-authored-by:`-Trailer (insbesondere nicht `Co-authored-by: Cursor <cursoragent@cursor.com>`). Commit-Messages schlicht halten. Wenn die Umgebung den Trailer an `git commit` anhängt: Commit über `git commit-tree` + `git reset --soft` erzeugen und prüfen, dass die Message ohne Trailer ist.
 
 ---
 
@@ -385,12 +386,23 @@ Vergleichs-App bereits im Repo: FreeOTP+ (`org.liberty.android.freeotpplus`).
 - Fastlane-Metadaten unter `fastlane/metadata/android/` vorhanden
 - Spendenlinks upstream (README / About)
 
+### Fork-Begründung (für Antrag / Ausnahme zwingend mitführen)
+
+Langjähriger FreeOTP+-Nutzer. Am 14. Juli 2026 wurden Verbesserungen Upstream angeboten; bis zum NetAigis-Fork keine sinnvolle Reaktion/Merge. Der Fork existiert, damit die App wieder aktiv weiterentwickelt wird — nicht als Kosmetik-Rebrand.
+
+Upstream-PRs (Belege):
+
+- https://github.com/helloworld1/FreeOTPPlus/pull/311
+- https://github.com/helloworld1/FreeOTPPlus/pull/313
+
+Produktseite / Nutzerkontext: https://net-aigis.de/otp.html  
+
+Fachlicher Mehrwert gegenüber FreeOTP+: Token-**Alias**, optionales **Icon**, **Kategorien** (Organisation). Beim `fdroiddata`-MR bzw. Ausnahme zur 3-Monats-Regel diese Begründung + PR-Links + Landingpage explizit nennen.
+
 ### Offene Risiken (kein Soft-Ignore)
 
-1. **Release-Build ohne Keystore bricht ab** — Blocker für F-Droid-CI  
-   In `app/build.gradle.kts` wirft fehlende `keystore.properties` bei Release-Tasks eine `GradleException`. F-Droid baut Release **ohne** unsere Keystore-Datei. Signing nur anwenden, wenn die Datei existiert; Build darf ohne Datei durchlaufen (F-Droid signiert selbst).
-2. **Drei-Monats-Regel** — Policy verlangt i. d. R. ≥ 3 Monate aktive Weiterentwicklung der App (nicht nur Upstream-Historie). NetAigis-Rebrand/Fork erst ab ~2026-11-03. Antrag erst sinnvoll nach Wartezeit oder mit Ausnahme-Begründung (Nutzer, andere F-Droid-Apps vom Autor).
-3. **Fork-Mehrwert vs. FreeOTP+** — Quality-Punkt: keine reinen Kosmetik-Forks. Unser Mehrwert ist Token-**Alias**/Icon (plus Kategorien zur Organisation); in Fastlane-Beschreibung (`full_description` / `short_description`) klar sichtbar machen → sonst Ablehnungsrisiko als „Rebrand only“.
+1. **Drei-Monats-Regel** — Policy verlangt i. d. R. ≥ 3 Monate aktive Weiterentwicklung der App (nicht nur Upstream-Historie). NetAigis-Rebrand/Fork erst ab ~2026-11-03. Antrag erst sinnvoll nach Wartezeit **oder** mit Ausnahme-Begründung (siehe „Fork-Begründung“ oben: Upstream-PRs ohne Merge, aktive Weiterentwicklung, Nutzer/Produktkontext).
+2. **Fork-Mehrwert vs. FreeOTP+** — Quality-Punkt: keine reinen Kosmetik-Forks. Mehrwert und Wartungsübernahme sind dokumentiert (Alias/Icon/Kategorien + Upstream-PRs); Fastlane nennt sie bereits.
 
 ### F-Droid ToDos
 
@@ -406,9 +418,9 @@ Checkboxen bewusst textlich, damit sie in Android Studio und von Agenten gleich 
 - [x] **F-Droid-4 — `INTERNET`-Permission prüfen**  
   Manifest: `app/src/main/AndroidManifest.xml`. Geprüft: About/Legal öffnen URLs per `ACTION_VIEW` (kein `INTERNET` nötig). **Behalten**, weil otpauth-`image` eine Remote-URL sein kann und Glide sie beim Scan/Anzeige lädt. Entfernen würde dieses Legacy-Verhalten still brechen.
 - [ ] **F-Droid-5 — Drei-Monats-Fenster / Antragstiming**  
-  Nicht vor Ablauf der Policy-Frist (oder ohne Ausnahme-Begründung) den `fdroiddata`-MR öffnen. Bis dahin: App weiter pflegen, Releases taggen, Quellen öffentlich halten. (NetAigis-Fork ~2026-11-03 → Antrag frühestens ~2026-02 oder mit Ausnahme-Begründung.)
+  Nicht vor Ablauf der Policy-Frist den `fdroiddata`-MR öffnen **oder** Ausnahme mit der dokumentierten Fork-Begründung beantragen (Upstream-PRs #312/#313, Landingpage). Bis dahin: App weiter pflegen, Releases taggen, Quellen öffentlich halten. (NetAigis-Fork ~2026-11-03 → Kalender frühestens ~2026-02.)
 - [ ] **F-Droid-6 — Antrag vorbereiten (wenn 1–5 erledigt)**  
-  Merge Request gegen [fdroiddata](https://gitlab.com/fdroid/fdroiddata): Metadata analog FreeOTP+ (`License: Apache-2.0`, `Repo` → GitHub NetAigis-OTP, `gradle: [pro]`, Application-ID `de.wittmer.app.otp`, Fastlane übernehmen). Build muss auf F-Droid-CI reproduzierbar sein.
+  Merge Request gegen [fdroiddata](https://gitlab.com/fdroid/fdroiddata): Metadata analog FreeOTP+ (`License: Apache-2.0`, `Repo` → GitHub NetAigis-OTP, `gradle: [pro]`, Application-ID `de.wittmer.app.otp`, Fastlane übernehmen). Im MR-Text **Fork-Begründung** inkl. PR-Links und https://net-aigis.de/otp.html nicht vergessen. Build muss auf F-Droid-CI reproduzierbar sein.
 
 ### Bewusst nicht als F-Droid-Blocker führen
 
