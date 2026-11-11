@@ -1,1 +1,1 @@
-Zwei-Faktor-Authentifizierung (2FA) mit TOTP- und HOTP-Einmalpasswörtern
+2FA-Authenticator mit TOTP/HOTP, Token-Aliasen, Icons und Kategorien

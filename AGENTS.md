@@ -77,11 +77,16 @@ Aktuelle Entwicklungsversion: `4.0.3` (versionCode `30`; master/FreeOTP+ stand b
 - Welche Features Pro werden, ist noch offen und wird später definiert.
 - Bis zur Definition keine Feature-Sperren „auf Verdacht“ einbauen.
 - Application-ID-Wechsel erzeugt eine neue App-Installation; keine automatische Datenübernahme von FreeOTP+.
-- **Hauptmerkmal gegenüber FreeOTP+:** Token-**Aliase** und optionales **Icon**.
+- **Hauptmerkmal gegenüber FreeOTP+:** Token-**Aliase** und optionales **Icon** (für F-Droid/Fastlane als Fork-Mehrwert hervorheben).
   - **Alias**: optionaler Anzeigename in der Tokenliste (statt Issuer). Ändert nichts an der OTP-Berechnung. Ist in der Suche enthalten. Kann in der Key-URI als Query-Parameter `alias` mitgeführt werden.
   - **Icon**: optionaler Name eines eingebauten Symbols (`iconKey`); wird genutzt, wenn kein eigenes Token-Bild gesetzt ist. Kann in der Key-URI als `icon` / `iconKey` mitgeführt werden.
   - **Thumbnail-Auflösung** (ohne eigenes Bild): **Icon** → **Alias** → **Issuer** (erster Treffer gewinnt).
   - Issuer/Label bleiben die technischen Werte vom ausstellenden Dienst; für eigene Bezeichnungen Alias bzw. Icon nutzen.
+- **Kategorie** (Organisation, zusätzlich dokumentieren):
+  - Optionaler freier Text am Token (z. B. Arbeit / Privat); ändert nichts an der OTP-Berechnung.
+  - Filter in der Tokenliste: Tabs bzw. Menü — Alle, Keine (ohne Kategorie), plus jede vorhandene Kategorie.
+  - In Add/Edit mit Autocomplete aus bestehenden Kategorien; Feldhilfe über String-Ressourcen.
+  - Persistenz in Room (`otp_tokens.category`); derzeit **nicht** als Key-URI-Query-Parameter (nur Alias/`icon`).
 
 ---
 
@@ -360,7 +365,61 @@ Noch nicht einbauen, solange nicht explizit angefordert:
 
 ---
 
+## F-Droid Aufnahme (Stand 2026-11-10)
+
+Prüfgrundlage: [F-Droid Inclusion Policy](https://f-droid.org/de/docs/Inclusion_Policy/).  
+Vergleichs-App bereits im Repo: FreeOTP+ (`org.liberty.android.freeotpplus`).
+
+### Ergebnis (Kurz)
+
+- Harte FLOSS-Kriterien: **weitgehend erfüllt** (Apache-2.0, keine proprietären Tracker/Ads/Firebase/Play-Services, Abhängigkeiten aus Google Maven / Maven Central, öffentliche Quellen auf GitHub `net-aigis/NetAigis-OTP`, eigene Application-IDs, Rebranding).
+- Aufnahme-ready: **noch nicht** — siehe ToDos unten.
+- Arbeit am F-Droid-Fit erfolgt vorerst manuell in Android Studio; Agenten sollen die ToDos unten als verbindliche Checkliste lesen.
+
+### Was bereits passt
+
+- Lizenz: `COPYING` (Apache 2.0); Icons/Hinweise: `COPYING.icons`
+- Keine eingebetteten proprietären JARs/AARs (nur übliches `gradle/wrapper/gradle-wrapper.jar`)
+- Keine API-Keys im Repo; keine Auto-Downloads ausführbarer Binaries
+- Fork-Anforderungen: neue IDs `de.wittmer.app.otp` / `de.wittmer.app.otp.free`, Name/Icon/Strings NetAigis
+- Fastlane-Metadaten unter `fastlane/metadata/android/` vorhanden
+- Spendenlinks upstream (README / About)
+
+### Offene Risiken (kein Soft-Ignore)
+
+1. **Release-Build ohne Keystore bricht ab** — Blocker für F-Droid-CI  
+   In `app/build.gradle.kts` wirft fehlende `keystore.properties` bei Release-Tasks eine `GradleException`. F-Droid baut Release **ohne** unsere Keystore-Datei. Signing nur anwenden, wenn die Datei existiert; Build darf ohne Datei durchlaufen (F-Droid signiert selbst).
+2. **Drei-Monats-Regel** — Policy verlangt i. d. R. ≥ 3 Monate aktive Weiterentwicklung der App (nicht nur Upstream-Historie). NetAigis-Rebrand/Fork erst ab ~2026-11-03. Antrag erst sinnvoll nach Wartezeit oder mit Ausnahme-Begründung (Nutzer, andere F-Droid-Apps vom Autor).
+3. **Fork-Mehrwert vs. FreeOTP+** — Quality-Punkt: keine reinen Kosmetik-Forks. Unser Mehrwert ist Token-**Alias**/Icon (plus Kategorien zur Organisation); in Fastlane-Beschreibung (`full_description` / `short_description`) klar sichtbar machen → sonst Ablehnungsrisiko als „Rebrand only“.
+
+### F-Droid ToDos
+
+Checkboxen bewusst textlich, damit sie in Android Studio und von Agenten gleich lesbar sind.
+
+- [x] **F-Droid-1 — Keystore-Hard-Fail entfernen**  
+  Datei: `app/build.gradle.kts`  
+  Erledigt: Signing nur wenn `keystore.properties` vorhanden; kein `throw` mehr. Verifiziert: `./gradlew :app:assembleProRelease` ohne die Datei läuft durch.
+- [x] **F-Droid-2 — Eine Application-ID für den Antrag festlegen**  
+  Festgelegt: Pro `de.wittmer.app.otp` (Default-Flavor). Free parallel nicht einreichen, solange Feature-Umfang gleich ist. In künftiger `fdroiddata`-Metadata den Gradle-Flavor explizit setzen (`pro`).
+- [x] **F-Droid-3 — Fastlane-Mehrwert schärfen**  
+  Erledigt für `en-US` und `de-DE`: Kurz- und Langbeschreibung nennen Alias, Icon und Kategorien explizit als Organisation/Mehrwert gegenüber FreeOTP+.
+- [x] **F-Droid-4 — `INTERNET`-Permission prüfen**  
+  Manifest: `app/src/main/AndroidManifest.xml`. Geprüft: About/Legal öffnen URLs per `ACTION_VIEW` (kein `INTERNET` nötig). **Behalten**, weil otpauth-`image` eine Remote-URL sein kann und Glide sie beim Scan/Anzeige lädt. Entfernen würde dieses Legacy-Verhalten still brechen.
+- [ ] **F-Droid-5 — Drei-Monats-Fenster / Antragstiming**  
+  Nicht vor Ablauf der Policy-Frist (oder ohne Ausnahme-Begründung) den `fdroiddata`-MR öffnen. Bis dahin: App weiter pflegen, Releases taggen, Quellen öffentlich halten. (NetAigis-Fork ~2026-11-03 → Antrag frühestens ~2026-02 oder mit Ausnahme-Begründung.)
+- [ ] **F-Droid-6 — Antrag vorbereiten (wenn 1–5 erledigt)**  
+  Merge Request gegen [fdroiddata](https://gitlab.com/fdroid/fdroiddata): Metadata analog FreeOTP+ (`License: Apache-2.0`, `Repo` → GitHub NetAigis-OTP, `gradle: [pro]`, Application-ID `de.wittmer.app.otp`, Fastlane übernehmen). Build muss auf F-Droid-CI reproduzierbar sein.
+
+### Bewusst nicht als F-Droid-Blocker führen
+
+- Token-Service-Logos (andOTP-Erbe): FreeOTP+ ohne `NonFreeAssets` im Repo; GroupOffice-Hinweis in `COPYING.icons` lizenzlich dünn, aber kein bekannter Hard-Fail beim Upstream-Vorbild.
+- Free/Pro-Feature-Parität: für F-Droid irrelevant, solange nur eine ID eingereicht wird.
+- AGP/Gradle-Deprecations: eigenes Thema unter „Spätere Themen“, kein F-Droid-Inclusion-Blocker.
+
+---
+
 ## Nächster sinnvoller Block
 
-1. Weitere Pro-Features bei Bedarf an `FeatureAccess` hängen
-2. Fastlane-Metadaten inhaltlich nachziehen
+1. F-Droid-5: Drei-Monats-Fenster abwarten bzw. Ausnahme-Begründung klären; bis dahin Releases/Quellen pflegen
+2. F-Droid-6: `fdroiddata`-MR vorbereiten (Flavor `pro`, ID `de.wittmer.app.otp`), sobald Timing passt
+3. Weitere Pro-Features bei Bedarf an `FeatureAccess` hängen
