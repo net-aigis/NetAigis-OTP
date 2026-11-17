@@ -50,7 +50,9 @@ Aktuelle Entwicklungsversion: `4.0.3` (versionCode `30`; master/FreeOTP+ stand b
 - Keine Builds oder Tests ausführen, bevor erklärt wurde, warum das nötig ist.
 - Bei unklarer Grundlage stoppen und Rückfrage stellen.
 - Bei Fehlern im vorigen Ergebnis als Reklamation behandeln: Ursache nennen, minimalen Fix vorschlagen, nicht neu anfangen.
+- Querschnittsthemen (Insets, Screenshot-Schutz, Theme-Basics) **global** lösen (z. B. `BaseActivity`), nicht nur auf dem gerade gemeldeten Screen — gleiche Lücke nicht Screen für Screen nachziehen.
 - Bei Änderungen an `.gitignore` die Datei anschließend mit `sort -f` sortieren. Neue Einträge nicht einfach ans Ende hängen lassen.
+- Neue Projektentscheidungen aus dem Chat in dieser Datei nachziehen (knapp, ohne Nachbarprojekte namentlich zu zitieren).
 
 ---
 
@@ -87,6 +89,31 @@ Aktuelle Entwicklungsversion: `4.0.3` (versionCode `30`; master/FreeOTP+ stand b
   - Filter in der Tokenliste: Tabs bzw. Menü — Alle, Keine (ohne Kategorie), plus jede vorhandene Kategorie.
   - In Add/Edit mit Autocomplete aus bestehenden Kategorien; Feldhilfe über String-Ressourcen.
   - Persistenz in Room (`otp_tokens.category`); derzeit **nicht** als Key-URI-Query-Parameter (nur Alias/`icon`).
+- **`BaseActivity`** ist die gemeinsame Activity-Basis (`app/.../ui/BaseActivity.kt`):
+  - Screenshot-Modus / `FLAG_SECURE` für jedes Activity-Window
+  - horizontale System-Bar-Insets (Querformat-Nav / Cutouts) an `android.R.id.content`
+  - vertikale Insets (Statusleiste, untere Nav, IME) bleiben screen-spezifisch (Toolbar, Bottom-Buttons)
+- **Screenshot-Modus** (Einstellung, Default aus):
+  - aus → `FLAG_SECURE` gesetzt (Screenshots/Mirrors schwarz bzw. blockiert)
+  - an → Flag gelöscht (OTP sichtbar — bewusstes Risiko)
+  - Schaltung über `FeatureAccess.screenshotModeEnabled` + `Settings.screenshotMode`
+  - Emulator-/Host-Screenshots können `FLAG_SECURE` umgehen; Echttest auf Gerät / System-Screenshot
+- **Exportordner** (Einstellungen):
+  - Nutzer wählt einmal einen Ordner per `ACTION_OPEN_DOCUMENT_TREE`
+  - persistente URI-Permission; Prefs-Keys `export_tree_uri` / `export_tree_display_name`
+  - Anzeige als read-only Textfeld (Pfad z. B. `Download/Export`, nicht nur letzter Segmentname)
+  - Dialog: Abbrechen / Zurücksetzen / Ordner wählen; Empfehlungstext nur im Dialog
+  - Tipp aufs Textfeld öffnet den Dialog; Export schreibt dorthin, sonst Fallback `ACTION_CREATE_DOCUMENT`
+  - Implementierung: `ExportFolder.kt` (`DocumentFile`, `StoragePermissionService`, `UriDisplayNameReader`, `DocumentTreeWriter`)
+  - Dateinamen: `netaigis-otp-backup_yyyyMMdd_HHmm.json` bzw. `…-keyuri_…`; in **Debug** zusätzlich `_debug` vor der Endung
+- **Verschlüsselter Export/Import** (optional):
+  - Passwort → PBKDF2-HMAC-SHA256 → AES-256-GCM; Container-Format `netaigis-otp-encrypted`
+  - Klartext-Export/Import bleibt kompatibel (FreeOTP+ u. a.)
+  - Dialogtitel = gewählte Aktion (z. B. JSON- / Schlüssel-URI-Export)
+  - Ein Passwortfeld + Autofill (`password`) für Passwort-Safes (KeePassDX, Bitwarden, …)
+  - Zweites Feld nur bei Haken „Passwort wiederholen (manuelle Eingabe)“
+  - Fingerprint/Biometrie nicht als alleiniger Dateischutz (gerätgebunden); höchstens Freigabe lokal
+  - Code: `BackupEncryption.kt`, `ImportExportUtil` mit optionalem Passwort
 
 ---
 
@@ -321,10 +348,12 @@ app/src/proDebug/
 
 - Android Storage Access Framework verwenden.
 - Kein `MANAGE_EXTERNAL_STORAGE`.
-- Geplante Storage APIs wo nötig:
-  - `ACTION_OPEN_DOCUMENT_TREE`
-  - `ACTION_CREATE_DOCUMENT`
-  - `ACTION_OPEN_DOCUMENT`
+- Kein app-exklusiver „sicherer“ Exportordner auf gemeinsamem Speicher — Export ist für den Nutzer erreichbar; Schutz der Datei über optionale Passwort-Verschlüsselung.
+- Storage APIs:
+  - `ACTION_OPEN_DOCUMENT_TREE` — Exportordner wählen / persistente Permission
+  - `ACTION_CREATE_DOCUMENT` — Fallback, wenn kein Exportordner gesetzt
+  - `ACTION_OPEN_DOCUMENT` — Import
+- Abhängigkeit: `androidx.documentfile:documentfile` für Tree-Schreiben/Anzeige
 
 ### JDK
 
@@ -435,3 +464,4 @@ Checkboxen bewusst textlich, damit sie in Android Studio und von Agenten gleich 
 1. F-Droid-5: Drei-Monats-Fenster abwarten bzw. Ausnahme-Begründung klären; bis dahin Releases/Quellen pflegen
 2. F-Droid-6: `fdroiddata`-MR vorbereiten (Flavor `pro`, ID `de.wittmer.app.otp`), sobald Timing passt
 3. Weitere Pro-Features bei Bedarf an `FeatureAccess` hängen
+4. Optional später: Biometrie nur als Freigabe/lokales Merken des Export-Passworts (nicht als Dateischutz)

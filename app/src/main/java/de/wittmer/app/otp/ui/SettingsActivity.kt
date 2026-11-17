@@ -26,6 +26,7 @@ import androidx.lifecycle.lifecycleScope
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import de.wittmer.app.otp.BuildConfig
 import de.wittmer.app.otp.R
 import de.wittmer.app.otp.data.legacy.BackupEncryptionException
 import de.wittmer.app.otp.data.legacy.ImportExportUtil
@@ -210,7 +211,7 @@ class SettingsActivity : BaseActivity() {
 
     /**
      * Password dialog first; plain key-uri keeps .txt, encrypted / JSON use .json.
-     * With a configured tree URI (fahrtenbuch-style), write via DocumentFile; else SAF create dialog.
+     * With a configured tree URI, write via DocumentFile; else SAF create dialog.
      */
     private fun startExport(titleRes: Int, baseName: String, requestCode: Int) {
         showExportPasswordDialog(titleRes) { password ->
@@ -225,7 +226,7 @@ class SettingsActivity : BaseActivity() {
             } else {
                 "txt"
             }
-            val displayName = "${baseName}_${dateFormatter.format(Date())}.$effectiveExt"
+            val displayName = exportDisplayName(baseName, effectiveExt)
             val treeUriString = settings.exportFolderUri
             if (!treeUriString.isNullOrBlank()) {
                 lifecycleScope.launch {
@@ -261,9 +262,16 @@ class SettingsActivity : BaseActivity() {
                 }
             } else {
                 pendingExportPassword = password
-                createFile(effectiveMime, baseName, effectiveExt, requestCode)
+                createFile(effectiveMime, displayName, requestCode)
             }
         }
+    }
+
+    /** Debug builds append `_debug` before the extension. */
+    private fun exportDisplayName(baseName: String, extension: String): String {
+        val stamp = dateFormatter.format(Date())
+        val debugSuffix = if (BuildConfig.DEBUG) "_debug" else ""
+        return "${baseName}_${stamp}${debugSuffix}.$extension"
     }
 
     private fun showExportPasswordDialog(titleRes: Int, onConfirmed: (CharArray?) -> Unit) {
@@ -601,14 +609,13 @@ class SettingsActivity : BaseActivity() {
 
     private fun createFile(
         mimeType: String,
-        fileName: String,
-        fileExtension: String,
+        displayName: String,
         requestCode: Int
     ) {
         val intent = Intent(Intent.ACTION_CREATE_DOCUMENT).apply {
             addCategory(Intent.CATEGORY_OPENABLE)
             type = mimeType
-            putExtra(Intent.EXTRA_TITLE, "${fileName}_${dateFormatter.format(Date())}.$fileExtension")
+            putExtra(Intent.EXTRA_TITLE, displayName)
         }
         try {
             startActivityForResult(intent, requestCode)
