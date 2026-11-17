@@ -36,6 +36,7 @@ class LegalDocumentActivity : BaseActivity() {
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.rootView) { _, windowInsets ->
             val bars = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
+            // Left/right: BaseActivity. Top/bottom: toolbar + document.
             binding.appBar.setPadding(0, bars.top, 0, 0)
             val pad = resources.getDimensionPixelSize(R.dimen.space_3)
             binding.documentText.setPadding(pad, pad, pad, pad + bars.bottom)

@@ -118,6 +118,7 @@ class SettingsActivity : BaseActivity() {
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.rootView) { _, windowInsets ->
             val bars = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
+            // Left/right: BaseActivity. Top/bottom: toolbar + scroll.
             binding.appBar.setPadding(0, bars.top, 0, 0)
             val pad = resources.getDimensionPixelSize(R.dimen.space_1)
             binding.scrollContent.setPadding(pad, pad, pad, pad + bars.bottom)

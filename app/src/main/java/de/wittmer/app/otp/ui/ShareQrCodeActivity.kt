@@ -54,10 +54,11 @@ class ShareQrCodeActivity : BaseActivity() {
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, windowInsets ->
             val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
+            // Left/right: BaseActivity. Top/bottom here.
             view.setPadding(
-                view.paddingLeft + insets.left,
+                view.paddingLeft,
                 view.paddingTop + insets.top,
-                view.paddingRight + insets.right,
+                view.paddingRight,
                 view.paddingBottom + insets.bottom
             )
             windowInsets

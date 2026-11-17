@@ -65,11 +65,13 @@ class ScanTokenActivity : BaseActivity() {
         ViewCompat.setOnApplyWindowInsetsListener(binding.window) { view, windowInsets ->
             val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
             val marginParam = view.layoutParams as android.widget.FrameLayout.LayoutParams
+            val edge = (64 * resources.displayMetrics.density).toInt()
+            // Left/right: BaseActivity. Top/bottom clearance for the scan frame here.
             marginParam.setMargins(
-                (64 * resources.displayMetrics.density).toInt() + insets.left,
-                (64 * resources.displayMetrics.density).toInt() + insets.top,
-                (64 * resources.displayMetrics.density).toInt() + insets.right,
-                (64 * resources.displayMetrics.density).toInt() + insets.bottom
+                edge,
+                edge + insets.top,
+                edge,
+                edge + insets.bottom
             )
             view.layoutParams = marginParam
             windowInsets

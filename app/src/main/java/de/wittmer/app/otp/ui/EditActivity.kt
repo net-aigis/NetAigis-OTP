@@ -166,6 +166,7 @@ class EditActivity : BaseActivity(), TextWatcher, View.OnClickListener {
             val insets = windowInsets.getInsets(
                 WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.ime()
             )
+            // Left/right: BaseActivity. Bottom nav / IME here.
             view.setPadding(
                 view.paddingLeft,
                 view.paddingTop,

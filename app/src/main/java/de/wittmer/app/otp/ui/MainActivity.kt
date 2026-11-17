@@ -123,11 +123,13 @@ class MainActivity : BaseActivity() {
         ViewCompat.setOnApplyWindowInsetsListener(binding.fabBar) { view, windowInsets ->
             val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
             val marginParams = view.layoutParams as android.view.ViewGroup.MarginLayoutParams
+            // Left/right: BaseActivity. Bottom nav clearance here.
             marginParams.bottomMargin = resources.getDimensionPixelSize(R.dimen.space_3) + insets.bottom
+            val side = resources.getDimensionPixelSize(R.dimen.space_3)
             if (view.layoutDirection == View.LAYOUT_DIRECTION_RTL) {
-                marginParams.leftMargin = resources.getDimensionPixelSize(R.dimen.space_3) + insets.left
+                marginParams.leftMargin = side
             } else {
-                marginParams.rightMargin = resources.getDimensionPixelSize(R.dimen.space_3) + insets.right
+                marginParams.rightMargin = side
             }
             view.layoutParams = marginParams
             windowInsets

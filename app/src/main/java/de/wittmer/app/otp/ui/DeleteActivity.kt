@@ -32,6 +32,7 @@ class DeleteActivity : BaseActivity() {
         val buttonLayout = binding.root.findViewById<View>(R.id.button_layout)
         ViewCompat.setOnApplyWindowInsetsListener(buttonLayout) { view, windowInsets ->
             val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
+            // Left/right: BaseActivity. Bottom nav here.
             view.setPadding(
                 view.paddingLeft,
                 view.paddingTop,
