@@ -37,7 +37,7 @@ Wichtig: Änderungen sollen klein, nachvollziehbar und fachlich konsistent sein.
   - CameraX (QR)
   - Biometric
 
-Aktuelle Entwicklungsversion: `4.0.3` (versionCode `30`; master/FreeOTP+ stand bei `3.4` / `26`).
+Aktuelle Entwicklungsversion: `4.1.0` (versionCode `31`; master/FreeOTP+ stand bei `3.4` / `26`).
 
 ---
 
@@ -73,7 +73,7 @@ Aktuelle Entwicklungsversion: `4.0.3` (versionCode `30`; master/FreeOTP+ stand b
 
 ## Projektentscheidungen
 
-- Versionsnummern ohne führendes v schreiben, z. B. `4.0.3`.
+- Versionsnummern ohne führendes v schreiben, z. B. `4.1.0`.
 - Version nur im Titel/Header nennen, nicht mehrfach in Abschnittsüberschriften.
 - Product Flavors `free` / `pro` sind eingerichtet.
 - Welche Features Pro werden, ist noch offen und wird später definiert.
@@ -280,10 +280,10 @@ Free-Debug:
 Release-Artefakte bauen/hochladen (Forgejo und/oder GitHub; vorerst nur Pro):
 
 ```bash
-./helper/release.sh 4.0.3 --build
-FTOKEN_RELEASE=... ./helper/release.sh 4.0.3 --upload
-./helper/release.sh 4.0.3 --upload-github
-FTOKEN_RELEASE=... ./helper/release.sh 4.0.3 --build --upload --upload-github
+./helper/release.sh 4.1.0 --build
+FTOKEN_RELEASE=... ./helper/release.sh 4.1.0 --upload
+./helper/release.sh 4.1.0 --upload-github
+FTOKEN_RELEASE=... ./helper/release.sh 4.1.0 --build --upload --upload-github
 ```
 
 `release.sh` baut/uploadet derzeit nur Pro (Debug+Release). Free ist pausiert.

@@ -1,0 +1,5 @@
+NetAigis OTP 4.1.0.
+Configurable export folder for backups.
+Optional password-encrypted export and import.
+Screenshot protection on all screens when Screenshot mode is off.
+Fix landscape layout so content stays clear of side navigation.
