@@ -9,6 +9,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.util.TypedValue
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
@@ -20,13 +21,18 @@ import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import de.wittmer.app.otp.R
+import de.wittmer.app.otp.data.legacy.BackupEncryptionException
 import de.wittmer.app.otp.data.legacy.ImportExportUtil
+import de.wittmer.app.otp.data.legacy.wipe
 import de.wittmer.app.otp.databinding.ActivitySettingsBinding
+import de.wittmer.app.otp.databinding.DialogBackupPasswordBinding
+import de.wittmer.app.otp.databinding.DialogImportPasswordBinding
 import de.wittmer.app.otp.feature.FeatureAccess
 import de.wittmer.app.otp.util.DocumentTreeWriter
 import de.wittmer.app.otp.util.Settings
@@ -51,6 +57,7 @@ class SettingsActivity : BaseActivity() {
     private lateinit var documentTreeWriter: DocumentTreeWriter
     private lateinit var uriDisplayNameReader: UriDisplayNameReader
     private var updatingSwitches = false
+    private var pendingExportPassword: CharArray? = null
 
     private val dateFormatter: DateFormat = SimpleDateFormat("yyyyMMdd_HHmm", Locale.US)
 
@@ -162,6 +169,7 @@ class SettingsActivity : BaseActivity() {
             if (updatingSwitches) {
                 return@setOnCheckedChangeListener
             }
+            // Revert until biometric confirms; then apply.
             updatingSwitches = true
             binding.switchRequireAuthentication.isChecked = !isChecked
             updatingSwitches = false
@@ -185,75 +193,187 @@ class SettingsActivity : BaseActivity() {
         }
         binding.btnExportJson.setOnClickListener {
             startExport(
-                mimeType = "application/json",
+                titleRes = R.string.export_json_format,
                 baseName = "netaigis-otp-backup",
-                fileExtension = "json",
                 requestCode = WRITE_JSON_REQUEST_CODE
             )
         }
         binding.btnExportKeyUri.setOnClickListener {
             startExport(
-                mimeType = "text/plain",
+                titleRes = R.string.export_key_uri_format,
                 baseName = "netaigis-otp-keyuri",
-                fileExtension = "txt",
                 requestCode = WRITE_KEY_URI_REQUEST_CODE
             )
         }
     }
 
-    private fun startExport(
-        mimeType: String,
-        baseName: String,
-        fileExtension: String,
-        requestCode: Int
-    ) {
-        val displayName = "${baseName}_${dateFormatter.format(Date())}.$fileExtension"
-        val treeUriString = settings.exportFolderUri
-        if (!treeUriString.isNullOrBlank()) {
-            lifecycleScope.launch {
-                val treeUri = Uri.parse(treeUriString)
-                val ensure = documentTreeWriter.ensureDirectory(treeUri)
-                if (!ensure.success) {
-                    storagePermissionService.clearTreePermission()
-                    refreshExportFolderLabel()
-                    Snackbar.make(
-                        binding.rootView,
-                        R.string.export_folder_unavailable,
-                        Snackbar.LENGTH_LONG
-                    ).show()
-                    return@launch
-                }
-                val created = documentTreeWriter.createTextFile(
-                    treeUri,
-                    displayName,
-                    mimeType
-                )
-                val fileUri = created.uri
-                if (!created.success || fileUri == null) {
-                    Snackbar.make(
-                        binding.rootView,
-                        R.string.export_folder_unavailable,
-                        Snackbar.LENGTH_LONG
-                    ).show()
-                    return@launch
-                }
-                runExport(requestCode, fileUri)
+    /**
+     * Password dialog first; plain key-uri keeps .txt, encrypted / JSON use .json.
+     * With a configured tree URI (fahrtenbuch-style), write via DocumentFile; else SAF create dialog.
+     */
+    private fun startExport(titleRes: Int, baseName: String, requestCode: Int) {
+        showExportPasswordDialog(titleRes) { password ->
+            val useEncryption = password != null
+            val effectiveMime = if (useEncryption || requestCode == WRITE_JSON_REQUEST_CODE) {
+                "application/json"
+            } else {
+                "text/plain"
             }
-        } else {
-            createFile(mimeType, baseName, fileExtension, requestCode)
+            val effectiveExt = if (useEncryption || requestCode == WRITE_JSON_REQUEST_CODE) {
+                "json"
+            } else {
+                "txt"
+            }
+            val displayName = "${baseName}_${dateFormatter.format(Date())}.$effectiveExt"
+            val treeUriString = settings.exportFolderUri
+            if (!treeUriString.isNullOrBlank()) {
+                lifecycleScope.launch {
+                    val treeUri = Uri.parse(treeUriString)
+                    val ensure = documentTreeWriter.ensureDirectory(treeUri)
+                    if (!ensure.success) {
+                        storagePermissionService.clearTreePermission()
+                        refreshExportFolderLabel()
+                        password?.wipe()
+                        Snackbar.make(
+                            binding.rootView,
+                            R.string.export_folder_unavailable,
+                            Snackbar.LENGTH_LONG
+                        ).show()
+                        return@launch
+                    }
+                    val created = documentTreeWriter.createTextFile(
+                        treeUri,
+                        displayName,
+                        effectiveMime
+                    )
+                    val fileUri = created.uri
+                    if (!created.success || fileUri == null) {
+                        password?.wipe()
+                        Snackbar.make(
+                            binding.rootView,
+                            R.string.export_folder_unavailable,
+                            Snackbar.LENGTH_LONG
+                        ).show()
+                        return@launch
+                    }
+                    runExport(requestCode, fileUri, password)
+                }
+            } else {
+                pendingExportPassword = password
+                createFile(effectiveMime, baseName, effectiveExt, requestCode)
+            }
         }
     }
 
-    private suspend fun runExport(requestCode: Int, uri: Uri) {
-        when (requestCode) {
-            WRITE_JSON_REQUEST_CODE -> importFromUtil.exportJsonFile(uri)
-            WRITE_KEY_URI_REQUEST_CODE -> importFromUtil.exportKeyUriFile(uri)
+    private fun showExportPasswordDialog(titleRes: Int, onConfirmed: (CharArray?) -> Unit) {
+        val dialogBinding = DialogBackupPasswordBinding.inflate(LayoutInflater.from(this))
+
+        fun updateEncryptUi() {
+            val encrypt = dialogBinding.switchEncrypt.isChecked
+            dialogBinding.passwordLayout.isEnabled = encrypt
+            dialogBinding.password.isEnabled = encrypt
+            dialogBinding.checkConfirmPassword.isEnabled = encrypt
+            dialogBinding.passwordHint.visibility = if (encrypt) View.VISIBLE else View.GONE
+            dialogBinding.checkConfirmPassword.visibility =
+                if (encrypt) View.VISIBLE else View.GONE
+            if (!encrypt) {
+                dialogBinding.password.text = null
+                dialogBinding.passwordConfirm.text = null
+                dialogBinding.checkConfirmPassword.isChecked = false
+            }
+            updateConfirmVisibility(dialogBinding)
         }
-        Snackbar.make(binding.rootView, R.string.export_succeeded_text, Snackbar.LENGTH_SHORT)
-            .show()
+
+        dialogBinding.switchEncrypt.setOnCheckedChangeListener { _, _ -> updateEncryptUi() }
+        dialogBinding.checkConfirmPassword.setOnCheckedChangeListener { _, _ ->
+            updateConfirmVisibility(dialogBinding)
+        }
+        updateEncryptUi()
+
+        val dialog = MaterialAlertDialogBuilder(this)
+            .setTitle(titleRes)
+            .setView(dialogBinding.root)
+            .setPositiveButton(R.string.export_text, null)
+            .setNegativeButton(R.string.cancel_text, null)
+            .create()
+
+        dialog.setOnShowListener {
+            dialog.getButton(DialogInterface.BUTTON_POSITIVE).setOnClickListener {
+                if (!dialogBinding.switchEncrypt.isChecked) {
+                    dialog.dismiss()
+                    onConfirmed(null)
+                    return@setOnClickListener
+                }
+                val password = dialogBinding.password.text?.toString()?.toCharArray() ?: charArrayOf()
+                if (password.isEmpty()) {
+                    dialogBinding.passwordLayout.error =
+                        getString(R.string.backup_password_required)
+                    return@setOnClickListener
+                }
+                if (dialogBinding.checkConfirmPassword.isChecked) {
+                    val confirm =
+                        dialogBinding.passwordConfirm.text?.toString()?.toCharArray()
+                            ?: charArrayOf()
+                    try {
+                        if (!password.contentEquals(confirm)) {
+                            dialogBinding.passwordConfirmLayout.error =
+                                getString(R.string.backup_password_mismatch)
+                            return@setOnClickListener
+                        }
+                    } finally {
+                        confirm.wipe()
+                    }
+                }
+                dialog.dismiss()
+                onConfirmed(password)
+            }
+        }
+        dialogBinding.password.doAfterTextChanged {
+            dialogBinding.passwordLayout.error = null
+        }
+        dialogBinding.passwordConfirm.doAfterTextChanged {
+            dialogBinding.passwordConfirmLayout.error = null
+        }
+        dialog.show()
+    }
+
+    private fun updateConfirmVisibility(dialogBinding: DialogBackupPasswordBinding) {
+        val showConfirm = dialogBinding.switchEncrypt.isChecked &&
+            dialogBinding.checkConfirmPassword.isChecked
+        dialogBinding.passwordConfirmLayout.visibility =
+            if (showConfirm) View.VISIBLE else View.GONE
+        dialogBinding.passwordConfirmLayout.isEnabled = showConfirm
+        dialogBinding.passwordConfirm.isEnabled = showConfirm
+        if (!showConfirm) {
+            dialogBinding.passwordConfirm.text = null
+            dialogBinding.passwordConfirmLayout.error = null
+        }
+    }
+
+    private fun showImportPasswordDialog(onConfirmed: (CharArray) -> Unit) {
+        val dialogBinding = DialogImportPasswordBinding.inflate(LayoutInflater.from(this))
+        val dialog = MaterialAlertDialogBuilder(this)
+            .setTitle(R.string.import_password_title)
+            .setView(dialogBinding.root)
+            .setPositiveButton(R.string.ok_text, null)
+            .setNegativeButton(R.string.cancel_text, null)
+            .create()
+        dialog.setOnShowListener {
+            dialog.getButton(DialogInterface.BUTTON_POSITIVE).setOnClickListener {
+                val password = dialogBinding.password.text?.toString()?.toCharArray() ?: charArrayOf()
+                if (password.isEmpty()) {
+                    dialogBinding.password.error = getString(R.string.backup_password_required)
+                    return@setOnClickListener
+                }
+                dialog.dismiss()
+                onConfirmed(password)
+            }
+        }
+        dialog.show()
     }
 
     private fun showExportFolderChooserDialog() {
+        // Own dialog (fahrtenbuch-style): cancel / clear without entering the system tree UI.
         val titlePadding = TypedValue.applyDimension(
             TypedValue.COMPLEX_UNIT_DIP,
             24f,
@@ -311,6 +431,7 @@ class SettingsActivity : BaseActivity() {
             return
         }
         val uri = Uri.parse(uriString)
+        // Always derive from the tree URI so we show Download/Export, not only Export.
         val name = uriDisplayNameReader.treeLabel(uri)
             ?: getString(R.string.export_folder_label)
         settings.exportFolderDisplayName = name
@@ -320,65 +441,142 @@ class SettingsActivity : BaseActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, resultData: Intent?) {
         super.onActivityResult(requestCode, resultCode, resultData)
         if (resultCode != Activity.RESULT_OK) {
+            pendingExportPassword?.wipe()
+            pendingExportPassword = null
             return
         }
 
         when (requestCode) {
             WRITE_JSON_REQUEST_CODE, WRITE_KEY_URI_REQUEST_CODE -> {
                 val uri = resultData?.data ?: return
+                val password = pendingExportPassword
+                pendingExportPassword = null
                 lifecycleScope.launch {
-                    runExport(requestCode, uri)
+                    runExport(requestCode, uri, password)
                 }
             }
 
             READ_JSON_REQUEST_CODE -> {
                 val uri = resultData?.data ?: return
-                MaterialAlertDialogBuilder(this)
-                    .setTitle(R.string.import_json_file)
-                    .setMessage(R.string.import_json_file_warning)
-                    .setIcon(R.drawable.alert)
-                    .setPositiveButton(R.string.ok_text) { _: DialogInterface, _: Int ->
-                        lifecycleScope.launch {
-                            try {
-                                importFromUtil.importJsonFile(uri)
-                                Snackbar.make(
-                                    binding.rootView,
-                                    R.string.import_succeeded_text,
-                                    Snackbar.LENGTH_SHORT
-                                ).show()
-                            } catch (e: Exception) {
-                                Log.e(TAG, "Import JSON failed", e)
-                                Snackbar.make(
-                                    binding.rootView,
-                                    R.string.import_json_failed_text,
-                                    Snackbar.LENGTH_SHORT
-                                ).show()
-                            }
-                        }
-                    }
-                    .setNegativeButton(R.string.cancel_text, null)
-                    .show()
+                prepareImport(uri, isJson = true)
             }
 
             READ_KEY_URI_REQUEST_CODE -> {
                 val uri = resultData?.data ?: return
+                prepareImport(uri, isJson = false)
+            }
+        }
+    }
+
+    private suspend fun runExport(requestCode: Int, uri: Uri, password: CharArray?) {
+        try {
+            when (requestCode) {
+                WRITE_JSON_REQUEST_CODE -> importFromUtil.exportJsonFile(uri, password)
+                WRITE_KEY_URI_REQUEST_CODE -> importFromUtil.exportKeyUriFile(uri, password)
+            }
+            Snackbar.make(binding.rootView, R.string.export_succeeded_text, Snackbar.LENGTH_SHORT)
+                .show()
+        } catch (e: Exception) {
+            Log.e(TAG, "Export failed", e)
+            Snackbar.make(binding.rootView, R.string.export_failed_text, Snackbar.LENGTH_SHORT)
+                .show()
+        } finally {
+            password?.wipe()
+        }
+    }
+
+    private fun prepareImport(uri: Uri, isJson: Boolean) {
+        lifecycleScope.launch {
+            val encrypted = try {
+                importFromUtil.isEncryptedBackup(uri)
+            } catch (e: Exception) {
+                Log.e(TAG, "Cannot read import file", e)
+                Snackbar.make(
+                    binding.rootView,
+                    if (isJson) R.string.import_json_failed_text else R.string.import_key_uri_failed_text,
+                    Snackbar.LENGTH_SHORT
+                ).show()
+                return@launch
+            }
+            if (encrypted) {
+                showImportPasswordDialog { password ->
+                    if (isJson) {
+                        confirmAndImportJson(uri, password)
+                    } else {
+                        runKeyUriImport(uri, password)
+                    }
+                }
+            } else if (isJson) {
+                confirmAndImportJson(uri, null)
+            } else {
+                runKeyUriImport(uri, null)
+            }
+        }
+    }
+
+    private fun confirmAndImportJson(uri: Uri, password: CharArray?) {
+        MaterialAlertDialogBuilder(this)
+            .setTitle(R.string.import_json_file)
+            .setMessage(R.string.import_json_file_warning)
+            .setIcon(R.drawable.alert)
+            .setPositiveButton(R.string.ok_text) { _: DialogInterface, _: Int ->
                 lifecycleScope.launch {
                     try {
-                        importFromUtil.importKeyUriFile(uri)
+                        importFromUtil.importJsonFile(uri, password)
                         Snackbar.make(
                             binding.rootView,
                             R.string.import_succeeded_text,
                             Snackbar.LENGTH_SHORT
                         ).show()
-                    } catch (e: Exception) {
-                        Log.e(TAG, "Import Key uri failed", e)
+                    } catch (e: BackupEncryptionException) {
+                        Log.e(TAG, "Import JSON decrypt failed", e)
                         Snackbar.make(
                             binding.rootView,
-                            R.string.import_key_uri_failed_text,
+                            R.string.backup_decrypt_failed,
                             Snackbar.LENGTH_SHORT
                         ).show()
+                    } catch (e: Exception) {
+                        Log.e(TAG, "Import JSON failed", e)
+                        Snackbar.make(
+                            binding.rootView,
+                            R.string.import_json_failed_text,
+                            Snackbar.LENGTH_SHORT
+                        ).show()
+                    } finally {
+                        password?.wipe()
                     }
                 }
+            }
+            .setNegativeButton(R.string.cancel_text) { _, _ -> password?.wipe() }
+            .setOnCancelListener { password?.wipe() }
+            .show()
+    }
+
+    private fun runKeyUriImport(uri: Uri, password: CharArray?) {
+        lifecycleScope.launch {
+            try {
+                importFromUtil.importKeyUriFile(uri, password)
+                Snackbar.make(
+                    binding.rootView,
+                    R.string.import_succeeded_text,
+                    Snackbar.LENGTH_SHORT
+                ).show()
+            } catch (e: BackupEncryptionException) {
+                Log.e(TAG, "Import Key uri decrypt failed", e)
+                Snackbar.make(
+                    binding.rootView,
+                    R.string.backup_decrypt_failed,
+                    Snackbar.LENGTH_SHORT
+                ).show()
+            } catch (e: Exception) {
+                Log.e(TAG, "Import Key uri failed", e)
+                Snackbar.make(
+                    binding.rootView,
+                    R.string.import_key_uri_failed_text,
+                    Snackbar.LENGTH_SHORT
+                ).show()
+            } finally {
+                password?.wipe()
             }
         }
     }
@@ -415,6 +613,8 @@ class SettingsActivity : BaseActivity() {
             startActivityForResult(intent, requestCode)
         } catch (e: ActivityNotFoundException) {
             Log.e(TAG, "Cannot find activity", e)
+            pendingExportPassword?.wipe()
+            pendingExportPassword = null
             Toast.makeText(
                 applicationContext,
                 getString(R.string.launch_file_browser_failure),
