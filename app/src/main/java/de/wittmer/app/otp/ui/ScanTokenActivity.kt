@@ -9,7 +9,6 @@ import android.view.Surface
 import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.AspectRatio
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageAnalysis
@@ -42,7 +41,7 @@ private const val REQUEST_CODE_PERMISSIONS = 10
 private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
 
 @AndroidEntryPoint
-class ScanTokenActivity : AppCompatActivity() {
+class ScanTokenActivity : BaseActivity() {
 
     @Inject lateinit var tokenQRCodeDecoder: TokenQRCodeDecoder
 
@@ -66,11 +65,13 @@ class ScanTokenActivity : AppCompatActivity() {
         ViewCompat.setOnApplyWindowInsetsListener(binding.window) { view, windowInsets ->
             val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
             val marginParam = view.layoutParams as android.widget.FrameLayout.LayoutParams
+            val edge = (64 * resources.displayMetrics.density).toInt()
+            // Left/right: BaseActivity. Top/bottom clearance for the scan frame here.
             marginParam.setMargins(
-                (64 * resources.displayMetrics.density).toInt() + insets.left,
-                (64 * resources.displayMetrics.density).toInt() + insets.top,
-                (64 * resources.displayMetrics.density).toInt() + insets.right,
-                (64 * resources.displayMetrics.density).toInt() + insets.bottom
+                edge,
+                edge + insets.top,
+                edge,
+                edge + insets.bottom
             )
             view.layoutParams = marginParam
             windowInsets

@@ -3,11 +3,11 @@
 # Build and/or upload NetAigis OTP release artifacts (Pro only for now).
 #
 # Usage:
-#   ./helper/release.sh 4.0.3 --build
-#   FTOKEN_RELEASE=... ./helper/release.sh 4.0.3 --upload
-#   ./helper/release.sh 4.0.3 --upload-github
-#   FTOKEN_RELEASE=... ./helper/release.sh 4.0.3 --build --upload --upload-github
-#   FTOKEN_RELEASE=... ./helper/release.sh 4.0.3 --upload --force-upload
+#   ./helper/release.sh 4.1.0 --build
+#   FTOKEN_RELEASE=... ./helper/release.sh 4.1.0 --upload
+#   ./helper/release.sh 4.1.0 --upload-github
+#   FTOKEN_RELEASE=... ./helper/release.sh 4.1.0 --build --upload --upload-github
+#   FTOKEN_RELEASE=... ./helper/release.sh 4.1.0 --upload --force-upload
 #
 # Release notes come from app/src/main/res/raw/changelog.md (section ## VERSION).
 # Free edition builds/uploads are paused; Pro is the default release target.

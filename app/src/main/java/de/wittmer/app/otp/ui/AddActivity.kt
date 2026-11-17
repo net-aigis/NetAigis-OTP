@@ -33,7 +33,6 @@ import android.widget.ImageButton
 import android.widget.RadioButton
 import android.widget.Spinner
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.CompoundButtonCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -56,7 +55,7 @@ import java.util.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class AddActivity : AppCompatActivity(), View.OnClickListener, CompoundButton.OnCheckedChangeListener {
+class AddActivity : BaseActivity(), View.OnClickListener, CompoundButton.OnCheckedChangeListener {
 
     @Inject lateinit var otpTokenDatabase: OtpTokenDatabase
     @Inject lateinit var imageUtil: ImageUtil
@@ -88,6 +87,7 @@ class AddActivity : AppCompatActivity(), View.OnClickListener, CompoundButton.On
             val insets = windowInsets.getInsets(
                 WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.ime()
             )
+            // Left/right: BaseActivity. Bottom nav / IME here.
             view.setPadding(
                 view.paddingLeft,
                 view.paddingTop,

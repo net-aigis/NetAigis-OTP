@@ -47,11 +47,12 @@ app/build/outputs/apk/pro/debug/otp-debug.apk
 * Android SDK (minSDK 29)
 * Android Studio
 
-## Token list: Alias and icons
+## Token list: Alias, icons and categories
 
-- **Alias**: Optional display name in the token list (shown instead of the issuer). Does not affect OTP calculation.
-- **Icon**: Optional built-in icon name. Used when no custom token image is set.
+- **Alias**: Optional display name in the token list (shown instead of the issuer). Does not affect OTP calculation. Included in search. Can be carried in key URI as query parameter `alias`.
+- **Icon**: Optional built-in icon name (`iconKey`). Used when no custom token image is set. Can be carried in key URI as `icon` / `iconKey`.
 - **Automatic thumbnail resolution** (no custom image): **Icon** → **Alias** → **Issuer**. First match wins.
+- **Category**: Optional free-text group (e.g. Work / Personal) for organizing tokens. List filters: All, None (uncategorized), and each existing category. Stored in Room; currently not exported as a key-URI query parameter.
 
 Example: keep issuer `Ourcloud`, set alias `Nextcloud` for the list title and Nextcloud icon; or set **Icon** explicitly when alias/issuer matching is not enough.
 

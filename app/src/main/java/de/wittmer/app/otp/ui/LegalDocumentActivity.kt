@@ -14,7 +14,6 @@ import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RawRes
 import androidx.annotation.StringRes
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -22,7 +21,7 @@ import de.wittmer.app.otp.R
 import de.wittmer.app.otp.databinding.ActivityLegalDocumentBinding
 import de.wittmer.app.otp.util.LegalMarkdown
 
-class LegalDocumentActivity : AppCompatActivity() {
+class LegalDocumentActivity : BaseActivity() {
     private lateinit var binding: ActivityLegalDocumentBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,6 +36,7 @@ class LegalDocumentActivity : AppCompatActivity() {
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.rootView) { _, windowInsets ->
             val bars = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
+            // Left/right: BaseActivity. Top/bottom: toolbar + document.
             binding.appBar.setPadding(0, bars.top, 0, 0)
             val pad = resources.getDimensionPixelSize(R.dimen.space_3)
             binding.documentText.setPadding(pad, pad, pad, pad + bars.bottom)

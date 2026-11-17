@@ -34,7 +34,6 @@ import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
@@ -62,7 +61,7 @@ import de.wittmer.app.otp.util.setTokenImage
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class EditActivity : AppCompatActivity(), TextWatcher, View.OnClickListener {
+class EditActivity : BaseActivity(), TextWatcher, View.OnClickListener {
 
     @Inject lateinit var otpTokenDatabase: OtpTokenDatabase
     @Inject lateinit var imageUtil: ImageUtil
@@ -167,6 +166,7 @@ class EditActivity : AppCompatActivity(), TextWatcher, View.OnClickListener {
             val insets = windowInsets.getInsets(
                 WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.ime()
             )
+            // Left/right: BaseActivity. Bottom nav / IME here.
             view.setPadding(
                 view.paddingLeft,
                 view.paddingTop,

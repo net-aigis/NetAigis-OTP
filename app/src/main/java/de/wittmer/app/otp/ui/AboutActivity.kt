@@ -30,7 +30,6 @@ import android.text.method.LinkMovementMethod
 import android.widget.Toast
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.content.pm.PackageInfoCompat
 import androidx.core.text.HtmlCompat
@@ -41,7 +40,7 @@ import de.wittmer.app.otp.R
 import de.wittmer.app.otp.databinding.AboutBinding
 
 @AndroidEntryPoint
-class AboutActivity : AppCompatActivity() {
+class AboutActivity : BaseActivity() {
     private lateinit var binding: AboutBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,6 +55,7 @@ class AboutActivity : AppCompatActivity() {
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.rootView) { _, windowInsets ->
             val bars = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
+            // Left/right: BaseActivity. Top/bottom: toolbar + scroll.
             binding.appBar.setPadding(0, bars.top, 0, 0)
             val pad = resources.getDimensionPixelSize(R.dimen.space_1)
             binding.scrollContent.setPadding(pad, pad, pad, pad + bars.bottom)

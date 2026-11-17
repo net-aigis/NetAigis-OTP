@@ -1,0 +1,10 @@
+---
+description: Never add Co-authored-by trailers to git commits
+alwaysApply: true
+---
+
+# No Co-authored-by on commits
+
+Never add `Co-authored-by:` trailers to git commits in this repository — especially not `Co-authored-by: Cursor <cursoragent@cursor.com>`.
+
+Keep commit messages simple. If the environment injects a Co-authored-by trailer via `git commit` / `git commit --amend`, create the commit with `git commit-tree` and `git reset --soft` instead, then verify the message has no Co-authored-by line.

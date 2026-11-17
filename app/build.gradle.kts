@@ -14,16 +14,12 @@ base {
 
 val keystorePropertiesFile = rootProject.file("keystore.properties")
 val keystoreProperties = Properties()
-val requestedReleaseBuild = gradle.startParameter.taskNames.any {
-    it.contains("Release", ignoreCase = true)
-}
 
+// Signing is optional: F-Droid (and other CI) builds Release without a local
+// keystore.properties and signs the APK itself. Local release signing is applied
+// only when the file exists.
 if (keystorePropertiesFile.exists()) {
     keystorePropertiesFile.inputStream().use { keystoreProperties.load(it) }
-} else if (requestedReleaseBuild) {
-    throw GradleException(
-        "keystore.properties fehlt. Fuer Release-Builds releaseStoreFile, releaseStorePassword, releaseKeyAlias und releaseKeyPassword lokal setzen."
-    )
 }
 
 android {
@@ -115,6 +111,7 @@ dependencies {
     implementation(project(":text-drawable"))
     implementation(project(":token-data"))
     implementation(libs.app.compat)
+    implementation(libs.androidx.documentfile)
     implementation(libs.material)
     implementation(libs.zxing)
     implementation(libs.gson)

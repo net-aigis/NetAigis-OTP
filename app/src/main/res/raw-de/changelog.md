@@ -1,5 +1,12 @@
 # Änderungsprotokoll
 
+## 4.1.0 (31)
+
+- Konfigurierbarer Exportordner für Backups
+- Optional passwortverschlüsselter Export und Import
+- Screenshot-Schutz auf allen Screens, wenn der Screenshot-Modus aus ist
+- Querformat-Layout: Inhalt bleibt frei von seitlicher Navigationsleiste
+
 ## 4.0.3 (30)
 
 - Kontrast der Statusbar-Icons in About, Einstellungen und Rechtstexten korrigiert

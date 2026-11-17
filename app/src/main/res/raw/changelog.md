@@ -1,5 +1,12 @@
 # Changelog
 
+## 4.1.0 (31)
+
+- Configurable export folder for backups
+- Optional password-encrypted export and import
+- Screenshot protection on all screens when Screenshot mode is off
+- Fix landscape layout so content stays clear of side navigation
+
 ## 4.0.3 (30)
 
 - Fix status bar icon contrast on About, Settings and legal screens
