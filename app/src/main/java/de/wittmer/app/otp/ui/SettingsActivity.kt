@@ -11,7 +11,6 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
@@ -26,6 +25,7 @@ import de.wittmer.app.otp.data.legacy.ImportExportUtil
 import de.wittmer.app.otp.databinding.ActivitySettingsBinding
 import de.wittmer.app.otp.feature.FeatureAccess
 import de.wittmer.app.otp.util.Settings
+import de.wittmer.app.otp.util.applyScreenshotModeFromSettings
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -34,7 +34,7 @@ import javax.inject.Inject
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class SettingsActivity : AppCompatActivity() {
+class SettingsActivity : BaseActivity() {
     @Inject lateinit var importFromUtil: ImportExportUtil
     @Inject lateinit var settings: Settings
     @Inject lateinit var featureAccess: FeatureAccess
@@ -99,6 +99,7 @@ class SettingsActivity : AppCompatActivity() {
                 return@setOnCheckedChangeListener
             }
             settings.screenshotMode = isChecked
+            applyScreenshotModeFromSettings()
         }
 
         binding.switchRequireAuthentication.setOnCheckedChangeListener { _, isChecked ->

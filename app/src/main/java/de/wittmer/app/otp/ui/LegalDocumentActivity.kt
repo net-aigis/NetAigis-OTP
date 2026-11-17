@@ -14,7 +14,6 @@ import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RawRes
 import androidx.annotation.StringRes
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -22,7 +21,7 @@ import de.wittmer.app.otp.R
 import de.wittmer.app.otp.databinding.ActivityLegalDocumentBinding
 import de.wittmer.app.otp.util.LegalMarkdown
 
-class LegalDocumentActivity : AppCompatActivity() {
+class LegalDocumentActivity : BaseActivity() {
     private lateinit var binding: ActivityLegalDocumentBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {

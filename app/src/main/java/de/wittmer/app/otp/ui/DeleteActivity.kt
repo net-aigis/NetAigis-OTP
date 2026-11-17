@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
@@ -19,7 +18,7 @@ import de.wittmer.app.otp.util.setTokenImage
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class DeleteActivity : AppCompatActivity() {
+class DeleteActivity : BaseActivity() {
     @Inject lateinit var otpTokenDatabase: OtpTokenDatabase
     private lateinit var binding: DeleteBinding
 

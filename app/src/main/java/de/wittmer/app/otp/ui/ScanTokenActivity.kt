@@ -9,7 +9,6 @@ import android.view.Surface
 import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.AspectRatio
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageAnalysis
@@ -42,7 +41,7 @@ private const val REQUEST_CODE_PERMISSIONS = 10
 private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
 
 @AndroidEntryPoint
-class ScanTokenActivity : AppCompatActivity() {
+class ScanTokenActivity : BaseActivity() {
 
     @Inject lateinit var tokenQRCodeDecoder: TokenQRCodeDecoder
 

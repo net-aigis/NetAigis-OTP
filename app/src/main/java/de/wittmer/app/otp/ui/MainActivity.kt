@@ -42,12 +42,10 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.view.WindowManager
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
@@ -72,11 +70,12 @@ import de.wittmer.app.otp.databinding.MainBinding
 import de.wittmer.app.otp.feature.FeatureAccess
 import de.wittmer.app.otp.util.Settings
 import de.wittmer.app.otp.util.applyFixedScaleBackground
+import de.wittmer.app.otp.util.applyScreenshotModeFromSettings
 import javax.inject.Inject
 import kotlin.math.max
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
     @Inject lateinit var settings: Settings
     @Inject lateinit var featureAccess: FeatureAccess
     @Inject lateinit var tokenMigrationUtil: MigrationUtil
@@ -235,19 +234,8 @@ class MainActivity : AppCompatActivity() {
             intent.extras?.getBoolean(SCREENSHOT_MODE_EXTRA) == true
         ) {
             settings.screenshotMode = true
-        }
-        applyScreenshotMode()
-    }
-
-    private fun applyScreenshotMode() {
-        val allowScreenshots = featureAccess.screenshotModeEnabled && settings.screenshotMode
-        if (allowScreenshots) {
-            window.clearFlags(WindowManager.LayoutParams.FLAG_SECURE)
-        } else {
-            window.setFlags(
-                WindowManager.LayoutParams.FLAG_SECURE,
-                WindowManager.LayoutParams.FLAG_SECURE
-            )
+            // Re-apply after shortcut may have enabled screenshots (BaseActivity already ran).
+            applyScreenshotModeFromSettings()
         }
     }
 
@@ -261,11 +249,6 @@ class MainActivity : AppCompatActivity() {
         super.onStart()
 
         viewModel.onSessionStart()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        applyScreenshotMode()
     }
     
     override fun onStop() {

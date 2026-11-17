@@ -24,7 +24,6 @@ import android.graphics.Bitmap
 import android.graphics.Color
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
@@ -41,7 +40,7 @@ import de.wittmer.app.otp.util.displayName
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class ShareQrCodeActivity : AppCompatActivity() {
+class ShareQrCodeActivity : BaseActivity() {
 
     @Inject
     lateinit var otpTokenDatabase: OtpTokenDatabase

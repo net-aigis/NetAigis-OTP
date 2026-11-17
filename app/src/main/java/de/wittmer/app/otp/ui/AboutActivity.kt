@@ -30,7 +30,6 @@ import android.text.method.LinkMovementMethod
 import android.widget.Toast
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.content.pm.PackageInfoCompat
 import androidx.core.text.HtmlCompat
@@ -41,7 +40,7 @@ import de.wittmer.app.otp.R
 import de.wittmer.app.otp.databinding.AboutBinding
 
 @AndroidEntryPoint
-class AboutActivity : AppCompatActivity() {
+class AboutActivity : BaseActivity() {
     private lateinit var binding: AboutBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
