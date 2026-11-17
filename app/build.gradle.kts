@@ -111,6 +111,7 @@ dependencies {
     implementation(project(":text-drawable"))
     implementation(project(":token-data"))
     implementation(libs.app.compat)
+    implementation(libs.androidx.documentfile)
     implementation(libs.material)
     implementation(libs.zxing)
     implementation(libs.gson)

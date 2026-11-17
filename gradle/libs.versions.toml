@@ -21,9 +21,11 @@ androidxTruth = "1.7.0"
 espresso = "3.7.0"
 guava = "33.4.0-android"
 desugarJdkLibs = "2.1.5"
+documentfile = "1.1.0"
 
 [libraries]
 app-compat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appCompat" }
+androidx-documentfile = { group = "androidx.documentfile", name = "documentfile", version.ref = "documentfile" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 zxing = { group = "com.google.zxing", name = "core", version.ref = "zxing" }
 gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }

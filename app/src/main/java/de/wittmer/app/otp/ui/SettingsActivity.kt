@@ -5,12 +5,16 @@ import android.content.ActivityNotFoundException
 import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.util.TypedValue
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
@@ -24,7 +28,10 @@ import de.wittmer.app.otp.R
 import de.wittmer.app.otp.data.legacy.ImportExportUtil
 import de.wittmer.app.otp.databinding.ActivitySettingsBinding
 import de.wittmer.app.otp.feature.FeatureAccess
+import de.wittmer.app.otp.util.DocumentTreeWriter
 import de.wittmer.app.otp.util.Settings
+import de.wittmer.app.otp.util.StoragePermissionService
+import de.wittmer.app.otp.util.UriDisplayNameReader
 import de.wittmer.app.otp.util.applyScreenshotModeFromSettings
 import java.text.DateFormat
 import java.text.SimpleDateFormat
@@ -40,9 +47,54 @@ class SettingsActivity : BaseActivity() {
     @Inject lateinit var featureAccess: FeatureAccess
 
     private lateinit var binding: ActivitySettingsBinding
+    private lateinit var storagePermissionService: StoragePermissionService
+    private lateinit var documentTreeWriter: DocumentTreeWriter
+    private lateinit var uriDisplayNameReader: UriDisplayNameReader
     private var updatingSwitches = false
 
     private val dateFormatter: DateFormat = SimpleDateFormat("yyyyMMdd_HHmm", Locale.US)
+
+    private val exportDirectoryPicker = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        // Back / dismiss in the system picker → RESULT_CANCELED, keep previous folder.
+        if (result.resultCode != Activity.RESULT_OK) {
+            return@registerForActivityResult
+        }
+        val data = result.data ?: return@registerForActivityResult
+        val uri = data.data ?: return@registerForActivityResult
+        val takeFlags = data.flags and (
+            Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION
+            )
+        try {
+            storagePermissionService.persistTreePermission(uri, takeFlags)
+            val usable = documentTreeWriter.ensureDirectory(uri).success ||
+                storagePermissionService.hasPersistedPermission(uri)
+            if (!usable) {
+                storagePermissionService.clearTreePermission()
+                Snackbar.make(
+                    binding.rootView,
+                    R.string.export_folder_unavailable,
+                    Snackbar.LENGTH_LONG
+                ).show()
+            } else {
+                Snackbar.make(
+                    binding.rootView,
+                    R.string.export_folder_selected,
+                    Snackbar.LENGTH_SHORT
+                ).show()
+            }
+            refreshExportFolderLabel()
+        } catch (e: SecurityException) {
+            Log.e(TAG, "Cannot persist export folder", e)
+            Snackbar.make(
+                binding.rootView,
+                R.string.export_folder_unavailable,
+                Snackbar.LENGTH_LONG
+            ).show()
+            refreshExportFolderLabel()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,6 +105,9 @@ class SettingsActivity : BaseActivity() {
         )
         binding = ActivitySettingsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        storagePermissionService = StoragePermissionService(this, settings)
+        documentTreeWriter = DocumentTreeWriter(this)
+        uriDisplayNameReader = UriDisplayNameReader(this)
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.rootView) { _, windowInsets ->
             val bars = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -68,6 +123,7 @@ class SettingsActivity : BaseActivity() {
 
         bindBehaviorSwitches()
         bindImportExport()
+        refreshExportFolderLabel()
     }
 
     private fun bindBehaviorSwitches() {
@@ -106,7 +162,6 @@ class SettingsActivity : BaseActivity() {
             if (updatingSwitches) {
                 return@setOnCheckedChangeListener
             }
-            // Revert until biometric confirms; then apply.
             updatingSwitches = true
             binding.switchRequireAuthentication.isChecked = !isChecked
             updatingSwitches = false
@@ -119,6 +174,9 @@ class SettingsActivity : BaseActivity() {
     }
 
     private fun bindImportExport() {
+        binding.exportFolderValue.setOnClickListener {
+            showExportFolderChooserDialog()
+        }
         binding.btnImportJson.setOnClickListener {
             performFileSearch(READ_JSON_REQUEST_CODE)
         }
@@ -126,11 +184,137 @@ class SettingsActivity : BaseActivity() {
             performFileSearch(READ_KEY_URI_REQUEST_CODE)
         }
         binding.btnExportJson.setOnClickListener {
-            createFile("application/json", "netaigis-otp-backup", "json", WRITE_JSON_REQUEST_CODE)
+            startExport(
+                mimeType = "application/json",
+                baseName = "netaigis-otp-backup",
+                fileExtension = "json",
+                requestCode = WRITE_JSON_REQUEST_CODE
+            )
         }
         binding.btnExportKeyUri.setOnClickListener {
-            createFile("text/plain", "netaigis-otp-backup", "txt", WRITE_KEY_URI_REQUEST_CODE)
+            startExport(
+                mimeType = "text/plain",
+                baseName = "netaigis-otp-keyuri",
+                fileExtension = "txt",
+                requestCode = WRITE_KEY_URI_REQUEST_CODE
+            )
         }
+    }
+
+    private fun startExport(
+        mimeType: String,
+        baseName: String,
+        fileExtension: String,
+        requestCode: Int
+    ) {
+        val displayName = "${baseName}_${dateFormatter.format(Date())}.$fileExtension"
+        val treeUriString = settings.exportFolderUri
+        if (!treeUriString.isNullOrBlank()) {
+            lifecycleScope.launch {
+                val treeUri = Uri.parse(treeUriString)
+                val ensure = documentTreeWriter.ensureDirectory(treeUri)
+                if (!ensure.success) {
+                    storagePermissionService.clearTreePermission()
+                    refreshExportFolderLabel()
+                    Snackbar.make(
+                        binding.rootView,
+                        R.string.export_folder_unavailable,
+                        Snackbar.LENGTH_LONG
+                    ).show()
+                    return@launch
+                }
+                val created = documentTreeWriter.createTextFile(
+                    treeUri,
+                    displayName,
+                    mimeType
+                )
+                val fileUri = created.uri
+                if (!created.success || fileUri == null) {
+                    Snackbar.make(
+                        binding.rootView,
+                        R.string.export_folder_unavailable,
+                        Snackbar.LENGTH_LONG
+                    ).show()
+                    return@launch
+                }
+                runExport(requestCode, fileUri)
+            }
+        } else {
+            createFile(mimeType, baseName, fileExtension, requestCode)
+        }
+    }
+
+    private suspend fun runExport(requestCode: Int, uri: Uri) {
+        when (requestCode) {
+            WRITE_JSON_REQUEST_CODE -> importFromUtil.exportJsonFile(uri)
+            WRITE_KEY_URI_REQUEST_CODE -> importFromUtil.exportKeyUriFile(uri)
+        }
+        Snackbar.make(binding.rootView, R.string.export_succeeded_text, Snackbar.LENGTH_SHORT)
+            .show()
+    }
+
+    private fun showExportFolderChooserDialog() {
+        val titlePadding = TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_DIP,
+            24f,
+            resources.displayMetrics
+        ).toInt()
+        val titleView = TextView(this).apply {
+            text = getString(R.string.export_folder_dialog_title)
+            setTextColor(ContextCompat.getColor(this@SettingsActivity, R.color.secondary))
+            setTextSize(TypedValue.COMPLEX_UNIT_SP, 20f)
+            setPadding(titlePadding, titlePadding, titlePadding, titlePadding / 2)
+        }
+        val dialog = MaterialAlertDialogBuilder(this)
+            .setCustomTitle(titleView)
+            .setMessage(R.string.export_folder_dialog_text)
+            .setPositiveButton(R.string.export_folder_choose) { _, _ ->
+                launchExportDirectoryPicker()
+            }
+            .setNegativeButton(R.string.cancel_text, null)
+            .setNeutralButton(R.string.export_folder_clear) { _, _ ->
+                storagePermissionService.clearTreePermission()
+                refreshExportFolderLabel()
+            }
+            .create()
+        dialog.show()
+        dialog.getButton(DialogInterface.BUTTON_NEUTRAL).isEnabled =
+            !settings.exportFolderUri.isNullOrBlank()
+    }
+
+    private fun launchExportDirectoryPicker() {
+        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT_TREE).apply {
+            addFlags(
+                Intent.FLAG_GRANT_READ_URI_PERMISSION or
+                    Intent.FLAG_GRANT_WRITE_URI_PERMISSION or
+                    Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION or
+                    Intent.FLAG_GRANT_PREFIX_URI_PERMISSION
+            )
+        }
+        try {
+            exportDirectoryPicker.launch(intent)
+        } catch (e: ActivityNotFoundException) {
+            Log.e(TAG, "Cannot find activity", e)
+            Toast.makeText(
+                applicationContext,
+                getString(R.string.launch_file_browser_failure),
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+    }
+
+    private fun refreshExportFolderLabel() {
+        val uriString = settings.exportFolderUri
+        if (uriString.isNullOrBlank()) {
+            settings.exportFolderDisplayName = null
+            binding.exportFolderValue.setText(R.string.export_folder_not_set)
+            return
+        }
+        val uri = Uri.parse(uriString)
+        val name = uriDisplayNameReader.treeLabel(uri)
+            ?: getString(R.string.export_folder_label)
+        settings.exportFolderDisplayName = name
+        binding.exportFolderValue.setText(name)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, resultData: Intent?) {
@@ -140,12 +324,10 @@ class SettingsActivity : BaseActivity() {
         }
 
         when (requestCode) {
-            WRITE_JSON_REQUEST_CODE -> {
+            WRITE_JSON_REQUEST_CODE, WRITE_KEY_URI_REQUEST_CODE -> {
+                val uri = resultData?.data ?: return
                 lifecycleScope.launch {
-                    val uri = resultData?.data ?: return@launch
-                    importFromUtil.exportJsonFile(uri)
-                    Snackbar.make(binding.rootView, R.string.export_succeeded_text, Snackbar.LENGTH_SHORT)
-                        .show()
+                    runExport(requestCode, uri)
                 }
             }
 
@@ -178,18 +360,9 @@ class SettingsActivity : BaseActivity() {
                     .show()
             }
 
-            WRITE_KEY_URI_REQUEST_CODE -> {
-                lifecycleScope.launch {
-                    val uri = resultData?.data ?: return@launch
-                    importFromUtil.exportKeyUriFile(uri)
-                    Snackbar.make(binding.rootView, R.string.export_succeeded_text, Snackbar.LENGTH_SHORT)
-                        .show()
-                }
-            }
-
             READ_KEY_URI_REQUEST_CODE -> {
+                val uri = resultData?.data ?: return
                 lifecycleScope.launch {
-                    val uri = resultData?.data ?: return@launch
                     try {
                         importFromUtil.importKeyUriFile(uri)
                         Snackbar.make(

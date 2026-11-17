@@ -104,6 +104,16 @@
     <string name="import_key_uri_format">Import key URI format</string>
     <string name="export_json_format">Export JSON format</string>
     <string name="export_key_uri_format">Export key URI format</string>
+    <string name="export_folder_label">Export folder</string>
+    <string name="export_folder_not_set">Please select</string>
+    <string name="export_folder_choose">Choose export folder</string>
+    <string name="export_folder_clear">Clear</string>
+    <string name="export_folder_set">%1$s</string>
+    <string name="export_folder_selected">Export folder selected and ready.</string>
+    <string name="export_folder_unavailable">Export folder cannot be used. Please choose it again.</string>
+    <string name="export_folder_hint">Recommendation: create or select a folder such as Download/NetAigis-OTP.</string>
+    <string name="export_folder_dialog_title">Select export folder</string>
+    <string name="export_folder_dialog_text">Recommendation: create or select a folder such as Download/NetAigis-OTP. You can cancel here without changing the current folder.</string>
     <string name="add_token_success">The token was successfully added</string>
     <string name="copy_to_clipboard">Copy to clipboard</string>
     <string name="require_authentication">Require authentication</string>
