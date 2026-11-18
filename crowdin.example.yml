@@ -1,18 +1,70 @@
-"project_id":         "417526"
-"api_token":          "-removed-"
-"base_path":          ""
-"preserve_hierarchy": false
-files:                [
-{
-  "source":           "app/src/main/res/values/strings.xml",
-  "translation":      "app/src/main/res/values-%android_code%/strings.xml",
-},
-{
-  "source":           "fastlane/metadata/android/en-US/short_description.txt",
-  "translation":      "fastlane/metadata/android/%locale%/short_description.txt",
-},
-{
-  "source":           "fastlane/metadata/android/en-US/full_description.txt",
-  "translation":      "fastlane/metadata/android/%locale%/full_description.txt",
-}
+"project_id": "947437"
+"api_token": "-removed-"
+"base_path": ""
+"preserve_hierarchy": true
+files: [
+  {
+    "source": "app/src/main/res/values/strings.xml",
+    "dest": "/strings.xml",
+    "type": "android",
+    "translation": "app/src/main/res/values-%android_code%/strings.xml",
+    "languages_mapping": {
+      "android_code": {
+        "id": "id-rID",
+        "he": "iw-rHE"
+      }
+    }
+  },
+  {
+    "source": "fastlane/metadata/android/en-US/short_description.txt",
+    "dest": "/short_description.txt",
+    "type": "html",
+    "content_segmentation": 0,
+    "translation": "fastlane/metadata/android/%locale%/short_description.txt",
+    "languages_mapping": {
+      "locale": {
+        "af": "af-ZA",
+        "ca": "ca-ES",
+        "cs": "cs-CZ",
+        "de": "de-DE",
+        "eu": "eu-ES",
+        "fr": "fr-FR",
+        "he": "iw-HE",
+        "hu": "hu-HU",
+        "id": "id-ID",
+        "it": "it-IT",
+        "ja": "ja-JP",
+        "pl": "pl-PL",
+        "ru": "ru-RU",
+        "tr": "tr-TR",
+        "uk": "uk-UA"
+      }
+    }
+  },
+  {
+    "source": "fastlane/metadata/android/en-US/full_description.txt",
+    "dest": "/full_description.txt",
+    "type": "html",
+    "content_segmentation": 0,
+    "translation": "fastlane/metadata/android/%locale%/full_description.txt",
+    "languages_mapping": {
+      "locale": {
+        "af": "af-ZA",
+        "ca": "ca-ES",
+        "cs": "cs-CZ",
+        "de": "de-DE",
+        "eu": "eu-ES",
+        "fr": "fr-FR",
+        "he": "iw-HE",
+        "hu": "hu-HU",
+        "id": "id-ID",
+        "it": "it-IT",
+        "ja": "ja-JP",
+        "pl": "pl-PL",
+        "ru": "ru-RU",
+        "tr": "tr-TR",
+        "uk": "uk-UA"
+      }
+    }
+  }
 ]

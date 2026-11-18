@@ -9,8 +9,21 @@
     <string name="add_token">Tambah Token</string>
     <string name="scan_qr_code">Pindai Kode QR</string>
     <string name="interval">Interval</string>
-    <string name="counter">Counter</string>
+    <string name="counter">Penghitung</string>
     <string name="issuer">Penerbit</string>
+    <string name="issuer_edit_warning">Sebaiknya ubah alias saja. Penerbit berasal dari layanan yang menerbitkan token.</string>
+    <string name="field_help">Bantuan</string>
+    <string name="field_help_issuer">Nama layanan yang menerbitkan token ini (misalnya GitHub). Sebaiknya gunakan nilai dari layanan; gunakan Alias untuk nama pilihan Anda.</string>
+    <string name="field_help_account">Nama akun yang tertaut ke token ini, biasanya alamat email atau nama pengguna.</string>
+    <string name="field_help_alias">Nama tampilan opsional yang muncul di daftar sebagai pengganti penerbit. Jika ikon belum ditetapkan, alias juga dipakai untuk pencocokan ikon otomatis sebelum penerbit. Berguna jika beberapa token memiliki penerbit yang sama.</string>
+    <string name="field_help_category">Grup opsional untuk mengatur token dalam daftar (misalnya Kerja atau Pribadi).</string>
+    <string name="field_help_icon">Nama ikon bawaan opsional. Jika tidak ada gambar khusus, ikon ini diprioritaskan daripada Alias dan Penerbit untuk gambar mini token.</string>
+    <string name="field_help_secret">Rahasia bersama dalam enkode Base32. Layanan dan aplikasi ini menggunakannya untuk membuat kode sekali pakai yang sama. Jaga kerahasiaannya.</string>
+    <string name="field_help_type">TOTP membuat kode baru setiap beberapa detik (paling umum). HOTP membuat kode baru setiap kali penghitung bertambah.</string>
+    <string name="field_help_digits">Jumlah digit kode sekali pakai. Kebanyakan layanan menggunakan 6 digit; beberapa menggunakan 7 atau 8. Harus sama dengan pengaturan layanan.</string>
+    <string name="field_help_algorithm">Hash HMAC untuk menghitung kode (SHA1, SHA256, atau SHA512). Harus sama dengan layanan; biasanya SHA1 adalah nilai bawaan.</string>
+    <string name="field_help_interval">Untuk TOTP, jumlah detik setiap kode berlaku. Biasanya 30 detik. Harus sama dengan pengaturan layanan.</string>
+    <string name="field_help_counter">Untuk HOTP, nilai penghitung saat ini. Nilainya harus tetap tersinkron dengan layanan agar kode cocok.</string>
     <string name="account">Akun</string>
     <string name="alias">Alias</string>
     <string name="icon">Ikon</string>
@@ -21,13 +34,43 @@
     <string name="digits">Digit</string>
     <string name="save">Simpan</string>
     <string name="code_copied">Kode telah disalin ke papan klip.</string>
-
-<string name="about_copyright">© 2013 - Red Hat, Inc., et al.
+    <string name="action_settings">Setelan</string>
+    <string name="action_about">Tentang</string>
+    <string name="action_imprint">Informasi hukum</string>
+    <string name="action_privacy">Kebijakan privasi</string>
+    <string name="action_app_license">Lisensi</string>
+    <string name="action_open_source_licenses">Lisensi sumber terbuka</string>
+    <string name="screen_imprint">Informasi hukum</string>
+    <string name="screen_privacy">Kebijakan privasi</string>
+    <string name="screen_app_license">Lisensi</string>
+    <string name="screen_open_source_licenses">Lisensi sumber terbuka</string>
+    <string name="settings_section_behavior">Perilaku</string>
+    <string name="settings_section_import_export">Impor / Ekspor</string>
+    <string name="screenshot_mode_pro_only">Mode tangkapan layar tersedia di edisi Pro.</string>
+    <string name="about_version_label">Versi</string>
+    <string name="about_version_copied">Versi disalin ke papan klip</string>
+    <string name="about_changelog_label">Catatan perubahan</string>
+    <string name="about_changelog_summary">Yang baru</string>
+    <string name="screen_changelog">Catatan perubahan</string>
+    <string name="about_github_summary">Kode sumber, masalah, dan informasi</string>
+    <string name="about_license_summary">NetAigis OTP dilisensikan dengan Apache 2.0</string>
+    <string name="about_open_source_licenses_summary">Lisensi komponen pihak ketiga</string>
+    <string name="about_imprint_summary">Informasi penyedia dan hukum</string>
+    <string name="about_privacy_summary">Cara aplikasi ini menangani data</string>
+    <string name="about_development_section">Pengembangan NetAigis</string>
+    <string name="about_email_us">Kirim email</string>
+    <string name="about_visit_website">Kunjungi situs web kami</string>
+    <string name="about_support_section">Dukungan</string>
+    <string name="about_support_rate">Beri rating</string>
+    <string name="about_support_rate_summary">Dukung kami dengan memberikan ulasan di Google Play Store</string>
+    <string name="about_support_donate">Donasi</string>
+    <string name="about_support_donate_summary">Dukung pengembangan dengan berdonasi</string>
+    <string name="about_support_translate">Terjemahkan</string>
+    <string name="about_support_translate_summary">Bantu menerjemahkan NetAigis OTP di Crowdin</string>
+    <string name="about_copyright">© 2013 - Red Hat, Inc. dan lainnya
 © 2016 - Liberty
 © 2026 - &lt;a href=&quot;https://net-aigis.de/&quot;&gt;NetAigis&lt;/a&gt;</string>
-
-<string name="error_camera_open">Terjadi kesalahan saat membuka kamera!</string>
-
+    <string name="error_camera_open">Terjadi kesalahan saat membuka kamera!</string>
     <string name="delete_summary">Ini adalah kesempatan terakhir Anda: jika Anda menghapus token ini, itu akan hilang selamanya. Itu tidak akan dinonaktifkan di server.</string>
     <string name="delete_question">Hapus token ini?</string>
     <string name="import_text">Impor</string>
@@ -40,12 +83,31 @@
     <string name="import_json_file">Impor file JSON</string>
     <string name="import_json_file_warning">Semua token yang ada akan dihapus dan digantikan setelah impor.</string>
     <string name="camera_permission_denied_text">Izin kamera ditolak</string>
-    <string name="ok_text">Ok</string>
+    <string name="ok_text">Oke</string>
     <string name="cancel_text">Batal</string>
     <string name="import_json_format">Format file JSON untuk impor</string>
     <string name="import_key_uri_format">Format file URI key untuk impor</string>
     <string name="export_json_format">Format file JSON untuk ekspor</string>
     <string name="export_key_uri_format">Format file URI key untuk ekspor</string>
+    <string name="export_folder_label">Folder ekspor</string>
+    <string name="export_folder_not_set">Silakan pilih</string>
+    <string name="export_folder_choose">Pilih folder ekspor</string>
+    <string name="export_folder_clear">Hapus</string>
+    <string name="export_folder_selected">Folder ekspor dipilih dan siap digunakan.</string>
+    <string name="export_folder_unavailable">Folder ekspor tidak dapat digunakan. Silakan pilih ulang.</string>
+    <string name="export_folder_hint">Saran: buat atau pilih folder seperti Download/NetAigis-OTP.</string>
+    <string name="export_folder_dialog_title">Pilih folder ekspor</string>
+    <string name="export_folder_dialog_text">Saran: buat atau pilih folder seperti Download/NetAigis-OTP. Anda dapat membatalkan tanpa mengubah folder saat ini.</string>
+    <string name="export_encrypt">Enkripsi dengan kata sandi</string>
+    <string name="import_password_title">Cadangan terenkripsi</string>
+    <string name="backup_password">Kata sandi</string>
+    <string name="backup_password_confirm">Konfirmasi kata sandi</string>
+    <string name="backup_password_confirm_manual">Konfirmasi kata sandi (masukkan manual)</string>
+    <string name="backup_password_keepass_hint">Anda dapat mengisinya dari KeePassDX melalui Isi Otomatis.</string>
+    <string name="backup_password_mismatch">Kata sandi tidak cocok.</string>
+    <string name="backup_password_required">Masukkan kata sandi untuk mengenkripsi cadangan.</string>
+    <string name="backup_decrypt_failed">Kata sandi salah atau cadangan rusak.</string>
+    <string name="export_failed_text">Ekspor gagal.</string>
     <string name="add_token_success">Token berhasil ditambahkan</string>
     <string name="copy_to_clipboard">Salin ke papan klip</string>
     <string name="require_authentication">Memerlukan autentikasi</string>
@@ -56,21 +118,17 @@
     <string name="authentication_dialog_title">Autentikasi diperlukan</string>
     <string name="authentication_dialog_subtitle">Harap gunakan biometrik atau PIN untuk mengautentikasi NetAigis OTP</string>
     <string name="unable_to_authenticate">Tidak dapat mengautentikasi. Apakah Anda mengaktifkan kunci layar dengan PIN / biometrik?</string>
-
-    <string name="five" translatable="false">5</string>
-    <string name="six" translatable="false">6</string>
-    <string name="seven" translatable="false">7</string>
-    <string name="eight" translatable="false">8</string>
-    <string name="issuer_hint" translatable="false">contoh@contoh.com</string>
-    <string name="label_hint" translatable="false">eb40924b-1d13-4807-9a76-30eb7ffa7eba</string>
     <string name="remove_user_token_image">Hapus gambar token pengguna</string>
     <string name="fail_to_add_image">Gagal menambahkan gambar</string>
     <string name="launch_file_browser_failure">Tidak dapat meluncurkan penjelajah file sistem. Kemungkinan masalah OS.</string>
     <string name="share_qr_code">Bagikan Kode QR</string>
     <string name="screenshot_mode">Mode tangkapan layar</string>
-    <string name="launch_with_screenshot_enabled">Luncurkan dengan tangkapan layar aktif</string>
     <string name="token_details">Detail Token</string>
+    <string name="click_to_display">Ketuk untuk menampilkan</string>
     <string name="share_to_other_apps">Bagikan ke aplikasi lain</string>
+    <string name="category">Kategori</string>
+    <string name="all_categories">Semua kategori</string>
+    <string name="uncategorized">Tanpa kategori</string>
     <string name="category_tab_all">Semua</string>
     <string name="category_tab_none">Tidak ada</string>
 </resources>

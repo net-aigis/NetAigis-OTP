@@ -1,0 +1,27 @@
+NetAigis OTP menambahkan lapisan keamanan kedua untuk akun online Anda.
+Aplikasi ini membuat kata sandi sekali pakai (OTP) di perangkat untuk digunakan bersama kata sandi biasa.
+Kode tetap berfungsi secara offline, termasuk dalam mode pesawat.
+
+Tambahkan token dengan memindai kode QR atau memasukkan konfigurasi secara manual.
+NetAigis OTP menerapkan standar terbuka TOTP (RFC 6238) dan HOTP (RFC 4226), sehingga berfungsi dengan Google, GitHub, Nextcloud, Forgejo, dan banyak layanan lainnya.
+
+Dibandingkan FreeOTP+, NetAigis OTP berfokus pada pengaturan token pribadi yang lebih jelas:
+<ul>
+    <li><b>Alias</b> — nama tampilan opsional di daftar sebagai pengganti penerbit; tidak mengubah perhitungan OTP dan disertakan dalam pencarian</li>
+    <li><b>Ikon</b> — ikon bawaan opsional yang digunakan jika gambar token khusus tidak ditetapkan</li>
+    <li><b>Kategori</b> — grup opsional (misalnya Kerja atau Pribadi) dengan filter daftar (Semua / Tidak ada / per kategori)</li>
+    <li>Pemilihan gambar mini tanpa gambar khusus: Ikon → Alias → Penerbit</li>
+</ul>
+
+<b>Fitur lainnya:</b>
+<ul>
+    <li>Pindai kode QR dengan CameraX</li>
+    <li>Ekspor dan impor token (JSON / URI kunci) melalui Storage Access Framework</li>
+    <li>Desain Material dengan dukungan tema gelap</li>
+    <li>Cari token</li>
+    <li>Detail dan pengeditan token dengan bantuan kolom</li>
+    <li>Kunci biometrik / PIN opsional untuk membuka aplikasi</li>
+    <li>Ikon penerbit offline untuk banyak layanan terkenal</li>
+</ul>
+
+NetAigis OTP didasarkan pada fork FreeOTP+ dan dikelola oleh <a href="https://net-aigis.de/">NetAigis</a>.

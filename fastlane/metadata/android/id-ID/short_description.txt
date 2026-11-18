@@ -1,0 +1,1 @@
+Autentikator 2FA dengan TOTP/HOTP, alias token, ikon, dan kategori

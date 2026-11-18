@@ -1,1 +1,1 @@
-Kétfaktoros hitelesítő (2FA) TOTP- és HOTP-egyszeri jelszavakkal
+2FA-hitelesítő TOTP/HOTP-kódokkal, tokenaliasokkal, ikonokkal és kategóriákkal

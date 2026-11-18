@@ -67,17 +67,12 @@ import de.wittmer.app.otp.data.MigrationUtil
 import de.wittmer.app.otp.data.OtpTokenDatabase
 import de.wittmer.app.otp.data.OtpTokenFactory
 import de.wittmer.app.otp.databinding.MainBinding
-import de.wittmer.app.otp.feature.FeatureAccess
-import de.wittmer.app.otp.util.Settings
 import de.wittmer.app.otp.util.applyFixedScaleBackground
-import de.wittmer.app.otp.util.applyScreenshotModeFromSettings
 import javax.inject.Inject
 import kotlin.math.max
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity() {
-    @Inject lateinit var settings: Settings
-    @Inject lateinit var featureAccess: FeatureAccess
     @Inject lateinit var tokenMigrationUtil: MigrationUtil
     @Inject lateinit var otpTokenDatabase: OtpTokenDatabase
     @Inject lateinit var tokenListAdapter: TokenListAdapter
@@ -229,15 +224,6 @@ class MainActivity : BaseActivity() {
         }
         binding.scanTokenFab.setOnClickListener {
             startActivity(Intent(this, ScanTokenActivity::class.java))
-        }
-
-        // Pro shortcut can turn screenshot mode on; Free always stays secure.
-        if (featureAccess.screenshotModeEnabled &&
-            intent.extras?.getBoolean(SCREENSHOT_MODE_EXTRA) == true
-        ) {
-            settings.screenshotMode = true
-            // Re-apply after shortcut may have enabled screenshots (BaseActivity already ran).
-            applyScreenshotModeFromSettings()
         }
     }
 
@@ -465,7 +451,6 @@ class MainActivity : BaseActivity() {
 
     companion object {
         private val TAG = MainActivity::class.java.simpleName
-        const val SCREENSHOT_MODE_EXTRA = "screenshot_mode"
         const val SHARE_FROM_PACKAGE_NAME_INTENT_EXTRA = "shareFromPackageName"
     }
 }

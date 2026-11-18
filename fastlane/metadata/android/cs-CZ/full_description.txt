@@ -1,19 +1,27 @@
-NetAigis OTP přidává druhou vrstvu zabezpečení k vašim online účtům.
-Aplikace generuje jednorázová hesla (OTP) na zařízení, která používáte spolu s běžným heslem.
-Kódy fungují offline, včetně režimu Letadlo.
+NetAigis OTP přidává další vrstvu zabezpečení vašich online účtů.
+V zařízení generuje jednorázová hesla (OTP), která používáte spolu s běžným heslem.
+Kódy fungují i bez připojení k internetu, včetně režimu Letadlo.
 
 Tokeny přidáte naskenováním QR kódu nebo ručním zadáním konfigurace.
-NetAigis OTP implementuje otevřené standardy TOTP (RFC 6238) a HOTP (RFC 4226) a funguje s Google, GitHub, Nextcloud, Forgejo a mnoha dalšími službami.
+NetAigis OTP implementuje otevřené standardy TOTP (RFC 6238) a HOTP (RFC 4226), takže funguje se službami Google, GitHub, Nextcloud, Forgejo a mnoha dalšími.
 
-<b>Funkce:</b>
+Oproti FreeOTP+ se NetAigis OTP zaměřuje na přehlednější osobní uspořádání tokenů:
 <ul>
-<li>Skenování QR kódů (CameraX)</li>
-<li>Export a import tokenů (JSON / key URI) přes Storage Access Framework</li>
-<li>Material Design s tmavým motivem</li>
-<li>Vyhledávání tokenů</li>
-<li>Podrobnosti a úprava tokenů</li>
-<li>Volitelné biometrické / PIN uzamčení při spuštění</li>
-<li>Offline ikony vydavatelů pro mnoho známých služeb</li>
+    <li><b>Alias</b> — volitelný název zobrazovaný v seznamu místo vydavatele; nemění výpočet OTP a lze jej vyhledávat</li>
+    <li><b>Ikona</b> — volitelná vestavěná ikona, která se použije, pokud není nastaven vlastní obrázek tokenu</li>
+    <li><b>Kategorie</b> — volitelné skupiny (například Práce nebo Osobní) s filtry seznamu (Vše / Žádná / podle kategorie)</li>
+    <li>Výběr miniatury bez vlastního obrázku: Ikona → Alias → Vydavatel</li>
+</ul>
+
+<b>Další funkce:</b>
+<ul>
+    <li>Skenování QR kódů pomocí CameraX</li>
+    <li>Export a import tokenů (JSON / URI klíče) prostřednictvím Storage Access Framework</li>
+    <li>Design Material s podporou tmavého motivu</li>
+    <li>Vyhledávání tokenů</li>
+    <li>Podrobnosti tokenu a úpravy s nápovědou k polím</li>
+    <li>Volitelné biometrické / PIN uzamčení aplikace</li>
+    <li>Offline ikony vydavatelů pro mnoho známých služeb</li>
 </ul>
 
 NetAigis OTP vychází z forku FreeOTP+ a spravuje jej <a href="https://net-aigis.de/">NetAigis</a>.

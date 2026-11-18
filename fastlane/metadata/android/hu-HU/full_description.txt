@@ -1,19 +1,27 @@
-A NetAigis OTP második biztonsági réteget ad az online fiókjaihoz.
-Az alkalmazás egyszeri jelszavakat (OTP) generál az eszközön, amelyeket a szokásos jelszó mellett használ.
-A kódok offline is működnek, akár repülőgépes módban is.
+A NetAigis OTP egy második biztonsági réteget ad az online fiókokhoz.
+Egyszer használatos jelszavakat (OTP) hoz létre az eszközön, amelyeket a szokásos jelszóval együtt használhat.
+A kódok internetkapcsolat nélkül, repülőgép üzemmódban is működnek.
 
-Tokeneket QR-kód beolvasásával vagy a konfiguráció manuális megadásával adhat hozzá.
-A NetAigis OTP a nyílt TOTP (RFC 6238) és HOTP (RFC 4226) szabványokat valósítja meg, és többek között a Google, GitHub, Nextcloud és Forgejo szolgáltatásokkal működik.
+Tokeneket QR-kód beolvasásával vagy a konfiguráció kézi megadásával adhat hozzá.
+A NetAigis OTP a nyílt TOTP (RFC 6238) és HOTP (RFC 4226) szabványokat valósítja meg, ezért működik a Google, a GitHub, a Nextcloud, a Forgejo és számos más szolgáltatással.
 
-<b>Funkciók:</b>
+A FreeOTP+-hoz képest a NetAigis OTP a tokenek áttekinthetőbb, személyes rendszerezésére összpontosít:
 <ul>
-<li>QR-kódok beolvasása (CameraX)</li>
-<li>Tokenek exportálása és importálása (JSON / key URI) a Storage Access Frameworkön keresztül</li>
-<li>Material Design sötét témával</li>
-<li>Tokenek keresése</li>
-<li>Tokenrészletek és szerkesztés</li>
-<li>Opcionális biometrikus / PIN-zárolás indításkor</li>
-<li>Offline kibocsátói ikonok sok ismert szolgáltatáshoz</li>
+    <li><b>Alias</b> — opcionális név a listában a kibocsátó helyett; nem módosítja az OTP számítását, és kereshető</li>
+    <li><b>Ikon</b> — opcionális beépített ikon, amely saját tokenkép hiányában jelenik meg</li>
+    <li><b>Kategóriák</b> — opcionális csoportok (például Munka vagy Személyes) listaszűrőkkel (Mind / Nincs / kategóriánként)</li>
+    <li>Miniatűr kiválasztása saját kép nélkül: Ikon → Alias → Kibocsátó</li>
 </ul>
 
-A NetAigis OTP a FreeOTP+ forkján alapul, és a <a href="https://net-aigis.de/">NetAigis</a> tartja karban.
+<b>További funkciók:</b>
+<ul>
+    <li>QR-kódok beolvasása CameraX segítségével</li>
+    <li>Tokenek exportálása és importálása (JSON / kulcs URI) a Storage Access Framework használatával</li>
+    <li>Material dizájn sötét téma támogatásával</li>
+    <li>Tokenek keresése</li>
+    <li>Tokenadatok megtekintése és szerkesztése mezősúgóval</li>
+    <li>Opcionális biometrikus / PIN-kódos zárolás az alkalmazás megnyitásakor</li>
+    <li>Offline kibocsátói ikonok számos ismert szolgáltatáshoz</li>
+</ul>
+
+A NetAigis OTP a FreeOTP+ egyik forkjára épül, karbantartója a <a href="https://net-aigis.de/">NetAigis</a>.

@@ -5,15 +5,23 @@ NetAigis OTP はオンラインアカウントに二要素のセキュリティ�
 QR コードのスキャンまたは手動入力でトークンを追加できます。
 NetAigis OTP は公開標準の TOTP（RFC 6238）と HOTP（RFC 4226）を実装し、Google、GitHub、Nextcloud、Forgejo など多くのサービスで利用できます。
 
+FreeOTP+と比べて、NetAigis OTPではトークンをより自分に合った形で整理できます。
+<ul>
+    <li><b>エイリアス</b> — 発行元の代わりに一覧に表示する任意の名前です。OTPの計算には影響せず、検索対象になります</li>
+    <li><b>アイコン</b> — 任意の組み込みアイコンです。トークン画像が設定されていない場合に使用します</li>
+    <li><b>カテゴリ</b> — 任意のグループ（仕事、個人など）です。一覧をすべて／なし／カテゴリ別に絞り込めます</li>
+    <li>カスタム画像がない場合のサムネイル選択順：アイコン → エイリアス → 発行元</li>
+</ul>
+
 <b>機能:</b>
 <ul>
-<li>CameraX による QR コードスキャン</li>
-<li>Storage Access Framework によるトークンのエクスポート／インポート（JSON / key URI）</li>
-<li>ダークテーマ対応の Material Design</li>
-<li>トークン検索</li>
-<li>トークン詳細と編集</li>
-<li>起動時の任意の生体認証／PIN ロック</li>
-<li>多くの有名サービス向けオフライン発行者アイコン</li>
+    <li>CameraX による QR コードスキャン</li>
+    <li>Storage Access Framework によるトークンのエクスポート／インポート（JSON / key URI）</li>
+    <li>ダークテーマ対応の Material Design</li>
+    <li>トークン検索</li>
+    <li>トークン詳細と編集</li>
+    <li>起動時の任意の生体認証／PIN ロック</li>
+    <li>多くの有名サービス向けオフライン発行者アイコン</li>
 </ul>
 
 NetAigis OTP は FreeOTP+ のフォークを基盤とし、<a href="https://net-aigis.de/">NetAigis</a> が保守しています。

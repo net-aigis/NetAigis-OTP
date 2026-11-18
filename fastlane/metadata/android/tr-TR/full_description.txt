@@ -5,15 +5,23 @@ Kodlar çevrimdışı da çalışır; uçak modunda bile.
 Token’ları QR kod tarayarak veya yapılandırmayı elle girerek ekleyin.
 NetAigis OTP açık standartlar TOTP (RFC 6238) ve HOTP (RFC 4226) uygular; Google, GitHub, Nextcloud, Forgejo ve birçok başka hizmetle çalışır.
 
+FreeOTP+ ile karşılaştırıldığında NetAigis OTP, tokenları daha kişisel biçimde düzenlemenizi sağlar:
+<ul>
+    <li><b>Takma ad</b> — listede Düzenleyen yerine gösterilen isteğe bağlı ad; OTP hesaplamasını değiştirmez ve aramaya dâhildir</li>
+    <li><b>Simge</b> — token için özel bir resim yoksa kullanılan isteğe bağlı yerleşik simge</li>
+    <li><b>Kategoriler</b> — liste filtreleriyle (Tümü / Yok / kategoriye göre) kullanılabilen isteğe bağlı gruplar (örneğin İş veya Kişisel)</li>
+    <li>Özel resim yoksa küçük resim sırası: Simge → Takma ad → Düzenleyen</li>
+</ul>
+
 <b>Özellikler:</b>
 <ul>
-<li>CameraX ile QR kod tarama</li>
-<li>Storage Access Framework ile token dışa/içe aktarma (JSON / key URI)</li>
-<li>Koyu tema destekli Material Design</li>
-<li>Token arama</li>
-<li>Token ayrıntıları ve düzenleme</li>
-<li>İsteğe bağlı biyometrik / PIN kilidi</li>
-<li>Birçok bilinen hizmet için çevrimdışı issuer simgeleri</li>
+    <li>CameraX ile QR kod tarama</li>
+    <li>Storage Access Framework ile token dışa/içe aktarma (JSON / key URI)</li>
+    <li>Koyu tema destekli Material Design</li>
+    <li>Token arama</li>
+    <li>Token ayrıntıları ve düzenleme</li>
+    <li>İsteğe bağlı biyometrik / PIN kilidi</li>
+    <li>Birçok bilinen hizmet için çevrimdışı issuer simgeleri</li>
 </ul>
 
 NetAigis OTP, bir FreeOTP+ çatalına dayanır ve <a href="https://net-aigis.de/">NetAigis</a> tarafından sürdürülür.

@@ -1,19 +1,27 @@
-NetAigis OTP-k bigarren segurtasun-geruza bat gehitzen die zure online kontuei.
-Gailuan behin erabiltzeko pasahitzak (OTP) sortzen ditu, ohiko pasahitzarekin batera erabiltzeko.
-Kodeak lineaz kanpo funtzionatzen dute, hegazkin-moduan ere.
+NetAigis OTP-k bigarren segurtasun-geruza bat gehitzen die zure lineako kontuei.
+Gailuan erabilera bakarreko pasahitzak (OTP) sortzen ditu, ohiko pasahitzarekin batera erabiltzeko.
+Kodeek konexiorik gabe ere funtzionatzen dute, hegazkin moduan barne.
 
-Gehitu tokenak QR kodea eskaneatuz edo konfigurazioa eskuz sartuz.
-NetAigis OTP-k TOTP (RFC 6238) eta HOTP (RFC 4226) estandar irekiak inplementatzen ditu eta Google, GitHub, Nextcloud, Forgejo eta beste zerbitzu askorekin funtzionatzen du.
+Gehitu tokenak QR kode bat eskaneatuz edo konfigurazioa eskuz sartuz.
+NetAigis OTP-k TOTP (RFC 6238) eta HOTP (RFC 4226) estandar irekiak ezartzen ditu; beraz, Google, GitHub, Nextcloud, Forgejo eta beste hainbat zerbitzurekin funtzionatzen du.
 
-<b>Ezaugarriak:</b>
+FreeOTP+-rekin alderatuta, NetAigis OTP-k tokenak modu argiago eta pertsonalagoan antolatzea du ardatz:
 <ul>
-<li>QR kodeak eskaneatu CameraX-ekin</li>
-<li>Tokenak esportatu eta inportatu (JSON / key URI) Storage Access Framework bidez</li>
-<li>Material Design gai ilunarekin</li>
-<li>Tokenak bilatu</li>
-<li>Tokenen xehetasunak eta edizioa</li>
-<li>Aukerako biometria / PIN blokeoa abiaraztean</li>
-<li>Zerbitzu ezagun askotarako lineaz kanpoko igorle-ikonoak</li>
+    <li><b>Ezizena</b> — zerrendan jaulkitzailearen ordez agertzen den aukerako izena; ez du OTP kalkulua aldatzen eta bilaketetan sartzen da</li>
+    <li><b>Ikonoa</b> — aukerako ikono integratua, token-irudi pertsonalizaturik ez dagoenean erabiltzen dena</li>
+    <li><b>Kategoriak</b> — aukerako taldeak (adibidez, Lana edo Pertsonala) zerrenda-iragazkiekin (Guztiak / Bat ere ez / kategoriaren arabera)</li>
+    <li>Irudi pertsonalizaturik gabe, miniaturaren hurrenkera: Ikonoa → Ezizena → Jaulkitzailea</li>
 </ul>
 
-NetAigis OTP FreeOTP+-en fork batean oinarritzen da eta <a href="https://net-aigis.de/">NetAigis</a>-ek mantentzen du.
+<b>Beste eginbide batzuk:</b>
+<ul>
+    <li>Eskaneatu QR kodeak CameraX erabiliz</li>
+    <li>Esportatu eta inportatu tokenak (JSON / gako-URI) Storage Access Framework bidez</li>
+    <li>Material diseinua, gai ilunaren euskarriarekin</li>
+    <li>Bilatu tokenak</li>
+    <li>Tokenen xehetasunak eta edizioa, eremuen laguntzarekin</li>
+    <li>Aukerako blokeo biometrikoa / PINa aplikazioa irekitzeko</li>
+    <li>Lineaz kanpoko jaulkitzaile-ikonoak zerbitzu ezagun askorentzat</li>
+</ul>
+
+NetAigis OTP FreeOTP+en fork batean oinarritzen da, eta <a href="https://net-aigis.de/">NetAigis</a>-ek mantentzen du.

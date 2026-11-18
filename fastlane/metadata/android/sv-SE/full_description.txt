@@ -1,19 +1,27 @@
-NetAigis OTP lägger till ett andra säkerhetslager för dina onlinekonton.
-Appen genererar engångslösenord (OTP) på enheten som används tillsammans med ditt vanliga lösenord.
+NetAigis OTP lägger till ett extra säkerhetslager för dina onlinekonton.
+Appen skapar engångslösenord (OTP) på enheten som du använder tillsammans med ditt vanliga lösenord.
 Koderna fungerar offline, även i flygplansläge.
 
 Lägg till token genom att skanna en QR-kod eller ange konfigurationen manuellt.
-NetAigis OTP implementerar öppna standarderna TOTP (RFC 6238) och HOTP (RFC 4226) och fungerar med Google, GitHub, Nextcloud, Forgejo och många andra tjänster.
+NetAigis OTP implementerar de öppna standarderna TOTP (RFC 6238) och HOTP (RFC 4226), så appen fungerar med Google, GitHub, Nextcloud, Forgejo och många andra tjänster.
 
-<b>Funktioner:</b>
+Jämfört med FreeOTP+ fokuserar NetAigis OTP på tydligare personlig organisering av token:
 <ul>
-<li>Skanna QR-koder med CameraX</li>
-<li>Exportera och importera token (JSON / key URI) via Storage Access Framework</li>
-<li>Material Design med mörkt tema</li>
-<li>Sök token</li>
-<li>Tokendetaljer och redigering</li>
-<li>Valfritt biometriskt / PIN-lås vid start</li>
-<li>Offline-ikoner för många kända tjänster</li>
+    <li><b>Alias</b> — valfritt visningsnamn i listan i stället för utfärdaren; påverkar inte OTP-beräkningen och ingår i sökningen</li>
+    <li><b>Ikon</b> — valfri inbyggd ikon som används när ingen egen tokenbild har valts</li>
+    <li><b>Kategorier</b> — valfria grupper (till exempel Arbete eller Privat) med listfilter (Alla / Ingen / per kategori)</li>
+    <li>Val av miniatyr utan egen bild: Ikon → Alias → Utfärdare</li>
 </ul>
 
-NetAigis OTP bygger på en FreeOTP+-fork och underhålls av <a href="https://net-aigis.de/">NetAigis</a>.
+<b>Fler funktioner:</b>
+<ul>
+    <li>Skanna QR-koder med CameraX</li>
+    <li>Exportera och importera token (JSON / nyckel-URI) via Storage Access Framework</li>
+    <li>Material Design med stöd för mörkt tema</li>
+    <li>Sök efter token</li>
+    <li>Tokeninformation och redigering med fälthjälp</li>
+    <li>Valfritt biometriskt lås / PIN-lås när appen öppnas</li>
+    <li>Offlineikoner för utfärdare hos många välkända tjänster</li>
+</ul>
+
+NetAigis OTP bygger på en fork av FreeOTP+ och underhålls av <a href="https://net-aigis.de/">NetAigis</a>.

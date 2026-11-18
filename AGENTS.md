@@ -37,7 +37,7 @@ Wichtig: Änderungen sollen klein, nachvollziehbar und fachlich konsistent sein.
   - CameraX (QR)
   - Biometric
 
-Aktuelle Entwicklungsversion: `4.1.0` (versionCode `31`; master/FreeOTP+ stand bei `3.4` / `26`).
+Aktuelle Entwicklungsversion: `4.1.1` (versionCode `32`; master/FreeOTP+ stand bei `3.4` / `26`).
 
 ---
 
@@ -60,11 +60,16 @@ Aktuelle Entwicklungsversion: `4.1.0` (versionCode `31`; master/FreeOTP+ stand b
 
 - Keine hartcodierten sichtbaren Texte im Kotlin- oder XML-Layout-Code.
 - Alle UI-Texte, Labels, Buttontexte, Fehlermeldungen und Statusmeldungen müssen über Android String-Ressourcen laufen.
-- Aktueller Stand:
-  - Default/`values/strings.xml` ist Englisch
-  - Deutsch liegt in `values-de-rDE/strings.xml`
-  - weitere Locales über Crowdin vorhanden
-- Neue sichtbare Texte immer mindestens in Default (`values`) und Deutsch (`values-de-rDE`) ergänzen.
+- **Source-Sprache:** Englisch (`values/strings.xml`) — lokal und in Crowdin.
+- **Deutsch und alle anderen Locales** liegen im Repo **und** in Crowdin (Projekt [NetAigis-OTP](https://crowdin.com/project/netaigis-otp), ID `947437`).
+- Neue sichtbare Texte immer mindestens in Default (`values`) und Deutsch (`values-de-rDE`) ergänzen; danach Source (+ DE-Translations) nach Crowdin hochladen.
+- Crowdin-Locales (außer eigener DE-Pflege) nicht manuell im Repo erfinden — Übersetzungen kommen aus Crowdin.
+- Lokale Config: `crowdin.yml` (gitignored), Vorlage `crowdin.example.yml`.
+- CLI: `crowdin upload sources` / `crowdin upload translations` / `crowdin download translations`.
+- Für den Übersetzungsimport `crowdin upload translations --import-eq-suggestions --translate-hidden` verwenden: Der Standardimport überspringt gültige quellgleiche Übersetzungen und Android-Strings mit `translatable="false"`, die Crowdin als `hidden` führt; dadurch bleiben sonst wenige Wörter als unübersetzt stehen.
+- Fastlane-`full_description.txt` enthält HTML-Markup. Für beide Fastlane-Metadatendateien in Crowdin `type: html` setzen und über `dest` die Crowdin-Namen `.txt` beibehalten; dafür muss `preserve_hierarchy: true` gesetzt sein. Crowdin ändert den Parser-Typ bestehender Dateien nicht durch erneutes Hochladen — bei einer Typkorrektur Datei in Crowdin löschen und aus der Source-Konfiguration neu anlegen (vorher vorhandene Übersetzungen sichern).
+- Nach `crowdin upload translations` den Projektfortschritt mit `crowdin status translation --file <Crowdin-Dateiname> --language <Crowdin-Sprachcode>` prüfen. Ein Importjob mit `100%` bestätigt nur, dass der Job verarbeitet wurde, nicht dass Übersetzungen zugeordnet wurden.
+- **Prepare for Release / `--build`:** `helper/release.sh` holt vor dem Build den aktuellen Stand aus Crowdin (`crowdin download translations`). Notfall: `--skip-translations`.
 - ViewModels und Repository-Ergebnisse dürfen keine fertigen Anzeigetexte liefern; fachliche Codes oder `@StringRes`-IDs verwenden.
 - Technische Konstanten sind davon ausgenommen (interne Codes, MIME-Types, Dateiformate).
 - Vor Abschluss einer UI-Änderung prüfen, ob neue harte Texte entstanden sind.
@@ -96,7 +101,8 @@ Aktuelle Entwicklungsversion: `4.1.0` (versionCode `31`; master/FreeOTP+ stand b
 - **Screenshot-Modus** (Einstellung, Default aus):
   - aus → `FLAG_SECURE` gesetzt (Screenshots/Mirrors schwarz bzw. blockiert)
   - an → Flag gelöscht (OTP sichtbar — bewusstes Risiko)
-  - Schaltung über `FeatureAccess.screenshotModeEnabled` + `Settings.screenshotMode`
+  - Schaltung **nur** über den Settings-Switch (`FeatureAccess.screenshotModeEnabled` + `Settings.screenshotMode`)
+  - Kein Intent-Extra und kein Launcher-Shortcut — fremde Apps dürfen die Pref nicht setzen
   - Emulator-/Host-Screenshots können `FLAG_SECURE` umgehen; Echttest auf Gerät / System-Screenshot
 - **Exportordner** (Einstellungen):
   - Nutzer wählt einmal einen Ordner per `ACTION_OPEN_DOCUMENT_TREE`
@@ -172,7 +178,7 @@ Material DayNight bleibt; FreeOTP-Blau (`#16AFF9`) ist ersetzt.
   - kleine Schritte
   - erst aktuellen Block abschließen
   - dann committen
-- **Git-Commits:** keine `Co-authored-by:`-Trailer (insbesondere nicht `Co-authored-by: Cursor <cursoragent@cursor.com>`). Commit-Messages schlicht halten. Wenn die Umgebung den Trailer an `git commit` anhängt: Commit über `git commit-tree` + `git reset --soft` erzeugen und prüfen, dass die Message ohne Trailer ist.
+- **Git-Commits:** nur eine aussagekräftige Subject-Zeile, **kein** Message-Body (kein zweiter Absatz). Keine `Co-authored-by:`-Trailer (insbesondere nicht `Co-authored-by: Cursor <cursoragent@cursor.com>`). Commit von vornherein über `git commit-tree` (+ ggf. `git reset --soft`) erzeugen und prüfen, dass die Message ohne Trailer und ohne Body ist.
 
 ---
 
@@ -286,7 +292,8 @@ FTOKEN_RELEASE=... ./helper/release.sh 4.1.0 --upload
 FTOKEN_RELEASE=... ./helper/release.sh 4.1.0 --build --upload --upload-github
 ```
 
-`release.sh` baut/uploadet derzeit nur Pro (Debug+Release). Free ist pausiert.
+`release.sh` baut/uploadet derzeit nur Pro (Debug+Release). Free ist pausiert.  
+`--build` pullt vorher Crowdin-Translations (braucht `crowdin` + `crowdin.yml`); Notfall: `--skip-translations`.
 Artefaktnamen: Pro (Default) ohne Suffix — `netaigis-otp-${VERSION}.apk` / `netaigis-otp-debug-${VERSION}.apk`; Free ggf. mit `-free-`.
 Release-Beschreibung kommt aus `app/src/main/res/raw/changelog.md` (Abschnitt `## VERSION`).
 GitHub-Ziel: `GITHUB_REPO` (Default `net-aigis/NetAigis-OTP`), Auth über `gh auth` / `GH_TOKEN`.
@@ -374,7 +381,7 @@ java -version
 ## Helper-Skripte
 
 - `helper/rebuild_and_start.sh` — Debug bauen, installieren, starten (`--edition free|pro`, `--device SERIAL`, `--seed`, `--wipe-backup SERIAL`)
-- `helper/release.sh` — Pro Debug+Release bauen (Free pausiert); optional Upload nach Forgejo (`--upload`) und/oder GitHub (`--upload-github`); Notes aus `changelog.md`
+- `helper/release.sh` — Pro Debug+Release bauen (Free pausiert); vor `--build` Crowdin-Translations pullen; optional Upload nach Forgejo (`--upload`) und/oder GitHub (`--upload-github`); Notes aus `changelog.md`
 - Seed nutzt `testdata/sample-tokens.txt` (otpauth-URIs)
 - Debug-Packages: `de.wittmer.app.otp.debug` (Pro) / `de.wittmer.app.otp.free.debug` (Free)
 
@@ -386,7 +393,7 @@ Noch nicht einbauen, solange nicht explizit angefordert:
 
 1. Spätere Free/Pro-Unterschiede an `FeatureAccess` ergänzen (aktuell gleich)
 2. Fastlane-Beschreibungen/Screenshots vollständig auf NetAigis umstellen
-3. Crowdin-Texte jenseits der Markennamen feinjustieren
+3. Crowdin-Community-Übersetzungen der fehlenden Keys pflegen / Reviews
 4. Gradle/AGP-Deprecations abbauen (aktuell AGP 9.4.1 / Gradle 9.8.2; nötig vor AGP 10):
    1. Built-in Kotlin + neues AGP-DSL: `android.builtInKotlin=false` und `android.newDsl=false` entfernen; in allen Modulen `kotlin("android")` entfernen; Root-`kotlin-gradle-plugin` bereinigen
    2. APK-Umbenennung in `app/build.gradle.kts` von `applicationVariants` auf `AndroidComponentsExtension` umstellen
