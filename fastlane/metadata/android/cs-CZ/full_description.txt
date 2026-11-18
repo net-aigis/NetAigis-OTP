@@ -1,27 +1,27 @@
-NetAigis OTP adds a second layer of security for your online accounts.
-It generates one-time passwords (OTP) on your device that you use together with your normal password.
-Codes work offline, including in airplane mode.
+NetAigis OTP přidává další vrstvu zabezpečení vašich online účtů.
+V zařízení generuje jednorázová hesla (OTP), která používáte spolu s běžným heslem.
+Kódy fungují i bez připojení k internetu, včetně režimu Letadlo.
 
-Add tokens by scanning a QR code or by entering the configuration manually.
-NetAigis OTP implements open standards TOTP (RFC 6238) and HOTP (RFC 4226), so it works with Google, GitHub, Nextcloud, Forgejo and many other services.
+Tokeny přidáte naskenováním QR kódu nebo ručním zadáním konfigurace.
+NetAigis OTP implementuje otevřené standardy TOTP (RFC 6238) a HOTP (RFC 4226), takže funguje se službami Google, GitHub, Nextcloud, Forgejo a mnoha dalšími.
 
-Compared to FreeOTP+, NetAigis OTP focuses on clearer personal organization of tokens:
+Oproti FreeOTP+ se NetAigis OTP zaměřuje na přehlednější osobní uspořádání tokenů:
 <ul>
-    <li><b>Alias</b> — optional display name in the list (instead of the issuer); does not change OTP calculation; included in search</li>
-    <li><b>Icon</b> — optional built-in icon; used when no custom token image is set</li>
-    <li><b>Categories</b> — optional groups (for example Work or Personal) with list filters (All / None / per category)</li>
-    <li>Thumbnail resolution without a custom image: Icon → Alias → Issuer</li>
+    <li><b>Alias</b> — volitelný název zobrazovaný v seznamu místo vydavatele; nemění výpočet OTP a lze jej vyhledávat</li>
+    <li><b>Ikona</b> — volitelná vestavěná ikona, která se použije, pokud není nastaven vlastní obrázek tokenu</li>
+    <li><b>Kategorie</b> — volitelné skupiny (například Práce nebo Osobní) s filtry seznamu (Vše / Žádná / podle kategorie)</li>
+    <li>Výběr miniatury bez vlastního obrázku: Ikona → Alias → Vydavatel</li>
 </ul>
 
-<b>Further features:</b>
+<b>Další funkce:</b>
 <ul>
-    <li>Scan QR codes with CameraX</li>
-    <li>Export and import tokens (JSON / key URI) via the Storage Access Framework</li>
-    <li>Material design with dark theme support</li>
-    <li>Search tokens</li>
-    <li>Token details and editing with field help</li>
-    <li>Optional biometric / PIN lock to open the app</li>
-    <li>Offline issuer icons for many well-known services</li>
+    <li>Skenování QR kódů pomocí CameraX</li>
+    <li>Export a import tokenů (JSON / URI klíče) prostřednictvím Storage Access Framework</li>
+    <li>Design Material s podporou tmavého motivu</li>
+    <li>Vyhledávání tokenů</li>
+    <li>Podrobnosti tokenu a úpravy s nápovědou k polím</li>
+    <li>Volitelné biometrické / PIN uzamčení aplikace</li>
+    <li>Offline ikony vydavatelů pro mnoho známých služeb</li>
 </ul>
 
-NetAigis OTP is based on a FreeOTP+ fork and maintained by <a href="https://net-aigis.de/">NetAigis</a>.
+NetAigis OTP vychází z forku FreeOTP+ a spravuje jej <a href="https://net-aigis.de/">NetAigis</a>.

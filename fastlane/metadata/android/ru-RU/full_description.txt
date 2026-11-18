@@ -5,12 +5,12 @@ NetAigis OTP добавляет второй уровень защиты ваш�
 Добавляйте токены, сканируя QR-код или вводя настройки вручную.
 NetAigis OTP реализует открытые стандарты TOTP (RFC 6238) и HOTP (RFC 4226) и работает с Google, GitHub, Nextcloud, Forgejo и многими другими сервисами.
 
-Compared to FreeOTP+, NetAigis OTP focuses on clearer personal organization of tokens:
+По сравнению с FreeOTP+ приложение NetAigis OTP помогает удобнее организовать токены:
 <ul>
-    <li><b>Alias</b> — optional display name in the list (instead of the issuer); does not change OTP calculation; included in search</li>
-    <li><b>Icon</b> — optional built-in icon; used when no custom token image is set</li>
-    <li><b>Categories</b> — optional groups (for example Work or Personal) with list filters (All / None / per category)</li>
-    <li>Thumbnail resolution without a custom image: Icon → Alias → Issuer</li>
+    <li><b>Псевдоним</b> — необязательное имя в списке вместо издателя; не влияет на вычисление OTP и участвует в поиске</li>
+    <li><b>Значок</b> — необязательный встроенный значок, который используется, если для токена не задано собственное изображение</li>
+    <li><b>Категории</b> — необязательные группы (например, Работа или Личное) с фильтрами списка (Все / Нет / по категории)</li>
+    <li>Порядок выбора миниатюры, если нет собственного изображения: Значок → Псевдоним → Издатель</li>
 </ul>
 
 <b>Возможности:</b>

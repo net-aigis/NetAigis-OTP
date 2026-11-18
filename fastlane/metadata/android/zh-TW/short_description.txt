@@ -1,1 +1,1 @@
-2FA authenticator with TOTP/HOTP, token aliases, icons and categories
+支援 TOTP/HOTP、權杖別名、圖示與分類的雙重驗證器

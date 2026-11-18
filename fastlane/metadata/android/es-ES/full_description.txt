@@ -5,12 +5,12 @@ Los códigos funcionan sin conexión, también en modo avión.
 Añade tokens escaneando un código QR o introduciendo la configuración manualmente.
 NetAigis OTP implementa los estándares abiertos TOTP (RFC 6238) y HOTP (RFC 4226) y funciona con Google, GitHub, Nextcloud, Forgejo y muchos otros servicios.
 
-Compared to FreeOTP+, NetAigis OTP focuses on clearer personal organization of tokens:
+En comparación con FreeOTP+, NetAigis OTP facilita una organización más personal de los tokens:
 <ul>
-    <li><b>Alias</b> — optional display name in the list (instead of the issuer); does not change OTP calculation; included in search</li>
-    <li><b>Icon</b> — optional built-in icon; used when no custom token image is set</li>
-    <li><b>Categories</b> — optional groups (for example Work or Personal) with list filters (All / None / per category)</li>
-    <li>Thumbnail resolution without a custom image: Icon → Alias → Issuer</li>
+    <li><b>Alias</b> — nombre opcional que se muestra en la lista en lugar del emisor; no cambia el cálculo del OTP y se incluye en las búsquedas</li>
+    <li><b>Icono</b> — icono integrado opcional que se usa cuando no hay una imagen personalizada para el token</li>
+    <li><b>Categorías</b> — grupos opcionales (por ejemplo, Trabajo o Personal) con filtros para la lista (Todas / Ninguna / por categoría)</li>
+    <li>Orden de la miniatura si no hay una imagen personalizada: Icono → Alias → Emisor</li>
 </ul>
 
 <b>Funciones:</b>

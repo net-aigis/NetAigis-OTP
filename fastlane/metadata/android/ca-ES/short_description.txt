@@ -1,1 +1,1 @@
-2FA authenticator with TOTP/HOTP, token aliases, icons and categories
+Autenticador 2FA amb TOTP/HOTP, àlies de testimoni, icones i categories

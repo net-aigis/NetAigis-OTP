@@ -1,27 +1,27 @@
-NetAigis OTP adds a second layer of security for your online accounts.
-It generates one-time passwords (OTP) on your device that you use together with your normal password.
-Codes work offline, including in airplane mode.
+NetAigis OTP voeg ’n tweede laag sekuriteit vir jou aanlynrekeninge by.
+Dit skep eenmalige wagwoorde (OTP) op jou toestel wat jy saam met jou gewone wagwoord gebruik.
+Kodes werk vanlyn, ook in vliegtuigmodus.
 
-Add tokens by scanning a QR code or by entering the configuration manually.
-NetAigis OTP implements open standards TOTP (RFC 6238) and HOTP (RFC 4226), so it works with Google, GitHub, Nextcloud, Forgejo and many other services.
+Voeg tokens by deur ’n QR-kode te skandeer of die opstelling handmatig in te voer.
+NetAigis OTP implementeer die oop standaarde TOTP (RFC 6238) en HOTP (RFC 4226), en werk dus met Google, GitHub, Nextcloud, Forgejo en baie ander dienste.
 
-Compared to FreeOTP+, NetAigis OTP focuses on clearer personal organization of tokens:
+In vergelyking met FreeOTP+ fokus NetAigis OTP op ’n duideliker persoonlike ordening van tokens:
 <ul>
-    <li><b>Alias</b> — optional display name in the list (instead of the issuer); does not change OTP calculation; included in search</li>
-    <li><b>Icon</b> — optional built-in icon; used when no custom token image is set</li>
-    <li><b>Categories</b> — optional groups (for example Work or Personal) with list filters (All / None / per category)</li>
-    <li>Thumbnail resolution without a custom image: Icon → Alias → Issuer</li>
+    <li><b>Alias</b> — ’n opsionele vertoonnaam in die lys (in plaas van die uitreiker); verander nie OTP-berekening nie; word by soektogte ingesluit</li>
+    <li><b>Ikoon</b> — ’n opsionele ingeboude ikoon; word gebruik wanneer geen pasgemaakte tokenbeeld gestel is nie</li>
+    <li><b>Kategorieë</b> — opsionele groepe (byvoorbeeld Werk of Persoonlik) met lysfilters (Almal / Geen / per kategorie)</li>
+    <li>Kleinkiekiekeuse sonder ’n pasgemaakte beeld: Ikoon → Alias → Uitreiker</li>
 </ul>
 
-<b>Further features:</b>
+<b>Verdere kenmerke:</b>
 <ul>
-    <li>Scan QR codes with CameraX</li>
-    <li>Export and import tokens (JSON / key URI) via the Storage Access Framework</li>
-    <li>Material design with dark theme support</li>
-    <li>Search tokens</li>
-    <li>Token details and editing with field help</li>
-    <li>Optional biometric / PIN lock to open the app</li>
-    <li>Offline issuer icons for many well-known services</li>
+    <li>Skandeer QR-kodes met CameraX</li>
+    <li>Voer tokens in en voer hulle uit (JSON / sleutel-URI) met die Storage Access Framework</li>
+    <li>Material-ontwerp met ondersteuning vir ’n donker tema</li>
+    <li>Soek tokens</li>
+    <li>Tokenbesonderhede en wysiging met veldhulp</li>
+    <li>Opsionele biometriese / PIN-slot om die toepassing oop te maak</li>
+    <li>Vanlyn uitreiker-ikone vir baie bekende dienste</li>
 </ul>
 
-NetAigis OTP is based on a FreeOTP+ fork and maintained by <a href="https://net-aigis.de/">NetAigis</a>.
+NetAigis OTP is gebaseer op ’n FreeOTP+-vurk en word deur <a href="https://net-aigis.de/">NetAigis</a> onderhou.

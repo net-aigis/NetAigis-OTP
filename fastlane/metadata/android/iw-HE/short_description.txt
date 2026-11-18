@@ -1,1 +1,1 @@
-2FA authenticator with TOTP/HOTP, token aliases, icons and categories
+מאמת דו־שלבי (2FA) עם TOTP/HOTP, כינויים, סמלים וקטגוריות

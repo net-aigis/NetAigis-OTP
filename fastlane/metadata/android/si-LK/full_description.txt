@@ -1,27 +1,27 @@
-NetAigis OTP adds a second layer of security for your online accounts.
-It generates one-time passwords (OTP) on your device that you use together with your normal password.
-Codes work offline, including in airplane mode.
+NetAigis OTP ඔබගේ මාර්ගගත ගිණුම් සඳහා දෙවන ආරක්ෂක ස්ථරයක් එක් කරයි.
+සාමාන්‍ය මුරපදය සමඟ භාවිත කිරීමට උපාංගය තුළ එක්වර මුරපද (OTP) සාදයි.
+ගුවන් යානා ප්‍රකාරයේදීද කේත අන්තර්ජාල සම්බන්ධතාවයකින් තොරව ක්‍රියා කරයි.
 
-Add tokens by scanning a QR code or by entering the configuration manually.
-NetAigis OTP implements open standards TOTP (RFC 6238) and HOTP (RFC 4226), so it works with Google, GitHub, Nextcloud, Forgejo and many other services.
+QR කේතයක් ස්කෑන් කිරීමෙන් හෝ වින්‍යාසය අතින් ඇතුළත් කිරීමෙන් ටෝකන එක් කරන්න.
+NetAigis OTP විවෘත TOTP (RFC 6238) සහ HOTP (RFC 4226) ප්‍රමිතීන් ක්‍රියාත්මක කරන බැවින් Google, GitHub, Nextcloud, Forgejo සහ තවත් බොහෝ සේවාවන් සමඟ ක්‍රියා කරයි.
 
-Compared to FreeOTP+, NetAigis OTP focuses on clearer personal organization of tokens:
+FreeOTP+ සමඟ සසඳන විට, NetAigis OTP ටෝකන වඩාත් පැහැදිලිව පුද්ගලිකව සංවිධානය කිරීම කෙරෙහි අවධානය යොමු කරයි:
 <ul>
-    <li><b>Alias</b> — optional display name in the list (instead of the issuer); does not change OTP calculation; included in search</li>
-    <li><b>Icon</b> — optional built-in icon; used when no custom token image is set</li>
-    <li><b>Categories</b> — optional groups (for example Work or Personal) with list filters (All / None / per category)</li>
-    <li>Thumbnail resolution without a custom image: Icon → Alias → Issuer</li>
+    <li><b>අන්වර්ථ නාමය</b> — ලැයිස්තුවේ නිකුත් කරන්නා වෙනුවට පෙන්වන විකල්ප නාමය; OTP ගණනය වෙනස් නොකරන අතර සෙවීමට ඇතුළත් වේ</li>
+    <li><b>අයිකනය</b> — ටෝකනයට අභිරුචි රූපයක් සකසා නොමැති විට භාවිත වන විකල්ප ඇතුළත් අයිකනය</li>
+    <li><b>වර්ග</b> — ලැයිස්තු පෙරහන් සහිත විකල්ප කණ්ඩායම් (උදාහරණයක් ලෙස රැකියාව හෝ පුද්ගලික) (සියල්ල / කිසිවක් නැත / වර්ගය අනුව)</li>
+    <li>අභිරුචි රූපයක් නොමැති විට සිඟිති රූප තේරීම: අයිකනය → අන්වර්ථ නාමය → නිකුත් කරන්නා</li>
 </ul>
 
-<b>Further features:</b>
+<b>තවත් විශේෂාංග:</b>
 <ul>
-    <li>Scan QR codes with CameraX</li>
-    <li>Export and import tokens (JSON / key URI) via the Storage Access Framework</li>
-    <li>Material design with dark theme support</li>
-    <li>Search tokens</li>
-    <li>Token details and editing with field help</li>
-    <li>Optional biometric / PIN lock to open the app</li>
-    <li>Offline issuer icons for many well-known services</li>
+    <li>CameraX සමඟ QR කේත ස්කෑන් කරන්න</li>
+    <li>Storage Access Framework හරහා ටෝකන (JSON / යතුරු URI) ආයාත සහ නිර්යාත කරන්න</li>
+    <li>අඳුරු තේමා සහාය සහිත Material සැලසුම</li>
+    <li>ටෝකන සොයන්න</li>
+    <li>ක්ෂේත්‍ර උදව් සමඟ ටෝකන විස්තර සහ සංස්කරණය</li>
+    <li>යෙදුම විවෘත කිරීමට විකල්ප ජෛවමිතික / PIN අගුල</li>
+    <li>ප්‍රසිද්ධ සේවා රැසකට නොබැඳි නිකුත්කරු අයිකන</li>
 </ul>
 
-NetAigis OTP is based on a FreeOTP+ fork and maintained by <a href="https://net-aigis.de/">NetAigis</a>.
+NetAigis OTP FreeOTP+ දෙබලක් මත පදනම් වන අතර <a href="https://net-aigis.de/">NetAigis</a> විසින් නඩත්තු කරනු ලැබේ.

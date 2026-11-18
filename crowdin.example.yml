@@ -1,10 +1,12 @@
 "project_id": "947437"
 "api_token": "-removed-"
 "base_path": ""
-"preserve_hierarchy": false
+"preserve_hierarchy": true
 files: [
   {
     "source": "app/src/main/res/values/strings.xml",
+    "dest": "/strings.xml",
+    "type": "android",
     "translation": "app/src/main/res/values-%android_code%/strings.xml",
     "languages_mapping": {
       "android_code": {
@@ -15,19 +17,53 @@ files: [
   },
   {
     "source": "fastlane/metadata/android/en-US/short_description.txt",
+    "dest": "/short_description.txt",
+    "type": "html",
+    "content_segmentation": 0,
     "translation": "fastlane/metadata/android/%locale%/short_description.txt",
     "languages_mapping": {
       "locale": {
-        "he": "iw-HE"
+        "af": "af-ZA",
+        "ca": "ca-ES",
+        "cs": "cs-CZ",
+        "de": "de-DE",
+        "eu": "eu-ES",
+        "fr": "fr-FR",
+        "he": "iw-HE",
+        "hu": "hu-HU",
+        "id": "id-ID",
+        "it": "it-IT",
+        "ja": "ja-JP",
+        "pl": "pl-PL",
+        "ru": "ru-RU",
+        "tr": "tr-TR",
+        "uk": "uk-UA"
       }
     }
   },
   {
     "source": "fastlane/metadata/android/en-US/full_description.txt",
+    "dest": "/full_description.txt",
+    "type": "html",
+    "content_segmentation": 0,
     "translation": "fastlane/metadata/android/%locale%/full_description.txt",
     "languages_mapping": {
       "locale": {
-        "he": "iw-HE"
+        "af": "af-ZA",
+        "ca": "ca-ES",
+        "cs": "cs-CZ",
+        "de": "de-DE",
+        "eu": "eu-ES",
+        "fr": "fr-FR",
+        "he": "iw-HE",
+        "hu": "hu-HU",
+        "id": "id-ID",
+        "it": "it-IT",
+        "ja": "ja-JP",
+        "pl": "pl-PL",
+        "ru": "ru-RU",
+        "tr": "tr-TR",
+        "uk": "uk-UA"
       }
     }
   }

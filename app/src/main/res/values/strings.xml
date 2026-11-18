@@ -49,13 +49,13 @@
     <string name="settings_section_import_export">Import / Export</string>
     <string name="screenshot_mode_pro_only">Screenshot mode is available in the Pro edition.</string>
     <string name="about_version_label">Version</string>
-    <string name="about_version_value">%1$s (%2$d)</string>
+    <string name="about_version_value" translatable="false">%1$s (%2$d)</string>
     <string name="about_version_copied">Version copied to clipboard</string>
     <string name="about_changelog_label">Changelog</string>
     <string name="about_changelog_summary">What\'s new</string>
     <string name="screen_changelog">Changelog</string>
-    <string name="about_website_summary">net-aigis.de</string>
-    <string name="about_github_label">GitHub</string>
+    <string name="about_website_summary" translatable="false">net-aigis.de</string>
+    <string name="about_github_label" translatable="false">GitHub</string>
     <string name="about_github_summary">Source code, issues and information</string>
     <string name="about_license_summary">NetAigis OTP is licensed under Apache 2.0</string>
     <string name="about_open_source_licenses_summary">Licenses of third-party components</string>
@@ -110,7 +110,7 @@
     <string name="export_folder_not_set">Please select</string>
     <string name="export_folder_choose">Choose export folder</string>
     <string name="export_folder_clear">Clear</string>
-    <string name="export_folder_set">%1$s</string>
+    <string name="export_folder_set" translatable="false">%1$s</string>
     <string name="export_folder_selected">Export folder selected and ready.</string>
     <string name="export_folder_unavailable">Export folder cannot be used. Please choose it again.</string>
     <string name="export_folder_hint">Recommendation: create or select a folder such as Download/NetAigis-OTP.</string>
@@ -147,7 +147,7 @@
     <string name="fail_to_add_image">Fail to add image</string>
     <string name="launch_file_browser_failure">Unable to launch system\'s file browser. It is likely an OS issue.</string>
     <string name="share_qr_code">Share QR Code</string>
-    <string name="feature_pro">Pro</string>
+    <string name="feature_pro" translatable="false">Pro</string>
     <string name="screenshot_mode">Screenshot mode</string>
     <string name="token_details">Token details</string>
     <string name="click_to_display">Click to display</string>

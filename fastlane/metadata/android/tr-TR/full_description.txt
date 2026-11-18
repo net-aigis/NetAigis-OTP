@@ -5,12 +5,12 @@ Kodlar çevrimdışı da çalışır; uçak modunda bile.
 Token’ları QR kod tarayarak veya yapılandırmayı elle girerek ekleyin.
 NetAigis OTP açık standartlar TOTP (RFC 6238) ve HOTP (RFC 4226) uygular; Google, GitHub, Nextcloud, Forgejo ve birçok başka hizmetle çalışır.
 
-Compared to FreeOTP+, NetAigis OTP focuses on clearer personal organization of tokens:
+FreeOTP+ ile karşılaştırıldığında NetAigis OTP, tokenları daha kişisel biçimde düzenlemenizi sağlar:
 <ul>
-    <li><b>Alias</b> — optional display name in the list (instead of the issuer); does not change OTP calculation; included in search</li>
-    <li><b>Icon</b> — optional built-in icon; used when no custom token image is set</li>
-    <li><b>Categories</b> — optional groups (for example Work or Personal) with list filters (All / None / per category)</li>
-    <li>Thumbnail resolution without a custom image: Icon → Alias → Issuer</li>
+    <li><b>Takma ad</b> — listede Düzenleyen yerine gösterilen isteğe bağlı ad; OTP hesaplamasını değiştirmez ve aramaya dâhildir</li>
+    <li><b>Simge</b> — token için özel bir resim yoksa kullanılan isteğe bağlı yerleşik simge</li>
+    <li><b>Kategoriler</b> — liste filtreleriyle (Tümü / Yok / kategoriye göre) kullanılabilen isteğe bağlı gruplar (örneğin İş veya Kişisel)</li>
+    <li>Özel resim yoksa küçük resim sırası: Simge → Takma ad → Düzenleyen</li>
 </ul>
 
 <b>Özellikler:</b>

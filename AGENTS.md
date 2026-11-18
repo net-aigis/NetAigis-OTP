@@ -66,6 +66,9 @@ Aktuelle Entwicklungsversion: `4.1.0` (versionCode `31`; master/FreeOTP+ stand b
 - Crowdin-Locales (außer eigener DE-Pflege) nicht manuell im Repo erfinden — Übersetzungen kommen aus Crowdin.
 - Lokale Config: `crowdin.yml` (gitignored), Vorlage `crowdin.example.yml`.
 - CLI: `crowdin upload sources` / `crowdin upload translations` / `crowdin download translations`.
+- Für den Übersetzungsimport `crowdin upload translations --import-eq-suggestions --translate-hidden` verwenden: Der Standardimport überspringt gültige quellgleiche Übersetzungen und Android-Strings mit `translatable="false"`, die Crowdin als `hidden` führt; dadurch bleiben sonst wenige Wörter als unübersetzt stehen.
+- Fastlane-`full_description.txt` enthält HTML-Markup. Für beide Fastlane-Metadatendateien in Crowdin `type: html` setzen und über `dest` die Crowdin-Namen `.txt` beibehalten; dafür muss `preserve_hierarchy: true` gesetzt sein. Crowdin ändert den Parser-Typ bestehender Dateien nicht durch erneutes Hochladen — bei einer Typkorrektur Datei in Crowdin löschen und aus der Source-Konfiguration neu anlegen (vorher vorhandene Übersetzungen sichern).
+- Nach `crowdin upload translations` den Projektfortschritt mit `crowdin status translation --file <Crowdin-Dateiname> --language <Crowdin-Sprachcode>` prüfen. Ein Importjob mit `100%` bestätigt nur, dass der Job verarbeitet wurde, nicht dass Übersetzungen zugeordnet wurden.
 - **Prepare for Release / `--build`:** `helper/release.sh` holt vor dem Build den aktuellen Stand aus Crowdin (`crowdin download translations`). Notfall: `--skip-translations`.
 - ViewModels und Repository-Ergebnisse dürfen keine fertigen Anzeigetexte liefern; fachliche Codes oder `@StringRes`-IDs verwenden.
 - Technische Konstanten sind davon ausgenommen (interne Codes, MIME-Types, Dateiformate).

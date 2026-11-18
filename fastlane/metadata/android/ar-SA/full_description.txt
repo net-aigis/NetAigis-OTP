@@ -5,12 +5,12 @@
 أضف الرموز المميزة بمسح رمز QR أو بإدخال الإعدادات يدويًا.
 ينفّذ NetAigis OTP المعيارين المفتوحين TOTP (RFC 6238) و HOTP (RFC 4226) ويعمل مع Google وGitHub وNextcloud وForgejo والعديد من الخدمات الأخرى.
 
-Compared to FreeOTP+, NetAigis OTP focuses on clearer personal organization of tokens:
+بالمقارنة مع FreeOTP+، يسهّل NetAigis OTP تنظيم الرموز بطريقة شخصية أوضح:
 <ul>
-    <li><b>Alias</b> — optional display name in the list (instead of the issuer); does not change OTP calculation; included in search</li>
-    <li><b>Icon</b> — optional built-in icon; used when no custom token image is set</li>
-    <li><b>Categories</b> — optional groups (for example Work or Personal) with list filters (All / None / per category)</li>
-    <li>Thumbnail resolution without a custom image: Icon → Alias → Issuer</li>
+    <li><b>الاسم المستعار</b> — اسم عرض اختياري في القائمة بدلاً من الجهة المُصدِرة؛ لا يغيّر حساب رمز OTP؛ ويظهر في البحث</li>
+    <li><b>الأيقونة</b> — أيقونة مدمجة اختيارية، تُستخدم عند عدم تعيين صورة مخصصة للرمز</li>
+    <li><b>الفئات</b> — مجموعات اختيارية (مثل العمل أو الشخصي) مع عوامل تصفية للقائمة (الكل / بلا / حسب الفئة)</li>
+    <li>ترتيب اختيار الصورة المصغرة عند عدم وجود صورة مخصصة: الأيقونة ← الاسم المستعار ← الجهة المُصدِرة</li>
 </ul>
 
 <b>الميزات:</b>

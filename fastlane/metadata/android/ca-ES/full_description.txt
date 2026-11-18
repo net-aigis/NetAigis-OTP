@@ -1,27 +1,27 @@
-NetAigis OTP adds a second layer of security for your online accounts.
-It generates one-time passwords (OTP) on your device that you use together with your normal password.
-Codes work offline, including in airplane mode.
+NetAigis OTP afegeix una segona capa de seguretat als teus comptes en línia.
+Genera contrasenyes d’un sol ús (OTP) al dispositiu perquè les facis servir amb la contrasenya habitual.
+Els codis funcionen sense connexió, també en mode avió.
 
-Add tokens by scanning a QR code or by entering the configuration manually.
-NetAigis OTP implements open standards TOTP (RFC 6238) and HOTP (RFC 4226), so it works with Google, GitHub, Nextcloud, Forgejo and many other services.
+Afegeix testimonis escanejant un codi QR o introduint la configuració manualment.
+NetAigis OTP implementa els estàndards oberts TOTP (RFC 6238) i HOTP (RFC 4226), de manera que funciona amb Google, GitHub, Nextcloud, Forgejo i molts altres serveis.
 
-Compared to FreeOTP+, NetAigis OTP focuses on clearer personal organization of tokens:
+En comparació amb FreeOTP+, NetAigis OTP se centra a organitzar els testimonis de manera més clara i personal:
 <ul>
-    <li><b>Alias</b> — optional display name in the list (instead of the issuer); does not change OTP calculation; included in search</li>
-    <li><b>Icon</b> — optional built-in icon; used when no custom token image is set</li>
-    <li><b>Categories</b> — optional groups (for example Work or Personal) with list filters (All / None / per category)</li>
-    <li>Thumbnail resolution without a custom image: Icon → Alias → Issuer</li>
+    <li><b>Àlies</b> — nom opcional que es mostra a la llista en lloc de l’emissor; no modifica el càlcul de l’OTP; s’inclou a les cerques</li>
+    <li><b>Icona</b> — icona integrada opcional; s’utilitza quan no s’ha definit cap imatge personalitzada per al testimoni</li>
+    <li><b>Categories</b> — grups opcionals (per exemple, Feina o Personal) amb filtres a la llista (Totes / Cap / per categoria)</li>
+    <li>Resolució de la miniatura sense imatge personalitzada: Icona → Àlies → Emissor</li>
 </ul>
 
-<b>Further features:</b>
+<b>Altres funcions:</b>
 <ul>
-    <li>Scan QR codes with CameraX</li>
-    <li>Export and import tokens (JSON / key URI) via the Storage Access Framework</li>
-    <li>Material design with dark theme support</li>
-    <li>Search tokens</li>
-    <li>Token details and editing with field help</li>
-    <li>Optional biometric / PIN lock to open the app</li>
-    <li>Offline issuer icons for many well-known services</li>
+    <li>Escaneig de codis QR amb CameraX</li>
+    <li>Exportació i importació de testimonis (JSON / URI de clau) mitjançant el Storage Access Framework</li>
+    <li>Disseny Material amb tema fosc</li>
+    <li>Cerca de testimonis</li>
+    <li>Detalls i edició de testimonis amb ajuda contextual</li>
+    <li>Bloqueig opcional amb biometria / PIN per obrir l’aplicació</li>
+    <li>Icones d’emissors disponibles sense connexió per a molts serveis coneguts</li>
 </ul>
 
-NetAigis OTP is based on a FreeOTP+ fork and maintained by <a href="https://net-aigis.de/">NetAigis</a>.
+NetAigis OTP es basa en una bifurcació de FreeOTP+ i el manté <a href="https://net-aigis.de/">NetAigis</a>.

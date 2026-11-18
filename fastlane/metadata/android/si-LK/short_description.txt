@@ -1,1 +1,1 @@
-2FA authenticator with TOTP/HOTP, token aliases, icons and categories
+TOTP/HOTP, ටෝකන් අන්වර්ථ නාම, අයිකන සහ වර්ග සහිත 2FA සත්‍යාපකය
