@@ -127,7 +127,6 @@
     <string name="share_qr_code">QR-Code teilen</string>
     <string name="feature_pro">Pro</string>
     <string name="screenshot_mode">Screenshot-Modus</string>
-    <string name="launch_with_screenshot_enabled">Starte mit aktiviertem Screenshot</string>
     <string name="token_details">Token-Details</string>
     <string name="share_to_other_apps">Mit anderen Apps teilen</string>
     <string name="category_tab_all">Alle</string>

@@ -60,7 +60,6 @@
     <string name="launch_file_browser_failure">පද්ධතියේ ගොනු බ්‍රවුසරය දියත් කළ නොහැක. එය බොහෝ විට OS ගැටළුවක් විය හැකිය.</string>
     <string name="share_qr_code">QR කේතය බෙදා ගන්න</string>
     <string name="screenshot_mode">තිරපිටපත් මාදිලිය</string>
-    <string name="launch_with_screenshot_enabled">තිර රුවක් සබල කර දියත් කරන්න</string>
     <string name="token_details">ටෝකන් විස්තර</string>
     <string name="share_to_other_apps">Share to other apps</string>
     <string name="category_tab_all">සියල්ල</string>

@@ -60,7 +60,6 @@
     <string name="launch_file_browser_failure">Невозможно запустить системный файловый менеджер. Возможно, это проблема операционной системы.</string>
     <string name="share_qr_code">Поделиться QR-кодом</string>
     <string name="screenshot_mode">Режим скриншота</string>
-    <string name="launch_with_screenshot_enabled">Запуск с включённым режимом скриншота</string>
     <string name="token_details">Детали токена</string>
     <string name="share_to_other_apps">Поделиться с другими приложениями</string>
     <string name="category_tab_all">Все</string>

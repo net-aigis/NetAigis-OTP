@@ -96,7 +96,8 @@ Aktuelle Entwicklungsversion: `4.1.0` (versionCode `31`; master/FreeOTP+ stand b
 - **Screenshot-Modus** (Einstellung, Default aus):
   - aus → `FLAG_SECURE` gesetzt (Screenshots/Mirrors schwarz bzw. blockiert)
   - an → Flag gelöscht (OTP sichtbar — bewusstes Risiko)
-  - Schaltung über `FeatureAccess.screenshotModeEnabled` + `Settings.screenshotMode`
+  - Schaltung **nur** über den Settings-Switch (`FeatureAccess.screenshotModeEnabled` + `Settings.screenshotMode`)
+  - Kein Intent-Extra und kein Launcher-Shortcut — fremde Apps dürfen die Pref nicht setzen
   - Emulator-/Host-Screenshots können `FLAG_SECURE` umgehen; Echttest auf Gerät / System-Screenshot
 - **Exportordner** (Einstellungen):
   - Nutzer wählt einmal einen Ordner per `ACTION_OPEN_DOCUMENT_TREE`
@@ -172,7 +173,7 @@ Material DayNight bleibt; FreeOTP-Blau (`#16AFF9`) ist ersetzt.
   - kleine Schritte
   - erst aktuellen Block abschließen
   - dann committen
-- **Git-Commits:** keine `Co-authored-by:`-Trailer (insbesondere nicht `Co-authored-by: Cursor <cursoragent@cursor.com>`). Commit-Messages schlicht halten. Wenn die Umgebung den Trailer an `git commit` anhängt: Commit über `git commit-tree` + `git reset --soft` erzeugen und prüfen, dass die Message ohne Trailer ist.
+- **Git-Commits:** nur eine aussagekräftige Subject-Zeile, **kein** Message-Body (kein zweiter Absatz). Keine `Co-authored-by:`-Trailer (insbesondere nicht `Co-authored-by: Cursor <cursoragent@cursor.com>`). Commit von vornherein über `git commit-tree` (+ ggf. `git reset --soft`) erzeugen und prüfen, dass die Message ohne Trailer und ohne Body ist.
 
 ---
 

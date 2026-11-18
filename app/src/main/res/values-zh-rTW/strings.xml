@@ -60,7 +60,6 @@
     <string name="launch_file_browser_failure">無法啟動系統的檔案瀏覽器。似乎是作業系統的問題。</string>
     <string name="share_qr_code">分享 QR Code</string>
     <string name="screenshot_mode">截圖模式</string>
-    <string name="launch_with_screenshot_enabled">啟用螢幕截圖啟動</string>
     <string name="token_details">權杖詳細資訊</string>
     <string name="share_to_other_apps">分享給其他應用程式</string>
     <string name="category_tab_all">全部</string>

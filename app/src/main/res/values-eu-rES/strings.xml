@@ -60,7 +60,6 @@
     <string name="launch_file_browser_failure">Ezin izan da sistemaren fitxategi arakatzailea abiarazi. Ziurrenik SE-aren arazo bat da.</string>
     <string name="share_qr_code">Partekatu QR kodea</string>
     <string name="screenshot_mode">Pantaila-argazkia modua</string>
-    <string name="launch_with_screenshot_enabled">Abiarazi pantaila-argazkiak gaituz</string>
     <string name="token_details">Token xehetasunak</string>
     <string name="share_to_other_apps">Partekatu beste aplikazioekin</string>
     <string name="category_tab_all">Denak</string>

@@ -60,7 +60,6 @@
     <string name="launch_file_browser_failure">Nelze spustit správce souborů systému. Pravděpodobně se jedná o problém OS.</string>
     <string name="share_qr_code">Sdílet QR kód</string>
     <string name="screenshot_mode">Režim snímku obrazovky</string>
-    <string name="launch_with_screenshot_enabled">Spustit s povoleným snímkem obrazovky</string>
     <string name="token_details">Detaily tokenu</string>
     <string name="share_to_other_apps">Share to other apps</string>
     <string name="category_tab_all">Vše</string>

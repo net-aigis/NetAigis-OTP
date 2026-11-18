@@ -60,7 +60,6 @@
     <string name="launch_file_browser_failure">Não foi possível iniciar o navegador de arquivos do sistema. Provavelmente é um problema do SO.</string>
     <string name="share_qr_code">Compartilhar código QR</string>
     <string name="screenshot_mode">Modo Captura de Tela</string>
-    <string name="launch_with_screenshot_enabled">Iniciar com captura de tela ativada</string>
     <string name="token_details">Detalhes do token</string>
     <string name="share_to_other_apps">Compartilhar com outros apps</string>
     <string name="category_tab_all">Todos</string>

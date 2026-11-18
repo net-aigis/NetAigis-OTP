@@ -60,7 +60,6 @@
     <string name="launch_file_browser_failure">Impossibile avviare il file explorer del sistema. Probabilmente è un problema del sistema operativo.</string>
     <string name="share_qr_code">Condividi il codice QR</string>
     <string name="screenshot_mode">Modalità screenshot</string>
-    <string name="launch_with_screenshot_enabled">Usa con gli screenshot abilitati</string>
     <string name="token_details">Dettagli del token</string>
     <string name="share_to_other_apps">Condividi con altre app</string>
     <string name="category_tab_all">Tutti</string>

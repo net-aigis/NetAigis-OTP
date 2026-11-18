@@ -60,7 +60,6 @@
     <string name="launch_file_browser_failure">לא ניתן להפעיל את סייר הקבצים של המערכת. כנראה שזו בעיה במערכת ההפעלה.</string>
     <string name="share_qr_code">שיתוף קוד QR</string>
     <string name="screenshot_mode">מצב צילום מסך</string>
-    <string name="launch_with_screenshot_enabled">הפעלה כאשר צילום מסך מופעל</string>
     <string name="token_details">פרטי אסימון</string>
     <string name="share_to_other_apps">שיתוף עם יישומים אחרים</string>
     <string name="category_tab_all">הכל</string>

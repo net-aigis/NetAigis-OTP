@@ -68,7 +68,6 @@
     <string name="launch_file_browser_failure">Tidak dapat meluncurkan penjelajah file sistem. Kemungkinan masalah OS.</string>
     <string name="share_qr_code">Bagikan Kode QR</string>
     <string name="screenshot_mode">Mode tangkapan layar</string>
-    <string name="launch_with_screenshot_enabled">Luncurkan dengan tangkapan layar aktif</string>
     <string name="token_details">Detail Token</string>
     <string name="share_to_other_apps">Bagikan ke aplikasi lain</string>
     <string name="category_tab_all">Semua</string>

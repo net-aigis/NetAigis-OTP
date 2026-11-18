@@ -60,7 +60,6 @@
     <string name="launch_file_browser_failure">システムのファイルブラウザを起動できません。おそらくOSの問題です。</string>
     <string name="share_qr_code">QRコードを共有</string>
     <string name="screenshot_mode">スクリーンショットモード</string>
-    <string name="launch_with_screenshot_enabled">スクリーンショットを有効にして起動</string>
     <string name="token_details">トークンの詳細</string>
     <string name="share_to_other_apps">他のアプリと共有する</string>
     <string name="category_tab_all">すべて</string>
