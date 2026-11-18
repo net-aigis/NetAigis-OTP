@@ -14,19 +14,13 @@
     <string name="account">帐户</string>
     <string name="alias">别名</string>
     <string name="icon">图标</string>
-    <string name="id">ID</string>
     <string name="secret">密钥</string>
     <string name="type">类型</string>
     <string name="algorithm">算法</string>
     <string name="digits">数字</string>
     <string name="save">保存</string>
     <string name="code_copied">代码已复制到剪贴板。</string>
-
-<string name="about_copyright">© 2013 - Red Hat, Inc., et al.
-© 2016 - Liberty
-© 2026 - &lt;a href=&quot;https://net-aigis.de/&quot;&gt;NetAigis&lt;/a&gt;</string>
-
-<string name="error_camera_open">打开相机时发生错误！</string>
+    <string name="error_camera_open">打开相机时发生错误！</string>
     <string name="delete_summary">这是你最后的机会：如果你删除这个令牌，它将永远消失。它不会在服务器上被禁用。</string>
     <string name="delete_question">删除此令牌？</string>
     <string name="import_text">导入</string>

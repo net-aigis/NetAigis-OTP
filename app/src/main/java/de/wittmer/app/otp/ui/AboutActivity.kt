@@ -94,6 +94,7 @@ class AboutActivity : BaseActivity() {
         binding.btnContactWebsite.setOnClickListener { openUrl(WEBSITE) }
         binding.btnRate.setOnClickListener { openUrl(SUPPORT) }
         binding.btnDonate.setOnClickListener { openUrl(SUPPORT) }
+        binding.btnTranslate.setOnClickListener { openUrl(CROWDIN) }
 
         binding.btnLicense.setOnClickListener {
             startActivity(
@@ -155,5 +156,6 @@ class AboutActivity : BaseActivity() {
         private const val WEBSITE = "https://net-aigis.de/"
         private const val GITHUB = "https://github.com/net-aigis/NetAigis-OTP"
         private const val SUPPORT = "https://net-aigis.de/otp.html"
+        private const val CROWDIN = "https://crowdin.com/project/netaigis-otp"
     }
 }

@@ -12,21 +12,14 @@
     <string name="counter">Contador</string>
     <string name="issuer">Emisor</string>
     <string name="account">Cuenta</string>
-    <string name="alias">Alias</string>
     <string name="icon">Icono</string>
-    <string name="id">ID</string>
     <string name="secret">Secreto</string>
     <string name="type">Tipo</string>
     <string name="algorithm">Algoritmo</string>
     <string name="digits">Dígitos</string>
     <string name="save">Guardar</string>
     <string name="code_copied">Texto copiado al portapapeles.</string>
-
-<string name="about_copyright">© 2013 - Red Hat, Inc., et al.
-© 2016 - Liberty
-© 2026 - &lt;a href=&quot;https://net-aigis.de/&quot;&gt;NetAigis&lt;/a&gt;</string>
-
-<string name="error_camera_open">¡Error al abrir la cámara!</string>
+    <string name="error_camera_open">¡Error al abrir la cámara!</string>
     <string name="delete_summary">Esta es tu última oportunidad: si eliminas este token, será olvidado para siempre. No será desactivado en el servidor.</string>
     <string name="delete_question">¿Eliminar este token?</string>
     <string name="import_text">Importar</string>

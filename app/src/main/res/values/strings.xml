@@ -69,6 +69,8 @@
     <string name="about_support_rate_summary">Support us by leaving a review in the Google Play Store</string>
     <string name="about_support_donate">Donate</string>
     <string name="about_support_donate_summary">Support development with a donation</string>
+    <string name="about_support_translate">Translate</string>
+    <string name="about_support_translate_summary">Help translate NetAigis OTP on Crowdin</string>
     <string name="about_copyright">© 2013 - Red Hat, Inc., et al.
 © 2016 - Liberty
 © 2026 - &lt;a href=&quot;https://net-aigis.de/&quot;&gt;NetAigis&lt;/a&gt;</string>

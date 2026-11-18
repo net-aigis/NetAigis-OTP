@@ -21,12 +21,7 @@
     <string name="digits">ඉලක්කම්</string>
     <string name="save">සුරකින්න</string>
     <string name="code_copied">කේතය පසුරු පුවරුවට පිටපත් කරන ලදී.</string>
-
-<string name="about_copyright">© 2013 - Red Hat, Inc., et al.
-© 2016 - Liberty
-© 2026 - &lt;a href=&quot;https://net-aigis.de/&quot;&gt;NetAigis&lt;/a&gt;</string>
-
-<string name="error_camera_open">කැමරාව විවෘත කිරීමේදී දෝෂයක්!</string>
+    <string name="error_camera_open">කැමරාව විවෘත කිරීමේදී දෝෂයක්!</string>
     <string name="delete_summary">මෙය ඔබගේ අවසාන අවස්ථාවයි: ඔබ මෙම ටෝකනය මකා දැමුවහොත්, එය සදහටම නැති වී යනු ඇත. එය සේවාදායකයේ අක්‍රිය නොවනු ඇත.</string>
     <string name="delete_question">මෙම ටෝකනය මකන්නද?</string>
     <string name="import_text">ආනයන</string>
@@ -61,7 +56,6 @@
     <string name="share_qr_code">QR කේතය බෙදා ගන්න</string>
     <string name="screenshot_mode">තිරපිටපත් මාදිලිය</string>
     <string name="token_details">ටෝකන් විස්තර</string>
-    <string name="share_to_other_apps">Share to other apps</string>
     <string name="category_tab_all">සියල්ල</string>
     <string name="category_tab_none">නැත</string>
 </resources>

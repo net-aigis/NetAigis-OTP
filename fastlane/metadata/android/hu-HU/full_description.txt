@@ -1,19 +1,27 @@
-A NetAigis OTP második biztonsági réteget ad az online fiókjaihoz.
-Az alkalmazás egyszeri jelszavakat (OTP) generál az eszközön, amelyeket a szokásos jelszó mellett használ.
-A kódok offline is működnek, akár repülőgépes módban is.
+NetAigis OTP adds a second layer of security for your online accounts.
+It generates one-time passwords (OTP) on your device that you use together with your normal password.
+Codes work offline, including in airplane mode.
 
-Tokeneket QR-kód beolvasásával vagy a konfiguráció manuális megadásával adhat hozzá.
-A NetAigis OTP a nyílt TOTP (RFC 6238) és HOTP (RFC 4226) szabványokat valósítja meg, és többek között a Google, GitHub, Nextcloud és Forgejo szolgáltatásokkal működik.
+Add tokens by scanning a QR code or by entering the configuration manually.
+NetAigis OTP implements open standards TOTP (RFC 6238) and HOTP (RFC 4226), so it works with Google, GitHub, Nextcloud, Forgejo and many other services.
 
-<b>Funkciók:</b>
+Compared to FreeOTP+, NetAigis OTP focuses on clearer personal organization of tokens:
 <ul>
-<li>QR-kódok beolvasása (CameraX)</li>
-<li>Tokenek exportálása és importálása (JSON / key URI) a Storage Access Frameworkön keresztül</li>
-<li>Material Design sötét témával</li>
-<li>Tokenek keresése</li>
-<li>Tokenrészletek és szerkesztés</li>
-<li>Opcionális biometrikus / PIN-zárolás indításkor</li>
-<li>Offline kibocsátói ikonok sok ismert szolgáltatáshoz</li>
+    <li><b>Alias</b> — optional display name in the list (instead of the issuer); does not change OTP calculation; included in search</li>
+    <li><b>Icon</b> — optional built-in icon; used when no custom token image is set</li>
+    <li><b>Categories</b> — optional groups (for example Work or Personal) with list filters (All / None / per category)</li>
+    <li>Thumbnail resolution without a custom image: Icon → Alias → Issuer</li>
 </ul>
 
-A NetAigis OTP a FreeOTP+ forkján alapul, és a <a href="https://net-aigis.de/">NetAigis</a> tartja karban.
+<b>Further features:</b>
+<ul>
+    <li>Scan QR codes with CameraX</li>
+    <li>Export and import tokens (JSON / key URI) via the Storage Access Framework</li>
+    <li>Material design with dark theme support</li>
+    <li>Search tokens</li>
+    <li>Token details and editing with field help</li>
+    <li>Optional biometric / PIN lock to open the app</li>
+    <li>Offline issuer icons for many well-known services</li>
+</ul>
+
+NetAigis OTP is based on a FreeOTP+ fork and maintained by <a href="https://net-aigis.de/">NetAigis</a>.

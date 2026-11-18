@@ -8,25 +8,17 @@
     <string name="no_keys">Geen OTP sleutels geinstalleer.</string>
     <string name="add_token">Voeg Kenteken By</string>
     <string name="scan_qr_code">Skandeer QR Kode</string>
-    <string name="interval">Interval</string>
     <string name="counter">Teller</string>
     <string name="issuer">Uitreiker</string>
     <string name="account">Rekening</string>
-    <string name="alias">Alias</string>
     <string name="icon">Ikoon</string>
-    <string name="id">ID</string>
     <string name="secret">Geheim</string>
     <string name="type">Tipe</string>
     <string name="algorithm">Algoritme</string>
     <string name="digits">Syfers</string>
     <string name="save">Stoor</string>
     <string name="code_copied">Kode na geheue gestoor</string>
-
-<string name="about_copyright">© 2013 - Red Hat, Inc., et al.
-© 2016 - Liberty
-© 2026 - &lt;a href=&quot;https://net-aigis.de/&quot;&gt;NetAigis&lt;/a&gt;</string>
-
-<string name="error_camera_open">Fout tydens oopmaak van kamera!</string>
+    <string name="error_camera_open">Fout tydens oopmaak van kamera!</string>
     <string name="delete_summary">Hierdie is jou laaste kans: indien jy hierdie kenteken verwyder, sal dit vir altyd verlore wees, maar dit sal nie gedeaktiveer wees op die bedienaar nie.</string>
     <string name="delete_question">Verwyder hierdie kenteken?</string>
     <string name="import_text">Invoer</string>
@@ -39,7 +31,6 @@
     <string name="import_json_file">Voer JSON leêr in</string>
     <string name="import_json_file_warning">Al die huidige kentekens sal verwyder en oor geskryf word na invoer.</string>
     <string name="camera_permission_denied_text">Kamera toegang afgekeur</string>
-    <string name="ok_text">Ok</string>
     <string name="cancel_text">Kanselleer</string>
     <string name="import_json_format">Voer JSON formaat in</string>
     <string name="import_key_uri_format">Voer sleutel URI formaat in</string>
@@ -47,21 +38,6 @@
     <string name="export_key_uri_format">Voer sleutel uri formaat uit</string>
     <string name="add_token_success">Die kenteken was suksesvol begevoeg.</string>
     <string name="copy_to_clipboard">Stoor na geheue</string>
-    <string name="require_authentication">Require authentication</string>
-    <string name="quit_and_lock">Quit and lock</string>
-    <string name="authentication_succeeded">Authentication succeeded!</string>
-    <string name="authentication_error">Authentication error:</string>
-    <string name="authentication_failed">Authentication failed</string>
-    <string name="authentication_dialog_title">Authentication required</string>
-    <string name="authentication_dialog_subtitle">Please use biometric or PIN to authenticate NetAigis OTP</string>
-    <string name="unable_to_authenticate">Unable to authenticate. Do you have screen lock enabled with PIN / biometric enabled?</string>
-    <string name="remove_user_token_image">Remove user token image</string>
-    <string name="fail_to_add_image">Fail to add image</string>
-    <string name="launch_file_browser_failure">Unable to launch system\'s file browser. It is likely an OS issue.</string>
-    <string name="share_qr_code">Share QR Code</string>
-    <string name="screenshot_mode">Screenshot mode</string>
-    <string name="token_details">Token details</string>
-    <string name="share_to_other_apps">Share to other apps</string>
     <string name="category_tab_all">Alles</string>
     <string name="category_tab_none">Geen</string>
 </resources>

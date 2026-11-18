@@ -1,1 +1,1 @@
-TOTP மற்றும் HOTP ஒரேமுறை கடவுச்சொற்களுடன் இருபடி அங்கீகாரம் (2FA)
+2FA authenticator with TOTP/HOTP, token aliases, icons and categories

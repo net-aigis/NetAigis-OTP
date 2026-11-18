@@ -12,21 +12,14 @@
     <string name="counter">Räknare</string>
     <string name="issuer">Utfärdare</string>
     <string name="account">Konto</string>
-    <string name="alias">Alias</string>
     <string name="icon">Ikon</string>
-    <string name="id">ID</string>
     <string name="secret">Hemlighet</string>
     <string name="type">Typ</string>
     <string name="algorithm">Algoritm</string>
     <string name="digits">Siffror</string>
     <string name="save">Spara</string>
     <string name="code_copied">Koden kopierades till urklipp.</string>
-
-<string name="about_copyright">© 2013 - Red Hat, Inc., et al.
-© 2016 - Liberty
-© 2026 - &lt;a href=&quot;https://net-aigis.de/&quot;&gt;NetAigis&lt;/a&gt;</string>
-
-<string name="error_camera_open">Fel vid öppning av kamera!</string>
+    <string name="error_camera_open">Fel vid öppning av kamera!</string>
     <string name="delete_summary">Detta är din sista chans: om du tar bort denna token kommer den att vara borta för alltid. Det kommer inte att inaktiveras på servern.</string>
     <string name="delete_question">Ta bort denna token?</string>
     <string name="import_text">Importera</string>
@@ -39,7 +32,6 @@
     <string name="import_json_file">Importera JSON-fil</string>
     <string name="import_json_file_warning">Alla nuvarande tokens kommer att rensas och skrivas över efter import.</string>
     <string name="camera_permission_denied_text">Kamerabehörighet nekad</string>
-    <string name="ok_text">Ok</string>
     <string name="cancel_text">Avbryt</string>
     <string name="import_json_format">Importera JSON-format</string>
     <string name="import_key_uri_format">Importera nyckel-URI-format</string>

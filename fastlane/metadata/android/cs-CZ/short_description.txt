@@ -1,1 +1,1 @@
-Dvoufaktorové ověřování (2FA) s jednorázovými hesly TOTP a HOTP
+2FA authenticator with TOTP/HOTP, token aliases, icons and categories

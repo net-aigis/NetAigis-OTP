@@ -21,12 +21,7 @@
     <string name="digits">Számjegyek</string>
     <string name="save">Mentés</string>
     <string name="code_copied">A kód a vágólapra másolva.</string>
-
-<string name="about_copyright">© 2013 - Red Hat, Inc., et al.
-© 2016 - Liberty
-© 2026 - &lt;a href=&quot;https://net-aigis.de/&quot;&gt;NetAigis&lt;/a&gt;</string>
-
-<string name="error_camera_open">Hiba a kamera megnyitása közben!</string>
+    <string name="error_camera_open">Hiba a kamera megnyitása közben!</string>
     <string name="delete_summary">Ez az utolsó esélye: ha törli ezt a tokent, akkor az örökre elvész. Nem lesz letiltva a kiszolgálón.</string>
     <string name="delete_question">Törli ezt a tokent?</string>
     <string name="import_text">Importálás</string>
@@ -56,12 +51,6 @@
     <string name="authentication_dialog_subtitle">Használjon biometrikus azonosítást vagy PIN-kódót a NetAigis OTP hitelesítéséhez</string>
     <string name="unable_to_authenticate">Nem lehet hitelesíteni. Engedélyezve van a PIN-kóddal vagy biometrikus azonosítással támogatott képernyőzár?</string>
     <string name="remove_user_token_image">Felhasználó tokenképének eltávolítása</string>
-    <string name="fail_to_add_image">Fail to add image</string>
-    <string name="launch_file_browser_failure">Unable to launch system\'s file browser. It is likely an OS issue.</string>
-    <string name="share_qr_code">Share QR Code</string>
-    <string name="screenshot_mode">Screenshot mode</string>
-    <string name="token_details">Token details</string>
-    <string name="share_to_other_apps">Share to other apps</string>
     <string name="category_tab_all">Mind</string>
     <string name="category_tab_none">Nincs</string>
 </resources>

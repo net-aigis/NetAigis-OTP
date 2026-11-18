@@ -21,12 +21,7 @@
     <string name="digits">ספרות</string>
     <string name="save">שמירה</string>
     <string name="code_copied">הקוד הועתק ללוח.</string>
-
-<string name="about_copyright">© 2013 - Red Hat, Inc., et al.
-© 2016 - Liberty
-© 2026 - &lt;a href=&quot;https://net-aigis.de/&quot;&gt;NetAigis&lt;/a&gt;</string>
-
-<string name="error_camera_open">תקלה בפתיחת מצלמה!</string>
+    <string name="error_camera_open">תקלה בפתיחת מצלמה!</string>
     <string name="delete_summary">זו ההזדמנות האחרונה שלך: בעת מחיקת האסימון הזה, הוא ייעלם לנצח. זה לא יושבת בשרת.</string>
     <string name="delete_question">למחוק את האסימון הזה?</string>
     <string name="import_text">ייבוא</string>

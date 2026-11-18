@@ -21,12 +21,7 @@
     <string name="digits">Цифр</string>
     <string name="save">Зберегти</string>
     <string name="code_copied">Код скопійовано до буфера обміну.</string>
-
-<string name="about_copyright">© 2013 - Red Hat, Inc., et al.
-© 2016 - Liberty
-© 2026 - &lt;a href=&quot;https://net-aigis.de/&quot;&gt;NetAigis&lt;/a&gt;</string>
-
-<string name="error_camera_open">Помилка під час відкривання камери!</string>
+    <string name="error_camera_open">Помилка під час відкривання камери!</string>
     <string name="delete_summary">Це Ваш останній шанс: якщо видалити цей ключ, він зникне назавжди. Він не буде відключений на сервері.</string>
     <string name="delete_question">Видалити ключ?</string>
     <string name="import_text">Імпортувати</string>
@@ -61,7 +56,6 @@
     <string name="share_qr_code">Поширити QR-код</string>
     <string name="screenshot_mode">Режим знімка екрана</string>
     <string name="token_details">Деталі ключа</string>
-    <string name="share_to_other_apps">Share to other apps</string>
     <string name="category_tab_all">Усі</string>
     <string name="category_tab_none">Немає</string>
 </resources>

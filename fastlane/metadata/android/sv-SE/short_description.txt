@@ -1,1 +1,1 @@
-Tvåfaktorsautentisering (2FA) med engångslösenord via TOTP och HOTP
+2FA authenticator with TOTP/HOTP, token aliases, icons and categories

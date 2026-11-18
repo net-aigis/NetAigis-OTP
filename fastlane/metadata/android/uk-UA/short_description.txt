@@ -1,1 +1,1 @@
-Двофакторна автентифікація (2FA) з одноразовими паролями TOTP і HOTP
+2FA authenticator with TOTP/HOTP, token aliases, icons and categories

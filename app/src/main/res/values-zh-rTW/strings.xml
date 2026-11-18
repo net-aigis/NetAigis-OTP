@@ -14,19 +14,13 @@
     <string name="account">帳號</string>
     <string name="alias">別名</string>
     <string name="icon">圖示</string>
-    <string name="id">ID</string>
     <string name="secret">金鑰</string>
     <string name="type">類型</string>
     <string name="algorithm">演算法</string>
     <string name="digits">位數</string>
     <string name="save">儲存</string>
     <string name="code_copied">驗證碼已複製到剪貼簿。</string>
-
-<string name="about_copyright">© 2013 - Red Hat, Inc., et al.
-© 2016 - Liberty
-© 2026 - &lt;a href=&quot;https://net-aigis.de/&quot;&gt;NetAigis&lt;/a&gt;</string>
-
-<string name="error_camera_open">開啟相機時發生錯誤！</string>
+    <string name="error_camera_open">開啟相機時發生錯誤！</string>
     <string name="delete_summary">這是您最後的機會：若您刪除此權杖，其將會永遠消失。且不會在伺服器上停用。</string>
     <string name="delete_question">刪除此權杖？</string>
     <string name="import_text">匯入</string>

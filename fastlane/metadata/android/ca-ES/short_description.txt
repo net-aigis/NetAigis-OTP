@@ -1,1 +1,1 @@
-Autenticació de dos factors (2FA) amb contrasenyes d’un sol ús TOTP i HOTP
+2FA authenticator with TOTP/HOTP, token aliases, icons and categories

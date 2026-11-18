@@ -1,1 +1,1 @@
-Twee-faktor-verifikasie (2FA) met TOTP- en HOTP-eenmalige wagwoorde
+2FA authenticator with TOTP/HOTP, token aliases, icons and categories

@@ -5,15 +5,23 @@ Los códigos funcionan sin conexión, también en modo avión.
 Añade tokens escaneando un código QR o introduciendo la configuración manualmente.
 NetAigis OTP implementa los estándares abiertos TOTP (RFC 6238) y HOTP (RFC 4226) y funciona con Google, GitHub, Nextcloud, Forgejo y muchos otros servicios.
 
+Compared to FreeOTP+, NetAigis OTP focuses on clearer personal organization of tokens:
+<ul>
+    <li><b>Alias</b> — optional display name in the list (instead of the issuer); does not change OTP calculation; included in search</li>
+    <li><b>Icon</b> — optional built-in icon; used when no custom token image is set</li>
+    <li><b>Categories</b> — optional groups (for example Work or Personal) with list filters (All / None / per category)</li>
+    <li>Thumbnail resolution without a custom image: Icon → Alias → Issuer</li>
+</ul>
+
 <b>Funciones:</b>
 <ul>
-<li>Escanear códigos QR con CameraX</li>
-<li>Exportar e importar tokens (JSON / key URI) mediante Storage Access Framework</li>
-<li>Material Design con tema oscuro</li>
-<li>Buscar tokens</li>
-<li>Detalles y edición de tokens</li>
-<li>Bloqueo biométrico / PIN opcional al abrir la app</li>
-<li>Iconos de emisor sin conexión para muchos servicios conocidos</li>
+    <li>Escanear códigos QR con CameraX</li>
+    <li>Exportar e importar tokens (JSON / key URI) mediante Storage Access Framework</li>
+    <li>Material Design con tema oscuro</li>
+    <li>Buscar tokens</li>
+    <li>Detalles y edición de tokens</li>
+    <li>Bloqueo biométrico / PIN opcional al abrir la app</li>
+    <li>Iconos de emisor sin conexión para muchos servicios conocidos</li>
 </ul>
 
 NetAigis OTP se basa en un fork de FreeOTP+ y lo mantiene <a href="https://net-aigis.de/">NetAigis</a>.

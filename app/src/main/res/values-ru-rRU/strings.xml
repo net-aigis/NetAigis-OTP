@@ -14,19 +14,13 @@
     <string name="account">Аккаунт</string>
     <string name="alias">Псевдоним</string>
     <string name="icon">Значок</string>
-    <string name="id">ID</string>
     <string name="secret">Секретный ключ</string>
     <string name="type">Тип</string>
     <string name="algorithm">Алгоритм</string>
     <string name="digits">Цифры</string>
     <string name="save">Сохранить</string>
     <string name="code_copied">Код скопирован в буфер обмена</string>
-
-<string name="about_copyright">© 2013 - Red Hat, Inc., et al.
-© 2016 - Liberty
-© 2026 - &lt;a href=&quot;https://net-aigis.de/&quot;&gt;NetAigis&lt;/a&gt;</string>
-
-<string name="error_camera_open">Ошибка при открытии камеры!</string>
+    <string name="error_camera_open">Ошибка при открытии камеры!</string>
     <string name="delete_summary">Это ваш последний шанс: если вы удалите этот токен, он исчезнет навсегда. Он не будет отключен на сервере.</string>
     <string name="delete_question">Удалить этот токен?</string>
     <string name="import_text">Импортировать</string>

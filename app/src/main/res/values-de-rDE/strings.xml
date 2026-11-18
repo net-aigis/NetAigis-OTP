@@ -5,7 +5,7 @@
     <string name="delete">Löschen</string>
     <string name="edit">Bearbeiten</string>
     <string name="restore_defaults">Standards wiederherstellen</string>
-    <string name="no_keys">Keine OTP-Schlüssel installiert.</string>
+    <string name="no_keys">Keine OTP Schlüssel installiert.</string>
     <string name="add_token">Token hinzufügen</string>
     <string name="scan_qr_code">QR-Code scannen</string>
     <string name="interval">Intervall</string>
@@ -18,10 +18,10 @@
     <string name="field_help_alias">Optionaler Anzeigename in der Liste statt des Ausstellers. Wird auch für die automatische Symbolsuche genutzt, wenn kein Icon gesetzt ist (vor dem Aussteller). Sinnvoll, wenn mehrere Token denselben Aussteller haben.</string>
     <string name="field_help_category">Optionale Gruppe zum Ordnen der Token in der Liste (zum Beispiel Arbeit oder Privat).</string>
     <string name="field_help_icon">Optionaler Name eines eingebauten Symbols. Hat Vorrang vor Alias und Aussteller für das Token-Symbol, wenn kein eigenes Bild gesetzt ist.</string>
-    <string name="field_help_secret">Gemeinsames Geheimnis in Base32-Kodierung. Dienst und App erzeugen damit dieselben Einmalcodes. Geheim halten.</string>
+    <string name="field_help_secret">Gemeinsames Geheimnis in Base32-Kodierung. Dienst und App erzeugen damit dasselbe Einmal-Passwort. Geheim halten.</string>
     <string name="field_help_type">TOTP erzeugt alle paar Sekunden einen neuen Code (am häufigsten). HOTP erzeugt einen neuen Code, wenn der Zähler erhöht wird.</string>
-    <string name="field_help_digits">Anzahl der Ziffern im Einmalcode. Die meisten Dienste nutzen 6, manche 7 oder 8. Muss zum Dienst passen.</string>
-    <string name="field_help_algorithm">HMAC-Hash zur Berechnung der Codes (SHA1, SHA256 oder SHA512). Muss zum Dienst passen; SHA1 ist der übliche Standard.</string>
+    <string name="field_help_digits">Anzahl der Ziffern im Einmal-Passwort. Die meisten Dienste nutzen 6, manche 7 oder 8. Muss zum Dienst passen.</string>
+    <string name="field_help_algorithm">HMAC Hash zur Berechnung der Codes (SHA1, SHA256 oder SHA512). Muss zum Dienst passen; SHA1 ist der übliche Standard.</string>
     <string name="field_help_interval">Bei TOTP: Gültigkeitsdauer eines Codes in Sekunden. Üblich ist 30. Muss zum Dienst passen.</string>
     <string name="field_help_counter">Bei HOTP: aktueller Zählerstand. Muss mit dem Dienst synchron bleiben, sonst stimmen die Codes nicht.</string>
     <string name="account">Konto</string>
@@ -32,7 +32,6 @@
     <string name="type">Art</string>
     <string name="algorithm">Algorithmus</string>
     <string name="digits">Ziffern</string>
-    <string name="category">Kategorie</string>
     <string name="save">Speichern</string>
     <string name="code_copied">Code in Zwischenablage kopiert.</string>
     <string name="action_settings">Einstellungen</string>
@@ -69,9 +68,11 @@
     <string name="about_support_rate_summary">Unterstützen Sie uns mit einer Bewertung im Google Play Store</string>
     <string name="about_support_donate">Spenden</string>
     <string name="about_support_donate_summary">Unterstützen Sie die Entwicklung mit einer Spende</string>
-    <string name="about_copyright">© 2013 - Red Hat, Inc., et al.
-© 2016 - Liberty
-© 2026 - &lt;a href=&quot;https://net-aigis.de/&quot;&gt;NetAigis&lt;/a&gt;</string>
+    <string name="about_support_translate">Übersetzen</string>
+    <string name="about_support_translate_summary">Helfen Sie, NetAigis OTP auf Crowdin zu übersetzen</string>
+    <string name="about_copyright">©️ 2013 - Red Hat, Inc., et al.
+©️ 2016 - Liberty
+©️ 2026 - &lt;a href=&quot;https://net-aigis.de/&quot;&gt;NetAigis&lt;/a&gt;</string>
     <string name="error_camera_open">Fehler beim Öffnen der Kamera!</string>
     <string name="delete_summary">Dies ist deine letzte Chance: Wenn du dieses Token löschst, wird er für immer gelöscht sein. Er wird jedoch nicht auf dem Server deaktiviert.</string>
     <string name="delete_question">Diesen Token löschen?</string>
@@ -85,7 +86,7 @@
     <string name="import_json_file">JSON-Datei importieren</string>
     <string name="import_json_file_warning">Alle aktuellen Token werden nach dem Import gelöscht und überschrieben.</string>
     <string name="camera_permission_denied_text">Kamera-Berechtigung verweigert</string>
-    <string name="ok_text">Ok</string>
+    <string name="ok_text">OK</string>
     <string name="cancel_text">Abbrechen</string>
     <string name="import_json_format">JSON-Format importieren</string>
     <string name="import_key_uri_format">Import Schlüssel-Url-Format</string>
@@ -128,7 +129,11 @@
     <string name="feature_pro">Pro</string>
     <string name="screenshot_mode">Screenshot-Modus</string>
     <string name="token_details">Token-Details</string>
+    <string name="click_to_display">Zum Anzeigen tippen</string>
     <string name="share_to_other_apps">Mit anderen Apps teilen</string>
+    <string name="category">Kategorie</string>
+    <string name="all_categories">Alle Kategorien</string>
+    <string name="uncategorized">Ohne Kategorie</string>
     <string name="category_tab_all">Alle</string>
     <string name="category_tab_none">Keine</string>
 </resources>

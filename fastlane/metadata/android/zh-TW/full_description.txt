@@ -2,18 +2,26 @@ NetAigis OTP 為您的線上帳戶增加第二層安全保護。
 應用程式在裝置上產生一次性密碼（OTP），與一般密碼一併使用。
 驗證碼可離線使用，包括飛航模式。
 
-可透過掃描 QR 碼或手動輸入設定來新增權杖。
+Add tokens by scanning a QR code or by entering the configuration manually.
 NetAigis OTP 實作開放標準 TOTP（RFC 6238）與 HOTP（RFC 4226），可與 Google、GitHub、Nextcloud、Forgejo 等眾多服務搭配使用。
+
+Compared to FreeOTP+, NetAigis OTP focuses on clearer personal organization of tokens:
+<ul>
+    <li><b>Alias</b> — optional display name in the list (instead of the issuer); does not change OTP calculation; included in search</li>
+    <li><b>Icon</b> — optional built-in icon; used when no custom token image is set</li>
+    <li><b>Categories</b> — optional groups (for example Work or Personal) with list filters (All / None / per category)</li>
+    <li>Thumbnail resolution without a custom image: Icon → Alias → Issuer</li>
+</ul>
 
 <b>功能：</b>
 <ul>
-<li>使用 CameraX 掃描 QR 碼</li>
-<li>透過 Storage Access Framework 匯入／匯出權杖（JSON / key URI）</li>
-<li>支援深色主題的 Material Design</li>
-<li>搜尋權杖</li>
-<li>權杖詳情與編輯</li>
-<li>可選的生物辨識／PIN 啟動鎖定</li>
-<li>面向眾多知名服務的離線發行方圖示</li>
+    <li>使用 CameraX 掃描 QR 碼</li>
+    <li>透過 Storage Access Framework 匯入／匯出權杖（JSON / key URI）</li>
+    <li>支援深色主題的 Material Design</li>
+    <li>搜尋權杖</li>
+    <li>Token details and editing with field help</li>
+    <li>可選的生物辨識／PIN 啟動鎖定</li>
+    <li>面向眾多知名服務的離線發行方圖示</li>
 </ul>
 
 NetAigis OTP 基於 FreeOTP+ 分支，由 <a href="https://net-aigis.de/">NetAigis</a> 維護。

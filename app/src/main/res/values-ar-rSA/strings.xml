@@ -21,12 +21,7 @@
     <string name="digits">أرقام </string>
     <string name="save">حفظ </string>
     <string name="code_copied">الكود الذي تم نسخه في المسودة. </string>
-
-<string name="about_copyright">© 2013 - Red Hat, Inc., et al.
-© 2016 - Liberty
-© 2026 - &lt;a href=&quot;https://net-aigis.de/&quot;&gt;NetAigis&lt;/a&gt;</string>
-
-<string name="error_camera_open">حدث خطأ أثناء فتح الكاميرا ! </string>
+    <string name="error_camera_open">حدث خطأ أثناء فتح الكاميرا ! </string>
     <string name="delete_summary">هذه هي فرصتك الأخيرة : إذا قمت بحذف هذا الرمز ، فإنه سيختفي للأبد.  لن يتم الغاء اتاحتها على وحدة الخدمة. </string>
     <string name="delete_question">حذف هذا الرمز المميز؟</string>
     <string name="import_text">استيراد</string>
@@ -61,7 +56,6 @@
     <string name="share_qr_code">مشاركة كود QR</string>
     <string name="screenshot_mode">وضع لقطة الشاشة</string>
     <string name="token_details">تفاصيل الرمز</string>
-    <string name="share_to_other_apps">Share to other apps</string>
     <string name="category_tab_all">الكل</string>
     <string name="category_tab_none">لا شيء</string>
 </resources>

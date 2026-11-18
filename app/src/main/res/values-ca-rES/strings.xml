@@ -8,7 +8,6 @@
     <string name="no_keys">Cap clau OTP instal·lada.</string>
     <string name="add_token">Afegeix nou OTP</string>
     <string name="scan_qr_code">Escaneja un codi QR</string>
-    <string name="interval">Interval</string>
     <string name="counter">Comptador</string>
     <string name="issuer">Emissor</string>
     <string name="account">Compte</string>
@@ -21,12 +20,7 @@
     <string name="digits">Dígits</string>
     <string name="save">Desa</string>
     <string name="code_copied">Codi copiat al porta-retalls.</string>
-
-<string name="about_copyright">© 2013 - Red Hat, Inc., et al.
-© 2016 - Liberty
-© 2026 - &lt;a href=&quot;https://net-aigis.de/&quot;&gt;NetAigis&lt;/a&gt;</string>
-
-<string name="error_camera_open">Error obrint la càmera!</string>
+    <string name="error_camera_open">Error obrint la càmera!</string>
     <string name="delete_summary">Aquesta és la teva última oportunitat: si suprimeixes aquest OTP, desapareixerà per sempre. No es desactivarà al servidor.</string>
     <string name="delete_question">Eliminar aquest OTP?</string>
     <string name="import_text">Importa</string>

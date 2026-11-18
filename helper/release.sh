@@ -9,6 +9,9 @@
 #   FTOKEN_RELEASE=... ./helper/release.sh 4.1.0 --build --upload --upload-github
 #   FTOKEN_RELEASE=... ./helper/release.sh 4.1.0 --upload --force-upload
 #
+# --build always pulls the latest translations from Crowdin first (requires
+# crowdin CLI + local crowdin.yml). Use --skip-translations only in emergencies.
+#
 # Release notes come from app/src/main/res/raw/changelog.md (section ## VERSION).
 # Free edition builds/uploads are paused; Pro is the default release target.
 #
@@ -17,7 +20,7 @@
 set -euo pipefail
 
 usage() {
-  printf "Verwendung: %s VERSION [--build] [--upload] [--upload-github] [--force-upload]\n" "$0"
+  printf "Verwendung: %s VERSION [--build] [--upload] [--upload-github] [--force-upload] [--skip-translations]\n" "$0"
 }
 
 if [ "$#" -lt 2 ]; then
@@ -31,6 +34,7 @@ scDoBuild='false'
 scDoUpload='false'
 scDoUploadGithub='false'
 scForceUpload='false'
+scSkipTranslations='false'
 
 case "${scVersion}" in
   *[!A-Za-z0-9._-]*|'')
@@ -54,6 +58,9 @@ while [ "$#" -gt 0 ]; do
     --force-upload)
       scForceUpload='true'
       ;;
+    --skip-translations)
+      scSkipTranslations='true'
+      ;;
     *)
       printf "Unbekannte Option: %s\n" "$1"
       usage
@@ -72,6 +79,18 @@ fi
 if [ "${scDoUpload}" = "true" ] && ! command -v jq >/dev/null 2>&1; then
   printf "jq wird fuer --upload benoetigt, ist aber nicht installiert.\n"
   exit 2
+fi
+
+if [ "${scDoBuild}" = "true" ] && [ "${scSkipTranslations}" = "false" ]; then
+  if ! command -v crowdin >/dev/null 2>&1; then
+    printf "crowdin CLI fehlt fuer den Translations-Pull vor --build.\n"
+    printf "Installieren oder PATH setzen, bzw. Notfall: --skip-translations\n"
+    exit 2
+  fi
+  if [ ! -f crowdin.yml ]; then
+    printf "crowdin.yml fehlt (gitignored). Vorlage: crowdin.example.yml\n"
+    exit 2
+  fi
 fi
 
 if [ "${scDoUploadGithub}" = "true" ] && ! command -v gh >/dev/null 2>&1; then
@@ -164,6 +183,12 @@ cleanup_release_notes() {
 }
 
 trap cleanup_release_notes EXIT
+
+pull_translations() {
+  printf "Crowdin: download latest translations\n"
+  crowdin download translations --no-progress --skip-untranslated-strings
+  printf "Crowdin: translations updated\n"
+}
 
 build_artifacts() {
   printf "Build Pro Debug and Release APKs for release %s\n" "${scVersion}"
@@ -552,6 +577,11 @@ if [ "${scDoUpload}" = "true" ] || [ "${scDoUploadGithub}" = "true" ]; then
 fi
 
 if [ "${scDoBuild}" = "true" ]; then
+  if [ "${scSkipTranslations}" = "false" ]; then
+    pull_translations
+  else
+    printf "Crowdin-Download uebersprungen (--skip-translations)\n"
+  fi
   build_artifacts
 fi
 

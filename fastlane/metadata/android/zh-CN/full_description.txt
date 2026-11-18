@@ -5,15 +5,23 @@ NetAigis OTP 为您的在线账户增加第二层安全保护。
 可通过扫描二维码或手动输入配置来添加令牌。
 NetAigis OTP 实现开放标准 TOTP（RFC 6238）与 HOTP（RFC 4226），可与 Google、GitHub、Nextcloud、Forgejo 等众多服务配合使用。
 
+Compared to FreeOTP+, NetAigis OTP focuses on clearer personal organization of tokens:
+<ul>
+    <li><b>Alias</b> — optional display name in the list (instead of the issuer); does not change OTP calculation; included in search</li>
+    <li><b>Icon</b> — optional built-in icon; used when no custom token image is set</li>
+    <li><b>Categories</b> — optional groups (for example Work or Personal) with list filters (All / None / per category)</li>
+    <li>Thumbnail resolution without a custom image: Icon → Alias → Issuer</li>
+</ul>
+
 <b>功能：</b>
 <ul>
-<li>使用 CameraX 扫描二维码</li>
-<li>通过 Storage Access Framework 导入/导出令牌（JSON / key URI）</li>
-<li>支持深色主题的 Material Design</li>
-<li>搜索令牌</li>
-<li>令牌详情与编辑</li>
-<li>可选的生物识别 / PIN 启动锁定</li>
-<li>面向众多知名服务的离线发行方图标</li>
+    <li>使用 CameraX 扫描二维码</li>
+    <li>通过 Storage Access Framework 导入/导出令牌（JSON / key URI）</li>
+    <li>支持深色主题的 Material Design</li>
+    <li>搜索令牌</li>
+    <li>令牌详情与编辑</li>
+    <li>可选的生物识别 / PIN 启动锁定</li>
+    <li>面向众多知名服务的离线发行方图标</li>
 </ul>
 
 NetAigis OTP 基于 FreeOTP+ 分支，由 <a href="https://net-aigis.de/">NetAigis</a> 维护。

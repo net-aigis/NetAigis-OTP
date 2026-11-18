@@ -5,15 +5,23 @@
 أضف الرموز المميزة بمسح رمز QR أو بإدخال الإعدادات يدويًا.
 ينفّذ NetAigis OTP المعيارين المفتوحين TOTP (RFC 6238) و HOTP (RFC 4226) ويعمل مع Google وGitHub وNextcloud وForgejo والعديد من الخدمات الأخرى.
 
+Compared to FreeOTP+, NetAigis OTP focuses on clearer personal organization of tokens:
+<ul>
+    <li><b>Alias</b> — optional display name in the list (instead of the issuer); does not change OTP calculation; included in search</li>
+    <li><b>Icon</b> — optional built-in icon; used when no custom token image is set</li>
+    <li><b>Categories</b> — optional groups (for example Work or Personal) with list filters (All / None / per category)</li>
+    <li>Thumbnail resolution without a custom image: Icon → Alias → Issuer</li>
+</ul>
+
 <b>الميزات:</b>
 <ul>
-<li>مسح رموز QR عبر CameraX</li>
-<li>تصدير واستيراد الرموز (JSON / key URI) عبر Storage Access Framework</li>
-<li>تصميم Material مع الوضع الداكن</li>
-<li>البحث عن الرموز</li>
-<li>تفاصيل الرموز وتحريرها</li>
-<li>قفل اختياري بالبصمة / رمز PIN عند الفتح</li>
-<li>أيقونات جهات الإصدار دون اتصال للعديد من الخدمات المعروفة</li>
+    <li>مسح رموز QR عبر CameraX</li>
+    <li>تصدير واستيراد الرموز (JSON / key URI) عبر Storage Access Framework</li>
+    <li>تصميم Material مع الوضع الداكن</li>
+    <li>البحث عن الرموز</li>
+    <li>تفاصيل الرموز وتحريرها</li>
+    <li>قفل اختياري بالبصمة / رمز PIN عند الفتح</li>
+    <li>أيقونات جهات الإصدار دون اتصال للعديد من الخدمات المعروفة</li>
 </ul>
 
 يعتمد NetAigis OTP على تفرع FreeOTP+ ويُدار بواسطة <a href="https://net-aigis.de/">NetAigis</a>.

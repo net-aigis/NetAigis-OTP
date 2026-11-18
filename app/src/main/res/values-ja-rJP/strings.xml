@@ -14,19 +14,13 @@
     <string name="account">アカウント</string>
     <string name="alias">エイリアス</string>
     <string name="icon">アイコン</string>
-    <string name="id">ID</string>
     <string name="secret">秘密鍵</string>
     <string name="type">タイプ</string>
     <string name="algorithm">アルゴリズム</string>
     <string name="digits">桁数</string>
     <string name="save">保存</string>
     <string name="code_copied">コードをクリップボードにコピーしました。</string>
-
-<string name="about_copyright">© 2013 - Red Hat, Inc., et al.
-© 2016 - Liberty
-© 2026 - &lt;a href=&quot;https://net-aigis.de/&quot;&gt;NetAigis&lt;/a&gt;</string>
-
-<string name="error_camera_open">カメラを開く際にエラーが発生しました。</string>
+    <string name="error_camera_open">カメラを開く際にエラーが発生しました。</string>
     <string name="delete_summary">これが最後のチャンスです。このトークンを削除すると、復元することは出来ません。サーバー上では無効化されません。</string>
     <string name="delete_question">このトークンを削除しますか？</string>
     <string name="import_text">インポート</string>

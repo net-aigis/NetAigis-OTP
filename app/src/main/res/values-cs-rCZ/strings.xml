@@ -8,25 +8,17 @@
     <string name="no_keys">Žádné OTP klíče nejsou nainstalovány.</string>
     <string name="add_token">Přidat token</string>
     <string name="scan_qr_code">Naskenovat QR kód</string>
-    <string name="interval">Interval</string>
     <string name="counter">Počítadlo</string>
     <string name="issuer">Vydavatel</string>
     <string name="account">Účet</string>
-    <string name="alias">Alias</string>
     <string name="icon">Ikona</string>
-    <string name="id">ID</string>
     <string name="secret">Tajný</string>
     <string name="type">Typ</string>
     <string name="algorithm">Algoritmus</string>
     <string name="digits">Číslic</string>
     <string name="save">Uložit</string>
     <string name="code_copied">Kód zkopírován do schránky.</string>
-
-<string name="about_copyright">© 2013 - Red Hat, Inc., et al.
-© 2016 - Liberty
-© 2026 - &lt;a href=&quot;https://net-aigis.de/&quot;&gt;NetAigis&lt;/a&gt;</string>
-
-<string name="error_camera_open">Chyba při spouštění fotoaparátu!</string>
+    <string name="error_camera_open">Chyba při spouštění fotoaparátu!</string>
     <string name="delete_summary">Toto je vaše poslední šance: pokud smažete tento token, bude navždy ztracen. Na serveru nebude vypnut.</string>
     <string name="delete_question">Smazat tento token?</string>
     <string name="import_text">Importovat</string>
@@ -39,7 +31,6 @@
     <string name="import_json_file">Importovat soubor JSON</string>
     <string name="import_json_file_warning">Všechny aktuální tokeny budou po importu vymazány a přepsány.</string>
     <string name="camera_permission_denied_text">Oprávnění k fotoaparátu bylo zamítnuto</string>
-    <string name="ok_text">Ok</string>
     <string name="cancel_text">Storno</string>
     <string name="import_json_format">Importovat formát JSON</string>
     <string name="import_key_uri_format">Importovat formát key URI</string>
@@ -61,7 +52,6 @@
     <string name="share_qr_code">Sdílet QR kód</string>
     <string name="screenshot_mode">Režim snímku obrazovky</string>
     <string name="token_details">Detaily tokenu</string>
-    <string name="share_to_other_apps">Share to other apps</string>
     <string name="category_tab_all">Vše</string>
     <string name="category_tab_none">Žádné</string>
 </resources>

@@ -14,19 +14,13 @@
     <string name="account">Conta</string>
     <string name="alias">Apelido</string>
     <string name="icon">Ícone</string>
-    <string name="id">ID</string>
     <string name="secret">Segredo</string>
     <string name="type">Tipo</string>
     <string name="algorithm">Algoritmo</string>
     <string name="digits">Dígitos</string>
     <string name="save">Salvar</string>
     <string name="code_copied">Código copiado p/ área de transferência.</string>
-
-<string name="about_copyright">© 2013 - Red Hat, Inc., et al.
-© 2016 - Liberty
-© 2026 - &lt;a href=&quot;https://net-aigis.de/&quot;&gt;NetAigis&lt;/a&gt;</string>
-
-<string name="error_camera_open">Erro ao tentar abrir a câmera!</string>
+    <string name="error_camera_open">Erro ao tentar abrir a câmera!</string>
     <string name="delete_summary">Esta é sua última chance: não será possível desfazer esta ação. O token não será desativado no servidor.</string>
     <string name="delete_question">Remover este token?</string>
     <string name="import_text">Importar</string>

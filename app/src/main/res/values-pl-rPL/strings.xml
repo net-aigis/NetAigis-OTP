@@ -12,21 +12,14 @@
     <string name="counter">Licznik</string>
     <string name="issuer">Wydawca</string>
     <string name="account">Konto</string>
-    <string name="alias">Alias</string>
     <string name="icon">Ikona</string>
-    <string name="id">ID</string>
     <string name="secret">Sekret</string>
     <string name="type">Typ</string>
     <string name="algorithm">Algorytm</string>
     <string name="digits">Cyfry</string>
     <string name="save">Zapisz</string>
     <string name="code_copied">Kod skopiowany do schowka.</string>
-
-<string name="about_copyright">© 2013 - Red Hat, Inc., et al.
-© 2016 - Liberty
-© 2026 - &lt;a href=&quot;https://net-aigis.de/&quot;&gt;NetAigis&lt;/a&gt;</string>
-
-<string name="error_camera_open">Błąd podczas uruchamiania kamery!</string>
+    <string name="error_camera_open">Błąd podczas uruchamiania kamery!</string>
     <string name="delete_summary">Token zostanie usunięty z aplikacji. Token nie zostanie dezaktywowany na serwerze.</string>
     <string name="delete_question">Usunąć ten token?</string>
     <string name="import_text">Importuj</string>
@@ -39,7 +32,6 @@
     <string name="import_json_file">Importuj plik JSON</string>
     <string name="import_json_file_warning">Wszystkie istniejące tokeny zostaną usunięte i nadpisane po imporcie.</string>
     <string name="camera_permission_denied_text">Brak uprawnień do użycia kamery</string>
-    <string name="ok_text">Ok</string>
     <string name="cancel_text">Anuluj</string>
     <string name="import_json_format">Importuj z JSON</string>
     <string name="import_key_uri_format">Importuj z formatu URI</string>

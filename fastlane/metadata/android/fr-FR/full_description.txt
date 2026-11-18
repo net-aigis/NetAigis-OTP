@@ -5,15 +5,23 @@ Les codes fonctionnent hors ligne, y compris en mode avion.
 Ajoutez des jetons en scannant un QR code ou en saisissant la configuration manuellement.
 NetAigis OTP met en œuvre les standards ouverts TOTP (RFC 6238) et HOTP (RFC 4226) et fonctionne notamment avec Google, GitHub, Nextcloud et Forgejo.
 
+Compared to FreeOTP+, NetAigis OTP focuses on clearer personal organization of tokens:
+<ul>
+    <li><b>Alias</b> — optional display name in the list (instead of the issuer); does not change OTP calculation; included in search</li>
+    <li><b>Icon</b> — optional built-in icon; used when no custom token image is set</li>
+    <li><b>Categories</b> — optional groups (for example Work or Personal) with list filters (All / None / per category)</li>
+    <li>Thumbnail resolution without a custom image: Icon → Alias → Issuer</li>
+</ul>
+
 <b>Fonctionnalités :</b>
 <ul>
-<li>Scan de QR codes avec CameraX</li>
-<li>Export et import de jetons (JSON / key URI) via le Storage Access Framework</li>
-<li>Material Design avec thème sombre</li>
-<li>Recherche de jetons</li>
-<li>Détails et édition des jetons</li>
-<li>Verrouillage biométrique / PIN optionnel au démarrage</li>
-<li>Icônes d’émetteur hors ligne pour de nombreux services connus</li>
+    <li>Scan de QR codes avec CameraX</li>
+    <li>Export et import de jetons (JSON / key URI) via le Storage Access Framework</li>
+    <li>Material Design avec thème sombre</li>
+    <li>Recherche de jetons</li>
+    <li>Détails et édition des jetons</li>
+    <li>Verrouillage biométrique / PIN optionnel au démarrage</li>
+    <li>Icônes d’émetteur hors ligne pour de nombreux services connus</li>
 </ul>
 
 NetAigis OTP est basé sur un fork de FreeOTP+ et maintenu par <a href="https://net-aigis.de/">NetAigis</a>.

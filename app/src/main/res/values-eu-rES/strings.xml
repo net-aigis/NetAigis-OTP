@@ -14,19 +14,13 @@
     <string name="account">Kontua</string>
     <string name="alias">Aliasa</string>
     <string name="icon">Ikonoa</string>
-    <string name="id">ID</string>
     <string name="secret">Sekretua</string>
     <string name="type">Mota</string>
     <string name="algorithm">Algoritmoa</string>
     <string name="digits">Digituak</string>
     <string name="save">Gorde</string>
     <string name="code_copied">Kodea arbelera kopiatu da.</string>
-
-<string name="about_copyright">© 2013 - Red Hat, Inc., et al.
-© 2016 - Liberty
-© 2026 - &lt;a href=&quot;https://net-aigis.de/&quot;&gt;NetAigis&lt;/a&gt;</string>
-
-<string name="error_camera_open">Errorea kamera irekitzean!</string>
+    <string name="error_camera_open">Errorea kamera irekitzean!</string>
     <string name="delete_summary">Hau da zure azken aukera: token hau ezabatzen baduzu, betirako galduko da. Ez da zerbitzarian desgaituko.</string>
     <string name="delete_question">Ezabatu token hau?</string>
     <string name="import_text">Inportatu</string>

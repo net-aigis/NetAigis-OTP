@@ -60,11 +60,13 @@ Aktuelle Entwicklungsversion: `4.1.0` (versionCode `31`; master/FreeOTP+ stand b
 
 - Keine hartcodierten sichtbaren Texte im Kotlin- oder XML-Layout-Code.
 - Alle UI-Texte, Labels, Buttontexte, Fehlermeldungen und Statusmeldungen müssen über Android String-Ressourcen laufen.
-- Aktueller Stand:
-  - Default/`values/strings.xml` ist Englisch
-  - Deutsch liegt in `values-de-rDE/strings.xml`
-  - weitere Locales über Crowdin vorhanden
-- Neue sichtbare Texte immer mindestens in Default (`values`) und Deutsch (`values-de-rDE`) ergänzen.
+- **Source-Sprache:** Englisch (`values/strings.xml`) — lokal und in Crowdin.
+- **Deutsch und alle anderen Locales** liegen im Repo **und** in Crowdin (Projekt [NetAigis-OTP](https://crowdin.com/project/netaigis-otp), ID `947437`).
+- Neue sichtbare Texte immer mindestens in Default (`values`) und Deutsch (`values-de-rDE`) ergänzen; danach Source (+ DE-Translations) nach Crowdin hochladen.
+- Crowdin-Locales (außer eigener DE-Pflege) nicht manuell im Repo erfinden — Übersetzungen kommen aus Crowdin.
+- Lokale Config: `crowdin.yml` (gitignored), Vorlage `crowdin.example.yml`.
+- CLI: `crowdin upload sources` / `crowdin upload translations` / `crowdin download translations`.
+- **Prepare for Release / `--build`:** `helper/release.sh` holt vor dem Build den aktuellen Stand aus Crowdin (`crowdin download translations`). Notfall: `--skip-translations`.
 - ViewModels und Repository-Ergebnisse dürfen keine fertigen Anzeigetexte liefern; fachliche Codes oder `@StringRes`-IDs verwenden.
 - Technische Konstanten sind davon ausgenommen (interne Codes, MIME-Types, Dateiformate).
 - Vor Abschluss einer UI-Änderung prüfen, ob neue harte Texte entstanden sind.
@@ -287,7 +289,8 @@ FTOKEN_RELEASE=... ./helper/release.sh 4.1.0 --upload
 FTOKEN_RELEASE=... ./helper/release.sh 4.1.0 --build --upload --upload-github
 ```
 
-`release.sh` baut/uploadet derzeit nur Pro (Debug+Release). Free ist pausiert.
+`release.sh` baut/uploadet derzeit nur Pro (Debug+Release). Free ist pausiert.  
+`--build` pullt vorher Crowdin-Translations (braucht `crowdin` + `crowdin.yml`); Notfall: `--skip-translations`.
 Artefaktnamen: Pro (Default) ohne Suffix — `netaigis-otp-${VERSION}.apk` / `netaigis-otp-debug-${VERSION}.apk`; Free ggf. mit `-free-`.
 Release-Beschreibung kommt aus `app/src/main/res/raw/changelog.md` (Abschnitt `## VERSION`).
 GitHub-Ziel: `GITHUB_REPO` (Default `net-aigis/NetAigis-OTP`), Auth über `gh auth` / `GH_TOKEN`.
@@ -375,7 +378,7 @@ java -version
 ## Helper-Skripte
 
 - `helper/rebuild_and_start.sh` — Debug bauen, installieren, starten (`--edition free|pro`, `--device SERIAL`, `--seed`, `--wipe-backup SERIAL`)
-- `helper/release.sh` — Pro Debug+Release bauen (Free pausiert); optional Upload nach Forgejo (`--upload`) und/oder GitHub (`--upload-github`); Notes aus `changelog.md`
+- `helper/release.sh` — Pro Debug+Release bauen (Free pausiert); vor `--build` Crowdin-Translations pullen; optional Upload nach Forgejo (`--upload`) und/oder GitHub (`--upload-github`); Notes aus `changelog.md`
 - Seed nutzt `testdata/sample-tokens.txt` (otpauth-URIs)
 - Debug-Packages: `de.wittmer.app.otp.debug` (Pro) / `de.wittmer.app.otp.free.debug` (Free)
 
@@ -387,7 +390,7 @@ Noch nicht einbauen, solange nicht explizit angefordert:
 
 1. Spätere Free/Pro-Unterschiede an `FeatureAccess` ergänzen (aktuell gleich)
 2. Fastlane-Beschreibungen/Screenshots vollständig auf NetAigis umstellen
-3. Crowdin-Texte jenseits der Markennamen feinjustieren
+3. Crowdin-Community-Übersetzungen der fehlenden Keys pflegen / Reviews
 4. Gradle/AGP-Deprecations abbauen (aktuell AGP 9.4.1 / Gradle 9.8.2; nötig vor AGP 10):
    1. Built-in Kotlin + neues AGP-DSL: `android.builtInKotlin=false` und `android.newDsl=false` entfernen; in allen Modulen `kotlin("android")` entfernen; Root-`kotlin-gradle-plugin` bereinigen
    2. APK-Umbenennung in `app/build.gradle.kts` von `applicationVariants` auf `AndroidComponentsExtension` umstellen

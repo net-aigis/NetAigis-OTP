@@ -21,12 +21,7 @@
     <string name="digits">Rakamlar</string>
     <string name="save">Kaydet</string>
     <string name="code_copied">Kod panoya kopyalandı.</string>
-
-<string name="about_copyright">© 2013 - Red Hat, Inc., et al.
-© 2016 - Liberty
-© 2026 - &lt;a href=&quot;https://net-aigis.de/&quot;&gt;NetAigis&lt;/a&gt;</string>
-
-<string name="error_camera_open">Kamera açılırken hata oluştu!</string>
+    <string name="error_camera_open">Kamera açılırken hata oluştu!</string>
     <string name="delete_summary">Son şansınız: Bu tokenı silerseniz, sonsuza kadar yok olacak ve sunucuda devre dışı bırakılmayacaktır.</string>
     <string name="delete_question">Bu token silinsin mi?</string>
     <string name="import_text">İçe aktar</string>
