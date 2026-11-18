@@ -1,5 +1,11 @@
 # Changelog
 
+## 4.1.1 (32)
+
+- Restrict Screenshot mode changes to the in-app Settings screen
+- Add a Crowdin translation link to About
+- Complete translations across supported languages
+
 ## 4.1.0 (31)
 
 - Configurable export folder for backups

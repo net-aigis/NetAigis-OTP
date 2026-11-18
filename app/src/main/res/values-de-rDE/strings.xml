@@ -48,13 +48,10 @@
     <string name="settings_section_import_export">Import / Export</string>
     <string name="screenshot_mode_pro_only">Der Screenshot-Modus ist in der Pro-Edition verfügbar.</string>
     <string name="about_version_label">Version</string>
-    <string name="about_version_value">%1$s (%2$d)</string>
     <string name="about_version_copied">Version in die Zwischenablage kopiert</string>
     <string name="about_changelog_label">Änderungsprotokoll</string>
     <string name="about_changelog_summary">Was ist neu</string>
     <string name="screen_changelog">Änderungsprotokoll</string>
-    <string name="about_website_summary">net-aigis.de</string>
-    <string name="about_github_label">GitHub</string>
     <string name="about_github_summary">Quellcode, Issues und Informationen</string>
     <string name="about_license_summary">NetAigis OTP steht unter Apache 2.0</string>
     <string name="about_open_source_licenses_summary">Lizenzen von Drittkomponenten</string>
@@ -96,7 +93,6 @@
     <string name="export_folder_not_set">bitte auswählen</string>
     <string name="export_folder_choose">Exportordner wählen</string>
     <string name="export_folder_clear">Zurücksetzen</string>
-    <string name="export_folder_set">%1$s</string>
     <string name="export_folder_selected">Exportordner ausgewählt und bereit.</string>
     <string name="export_folder_unavailable">Exportordner kann nicht verwendet werden. Bitte erneut wählen.</string>
     <string name="export_folder_hint">Empfehlung: Ordner wie Download/NetAigis-OTP anlegen oder auswählen.</string>
@@ -123,10 +119,9 @@
     <string name="authentication_dialog_subtitle">Bitte verwenden Sie Biometrie oder PIN um NetAigis OTP zu authentifizieren</string>
     <string name="unable_to_authenticate">Authentifizierung nicht möglich. Haben Sie die Sperre mit einer PIN / mit biometrischen Daten aktiviert?</string>
     <string name="remove_user_token_image">Benutzerdefiniertes Token Bild entfernen</string>
-    <string name="fail_to_add_image">Fehler beim hinzufügen des Bildes</string>
+    <string name="fail_to_add_image">Fehler beim Hinzufügen des Bildes</string>
     <string name="launch_file_browser_failure">Der Dateibrowser konnte nicht gestartet werden. Wahrscheinlich ist es ein Problem des Betriebssystems.</string>
     <string name="share_qr_code">QR-Code teilen</string>
-    <string name="feature_pro">Pro</string>
     <string name="screenshot_mode">Screenshot-Modus</string>
     <string name="token_details">Token-Details</string>
     <string name="click_to_display">Zum Anzeigen tippen</string>

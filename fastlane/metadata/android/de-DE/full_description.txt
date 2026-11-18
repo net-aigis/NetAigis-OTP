@@ -15,7 +15,7 @@ Gegenüber FreeOTP+ liegt der Fokus auf klarerer persönlicher Organisation der 
 
 <b>Weitere Funktionen:</b>
 <ul>
-    <li>QR-Codes mit CameraX</li> scannen
+    <li>QR-Codes mit CameraX</li>
     <li>Token exportieren und importieren (JSON / Key-URI) über das Storage Access Framework</li>
     <li>Material Design mit dunkler Theme-Unterstützung</li>
     <li>Token suchen</li>

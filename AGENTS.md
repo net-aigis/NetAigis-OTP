@@ -37,7 +37,7 @@ Wichtig: Änderungen sollen klein, nachvollziehbar und fachlich konsistent sein.
   - CameraX (QR)
   - Biometric
 
-Aktuelle Entwicklungsversion: `4.1.0` (versionCode `31`; master/FreeOTP+ stand bei `3.4` / `26`).
+Aktuelle Entwicklungsversion: `4.1.1` (versionCode `32`; master/FreeOTP+ stand bei `3.4` / `26`).
 
 ---
 
